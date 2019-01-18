@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 15
-  productGUID: b1874cc5045014cf8969126abf9d03d7
+  productGUID: be0af80cdfa9a41b49c1a1d1bfc6b447
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: New Unity Project (2)
+  productName: Pokemon Purple
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -580,9 +580,9 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 559d8dcc-7d72-40f2-a1c2-cfecb0397c75
+  cloudProjectId: 168eef55-2e70-4ee1-b3da-e472b7308c20
   framebufferDepthMemorylessMode: 0
-  projectName: New Unity Project (2)
+  projectName: Pokemon Purple
   organizationId: gg-gaming1
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
