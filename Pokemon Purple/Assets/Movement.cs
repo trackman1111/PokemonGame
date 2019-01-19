@@ -13,7 +13,22 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime * 3 * Input.GetAxis("Horizontal"));
-        transform.Translate(Vector3.up * Time.deltaTime * 3 * Input.GetAxis("Vertical"));
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(Vector3.left * Time.deltaTime * 3);
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            transform.Translate(Vector3.up * Time.deltaTime * 3);
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(Vector3.down * Time.deltaTime * 3);
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * 3);
+        }
+
     }
 }
