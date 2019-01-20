@@ -20,6 +20,7 @@ public class Trainer : MonoBehaviour
         }
 
         print("Press Y to add Squirtle, U for Bulbasuar, I for Charmander, O for Sandshrew, or P for Pikachu )");
+        print("Press B to see your bag, Press P to see your pokemon, and press C to clear the console.");
 
         // adding all default items to bag array
         bag.Add("map");
@@ -55,33 +56,43 @@ public class Trainer : MonoBehaviour
         
         // showing pokemon array
             
-        if (Input.GetKeyDown(KeyCode.C))                    //  if 'C' is down, then call printPokemon(), which displays all items in the bag into the Console 
+        if (Input.GetKeyDown(KeyCode.P))                    //  if 'C' is down, then call printPokemon(), which displays all items in the bag into the Console 
         {
             printPokemon();
         }
 
+        // clearing console for cleanliness
+
+        if (Input.GetKeyDown(KeyCode.C));
+        {
+            // LOOK UP HOW TO CLEAR CONSOLE
+
+            Debug.ClearDeveloperConsole();
+            // clearConsoleMethod.Invoke(new object(), null);
+        }
+
         // adding pokemon to pokemon array
 
-        if (Input.GetKeyDown(KeyCode.Y))                    //  if 'Y' is down, then add squirtle to pokemon array
+        if (Input.GetKeyDown(KeyCode.T))                    //  if 'T' is down, then add squirtle to pokemon array
         {
             addPokemon("Squirtle");
         }
 
-        if (Input.GetKeyDown(KeyCode.U))                    //  if 'U' is down, then add bulbasaur to pokemon array
+        if (Input.GetKeyDown(KeyCode.Y))                    //  if 'Y' is down, then add bulbasaur to pokemon array
         {
             addPokemon("Bulbasaur");
         }
-        if (Input.GetKeyDown(KeyCode.I))                    //  if 'I' is down, then add charmander to pokemon array
+        if (Input.GetKeyDown(KeyCode.U))                    //  if 'U' is down, then add charmander to pokemon array
         {
             addPokemon("Charmander");
         }
 
-        if (Input.GetKeyDown(KeyCode.O))                    //  if 'O' is down, then add sandshrew to pokemon array
+        if (Input.GetKeyDown(KeyCode.I)  )                  //  if 'I' is down, then add sandshrew to pokemon array
         {
             addPokemon("Sandshrew");
         }
 
-        if (Input.GetKeyDown(KeyCode.P))                    //  if 'P' is down, then add pikachu to pokemon array
+        if (Input.GetKeyDown(KeyCode.O))                    //  if 'O' is down, then add pikachu to pokemon array
         {
             addPokemon("Pikachu");
         }
