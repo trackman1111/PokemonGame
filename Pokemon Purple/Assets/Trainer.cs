@@ -7,27 +7,29 @@ public class Trainer : MonoBehaviour
 
     // this class will depend on the pokemon class having the fields type and name, both are strings.
 
-    ArrayList pokemon = new ArrayList();
-    ArrayList moves = new ArrayList();
+    string[,] pokemon = new string[6, 4]
+    {
+        { "", "", "", ""},
+        { "", "", "", ""},
+        { "", "", "", ""},
+        { "", "", "", ""},
+        { "", "", "", ""},
+        { "", "", "", ""}
+    };
     ArrayList bag = new ArrayList();
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < pokemon.Count; i++)       // .Count is .length() in c#
-        {
-            // makeMoves( pokemon[i].type );
-        }
-
-        clearConsole();
-
         // adding all default items to bag array
         bag.Add("map");
         bag.Add("pokeball");
         bag.Add("ulra ball");
         bag.Add("master ball");
 
+        clearConsole();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -72,35 +74,52 @@ public class Trainer : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))                    //  if 'T' is down, then add squirtle to pokemon array
         {
-            addPokemon("Squirtle");
+            addPokemon("Squirtle", "Water");
         }
 
         if (Input.GetKeyDown(KeyCode.Y))                    //  if 'Y' is down, then add bulbasaur to pokemon array
         {
-            addPokemon("Bulbasaur");
+            addPokemon("Bulbasaur", "Grass");
         }
         if (Input.GetKeyDown(KeyCode.U))                    //  if 'U' is down, then add charmander to pokemon array
         {
-            addPokemon("Charmander");
+            addPokemon("Charmander", "Fire");
         }
 
         if (Input.GetKeyDown(KeyCode.I)  )                  //  if 'I' is down, then add sandshrew to pokemon array
         {
-            addPokemon("Sandshrew");
+            addPokemon("Sandshrew", "Ground");
         }
 
         if (Input.GetKeyDown(KeyCode.O))                    //  if 'O' is down, then add pikachu to pokemon array
         {
-            addPokemon("Pikachu");
+            // Pokemon pikachu = new Pokemon();
+            addPokemon("Pikachu", "Electric");
         }
     }
 
-    void addPokemon( string name )
+    // this method will eventually take in a Pokemon()
+
+    void addPokemon( string poke, string type )
     {
-        if ( pokemon.Count < 6 ) 
+        if ( pokemon[5,0].Equals("") ) 
         {
-            pokemon.Add(name);
-            print( name + " was added." );
+            System.Boolean addedPoke = false;
+            int slot = 0;
+            while ( !addedPoke && slot < 6)
+            {
+                if ( pokemon[slot, 0].Equals("") )
+                {
+                    pokemon[slot, 0] = poke;
+                    makeMoves(type, slot);
+                    // pokemon[slot, 0] = poke.name             the pokemon class will eventually have the fields name and type
+                    // makeMoves( poke.type , slot );
+                    addedPoke = true;
+                }
+                slot++;
+            }
+
+            print(poke + " was added in slot " + slot);
         }
         else
         {
@@ -110,32 +129,33 @@ public class Trainer : MonoBehaviour
 
 
     // this method initializes the moves for your pokemon at the beggining of the game
-    void makeMoves( string type)
+    void makeMoves( string type, int slot )
     {
         if ( type.Equals("Water") ) {
-            moves.Add("Tackle");
-            moves.Add("Tail Whip");
-            moves.Add("Bubble");
+
+           pokemon[slot, 1] = "Tackle";
+           pokemon[slot, 2] = "Tail Whip";
+           pokemon[slot, 3] = "Bubble";
         }
         else if (type.Equals("Fire")){
-            moves.Add("Scratch");
-            moves.Add("Growl");
-            moves.Add("Ember");
+            pokemon[slot, 1] = "Scratch";
+            pokemon[slot, 2] = "Growl";
+            pokemon[slot, 3] = "Ember";
         }
         else if (type.Equals("Grass")){
-            moves.Add("Growl");
-            moves.Add("Tackle");
-            moves.Add("Vine Whip");
+            pokemon[slot, 1] = "Growl";
+            pokemon[slot, 2] = "Tackle";
+            pokemon[slot, 3] = "Vine Whip";
         }
         else if (type.Equals("Ground")){
-            moves.Add("Defense Curl");
-            moves.Add("Scratch");
-            moves.Add("Sand Attack");
+            pokemon[slot, 1] = "Defense Curl";
+            pokemon[slot, 2] = "Scratch";
+            pokemon[slot, 3] = "Sand Attack";
         }
-        else if (type.Equals("Electric")){ 
-            moves.Add("Growl");
-            moves.Add("Tail Whip");
-            moves.Add("Thunder Shock");
+        else if (type.Equals("Electric")){
+            pokemon[slot, 1] = "Growl";
+            pokemon[slot, 2] = "Tail Whip";
+            pokemon[slot, 3] = "Thunder Shock";
         }
     }
 
@@ -153,14 +173,18 @@ public class Trainer : MonoBehaviour
     // prints all of the Trainers Pokemons name to console
     void printPokemon()
     {
-        if ( pokemon.Count < 1 )
+        if ( pokemon[0,0].Equals("") )
         {
             print("You have no pokemon");
         }
-        for (int i = 0; i < pokemon.Count; i++)
+        for (int i = 0; i < 6; i++)
         {
-            string currPoke = pokemon[i] + "";
-            print( "Slot " + (i + 1) + " is " + currPoke );
+            string currPoke = pokemon[i , 0] + "";
+
+            if (!currPoke.Equals(""))
+            {
+                print("Slot " + (i + 1) + " is " + currPoke +" and has the moves " + pokemon[i,1] + ", " + pokemon[i,2] + ", " + pokemon[i, 3]);
+            }
         }
     }
 
@@ -172,7 +196,7 @@ public class Trainer : MonoBehaviour
         var clearMethod = logEntries.GetMethod("Clear", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public);
         clearMethod.Invoke(new object(), null);
 
-        print("Press Y to add Squirtle, U for Bulbasuar, I for Charmander, O for Sandshrew, or P for Pikachu )");
+        print("Press T to add Squirtle, Y for Bulbasuar, U for Charmander, I for Sandshrew, or O for Pikachu )");
         print("Press B to see your bag, Press P to see your pokemon, and press C to clear the console.");
     }
 
