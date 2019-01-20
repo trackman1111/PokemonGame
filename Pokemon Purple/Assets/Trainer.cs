@@ -19,14 +19,14 @@ public class Trainer : MonoBehaviour
             // makeMoves( pokemon[i].type );
         }
 
-        print("Press Y to add Squirtle, U for Bulbasuar, I for Charmander, O for Sandshrew, or P for Pikachu )");
-        print("Press B to see your bag, Press P to see your pokemon, and press C to clear the console.");
+        clearConsole();
 
         // adding all default items to bag array
         bag.Add("map");
         bag.Add("pokeball");
         bag.Add("ulra ball");
         bag.Add("master ball");
+
     }
 
     // Update is called once per frame
@@ -63,12 +63,9 @@ public class Trainer : MonoBehaviour
 
         // clearing console for cleanliness
 
-        if (Input.GetKeyDown(KeyCode.C));
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            // LOOK UP HOW TO CLEAR CONSOLE
-
-            Debug.ClearDeveloperConsole();
-            // clearConsoleMethod.Invoke(new object(), null);
+            clearConsole();
         }
 
         // adding pokemon to pokemon array
@@ -156,11 +153,27 @@ public class Trainer : MonoBehaviour
     // prints all of the Trainers Pokemons name to console
     void printPokemon()
     {
+        if ( pokemon.Count < 1 )
+        {
+            print("You have no pokemon");
+        }
         for (int i = 0; i < pokemon.Count; i++)
         {
             string currPoke = pokemon[i] + "";
             print( "Slot " + (i + 1) + " is " + currPoke );
         }
+    }
+
+    // this method clear the developer console... looks clean for user
+
+    void clearConsole()
+    {
+        var logEntries = System.Type.GetType("UnityEditor.LogEntries, UnityEditor.dll");
+        var clearMethod = logEntries.GetMethod("Clear", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public);
+        clearMethod.Invoke(new object(), null);
+
+        print("Press Y to add Squirtle, U for Bulbasuar, I for Charmander, O for Sandshrew, or P for Pikachu )");
+        print("Press B to see your bag, Press P to see your pokemon, and press C to clear the console.");
     }
 
 
