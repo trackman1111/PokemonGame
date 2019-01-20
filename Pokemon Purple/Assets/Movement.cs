@@ -24,10 +24,6 @@ public class Movement : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.left * Time.deltaTime * 3);
-        }
-        else if (Input.GetKey(KeyCode.W))
-        {
             transform.Translate(Vector3.up * Time.deltaTime * 3);
             this.GetComponent<SpriteRenderer>().sprite = upSprite;
         }
