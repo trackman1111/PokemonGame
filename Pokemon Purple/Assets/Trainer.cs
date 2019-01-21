@@ -6,7 +6,7 @@ public class Trainer : MonoBehaviour
 {
 
     // this class will depend on the pokemon class having the fields type and name, both are strings.
-
+    //added comment
     string[,] pokemon = new string[6, 4]
     {
         { "", "", "", ""},
