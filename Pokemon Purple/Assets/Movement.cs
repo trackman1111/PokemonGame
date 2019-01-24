@@ -14,27 +14,32 @@ public class Movement : MonoBehaviour
     public Sprite downSprite;
     public Sprite upSprite;
 
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector3.left * Time.deltaTime * 3);
+            transform.position = new Vector3(transform.position.x -.1f,
+                                             transform.position.y, transform.position.z);
             this.GetComponent<SpriteRenderer>().sprite = leftSprite;
         }
         else if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.up * Time.deltaTime * 3);
+            transform.position = new Vector3(transform.position.x,
+                                             transform.position.y + .1f, transform.position.z);
             this.GetComponent<SpriteRenderer>().sprite = upSprite;
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(Vector3.down * Time.deltaTime * 3);
+            transform.position = new Vector3(transform.position.x,
+                                             transform.position.y - .1f, transform.position.z);
             this.GetComponent<SpriteRenderer>().sprite = downSprite;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(Vector3.right * Time.deltaTime * 3);
+            transform.position = new Vector3(transform.position.x + .1f,
+                                             transform.position.y, transform.position.z);
             this.GetComponent<SpriteRenderer>().sprite = rightSprite;
         }
 
