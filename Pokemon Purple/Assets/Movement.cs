@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    float movespeed = .1f;
+    public SpriteRenderer sr;
+    public Sprite leftIdle;
+    public Sprite rightIdle;
+    public Sprite upIdle;
+    public Sprite downIdle;
+    private string currDirection;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        sr = GetComponent<SpriteRenderer>();
+        sr.sprite = upIdle;
+        currDirection = "Left";
     }
-    public Sprite leftSprite;
-    public Sprite rightSprite;
-    public Sprite downSprite;
-    public Sprite upSprite;
 
 
     // Update is called once per frame
@@ -20,28 +26,34 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position = new Vector3(transform.position.x -.1f,
+            transform.position = new Vector3(transform.position.x - movespeed,
                                              transform.position.y, transform.position.z);
-            this.GetComponent<SpriteRenderer>().sprite = leftSprite;
+            sr.sprite = leftIdle;
         }
         else if (Input.GetKey(KeyCode.W))
         {
             transform.position = new Vector3(transform.position.x,
-                                             transform.position.y + .1f, transform.position.z);
-            this.GetComponent<SpriteRenderer>().sprite = upSprite;
+                                             transform.position.y + movespeed, transform.position.z);
+            sr.sprite = upIdle;
         }
         else if (Input.GetKey(KeyCode.S))
         {
             transform.position = new Vector3(transform.position.x,
-                                             transform.position.y - .1f, transform.position.z);
-            this.GetComponent<SpriteRenderer>().sprite = downSprite;
+                                             transform.position.y - movespeed, transform.position.z);
+            sr.sprite = downIdle;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.position = new Vector3(transform.position.x + .1f,
+            transform.position = new Vector3(transform.position.x + movespeed,
                                              transform.position.y, transform.position.z);
-            this.GetComponent<SpriteRenderer>().sprite = rightSprite;
+            sr.sprite = rightIdle;
         }
 
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        transform.position = new Vector3(transform.position.x + movespeed,
+                                             transform.position.y -10, transform.position.z);
+    }
 }
+
