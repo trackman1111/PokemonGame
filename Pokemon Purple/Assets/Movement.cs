@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    float movespeed = .1f;
+    public Rigidbody2D rb;
+    float movespeed = 4f;
     public SpriteRenderer sr;
     public Sprite leftIdle;
     public Sprite rightIdle;
@@ -18,6 +19,7 @@ public class Movement : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = upIdle;
         currDirection = "Left";
+        rb = GetComponent<Rigidbody2D>();
     }
 
 
@@ -26,26 +28,22 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position = new Vector3(transform.position.x - movespeed,
-                                             transform.position.y, transform.position.z);
+            rb.velocity = new Vector3(- movespeed, 0, 0);
             sr.sprite = leftIdle;
         }
         else if (Input.GetKey(KeyCode.W))
         {
-            transform.position = new Vector3(transform.position.x,
-                                             transform.position.y + movespeed, transform.position.z);
+            rb.velocity = new Vector3(0, movespeed, 0);
             sr.sprite = upIdle;
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            transform.position = new Vector3(transform.position.x,
-                                             transform.position.y - movespeed, transform.position.z);
+            rb.velocity = new Vector3(0,- movespeed,0);
             sr.sprite = downIdle;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.position = new Vector3(transform.position.x + movespeed,
-                                             transform.position.y, transform.position.z);
+            rb.velocity = new Vector3( movespeed,0, 0);
             sr.sprite = rightIdle;
         }
 

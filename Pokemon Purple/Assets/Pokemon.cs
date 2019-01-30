@@ -47,36 +47,36 @@ public class Pokemon : MonoBehaviour
     }
     void makeMoves(string type, int slot)
     {
-        if (type.Equals("Water"))
-        {
+        //if (type.Equals("Water"))
+        //{
 
-            pokemon[slot, 1] = "Tackle";
-            pokemon[slot, 2] = "Tail Whip";
-            pokemon[slot, 3] = "Bubble";
-        }
-        else if (type.Equals("Fire"))
-        {
-            pokemon[slot, 1] = "Scratch";
-            pokemon[slot, 2] = "Growl";
-            pokemon[slot, 3] = "Ember";
-        }
-        else if (type.Equals("Grass"))
-        {
-            pokemon[slot, 1] = "Growl";
-            pokemon[slot, 2] = "Tackle";
-            pokemon[slot, 3] = "Vine Whip";
-        }
-        else if (type.Equals("Ground"))
-        {
-            pokemon[slot, 1] = "Defense Curl";
-            pokemon[slot, 2] = "Scratch";
-            pokemon[slot, 3] = "Sand Attack";
-        }
-        else if (type.Equals("Electric"))
-        {
-            pokemon[slot, 1] = "Growl";
-            pokemon[slot, 2] = "Tail Whip";
-            pokemon[slot, 3] = "Thunder Shock";
-        }
+        //    pokemon[slot, 1] = "Tackle";
+        //    pokemon[slot, 2] = "Tail Whip";
+        //    pokemon[slot, 3] = "Bubble";
+        //}
+        //else if (type.Equals("Fire"))
+        //{
+        //    pokemon[slot, 1] = "Scratch";
+        //    pokemon[slot, 2] = "Growl";
+        //    pokemon[slot, 3] = "Ember";
+        //}
+        //else if (type.Equals("Grass"))
+        //{
+        //    pokemon[slot, 1] = "Growl";
+        //    pokemon[slot, 2] = "Tackle";
+        //    pokemon[slot, 3] = "Vine Whip";
+        //}
+        //else if (type.Equals("Ground"))
+        //{
+        //    pokemon[slot, 1] = "Defense Curl";
+        //    pokemon[slot, 2] = "Scratch";
+        //    pokemon[slot, 3] = "Sand Attack";
+        //}
+        //else if (type.Equals("Electric"))
+        //{
+        //    pokemon[slot, 1] = "Growl";
+        //    pokemon[slot, 2] = "Tail Whip";
+        //    pokemon[slot, 3] = "Thunder Shock";
+        //}
     }
 }
