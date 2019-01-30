@@ -46,6 +46,10 @@ public class Movement : MonoBehaviour
             rb.velocity = new Vector3( movespeed,0, 0);
             sr.sprite = rightIdle;
         }
+        else
+        {
+            rb.velocity = new Vector3(0, 0, 0);
+        }
 
     }
     private void OnCollisionEnter(Collision collision)
