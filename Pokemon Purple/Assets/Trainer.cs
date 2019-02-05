@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Trainer : MonoBehaviour
 {
 
     // this class will depend on the pokemon class having the fields type and name, both are strings.
-    //added comment
+
+        // core 2d array for most of my methods
     string[,] pokemon = new string[6, 4]
     {
         { "", "", "", ""},
@@ -16,16 +18,20 @@ public class Trainer : MonoBehaviour
         { "", "", "", ""},
         { "", "", "", ""}
     };
+    
     ArrayList bag = new ArrayList();
 
     // Start is called before the first frame update
     void Start()
     {
         // adding all default items to bag array
-        bag.Add("map");
-        bag.Add("pokeball");
-        bag.Add("ulra ball");
-        bag.Add("master ball");
+
+
+        bag.Add("Pokeball");
+        bag.Add("Master Ball");
+        bag.Add("Ultra Ball");
+        bag.Add("Pokeball");
+        bag.Add("Bike");
 
         clearConsole();
     }
@@ -55,6 +61,14 @@ public class Trainer : MonoBehaviour
         {
             printBag();
         }
+
+        if( Input.GetKeyDown(KeyCode.X))
+        {
+            for( int i = 0; i < bag.Count-1; i++ )
+            {
+                actions( bag[i].ToString() );
+            }
+        }
         
         // showing pokemon array
             
@@ -74,33 +88,40 @@ public class Trainer : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))                    //  if 'T' is down, then add squirtle to pokemon array
         {
-            addPokemon("Squirtle", "Water");
+            Pokemon squirtle = new Pokemon();
+            addPokemon(squirtle);
+
+            // Pokemon temp = new Pokemon( Squirtle );          repeat this concept for next 5 if statements
+            // addPokemon(temp);
         }
 
         if (Input.GetKeyDown(KeyCode.Y))                    //  if 'Y' is down, then add bulbasaur to pokemon array
         {
-            addPokemon("Bulbasaur", "Grass");
+            Pokemon bulbasaur = new Pokemon();
+            addPokemon(bulbasaur);
         }
         if (Input.GetKeyDown(KeyCode.U))                    //  if 'U' is down, then add charmander to pokemon array
         {
-            addPokemon("Charmander", "Fire");
+            Pokemon charmander = new Pokemon();
+            addPokemon(charmander);
         }
 
         if (Input.GetKeyDown(KeyCode.I)  )                  //  if 'I' is down, then add sandshrew to pokemon array
         {
-            addPokemon("Sandshrew", "Ground");
+            Pokemon sandshrew = new Pokemon();
+            addPokemon(sandshrew);
         }
 
         if (Input.GetKeyDown(KeyCode.O))                    //  if 'O' is down, then add pikachu to pokemon array
         {
-            // Pokemon pikachu = new Pokemon();
-            addPokemon("Pikachu", "Electric");
+            Pokemon pikachu = new Pokemon();
+            addPokemon( pikachu );
         }
     }
 
     // this method will eventually take in a Pokemon()
 
-    void addPokemon( string poke, string type )
+    void addPokemon( Pokemon poke )
     {
         if ( pokemon[5,0].Equals("") ) 
         {
@@ -110,10 +131,7 @@ public class Trainer : MonoBehaviour
             {
                 if ( pokemon[slot, 0].Equals("") )
                 {
-                    pokemon[slot, 0] = poke;
-                    makeMoves(type, slot);
-                    // pokemon[slot, 0] = poke.name             the pokemon class will eventually have the fields name and type
-                    // makeMoves( poke.type , slot );
+                    pokemon[slot, 0] = poke.name;
                     addedPoke = true;
                 }
                 slot++;
@@ -127,46 +145,12 @@ public class Trainer : MonoBehaviour
         }
     }
 
-
-    // this method initializes the moves for your pokemon at the beggining of the game
-    void makeMoves( string type, int slot )
-    {
-        if ( type.Equals("Water") ) {
-
-           pokemon[slot, 1] = "Tackle";
-           pokemon[slot, 2] = "Tail Whip";
-           pokemon[slot, 3] = "Bubble";
-        }
-        else if (type.Equals("Fire")){
-            pokemon[slot, 1] = "Scratch";
-            pokemon[slot, 2] = "Growl";
-            pokemon[slot, 3] = "Ember";
-        }
-        else if (type.Equals("Grass")){
-            pokemon[slot, 1] = "Growl";
-            pokemon[slot, 2] = "Tackle";
-            pokemon[slot, 3] = "Vine Whip";
-        }
-        else if (type.Equals("Ground")){
-            pokemon[slot, 1] = "Defense Curl";
-            pokemon[slot, 2] = "Scratch";
-            pokemon[slot, 3] = "Sand Attack";
-        }
-        else if (type.Equals("Electric")){
-            pokemon[slot, 1] = "Growl";
-            pokemon[slot, 2] = "Tail Whip";
-            pokemon[slot, 3] = "Thunder Shock";
-        }
-    }
-
-    // adds a pokemon of users choice to the pokemon array
-
     // prints all items in the Trainers bag to the console
     void printBag()
     {
         for (int i = 0; i < bag.Count; i++)
         {
-            print(bag[i]);
+            print( bag[i] );
         }
     }
 
@@ -200,10 +184,47 @@ public class Trainer : MonoBehaviour
         print("Press B to see your bag, Press P to see your pokemon, and press C to clear the console.");
     }
 
+    void actions(string s)
+    {
+
+        if ( s.Equals("Pokeball") )
+        {
+            print("A pokeball allows a trainer to catch a wild pokemon with a normal catch rate" );
+        }
+        else if (s.Equals("Great Ball"))
+        {
+            print("A Great Ball allows a trainer to catch a wild pokemon with a better catch rate");
+        }
+        else if (s.Equals("Ultra Ball"))
+        {
+            print("An Ultra Ball allows a trainer to catch a wild pokemon with an amazing catch rate");
+        }
+        else if (s.Equals("Master Ball"))
+        {
+            print("A Master Ball allows a trainer to catch a wild pokemon with a 100% catch rate");
+        }
+        else if (s.Equals("Map"))
+        {
+            print("A map allows a trainer to see the whole world");
+        }
+        else if(s.Equals("Potion"))
+        {
+            print("A potion allows a trainer to heal a pokemon for 20hp");
+        }
+        else if (s.Equals("Revive"))
+        {
+            print("A revive allows a trainer to bring a pokemon with 0 hp back to half health");
+        }
+
+    }
+
+
 
     // this method occurs 10% of the time when a trainer is in a bush
     void encounter()
     {
 
     }
+
+
 }

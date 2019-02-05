@@ -50,33 +50,33 @@ public class Pokemon : MonoBehaviour
         if (type.Equals("Water"))
         {
 
-            pokemon[slot, 1] = "Tackle";
-            pokemon[slot, 2] = "Tail Whip";
-            pokemon[slot, 3] = "Bubble";
+  //          pokemon[slot, 1] = "Tackle";
+    //        pokemon[slot, 2] = "Tail Whip";
+    //        pokemon[slot, 3] = "Bubble";
         }
         else if (type.Equals("Fire"))
         {
-            pokemon[slot, 1] = "Scratch";
-            pokemon[slot, 2] = "Growl";
-            pokemon[slot, 3] = "Ember";
+    //        pokemon[slot, 1] = "Scratch";
+    //        pokemon[slot, 2] = "Growl";
+    //        pokemon[slot, 3] = "Ember";
         }
         else if (type.Equals("Grass"))
         {
-            pokemon[slot, 1] = "Growl";
-            pokemon[slot, 2] = "Tackle";
-            pokemon[slot, 3] = "Vine Whip";
+    //        pokemon[slot, 1] = "Growl";
+    //        pokemon[slot, 2] = "Tackle";
+    //        pokemon[slot, 3] = "Vine Whip";
         }
         else if (type.Equals("Ground"))
         {
-            pokemon[slot, 1] = "Defense Curl";
-            pokemon[slot, 2] = "Scratch";
-            pokemon[slot, 3] = "Sand Attack";
+    //        pokemon[slot, 1] = "Defense Curl";
+    //        pokemon[slot, 2] = "Scratch";
+    //        pokemon[slot, 3] = "Sand Attack";
         }
         else if (type.Equals("Electric"))
         {
-            pokemon[slot, 1] = "Growl";
-            pokemon[slot, 2] = "Tail Whip";
-            pokemon[slot, 3] = "Thunder Shock";
+    //        pokemon[slot, 1] = "Growl";
+    //       pokemon[slot, 2] = "Tail Whip";
+   //         pokemon[slot, 3] = "Thunder Shock";
         }
     }
 }
