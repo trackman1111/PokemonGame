@@ -12,11 +12,22 @@ public class ViewManager : MonoBehaviour
     }
 
     // Update is called once per frame
+    public GameObject menu; 
+    private bool isShowing;
+
     void Update()
     {
-       if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown("escape"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            if (menu.activeSelf)
+            {
+                menu.SetActive(false);
+            }
+            else
+            {
+                menu.SetActive(true);
+            }
+
         }
     }
 }
