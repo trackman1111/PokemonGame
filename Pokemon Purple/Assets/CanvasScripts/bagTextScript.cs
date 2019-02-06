@@ -15,18 +15,6 @@ public class bagTextScript : MonoBehaviour
     void Start()
     {
 
-        trainer = GetComponent<Trainer>();
-
-        bag = trainer.bag;
-
-
-        for ( int i = 0; i < bag.Count - 2; i++ )
-        {
-            items += bag[i] + ", ";
-        }
-        items += bag[ bag.Count - 1 ];
-
-        text.GetComponent<Text>().text = items;
     }
 
     // Update is called once per frame
@@ -34,6 +22,8 @@ public class bagTextScript : MonoBehaviour
     {
         if ( Input.GetKeyDown( KeyCode.B ) )
         {
+            text = GetComponent<Text>();
+
             bag = trainer.bag;
             print(bag + "1");
         }
