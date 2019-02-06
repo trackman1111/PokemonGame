@@ -12,7 +12,9 @@ public class CanvasManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    public GameObject menu; 
+    public GameObject menu;
+    public GameObject menuController;
+    public GameObject credits;
     private bool isShowing;
 
     void Update()
@@ -26,6 +28,8 @@ public class CanvasManager : MonoBehaviour
             else
             {
                 menu.SetActive(true);
+                menuController.SetActive(true);
+                credits.SetActive(false);
             }
 
         }
