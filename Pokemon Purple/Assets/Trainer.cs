@@ -18,14 +18,14 @@ public class Trainer : MonoBehaviour
         { "", "", "", ""},
         { "", "", "", ""}
     };
-    
-    ArrayList bag = new ArrayList();
+
+    public ArrayList bag;
 
     // Start is called before the first frame update
     void Start()
     {
         // adding all default items to bag array
-
+        bag = new ArrayList();
 
         bag.Add("Pokeball");
         bag.Add("Master Ball");
@@ -54,13 +54,6 @@ public class Trainer : MonoBehaviour
 
 
         // BUTTON CONFIGURATIONS -----------------------------------------------------------------------------------------------------------------------
-
-        // showing bag array
-
-        if (Input.GetKeyDown(KeyCode.B))                    //  if 'b' is down, then call printBag(), which displays all items in the bag into the Console 
-        {
-            printBag();
-        }
 
         if( Input.GetKeyDown(KeyCode.X))
         {
@@ -142,15 +135,6 @@ public class Trainer : MonoBehaviour
         else
         {
             print("You already have 6 pokemon!");
-        }
-    }
-
-    // prints all items in the Trainers bag to the console
-    void printBag()
-    {
-        for (int i = 0; i < bag.Count; i++)
-        {
-            print( bag[i] );
         }
     }
 
