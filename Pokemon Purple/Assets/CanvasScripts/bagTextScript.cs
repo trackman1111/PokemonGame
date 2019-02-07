@@ -1,31 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class bagTextScript : MonoBehaviour
 {
-    Text text;
-    string items;
+    public TextMeshProUGUI text;
+    public Trainer trainer;
 
-    ArrayList bag;
-    Trainer trainer;
+    bool isOpen = true;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        //  bag = GlobalControl.Instance.bag;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ( Input.GetKeyDown( KeyCode.B ) )
-        {
-            text = GetComponent<Text>();
+        ArrayList bag = trainer.bag;
 
-            bag = trainer.bag;
-            print(bag + "1");
+
+        if ( isOpen )
+        {
+            string items = "";
+
+            for (int i = 0; i < bag.Count - 1; i++)
+            {
+                items += bag[i] + "\n";
+            }
+
+            text.text = items;
+
+            isOpen = false; ;
         }
+        if ( Input.GetKeyDown(KeyCode.B) )
+        {
+            isOpen = true;
+        }
+
+    }
+
+    void SavePlayer()
+    {
+        //GlobalControl.Instance.bag = bag;
     }
 }

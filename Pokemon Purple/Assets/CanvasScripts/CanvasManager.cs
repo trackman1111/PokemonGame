@@ -13,9 +13,11 @@ public class CanvasManager : MonoBehaviour
 
     // Update is called once per frame
     public GameObject menu;
-    public GameObject bag;
     public GameObject menuController;
     public GameObject credits;
+    public GameObject bag;
+
+    public Trainer trainer;
 
     void Update()
     {

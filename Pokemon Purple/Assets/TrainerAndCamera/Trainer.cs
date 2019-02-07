@@ -34,7 +34,9 @@ public class Trainer : MonoBehaviour
         bag.Add("Bike");
 
         clearConsole();
-        print(PlayerPrefs.GetString("Starter"));
+
+        pokemon[0,0] = PlayerPrefs.GetString("Starter");
+      // Pokemon starter = new Pokemon( PlayerPrefs.GetString("Starter")));
     }
 
 
@@ -76,6 +78,11 @@ public class Trainer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             clearConsole();
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            bag.Add("Map");
         }
 
         // adding pokemon to pokemon array
@@ -154,6 +161,11 @@ public class Trainer : MonoBehaviour
                 print("Slot " + (i + 1) + " is " + currPoke +" and has the moves " + pokemon[i,1] + ", " + pokemon[i,2] + ", " + pokemon[i, 3]);
             }
         }
+    }
+
+    public ArrayList getBag()
+    {
+        return bag;
     }
 
     // this method clear the developer console... looks clean for user
