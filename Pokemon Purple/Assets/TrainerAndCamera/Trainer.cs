@@ -34,6 +34,7 @@ public class Trainer : MonoBehaviour
         bag.Add("Bike");
 
         clearConsole();
+        print(PlayerPrefs.GetString("Starter"));
     }
 
 
@@ -98,7 +99,6 @@ public class Trainer : MonoBehaviour
             Pokemon charmander = new Pokemon();
             addPokemon(charmander);
         }
-
         if (Input.GetKeyDown(KeyCode.I)  )                  //  if 'I' is down, then add sandshrew to pokemon array
         {
             Pokemon sandshrew = new Pokemon();
