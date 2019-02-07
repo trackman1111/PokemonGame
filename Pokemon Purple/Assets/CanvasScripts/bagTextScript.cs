@@ -25,14 +25,28 @@ public class bagTextScript : MonoBehaviour
 
         if ( isOpen )
         {
-            string items = "";
+            ArrayList items = new ArrayList();
 
             for (int i = 0; i < bag.Count - 1; i++)
             {
-                items += bag[i] + "\n";
+                if ( !items.Contains( bag[i] ))
+                {
+                    items.Add(bag[i]);
+                }
+                else
+                {
+                    int loc = items.IndexOf(bag[i]);
+                    items[loc] += "  X 2";
+                }
             }
 
-            text.text = items;
+            string ans = "";
+            for ( int i = 0; i < items.Count; i++ )
+            {
+                ans += items[i] + "\n";
+            }
+
+            text.text = ans;
 
             isOpen = false; ;
         }
@@ -40,7 +54,6 @@ public class bagTextScript : MonoBehaviour
         {
             isOpen = true;
         }
-
     }
 
     void SavePlayer()
