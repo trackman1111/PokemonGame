@@ -9,6 +9,7 @@ public class bagTextScript : MonoBehaviour
     public TextMeshProUGUI text;
     public Trainer trainer;
 
+    
     bool isOpen = true;
 
     // Start is called before the first frame update
@@ -21,39 +22,38 @@ public class bagTextScript : MonoBehaviour
     void Update()
     {
         ArrayList bag = trainer.bag;
-
-
-        if ( isOpen )
-        {
-            ArrayList items = new ArrayList();
+            Dictionary<string, int> items = new Dictionary<string, int>();
 
             for (int i = 0; i < bag.Count - 1; i++)
             {
-                if ( !items.Contains( bag[i] ))
+                if ( items.ContainsKey(bag[i] + ""))
                 {
-                    items.Add(bag[i]);
+                    items[bag[i] + ""] += 1;
                 }
                 else
                 {
-                    int loc = items.IndexOf(bag[i]);
-                    items[loc] += "  X 2";
+                    items.Add(bag[i]+"", 1);
                 }
             }
 
             string ans = "";
+            List<string> keys = new List<string>(items.Keys);
+
             for ( int i = 0; i < items.Count; i++ )
             {
-                ans += items[i] + "\n";
+                if (keys[i].Length <= 4)
+                {
+                    ans += keys[i] + " \t\t\tX" + items[keys[i]] + "\n";
+                }
+                else
+                {
+                    ans += keys[i] + " \t \tX" + items[keys[i]] + "\n";
+                }
             }
 
             text.text = ans;
 
             isOpen = false; ;
-        }
-        if ( Input.GetKeyDown(KeyCode.B) )
-        {
-            isOpen = true;
-        }
     }
 
     void SavePlayer()

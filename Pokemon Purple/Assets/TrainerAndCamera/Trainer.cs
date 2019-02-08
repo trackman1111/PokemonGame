@@ -80,11 +80,6 @@ public class Trainer : MonoBehaviour
             clearConsole();
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            bag.Add("Map");
-        }
-
         // adding pokemon to pokemon array
 
         if (Input.GetKeyDown(KeyCode.T))                    //  if 'T' is down, then add squirtle to pokemon array
