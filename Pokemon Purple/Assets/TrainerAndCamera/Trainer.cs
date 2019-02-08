@@ -9,7 +9,7 @@ public class Trainer : MonoBehaviour
     // this class will depend on the pokemon class having the fields type and name, both are strings.
 
         // core 2d array for most of my methods
-    string[,] pokemon = new string[6, 4]
+    public string[,] pokemon = new string[6, 4]
     {
         { "", "", "", ""},
         { "", "", "", ""},
