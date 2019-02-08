@@ -8,6 +8,7 @@ public class bagTextScript : MonoBehaviour
 {
     public TextMeshProUGUI itemList;
     public TextMeshProUGUI desc;
+    public TextMeshProUGUI currItem;
     public Trainer trainer;
 
     int cursor;
@@ -52,11 +53,12 @@ public class bagTextScript : MonoBehaviour
                 else
                 {
                     ans += keys[i] + " \t \tX" + items[keys[i]] + "\n";
-                }
             }
+        }
 
-            itemList.text = ans;
-            desc.text = trainer.getDescription(keys[cursor]);
+        itemList.text = ans;
+        desc.text = trainer.getDescription(keys[cursor]);
+        currItem.text = keys[cursor];
 
         if (Input.GetKeyDown(KeyCode.DownArrow) && cursor < items.Count - 1)
         {
