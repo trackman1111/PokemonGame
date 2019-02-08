@@ -6,25 +6,29 @@ using UnityEngine.UI;
 
 public class bagTextScript : MonoBehaviour
 {
-    public TextMeshProUGUI text;
+    public TextMeshProUGUI itemList;
+    public TextMeshProUGUI desc;
     public Trainer trainer;
 
-    
-    bool isOpen = true;
+    int cursor;
+
+    ArrayList bag;
 
     // Start is called before the first frame update
     void Start()
     {
         //  bag = GlobalControl.Instance.bag;
+        cursor = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        ArrayList bag = trainer.bag;
+        bag = trainer.bag;
+
             Dictionary<string, int> items = new Dictionary<string, int>();
 
-            for (int i = 0; i < bag.Count - 1; i++)
+            for (int i = 0; i < bag.Count; i++)
             {
                 if ( items.ContainsKey(bag[i] + ""))
                 {
@@ -51,9 +55,18 @@ public class bagTextScript : MonoBehaviour
                 }
             }
 
-            text.text = ans;
+            itemList.text = ans;
+            desc.text = trainer.getDescription(keys[cursor]);
 
-            isOpen = false; ;
+        if (Input.GetKeyDown(KeyCode.DownArrow) && cursor < items.Count - 1)
+        {
+            cursor++;
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && cursor > 0)
+        {
+            cursor--;
+        }
+
     }
 
     void SavePlayer()

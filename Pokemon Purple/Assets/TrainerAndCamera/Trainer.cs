@@ -28,9 +28,9 @@ public class Trainer : MonoBehaviour
         bag = new ArrayList();
 
         bag.Add("Pokeball");
-        bag.Add("Master Ball");
-        bag.Add("Ultra Ball");
         bag.Add("Pokeball");
+        bag.Add("Ultra Ball");
+        bag.Add("Map");
         bag.Add("Bike");
 
         clearConsole();
@@ -57,14 +57,6 @@ public class Trainer : MonoBehaviour
 
 
         // BUTTON CONFIGURATIONS -----------------------------------------------------------------------------------------------------------------------
-
-        if( Input.GetKeyDown(KeyCode.X))
-        {
-            for( int i = 0; i < bag.Count-1; i++ )
-            {
-                actions( bag[i].ToString() );
-            }
-        }
         
         // showing pokemon array
             
@@ -143,24 +135,19 @@ public class Trainer : MonoBehaviour
     // prints all of the Trainers Pokemons name to console
     void printPokemon()
     {
-        if ( pokemon[0,0].Equals("") )
+        if (pokemon[0, 0].Equals(""))
         {
             print("You have no pokemon");
         }
         for (int i = 0; i < 6; i++)
         {
-            string currPoke = pokemon[i , 0] + "";
+            string currPoke = pokemon[i, 0] + "";
 
             if (!currPoke.Equals(""))
             {
-                print("Slot " + (i + 1) + " is " + currPoke +" and has the moves " + pokemon[i,1] + ", " + pokemon[i,2] + ", " + pokemon[i, 3]);
+                print("Slot " + (i + 1) + " is " + currPoke + " and has the moves " + pokemon[i, 1] + ", " + pokemon[i, 2] + ", " + pokemon[i, 3]);
             }
         }
-    }
-
-    public ArrayList getBag()
-    {
-        return bag;
     }
 
     // this method clear the developer console... looks clean for user
@@ -175,38 +162,44 @@ public class Trainer : MonoBehaviour
         print("Press B to see your bag, Press P to see your pokemon, and press C to clear the console.");
     }
 
-    void actions(string s)
+    public string getDescription(string s)
     {
-
         if ( s.Equals("Pokeball") )
         {
-            print("A pokeball allows a trainer to catch a wild pokemon with a normal catch rate" );
+            return "A pokeball allows a trainer to catch a wild pokemon with a normal catch rate";
         }
         else if (s.Equals("Great Ball"))
         {
-            print("A Great Ball allows a trainer to catch a wild pokemon with a better catch rate");
+            return "A Great Ball allows a trainer to catch a wild pokemon with a better catch rate";
         }
         else if (s.Equals("Ultra Ball"))
         {
-            print("An Ultra Ball allows a trainer to catch a wild pokemon with an amazing catch rate");
+            return "An Ultra Ball allows a trainer to catch a wild pokemon with an amazing catch rate";
         }
         else if (s.Equals("Master Ball"))
         {
-            print("A Master Ball allows a trainer to catch a wild pokemon with a 100% catch rate");
+            return "A Master Ball allows a trainer to catch a wild pokemon with a 100% catch rate";
         }
         else if (s.Equals("Map"))
         {
-            print("A map allows a trainer to see the whole world");
+            return "A map allows a trainer to see the whole world";
         }
         else if(s.Equals("Potion"))
         {
-            print("A potion allows a trainer to heal a pokemon for 20hp");
+            return "A potion allows a trainer to heal a pokemon for 20hp";
         }
         else if (s.Equals("Revive"))
         {
-            print("A revive allows a trainer to bring a pokemon with 0 hp back to half health");
+            return "A revive allows a trainer to bring a pokemon with 0 hp back to half health";
         }
-
+        else if (s.Equals("Bike"))
+        {
+            return "A bike allows a trainer to move at twice the speed";
+        }
+        else
+        {
+            return "Invalid item name";
+        }
     }
 
 
@@ -216,6 +209,5 @@ public class Trainer : MonoBehaviour
     {
 
     }
-
 
 }
