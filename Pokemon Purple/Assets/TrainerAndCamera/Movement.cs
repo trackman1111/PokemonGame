@@ -12,6 +12,8 @@ public class Movement : MonoBehaviour
     public Sprite upIdle;
     public Sprite downIdle;
     private string currDirection;
+    private bool isTouchingObstacle;
+    private Collider2D collider;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,7 @@ public class Movement : MonoBehaviour
         sr.sprite = upIdle;
         currDirection = "Left";
         rb = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
     }
 
 
@@ -54,8 +57,12 @@ public class Movement : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        transform.position = new Vector3(transform.position.x + movespeed,
-                                             transform.position.y -10, transform.position.z);
+        // transform.position = new Vector3(transform.position.x + movespeed,
+        // transform.position.y -10, transform.position.z);
+    }
+    public Collider2D getCollider()
+    {
+        return collider;
     }
 }
 
