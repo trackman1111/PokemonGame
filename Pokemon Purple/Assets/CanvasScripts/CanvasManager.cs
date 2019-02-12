@@ -6,9 +6,8 @@ using UnityEngine.SceneManagement;
 public class CanvasManager : MonoBehaviour
 {
     public GameObject menu;
-    public GameObject menuController;
-    public GameObject credits;
     public GameObject bag;
+    public GameObject pokemon;
 
     // Start is called before the first frame update
     void Start()
@@ -31,11 +30,13 @@ public class CanvasManager : MonoBehaviour
             {
                 bag.SetActive(false);
             }
+            else if (pokemon.activeSelf)
+            {
+                pokemon.SetActive(false);
+            }
             else
             {
                 menu.SetActive(true);
-                menuController.SetActive(true);
-                credits.SetActive(false);
             }
         }
     }

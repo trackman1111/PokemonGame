@@ -104,6 +104,10 @@ public class Trainer : MonoBehaviour
             Pokemon pikachu = new Pokemon();
             addPokemon( pikachu );
         }
+        if ( Input.GetKeyDown(KeyCode.Q) )
+        {
+            bag.Add("Potion");
+        }
     }
 
     // this method will eventually take in a Pokemon()
