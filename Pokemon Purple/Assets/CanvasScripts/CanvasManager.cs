@@ -29,10 +29,12 @@ public class CanvasManager : MonoBehaviour
             else if ( bag.activeSelf )
             {
                 bag.SetActive(false);
+                menu.SetActive(true);
             }
             else if (pokemon.activeSelf)
             {
                 pokemon.SetActive(false);
+                menu.SetActive(true);
             }
             else
             {

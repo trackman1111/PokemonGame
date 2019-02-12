@@ -11,6 +11,7 @@ public class bagTextScript : MonoBehaviour
     public TextMeshProUGUI currItem;
     public TextMeshProUGUI title;
     public Trainer trainer;
+    public GameObject bagPanel;
 
     int cursor;
     string position;
@@ -29,6 +30,8 @@ public class bagTextScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if ( bagPanel.activeSelf )
+        { 
             bag = trainer.bag;
             title.text = "Items";
 
@@ -53,12 +56,26 @@ public class bagTextScript : MonoBehaviour
             {
                 if (keys[i].Length <= 4)
                 {
-                    ans += keys[i] + " \t\t\tX" + items[keys[i]] + "\n";
+                    if (i == cursor)
+                    {
+                        ans += "->" + keys[i] + " \t\t\tX" + items[keys[i]] + "\n"; ;
+                    }
+                    else
+                    {
+                        ans += "   " + keys[i] + " \t\t\tX" + items[keys[i]] + "\n";
+                    }
                 }
                 else
                 {
-                    ans += keys[i] + " \t \tX" + items[keys[i]] + "\n";
+                    if ( i == cursor )
+                    {
+                        ans += "->" + keys[i] + " \t\t\tX" + items[keys[i]] + "\n";
+                    }
+                else
+                {
+                    ans += "   " + keys[i] + " \t\t\tX" + items[keys[i]] + "\n";
                 }
+            }
             }
 
             itemList.text = ans;
@@ -75,6 +92,7 @@ public class bagTextScript : MonoBehaviour
             {
                 cursor--;
             }
+        }
     }
 
     void SavePlayer()
