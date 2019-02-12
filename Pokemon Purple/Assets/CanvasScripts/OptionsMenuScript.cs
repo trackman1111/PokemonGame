@@ -10,6 +10,7 @@ public class OptionsMenuScript : MonoBehaviour
     {
         menu.SetActive(false);
     }
+
     public void quitGame()
     {
         Application.Quit();

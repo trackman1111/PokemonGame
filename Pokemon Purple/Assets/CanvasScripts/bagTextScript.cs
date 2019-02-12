@@ -29,11 +29,8 @@ public class bagTextScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (position.Equals("Left"))
-        {
             bag = trainer.bag;
             title.text = "Items";
-
 
             Dictionary<string, int> items = new Dictionary<string, int>();
 
@@ -78,38 +75,6 @@ public class bagTextScript : MonoBehaviour
             {
                 cursor--;
             }
-
-        }
-        else
-        {
-            title.text = "Pokemon";
-            desc.text = "";
-            currItem.text = "";
-
-            pokemon = trainer.pokemon;
-            string ans = "";
-
-            for (int i = 0; i < 6; i++)
-            {
-                ans += pokemon[i, 0];
-            }
-
-            itemList.text = ans;
-            currItem.text = pokemon[cursor, 0];
-        }
-
-        if (Input.GetKeyDown(KeyCode.RightArrow) && position.Equals("Left"))
-        {
-            cursor = 0;
-            position = "Right";
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && position.Equals("Right"))
-        {
-            cursor = 0;
-            position = "Left";
-        }
-
-
     }
 
     void SavePlayer()
