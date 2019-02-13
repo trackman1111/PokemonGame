@@ -76,8 +76,8 @@ public class Trainer : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))                    //  if 'T' is down, then add squirtle to pokemon array
         {
-            Pokemon squirtle = new Pokemon();
-            addPokemon(squirtle);
+            //Pokemon squirtle = new Pokemon();
+            //addPokemon(squirtle);
 
             // Pokemon temp = new Pokemon( Squirtle );          repeat this concept for next 5 if statements
             // addPokemon(temp);
@@ -85,24 +85,24 @@ public class Trainer : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Y))                    //  if 'Y' is down, then add bulbasaur to pokemon array
         {
-            Pokemon bulbasaur = new Pokemon();
-            addPokemon(bulbasaur);
+            //Pokemon bulbasaur = new Pokemon();
+            //addPokemon(bulbasaur);
         }
         if (Input.GetKeyDown(KeyCode.U))                    //  if 'U' is down, then add charmander to pokemon array
         {
-            Pokemon charmander = new Pokemon();
-            addPokemon(charmander);
+            //Pokemon charmander = new Pokemon();
+            //addPokemon(charmander);
         }
         if (Input.GetKeyDown(KeyCode.I)  )                  //  if 'I' is down, then add sandshrew to pokemon array
         {
-            Pokemon sandshrew = new Pokemon();
-            addPokemon(sandshrew);
+            //Pokemon sandshrew = new Pokemon();
+            //addPokemon(sandshrew);
         }
 
         if (Input.GetKeyDown(KeyCode.O))                    //  if 'O' is down, then add pikachu to pokemon array
         {
-            Pokemon pikachu = new Pokemon();
-            addPokemon( pikachu );
+            //Pokemon pikachu = new Pokemon();
+            //addPokemon( pikachu );
         }
         if ( Input.GetKeyDown(KeyCode.Q) )
         {

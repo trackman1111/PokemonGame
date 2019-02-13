@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public Animator anim;
     float movespeed = 4f;
     public SpriteRenderer sr;
     public Sprite leftIdle;
@@ -20,6 +21,8 @@ public class Movement : MonoBehaviour
         sr.sprite = upIdle;
         currDirection = "Left";
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+
     }
 
 
@@ -30,21 +33,25 @@ public class Movement : MonoBehaviour
         {
             rb.velocity = new Vector3(- movespeed, 0, 0);
             sr.sprite = leftIdle;
+            anim.SetInteger("TrainerWalking", 3);
         }
         else if (Input.GetKey(KeyCode.W))
         {
             rb.velocity = new Vector3(0, movespeed, 0);
             sr.sprite = upIdle;
+            anim.SetInteger("TrainerWalking", 0);
         }
         else if (Input.GetKey(KeyCode.S))
         {
             rb.velocity = new Vector3(0,- movespeed,0);
             sr.sprite = downIdle;
+            anim.SetInteger("TrainerWalking", 2);
         }
         else if (Input.GetKey(KeyCode.D))
         {
             rb.velocity = new Vector3( movespeed,0, 0);
             sr.sprite = rightIdle;
+            anim.SetInteger("TrainerWalking", 1);
         }
         else
         {
@@ -55,7 +62,7 @@ public class Movement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         transform.position = new Vector3(transform.position.x + movespeed,
-                                             transform.position.y -10, transform.position.z);
+                                             transform.position.y - 10, transform.position.z);
     }
 }
 
