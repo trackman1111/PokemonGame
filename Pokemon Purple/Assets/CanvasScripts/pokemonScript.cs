@@ -34,10 +34,37 @@ public class pokemonScript : MonoBehaviour
     public GameObject pokePanel;
     public Trainer trainer;
     string[,] pokemon;
+
+    Pokemon p1;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        p1name.text = "";
+        p1lvl.text = "";
+        p1hp.text = "";
+
+        p2name.text = "";
+        p2lvl.text = "";
+        p2hp.text = "";
+
+        p3name.text = "";
+        p3lvl.text = "";
+        p3hp.text = "";
+
+        p4name.text = "";
+        p4lvl.text = "";
+        p4hp.text = "";
+
+        p5name.text = "";
+        p5lvl.text = "";
+        p5hp.text = "";
+
+
+        p6name.text = "";
+        p6lvl.text = "";
+        p6hp.text = "";
+
     }
 
     // Update is called once per frame
@@ -46,6 +73,9 @@ public class pokemonScript : MonoBehaviour
         if ( pokePanel.activeSelf )
         {
             pokemon = trainer.pokemon;
+
+            p1 = GetComponent<Pokemon>();
+            
 
             if (pokemon[0, 0].Equals(""))
             {
