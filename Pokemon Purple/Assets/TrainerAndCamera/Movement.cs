@@ -12,14 +12,14 @@ public class Movement : MonoBehaviour
     public Sprite rightIdle;
     public Sprite upIdle;
     public Sprite downIdle;
-    private string currDirection;
+    private int currDirection;
 
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = upIdle;
-        currDirection = "Left";
+        currDirection = 0;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
@@ -29,32 +29,53 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.W))
         {
-            rb.velocity = new Vector3(- movespeed, 0, 0);
-            sr.sprite = leftIdle;
-            anim.SetInteger("TrainerWalking", 3);
-        }
-        else if (Input.GetKey(KeyCode.W))
-        {
+            anim.enabled = true;
             rb.velocity = new Vector3(0, movespeed, 0);
-            sr.sprite = upIdle;
             anim.SetInteger("TrainerWalking", 0);
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            rb.velocity = new Vector3(0,- movespeed,0);
-            sr.sprite = downIdle;
-            anim.SetInteger("TrainerWalking", 2);
+            currDirection = 0;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            rb.velocity = new Vector3( movespeed,0, 0);
-            sr.sprite = rightIdle;
+            anim.enabled = true;
+            rb.velocity = new Vector3(movespeed, 0, 0);
             anim.SetInteger("TrainerWalking", 1);
+            currDirection = 1;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            anim.enabled = true;
+            rb.velocity = new Vector3(0, -movespeed, 0);
+            anim.SetInteger("TrainerWalking", 2);
+            currDirection = 2;
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            anim.enabled = true;
+            rb.velocity = new Vector3(-movespeed, 0, 0);
+            anim.SetInteger("TrainerWalking", 3);
+            currDirection = 3;
         }
         else
         {
+            anim.enabled = false;
+            if (currDirection == 0)
+            {
+                sr.sprite = upIdle;
+            }
+            else if (currDirection == 1)
+            {
+                sr.sprite = rightIdle;
+            }
+            else if (currDirection == 2)
+            {
+                sr.sprite = downIdle; ;
+            }
+            else if (currDirection == 3)
+            {
+                sr.sprite = leftIdle;
+            }
             rb.velocity = new Vector3(0, 0, 0);
         }
 
