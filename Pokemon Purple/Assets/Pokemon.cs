@@ -78,7 +78,7 @@ public class Pokemon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        pokedex();
     }
     void makeMoves(string type)
     {
@@ -112,9 +112,21 @@ public class Pokemon : MonoBehaviour
     {
         // Have to display this on the screen when asked
         List<string> pokemonNames = new List<string>(this.pokemon.Keys);
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            for(int i = 0; i < pokemonNames.Count; i++)
+            {
+                print(pokemonNames[i]);
+            }
+        }
     }
     string getImage(String q)
     {
         return q + ".png";
+    }
+    
+    double[] getStats(String name)
+    {
+        return pokemon[name];
     }
 }
