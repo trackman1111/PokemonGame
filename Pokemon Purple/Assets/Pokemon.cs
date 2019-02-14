@@ -7,12 +7,12 @@ using System.Drawing;
 public class Pokemon : MonoBehaviour
 {
     string type;
-    string name;
-    private int health;
+    public string name;
+    public int health;
     private int defence;
     private int attack;
     private int speed;
-    private int level;
+    public int level;
     private int exp;
     public Sprite treecko;
     private IDictionary<string,double[]> pokemon;
@@ -135,7 +135,7 @@ public class Pokemon : MonoBehaviour
     {
         return q + ".png";
     }
-    double[] getStats(String q)
+    public double[] getStats(String q)
     {
         
         if(pokemon.ContainsKey(q))

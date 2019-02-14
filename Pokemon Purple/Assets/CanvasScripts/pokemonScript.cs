@@ -33,15 +33,14 @@ public class pokemonScript : MonoBehaviour
 
     public GameObject pokePanel;
     public Trainer trainer;
-    string[,] pokemon;
 
-    Pokemon p1;
+    Pokemon[] pokemon;
 
     // Start is called before the first frame update
     void Start()
     {
         p1name.text = "";
-        p1lvl.text = "";
+        p1lvl.text =  "";
         p1hp.text = "";
 
         p2name.text = "";
@@ -64,7 +63,6 @@ public class pokemonScript : MonoBehaviour
         p6name.text = "";
         p6lvl.text = "";
         p6hp.text = "";
-
     }
 
     // Update is called once per frame
@@ -74,10 +72,10 @@ public class pokemonScript : MonoBehaviour
         {
             pokemon = trainer.pokemon;
 
-            p1 = GetComponent<Pokemon>();
+            double[] currStats = pokemon[0].getStats( pokemon[0].name );
             
 
-            if (pokemon[0, 0].Equals(""))
+            if (currStats == null)
             {
                 p1name.text = "";
                 p1lvl.text = "";
@@ -85,13 +83,14 @@ public class pokemonScript : MonoBehaviour
             }
             else
             {
-                p1name.text = pokemon[0, 0];
-                p1lvl.text = "lvl";
-                p1hp.text = "hp";
+                p1name.text = pokemon[0].name;
+                p1lvl.text = pokemon[0].level + "";
+                p1hp.text = pokemon[0].health + "";
             }
 
+            currStats = pokemon[1].getStats(pokemon[1].name);
 
-            if (pokemon[1, 0].Equals(""))
+            if (currStats == null)
             {
                 p2name.text = "";
                 p2lvl.text = "";
@@ -99,13 +98,13 @@ public class pokemonScript : MonoBehaviour
             }
             else
             {
-                p2name.text = pokemon[1, 0];
-                p2lvl.text = "lvl";
-                p2hp.text = "hp";
+                p2name.text = pokemon[1].name;
+                p2lvl.text = pokemon[1].level + "";
+                p2hp.text = pokemon[1].health + "";
             }
 
 
-            if (pokemon[2, 0].Equals(""))
+            if (pokemon[2] == null)
             {
                 p3name.text = "";
                 p3lvl.text = "";
@@ -113,13 +112,13 @@ public class pokemonScript : MonoBehaviour
             }
             else
             {
-                p3name.text = pokemon[2, 0];
-                p3lvl.text = "lvl";
-                p3hp.text = "hp";
+                p3name.text = pokemon[2].name;
+                p2lvl.text = pokemon[2].level + "";
+                p2hp.text = pokemon[2].health + "";
             }
 
 
-            if (pokemon[3, 0].Equals(""))
+            if (pokemon[3] == null)
             {
                 p4name.text = "";
                 p4lvl.text = "";
@@ -127,13 +126,13 @@ public class pokemonScript : MonoBehaviour
             }
             else
             {
-                p4name.text = pokemon[3, 0];
-                p4lvl.text = "lvl";
-                p4hp.text = "hp";
+                p4name.text = pokemon[3].name;
+                p2lvl.text = pokemon[3].level + "";
+                p2hp.text = pokemon[3].health + "";
             }
 
 
-            if (pokemon[4, 0].Equals(""))
+            if (pokemon[4] == null)
             {
                 p5name.text = "";
                 p5lvl.text = "";
@@ -141,13 +140,13 @@ public class pokemonScript : MonoBehaviour
             }
             else
             {
-                p5name.text = pokemon[4, 0];
-                p5lvl.text = "lvl";
-                p5hp.text = "hp";
+                p5name.text = pokemon[4].name;
+                p2lvl.text = pokemon[4].level + "";
+                p2hp.text = pokemon[4].health + "";
             }
 
 
-            if (pokemon[5, 0].Equals(""))
+            if (pokemon[5] == null)
             {
                 p6name.text = "";
                 p6lvl.text = "";
@@ -155,9 +154,9 @@ public class pokemonScript : MonoBehaviour
             }
             else
             {
-                p6name.text = pokemon[5, 0];
-                p6lvl.text = "lvl";
-                p6hp.text = "hp";
+                p6name.text = pokemon[5].name;
+                p2lvl.text = pokemon[5].level + "";
+                p2hp.text = pokemon[5].health + "";
             }
         }
     }

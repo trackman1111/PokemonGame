@@ -8,16 +8,8 @@ public class Trainer : MonoBehaviour
 
     // this class will depend on the pokemon class having the fields type and name, both are strings.
 
-        // core 2d array for most of my methods
-    public string[,] pokemon = new string[6, 4]
-    {
-        { "", "", "", ""},
-        { "", "", "", ""},
-        { "", "", "", ""},
-        { "", "", "", ""},
-        { "", "", "", ""},
-        { "", "", "", ""}
-    };
+    // core 2d array for most of my methods
+    public Pokemon[] pokemon = new Pokemon[6];
 
     public ArrayList bag;
     private int cash;
@@ -34,7 +26,8 @@ public class Trainer : MonoBehaviour
         bag.Add("Map");
         bag.Add("Bike");
 
-        pokemon[0,0] = PlayerPrefs.GetString("Starter");
+        pokemon[0] = new Pokemon(PlayerPrefs.GetString("Starter"));
+
       // Pokemon starter = new Pokemon( PlayerPrefs.GetString("Starter")));
     }
 
@@ -57,53 +50,19 @@ public class Trainer : MonoBehaviour
 
         // BUTTON CONFIGURATIONS -----------------------------------------------------------------------------------------------------------------------
 
-        // clearing console for cleanliness
-
         if (Input.GetKeyDown(KeyCode.P))
         {
             bool added = false;
             for ( int i = 0; i < 6; i++ )
             {
-                if ( pokemon[i,0].Equals("") && added == false )
+                if ( pokemon[i].name.Equals("") && added == false )
                 {
-                    pokemon[i, 0] = "New Poke";
+                    pokemon[i] = new Pokemon("Treeko");
                     added = true;
                 }
             }
         }
 
-        // adding pokemon to pokemon array
-
-        if (Input.GetKeyDown(KeyCode.T))                    //  if 'T' is down, then add squirtle to pokemon array
-        {
-            //Pokemon squirtle = new Pokemon();
-            //addPokemon(squirtle);
-
-            // Pokemon temp = new Pokemon( Squirtle );          repeat this concept for next 5 if statements
-            // addPokemon(temp);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Y))                    //  if 'Y' is down, then add bulbasaur to pokemon array
-        {
-            //Pokemon bulbasaur = new Pokemon();
-            //addPokemon(bulbasaur);
-        }
-        if (Input.GetKeyDown(KeyCode.U))                    //  if 'U' is down, then add charmander to pokemon array
-        {
-            //Pokemon charmander = new Pokemon();
-            //addPokemon(charmander);
-        }
-        if (Input.GetKeyDown(KeyCode.I)  )                  //  if 'I' is down, then add sandshrew to pokemon array
-        {
-            //Pokemon sandshrew = new Pokemon();
-            //addPokemon(sandshrew);
-        }
-
-        if (Input.GetKeyDown(KeyCode.O))                    //  if 'O' is down, then add pikachu to pokemon array
-        {
-            //Pokemon pikachu = new Pokemon();
-            //addPokemon( pikachu );
-        }
         if ( Input.GetKeyDown(KeyCode.Q) )
         {
             bag.Add("Potion");
@@ -114,15 +73,15 @@ public class Trainer : MonoBehaviour
 
     void addPokemon( Pokemon poke )
     {
-        if ( pokemon[5,0].Equals("") ) 
+        if ( pokemon[5].Equals("") ) 
         {
             System.Boolean addedPoke = false;
             int slot = 0;
             while ( !addedPoke && slot < 6)
             {
-                if ( pokemon[slot, 0].Equals("") )
+                if ( pokemon[slot].Equals("") )
                 {
-                    pokemon[slot, 0] = poke.name;
+                    pokemon[slot] = poke;
                     addedPoke = true;
                 }
                 slot++;
@@ -139,17 +98,17 @@ public class Trainer : MonoBehaviour
     // prints all of the Trainers Pokemons name to console
     void printPokemon()
     {
-        if (pokemon[0, 0].Equals(""))
+        if (pokemon[0].name.Equals(""))
         {
             print("You have no pokemon");
         }
         for (int i = 0; i < 6; i++)
         {
-            string currPoke = pokemon[i, 0] + "";
+            string currPoke = pokemon[i].name;
 
             if (!currPoke.Equals(""))
             {
-                print("Slot " + (i + 1) + " is " + currPoke + " and has the moves " + pokemon[i, 1] + ", " + pokemon[i, 2] + ", " + pokemon[i, 3]);
+                print("Slot " + (i + 1) + " is " + currPoke);
             }
         }
     }
