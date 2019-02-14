@@ -14,6 +14,15 @@ public class bagTextScript : MonoBehaviour
     public GameObject bagPanel;
     public Image picture;
 
+    public Sprite pokeball;
+    public Sprite greatball;
+    public Sprite ultraball;
+    public Sprite masterball;
+    public Sprite map;
+    public Sprite potion;
+    public Sprite bike;
+    public Sprite revive;
+
     int cursor;
     string position;
 
@@ -26,6 +35,8 @@ public class bagTextScript : MonoBehaviour
         //  bag = GlobalControl.Instance.bag;
         cursor = 0;
         position = "Left";
+
+        picture.GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -35,6 +46,7 @@ public class bagTextScript : MonoBehaviour
         { 
             bag = trainer.bag;
             title.text = "Items";
+
 
             Dictionary<string, int> items = new Dictionary<string, int>();
 
@@ -55,7 +67,19 @@ public class bagTextScript : MonoBehaviour
 
             for (int i = 0; i < items.Count; i++)
             {
-                if (keys[i].Length <= 4)
+                if (keys[i].Equals("Great Ball"))
+                {
+                    if (i == cursor)
+                    {
+                        ans += "->" + keys[i] + " \t\tX" + items[keys[i]] + "\n"; ;
+                    }
+                    else
+                    {
+                        ans += "   " + keys[i] + " \t\t\tX" + items[keys[i]] + "\n";
+                    }
+
+                }
+                else if (keys[i].Length <= 10 )
                 {
                     if (i == cursor)
                     {
@@ -68,20 +92,58 @@ public class bagTextScript : MonoBehaviour
                 }
                 else
                 {
-                    if ( i == cursor )
+                    if (i == cursor)
                     {
-                        ans += "->" + keys[i] + " \t\t\tX" + items[keys[i]] + "\n";
+                        ans += "->" + keys[i] + " \t\tX" + items[keys[i]] + "\n";
                     }
-                else
-                {
-                    ans += "   " + keys[i] + " \t\t\tX" + items[keys[i]] + "\n";
+                    else
+                    {
+                        ans += "   " + keys[i] + " \t\tX" + items[keys[i]] + "\n";
+                    }
                 }
-            }
             }
 
             itemList.text = ans;
             desc.text = trainer.getDescription(keys[cursor]);
             currItem.text = keys[cursor];
+            
+
+            // setting picture
+
+            if ( keys[cursor].Equals("Pokeball") )
+            {
+                picture.sprite = pokeball;
+            }
+            else if (keys[cursor].Equals("Great Ball"))
+            {
+                picture.sprite = greatball;
+            }
+            else if (keys[cursor].Equals("Ultra Ball"))
+            {
+                picture.sprite = ultraball;
+            }
+            else if (keys[cursor].Equals("Master Ball"))
+            {
+                picture.sprite = masterball;
+            }
+            else if (keys[cursor].Equals("Map"))
+            {
+                picture.sprite = map;
+            }
+            else if (keys[cursor].Equals("Bike"))
+            {
+                picture.sprite = bike;
+            }
+            else if (keys[cursor].Equals("Potion"))
+            {
+                picture.sprite = potion;
+            }
+            else if (keys[cursor].Equals("Revive"))
+            {
+                picture.sprite = revive;
+            }
+
+
 
 
             if (Input.GetKeyDown(KeyCode.DownArrow) && cursor < items.Count - 1)
