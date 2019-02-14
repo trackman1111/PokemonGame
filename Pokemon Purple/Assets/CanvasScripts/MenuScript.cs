@@ -83,7 +83,7 @@ public class MenuScript : MonoBehaviour
                 exitText.text = "->EXIT";
             }
 
-            if ( Input.GetKeyDown(KeyCode.RightShift))
+            if ( Input.GetKeyDown(KeyCode.RightShift) )
             {
                 if(counter == 1)
                 {

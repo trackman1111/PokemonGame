@@ -12,6 +12,7 @@ public class bagTextScript : MonoBehaviour
     public TextMeshProUGUI title;
     public Trainer trainer;
     public GameObject bagPanel;
+    public Image picture;
 
     int cursor;
     string position;
@@ -81,7 +82,6 @@ public class bagTextScript : MonoBehaviour
             itemList.text = ans;
             desc.text = trainer.getDescription(keys[cursor]);
             currItem.text = keys[cursor];
-
 
 
             if (Input.GetKeyDown(KeyCode.DownArrow) && cursor < items.Count - 1)
