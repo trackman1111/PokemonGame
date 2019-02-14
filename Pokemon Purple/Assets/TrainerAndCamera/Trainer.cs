@@ -34,8 +34,6 @@ public class Trainer : MonoBehaviour
         bag.Add("Map");
         bag.Add("Bike");
 
-        clearConsole();
-
         pokemon[0,0] = PlayerPrefs.GetString("Starter");
       // Pokemon starter = new Pokemon( PlayerPrefs.GetString("Starter")));
     }
@@ -58,19 +56,20 @@ public class Trainer : MonoBehaviour
 
 
         // BUTTON CONFIGURATIONS -----------------------------------------------------------------------------------------------------------------------
-        
-        // showing pokemon array
-            
-        if (Input.GetKeyDown(KeyCode.P))                    //  if 'C' is down, then call printPokemon(), which displays all items in the bag into the Console 
-        {
-            printPokemon();
-        }
 
         // clearing console for cleanliness
 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            clearConsole();
+            bool added = false;
+            for ( int i = 0; i < 6; i++ )
+            {
+                if ( pokemon[i,0].Equals("") && added == false )
+                {
+                    pokemon[i, 0] = "New Poke";
+                    added = true;
+                }
+            }
         }
 
         // adding pokemon to pokemon array
@@ -159,16 +158,6 @@ public class Trainer : MonoBehaviour
     }
 
     // this method clear the developer console... looks clean for user
-
-    void clearConsole()
-    {
-        var logEntries = System.Type.GetType("UnityEditor.LogEntries, UnityEditor.dll");
-        var clearMethod = logEntries.GetMethod("Clear", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public);
-        clearMethod.Invoke(new object(), null);
-
-        print("Press T to add Squirtle, Y for Bulbasuar, U for Charmander, I for Sandshrew, or O for Pikachu )");
-        print("Press B to see your bag, Press P to see your pokemon, and press C to clear the console.");
-    }
 
     public string getDescription(string s)
     {
