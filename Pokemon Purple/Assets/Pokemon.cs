@@ -22,6 +22,7 @@ public class Pokemon : MonoBehaviour
      public Pokemon(String name)
     {
         this.name = name;
+        this.health = pokemon[name][0];
 
 
     }
@@ -90,16 +91,39 @@ public class Pokemon : MonoBehaviour
     {
         pokedex();
     }
-    void makeMoves(string type)
+    //return a string array and it should have a new parameter int that represents the level
+    public string[] makeMoves(string type, int level)
     {
         if (type.Equals("Water"))
         {
-            string[] waterTypeMoves = { "Tackle", "Water Gun", "Surf", "Hydro Pump" };
-            string[] waterSupportMoves = { "Defence Curl", "", "" };
+            if(level <= 10)
+            {
+                string[] beginWaterMoves = {"Tackle", "Water Gun", "Defence Curl", "Bubble" };
+                return beginWaterMoves;
+            }
+            else if(level <= 20)
+            {
+                string[] middleWaterMoves = { "Water Gun", "Bubble", "Defence Curl", "Surf" };
+                return middleWaterMoves;
+            }
+            else
+            {
+                string[] endWaterMoves = { "Bubble", "Defence Curl", "Surf", "Hydro Pump" };
+                return endWaterMoves;
+            }
         }
         else if (type.Equals("Fire"))
         {
-            string[] fireTypeMoves = { "Scratch", "Ember", "Flamethrower", "Fire Blast" };
+            if( level <= 10 )
+            {
+                string[] beginFireMoves = { "Scratch", "Ember", "Growl", "Quick Attack" };
+                return beginFireMoves;
+            }
+            else if( level <= 20 )
+            {
+                string[] middleFireMoves = { "Ember", "Growl", "Flamethrower", "Quick Attack"};
+            }
+            string[] fireTypeMoves = { "Quick Attack", "Ember", "Flamethrower", "Growl" };
             string[] fireSupportMoves = { "Growl", "", "" };
         }
         else if (type.Equals("Grass"))
@@ -118,7 +142,7 @@ public class Pokemon : MonoBehaviour
             string[] electricSupportMoves = { "", "", "" };
         }
     }
-    void pokedex()
+   public void pokedex()
     {
 
         // Have to display this on the screen when asked
@@ -131,20 +155,19 @@ public class Pokemon : MonoBehaviour
             }
         }
     }
-    string getImage(String q)
+   public string getImage(String q)
     {
         return q + ".png";
     }
-    public double[] getStats(String q)
+   public double[] getStats(String q)
     {
-        
-        if(pokemon.ContainsKey(q))
+        if(pokemon.ContainsKey(q) || q != null)
         {
             return pokemon[q];
         }
         else
         {
-            throw new System.ArgumentException("This pokemon does not excess colton. First letter should be capital.");
+            throw new System.ArgumentException("This pokemon does not exist colton. First letter should be capital.");
         }
     }
 }
