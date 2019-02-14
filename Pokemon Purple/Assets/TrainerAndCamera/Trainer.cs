@@ -74,7 +74,6 @@ public class Trainer : MonoBehaviour
 
         // adding pokemon to pokemon array
 
-<<<<<<< Updated upstream
         if (Input.GetKeyDown(KeyCode.T))                    //  if 'T' is down, then add squirtle to pokemon array
         {
             //Pokemon squirtle = new Pokemon();
@@ -109,8 +108,6 @@ public class Trainer : MonoBehaviour
         {
             bag.Add("Potion");
         }
-=======
->>>>>>> Stashed changes
     }
 
     // this method will eventually take in a Pokemon()
