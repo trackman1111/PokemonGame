@@ -20,6 +20,7 @@ public class Trainer : MonoBehaviour
     };
 
     public ArrayList bag;
+    private int cash;
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +75,7 @@ public class Trainer : MonoBehaviour
 
         // adding pokemon to pokemon array
 
+<<<<<<< Updated upstream
         if (Input.GetKeyDown(KeyCode.T))                    //  if 'T' is down, then add squirtle to pokemon array
         {
             //Pokemon squirtle = new Pokemon();
@@ -108,6 +110,8 @@ public class Trainer : MonoBehaviour
         {
             bag.Add("Potion");
         }
+=======
+>>>>>>> Stashed changes
     }
 
     // this method will eventually take in a Pokemon()
@@ -212,6 +216,22 @@ public class Trainer : MonoBehaviour
     void encounter()
     {
 
+    }
+
+    // this method written by the goat coder is supposed to be when you press
+    // a button a pop up screen comes up and acts like a poke mart in pokemon!
+
+    void shop()
+    {
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            // I need to display a screen of the object they are selling
+            if (cash > 10) // where the 10 is there should be a price which is pulled from the picture
+            {
+                cash = cash - 10;
+                // need to add the object to the bag
+            }
+        }
     }
 
 }

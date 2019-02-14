@@ -122,14 +122,13 @@ public class Pokemon : MonoBehaviour
     {
 
         // Have to display this on the screen when asked
-        List<String> pokemonNames = new List<string>(this.pokemon.Keys);
-        if(Input.GetKeyDown( KeyCode.H ))
+        List<string> pokemonNames = new List<string>(this.pokemon.Keys);
+        if(Input.GetKeyDown(KeyCode.H))
         {
-            for (int i = 0; i < pokemonNames.Count; i++)
+            for(int i = 0; i < pokemonNames.Count; i++)
             {
                 print(pokemonNames[i]);
             }
-            // figure thischeese out
         }
     }
     string getImage(String q)
