@@ -36,21 +36,27 @@ public class Pokemon : MonoBehaviour
     public int level;
     public int exp;
     private IDictionary<string,double[]> pokemon;
+    private IDictionary<string, double[]> movesPower;
     //private image image;
 
 
      public Pokemon(String name)
     {
         this.name = name;
-
-        double[] pokemanz = pokemon[name];
-        this.health = (int)pokemanz[0];
-        this.attack = (int)pokemanz[1];
-        this.defence = (int)pokemanz[2];
-        this.speed = (int)pokemanz[3];
-        this.level = (int)pokemanz[4];
-        this.exp = (int)pokemanz[5];
-
+        if (pokemon.ContainsKey(name))
+        {
+            double[] pokemanz = pokemon[name];
+            this.health = (int)pokemanz[0];
+            this.attack = (int)pokemanz[1];
+            this.defence = (int)pokemanz[2];
+            this.speed = (int)pokemanz[3];
+            this.level = (int)pokemanz[4];
+            this.exp = (int)pokemanz[5];
+        }
+        else
+        {
+            throw new Exception("It did not work!  :(");
+        }
 
     }
     // Start is called before the first frame update
@@ -217,6 +223,17 @@ public class Pokemon : MonoBehaviour
             string[] randomMoves = { "DragonBreath", "Iron Tail", "Ice Beam", "Confuse Ray" };
             return randomMoves;
         }
+    }
+    public void movePower()
+    {
+        movesPower = new Dictionary<string, double[]>();
+        // key is the move and the value is the power of that move
+    
+        movesPower.Add("Tackle", 30.0);
+        movesPower.Add("Water Gun", 30.0);
+        movesPower.Add("Defence Curl", 30.0);
+        movesPower.Add("", 30.0);
+        movesPower.Add("Tackle", 30.0);
     }
    public void pokedex()
     {
