@@ -17,7 +17,7 @@ public class onclickCont : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ( Input.GetKeyDown(keycode) )
+        if ( Input.GetKeyDown(KeyCode.Q) )
         {
             button.onClick.Invoke();
         }
