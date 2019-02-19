@@ -72,10 +72,7 @@ public class pokemonScript : MonoBehaviour
         {
             pokemon = trainer.pokemon;
 
-            double[] currStats = pokemon[0].getStats( pokemon[0].name );
-            
-
-            if (currStats == null)
+            if (pokemon[0].name.Equals(""))
             {
                 p1name.text = "";
                 p1lvl.text = "";
@@ -88,9 +85,7 @@ public class pokemonScript : MonoBehaviour
                 p1hp.text = pokemon[0].health + "";
             }
 
-            currStats = pokemon[1].getStats(pokemon[1].name);
-
-            if (currStats == null)
+            if (pokemon[1].name.Equals(""))
             {
                 p2name.text = "";
                 p2lvl.text = "";
@@ -104,7 +99,7 @@ public class pokemonScript : MonoBehaviour
             }
 
 
-            if (pokemon[2] == null)
+            if (pokemon[2].name.Equals(""))
             {
                 p3name.text = "";
                 p3lvl.text = "";
@@ -118,7 +113,7 @@ public class pokemonScript : MonoBehaviour
             }
 
 
-            if (pokemon[3] == null)
+            if (pokemon[3].name.Equals(""))
             {
                 p4name.text = "";
                 p4lvl.text = "";
@@ -132,7 +127,7 @@ public class pokemonScript : MonoBehaviour
             }
 
 
-            if (pokemon[4] == null)
+            if (pokemon[4].name.Equals(""))
             {
                 p5name.text = "";
                 p5lvl.text = "";
@@ -146,7 +141,7 @@ public class pokemonScript : MonoBehaviour
             }
 
 
-            if (pokemon[5] == null)
+            if (pokemon[5].name.Equals(""))
             {
                 p6name.text = "";
                 p6lvl.text = "";

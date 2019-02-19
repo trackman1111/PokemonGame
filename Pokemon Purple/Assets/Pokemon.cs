@@ -121,6 +121,9 @@ public class Pokemon : MonoBehaviour
     //return a string array and it should have a new parameter int that represents the level
     public string[] makeMoves(string type, int level)
     {
+        string[] temp = { "" };
+        return temp;
+
         if (type.Equals("Water"))
         {
             if(level <= 10)

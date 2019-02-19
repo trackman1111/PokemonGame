@@ -23,12 +23,19 @@ public class Trainer : MonoBehaviour
         bag.Add("Pokeball");
         bag.Add("Pokeball");
         bag.Add("Ultra Ball");
-        bag.Add("Map");
+        bag.Add("Great Ball");
+        bag.Add("Potion");
+        bag.Add("Revive");
+        bag.Add("Master Ball");
         bag.Add("Bike");
 
         pokemon[0] = new Pokemon(PlayerPrefs.GetString("Starter"));
-
-      // Pokemon starter = new Pokemon( PlayerPrefs.GetString("Starter")));
+        pokemon[1] = new Pokemon("");
+        pokemon[2] = new Pokemon("");
+        pokemon[3] = new Pokemon("");
+        pokemon[4] = new Pokemon("");
+        pokemon[5] = new Pokemon("");
+        // Pokemon starter = new Pokemon( PlayerPrefs.GetString("Starter")));
     }
 
 
