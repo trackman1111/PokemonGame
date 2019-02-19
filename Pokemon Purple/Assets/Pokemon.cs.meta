@@ -3,7 +3,24 @@ guid: 0c18bc2e43636174f8f8efe422cd6ac2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - tree: {fileID: 21300000, guid: 4d09d8ee35921b145baba0a9b840289a, type: 3}
+  - grov: {fileID: 21300000, guid: d4fa1c7c4fc451644826c405b3d63680, type: 3}
+  - scep: {fileID: 21300000, guid: c9556747d95e7124ab6bc1e4a819f36c, type: 3}
+  - torc: {fileID: 21300000, guid: 0a0fe35463fe01345af872eac6f842a9, type: 3}
+  - comb: {fileID: 21300000, guid: 31feac71c908dc84aaf6f0c6b920c4b3, type: 3}
+  - blaz: {fileID: 21300000, guid: f95eb4b9ebb0cc84bb0261144288777b, type: 3}
+  - mudk: {fileID: 21300000, guid: dac2040f5ab5e9d41b0eedc34af364bf, type: 3}
+  - mars: {fileID: 21300000, guid: 5a28d7f05f3f4a74bbc618073104c904, type: 3}
+  - swam: {fileID: 21300000, guid: f69773e1c26ed2d468bcfa23588bf184, type: 3}
+  - pooc: {fileID: 21300000, guid: cd811dc8b33133747a0081a7729a0c31, type: 3}
+  - migh: {fileID: 21300000, guid: b26155ac3b013aa40bab16d9b983c49f, type: 3}
+  - zigz: {fileID: 21300000, guid: 92e36f1f6809b794bada3aad6dd07826, type: 3}
+  - lino: {fileID: 21300000, guid: 2dcea10da06cfb544bde43552934dc74, type: 3}
+  - kyog: {fileID: 21300000, guid: d134895cc1cda0849bb439416ffa66f2, type: 3}
+  - grou: {fileID: 21300000, guid: eb180de9d05da29408363008d345ae51, type: 3}
+  - rayq: {fileID: 21300000, guid: 1e8563838e3df2b44b515e19aed6a925, type: 3}
+  - other: {fileID: 21300000, guid: 11f5aee79501ef34b96c1b2df594e36c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

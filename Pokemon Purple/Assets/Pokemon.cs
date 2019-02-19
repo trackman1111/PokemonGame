@@ -3,18 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Drawing;
+using UnityEngine.UI;
 
 public class Pokemon : MonoBehaviour
 {
     string type;
     public string name;
+
+    public Sprite tree;
+    public Sprite grov;
+    public Sprite scep;
+    public Sprite torc;
+    public Sprite comb;
+    public Sprite blaz;
+    public Sprite mudk;
+    public Sprite mars;
+    public Sprite swam;
+    public Sprite pooc;
+    public Sprite migh;
+    public Sprite zigz;
+    public Sprite lino;
+    public Sprite kyog;
+    public Sprite grou;
+    public Sprite rayq;
+    public Sprite other;
+
     public int health;
-    private int defence;
-    private int attack;
-    private int speed;
+    public int currHealth;
+    public int defence;
+    public int attack;
+    public int speed;
     public int level;
-    private int exp;
-    public Sprite treecko;
+    public int exp;
     private IDictionary<string,double[]> pokemon;
     //private image image;
 
@@ -22,7 +42,14 @@ public class Pokemon : MonoBehaviour
      public Pokemon(String name)
     {
         this.name = name;
-        this.health = pokemon[name][0];
+
+        double[] pokemanz = pokemon[name];
+        this.health = (int)pokemanz[0];
+        this.attack = (int)pokemanz[1];
+        this.defence = (int)pokemanz[2];
+        this.speed = (int)pokemanz[3];
+        this.level = (int)pokemanz[4];
+        this.exp = (int)pokemanz[5];
 
 
     }
@@ -122,24 +149,72 @@ public class Pokemon : MonoBehaviour
             else if( level <= 20 )
             {
                 string[] middleFireMoves = { "Ember", "Growl", "Flamethrower", "Quick Attack"};
+                return middleFireMoves;
             }
-            string[] fireTypeMoves = { "Quick Attack", "Ember", "Flamethrower", "Growl" };
-            string[] fireSupportMoves = { "Growl", "", "" };
+            else
+            {
+                string[] endFireMoves = { "Quick Attack", "Growl", "Flamethrower", "Fire Blast" };
+                return endFireMoves;
+            }
         }
         else if (type.Equals("Grass"))
         {
-            string[] grassTypeMoves = { "Peck", "Razor Leaf", "Gigadrain", "Solar Beam" };
-            string[] grassSupportMoves = { "", "", "" };
+            if( level <= 10)
+            {
+                string[] beginGrassMoves = { "Peck", "Leech Seed", "Growl", "Razor Leaf" };
+                return beginGrassMoves;
+            }
+            else if( level <= 20 )
+            {
+                string[] middleGrassMoves = { "Leech Seed", "Growl", "Razor Leaf", "Gigadrain" };
+                return middleGrassMoves;
+            }
+            else
+            {
+                string[] endGrassMoves = { "Leech Seed", "Razor Leaf", "Gigadrain", "Solar Beam" };
+                return endGrassMoves;
+            }
         }
         else if (type.Equals("Ground"))
         {
-            string[] groundTypeMoves = { "Tackle", "Mud Slap", "Dig", "Earthquake" };
-            string[] groundSupportMoves = { "", "", "" };
+            if( level <= 10 )
+            {
+                string[] beginGroundMoves = { "Tackle", "Bulk Up", "Mud Slap", "Dig" };
+                return beginGroundMoves;
+            }
+            else if( level <= 20 )
+            {
+                string[] middleGroundMoves = { "Bulk Up", "Mud Slap", "Dig", "Mud Bomb" };
+                return middleGroundMoves;
+            }
+            else
+            {
+                string[] endGroundMoves = { "Bulk Up", "Dig", "Mud Bomb", "Earthquake" };
+                return endGroundMoves;
+            }
         }
         else if (type.Equals("Electric"))
         {
-            string[] electricTypeMoves = { "Quick Attack", "Thunderbolt", "Spark", "Thunder" };
-            string[] electricSupportMoves = { "", "", "" };
+            if( level <= 10 )
+            {
+                string[] beginElectricMoves = { "Quick Attack", "Charge", "Thunderbolt", "Shock Wave" };
+                return beginElectricMoves;
+            }
+            else if( level <= 20 )
+            {
+                string[] middleElectricMoves = { "Quick Attack", "Charge", "Thunderbolt", "Spark" };
+                return middleElectricMoves;
+            }
+            else
+            {
+                string[] endElectricMoves = { "Quick Attack", "Charge", "Spark", "Thunder" };
+                return endElectricMoves;
+            }
+        }
+        else
+        {
+            string[] randomMoves = { "DragonBreath", "Iron Tail", "Ice Beam", "Confuse Ray" };
+            return randomMoves;
         }
     }
    public void pokedex()
@@ -155,9 +230,76 @@ public class Pokemon : MonoBehaviour
             }
         }
     }
-   public string getImage(String q)
+   public Sprite getImage(String q)
     {
-        return q + ".png";
+        if(q.Equals("Treecko"))
+        {
+            return tree;
+        }
+        else if(q.Equals("Grovyle"))
+        {
+            return grov;
+        }
+        else if(q.Equals("Sceptile"))
+        {
+            return scep;
+        }
+        else if(q.Equals("Torchic"))
+        {
+            return torc;
+        }
+        else if(q.Equals("Combusken"))
+        {
+            return comb;
+        }
+        else if (q.Equals("Blaziken"))
+        {
+            return blaz;
+        }
+        else if (q.Equals("Mudkip"))
+        {
+            return mudk;
+        }
+        else if (q.Equals("Marshtomp"))
+        {
+            return mars;
+        }
+        else if (q.Equals("Swampert"))
+        {
+            return swam;
+        }
+        else if (q.Equals("Poochyena"))
+        {
+            return pooc;
+        }
+        else if (q.Equals("Mightyena"))
+        {
+            return migh;
+        }
+        else if (q.Equals("Zigzagoon"))
+        {
+            return zigz;
+        }
+        else if (q.Equals("Linoone"))
+        {
+            return lino;
+        }
+        else if (q.Equals("Kyogre"))
+        {
+            return kyog;
+        }
+        else if (q.Equals("Groudon"))
+        {
+            return grou;
+        }
+        else if (q.Equals("Rayquaza"))
+        {
+            return rayq;
+        }
+        else
+        {
+            return other;
+        }
     }
    public double[] getStats(String q)
     {
