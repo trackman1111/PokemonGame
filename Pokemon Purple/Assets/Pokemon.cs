@@ -227,13 +227,13 @@ public class Pokemon : MonoBehaviour
     public void movePower()
     {
         movesPower = new Dictionary<string, double[]>();
-        // key is the move and the value is the power of that move
+        // key is the move and dictionary [damage, defence]
     
-        movesPower.Add("Tackle", 30.0);
-        movesPower.Add("Water Gun", 30.0);
-        movesPower.Add("Defence Curl", 30.0);
-        movesPower.Add("", 30.0);
-        movesPower.Add("Tackle", 30.0);
+       // movesPower.Add("Tackle", 30.0);
+       // movesPower.Add("Water Gun", 30.0);
+        //movesPower.Add("Defence Curl", 30.0);
+       // movesPower.Add("", 30.0);
+       // movesPower.Add("Tackle", 30.0);
     }
    public void pokedex()
     {
