@@ -96,7 +96,6 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("test");
         if(currDirection == 0)
         {
             transform.position = new Vector2(transform.position.x, transform.position.y - .1f);

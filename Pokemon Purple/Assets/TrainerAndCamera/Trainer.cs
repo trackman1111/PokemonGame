@@ -29,7 +29,7 @@ public class Trainer : MonoBehaviour
         bag.Add("Master Ball");
         bag.Add("Bike");
 
-        pokemon[0] = new Pokemon(PlayerPrefs.GetString("Starter"));
+        pokemon[0] = new Pokemon("");
         pokemon[1] = new Pokemon("");
         pokemon[2] = new Pokemon("");
         pokemon[3] = new Pokemon("");
