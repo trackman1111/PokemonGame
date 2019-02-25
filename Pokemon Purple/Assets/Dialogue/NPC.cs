@@ -7,7 +7,6 @@ public class NPC : MonoBehaviour
     public Dialogue dialogue;
     public Movement movement;
     private Collider2D collider;
-    private Collider2D collider2;
     private bool isTouching;
     public void triggerDialogue()
     {
@@ -15,7 +14,7 @@ public class NPC : MonoBehaviour
     }
     public void Start()
     {
-        collider2 = GetComponent<Collider2D>();
+        collider = GetComponent<Collider2D>();
         movement = GetComponent<Movement>();
         isTouching = false;
 
