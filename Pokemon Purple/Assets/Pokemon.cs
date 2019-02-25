@@ -42,36 +42,18 @@ public class Pokemon : MonoBehaviour
 
      public Pokemon(String name)
     {
-        IDictionary<string, double[]> pokemon = new Dictionary<string, double[]>();
-        this.name = name;
-        if (pokemon.ContainsKey(name))
-        {
-            double[] pokemonArrayStats = pokemon[name];
-            this.health = (int)pokemonArrayStats[0];
-            this.attack = (int)pokemonArrayStats[1];
-            this.defence = (int)pokemonArrayStats[2];
-            this.speed = (int)pokemonArrayStats[3];
-            this.level = (int)pokemonArrayStats[4];
-            this.exp = (int)pokemonArrayStats[5];
-        }
-        else
-        {
-            throw new Exception("It did not work!  :(");
-        }
-
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        pokemon = new Dictionary<string,double[]>();
+        Dictionary<string, double[]> pokemon = new Dictionary<string, double[]>();
         // All arrays are in the format of [health, attack, defence, speed, level, exp]
 
         //get pokemon number and an image for each pokemon
-        double[] tree = {40.0, 45.0, 35.0, 65.0, 5.0, 0.0};
+        double[] test = { 0.0, 0.0, 0.0, 0.0, 0.0 };
+        pokemon.Add("", test);
+
+        double[] tree = { 40.0, 45.0, 35.0, 65.0, 5.0, 0.0 };
         pokemon.Add("Treecko", tree);
-          
+
         double[] grov = { 50.0, 65.0, 45.0, 85.0, 14.0, 0.0 };
-        pokemon.Add("Grovyle", grov); 
+        pokemon.Add("Grovyle", grov);
 
         double[] scep = { 70.0, 85.0, 65.0, 105.0, 32.0, 0.0 };
         pokemon.Add("Sceptile", scep);
@@ -114,9 +96,27 @@ public class Pokemon : MonoBehaviour
 
         double[] rayq = { 625.0, 450.0, 817.0, 999.0, 70.0, 0.0 };
         pokemon.Add("Rayquaza", rayq);
+        this.name = name;
+        if (pokemon.ContainsKey(name))
+        {
+            double[] pokemonArrayStats = pokemon[name];
+            this.health = (int)pokemonArrayStats[0];
+            this.attack = (int)pokemonArrayStats[1];
+            this.defence = (int)pokemonArrayStats[2];
+            this.speed = (int)pokemonArrayStats[3];
+            this.level = (int)pokemonArrayStats[4];
+            this.exp = (int)pokemonArrayStats[5];
+        }
+        else
+        {
+            throw new Exception("It did not work!  :(");
+        }
 
-
-
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        
 
     }
 
@@ -260,10 +260,11 @@ public class Pokemon : MonoBehaviour
         double[] quic = { 45.0, 55.0 };
         movesPower.Add("Quick Attack", hydr);
 
-        double[] flame = { 45.0, 55.0 };
-
+        double[] flam = { 45.0, 55.0 };
+        movesPower.Add("Flamethrower", flam);
 
         double[] fire = { 45.0, 55.0 };
+        movesPower.Add("Fire Blast", hydr);
 
     }
    public void pokedex()
