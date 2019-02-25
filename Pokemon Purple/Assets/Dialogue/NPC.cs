@@ -17,7 +17,6 @@ public class NPC : MonoBehaviour
     {
         collider2 = GetComponent<Collider2D>();
         movement = GetComponent<Movement>();
-        collider2 = movement.getCollider();
         isTouching = false;
 
     }
