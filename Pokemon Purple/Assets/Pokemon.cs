@@ -42,16 +42,63 @@ public class Pokemon : MonoBehaviour
 
      public Pokemon(String name)
     {
+        double[] tree = { 40.0, 45.0, 35.0, 65.0, 5.0, 0.0 };
+        pokemon.Add("Treecko", tree);
+
+        double[] grov = { 50.0, 65.0, 45.0, 85.0, 14.0, 0.0 };
+        pokemon.Add("Grovyle", grov);
+
+        double[] scep = { 70.0, 85.0, 65.0, 105.0, 32.0, 0.0 };
+        pokemon.Add("Sceptile", scep);
+
+        double[] torc = { 45.0, 60.0, 40.0, 70.0, 5.0, 0.0 };
+        pokemon.Add("Torchic", torc);
+
+        double[] comb = { 60.0, 85.0, 60.0, 85.0, 16.0, 0.0 };
+        pokemon.Add("Combusken", comb);
+
+        double[] blaz = { 80.0, 120.0, 70.0, 110.0, 36.0, 0.0 };
+        pokemon.Add("Blaziken", blaz);
+
+        double[] mudk = { 50.0, 70.0, 50.0, 50.0, 5.0, 0.0 };
+        pokemon.Add("Mudkip", mudk);
+
+        double[] mars = { 70.0, 85.0, 70.0, 60.0, 18.0, 0.0 };
+        pokemon.Add("Marshtomp", mars);
+
+        double[] swam = { 100.0, 110.0, 90.0, 85.0, 34.0, 0.0 };
+        pokemon.Add("Swampert", swam);
+
+        double[] pooc = { 35.0, 55.0, 35.0, 30.0, 4.0, 0.0 };
+        pokemon.Add("Poochyena", pooc);
+
+        double[] migh = { 70.0, 90.0, 70.0, 60.0, 30.0, 0.0 };
+        pokemon.Add("Mightyena", migh);
+
+        double[] zigz = { 38.0, 30.0, 41.0, 30.0, 3.0, 0.0 };
+        pokemon.Add("Zigzagoon", zigz);
+
+        double[] lino = { 78.0, 70.0, 61.0, 50.0, 25.0, 0.0 };
+        pokemon.Add("Linoone", lino);
+
+        double[] kyog = { 100.0, 100.0, 90.0, 150.0, 45.0, 0.0 };
+        pokemon.Add("Kyogre", kyog);
+
+        double[] grou = { 100.0, 150.0, 140.0, 90.0, 45.0, 0.0 };
+        pokemon.Add("Groudon", grou);
+
+        double[] rayq = { 625.0, 450.0, 817.0, 999.0, 70.0, 0.0 };
+        pokemon.Add("Rayquaza", rayq);
         this.name = name;
         if (pokemon.ContainsKey(name))
         {
-            double[] pokemanz = pokemon[name];
-            this.health = (int)pokemanz[0];
-            this.attack = (int)pokemanz[1];
-            this.defence = (int)pokemanz[2];
-            this.speed = (int)pokemanz[3];
-            this.level = (int)pokemanz[4];
-            this.exp = (int)pokemanz[5];
+            double[] pokemonArrayStats = pokemon[name];
+            this.health = (int)pokemonArrayStats[0];
+            this.attack = (int)pokemonArrayStats[1];
+            this.defence = (int)pokemonArrayStats[2];
+            this.speed = (int)pokemonArrayStats[3];
+            this.level = (int)pokemonArrayStats[4];
+            this.exp = (int)pokemonArrayStats[5];
         }
         else
         {
@@ -228,12 +275,41 @@ public class Pokemon : MonoBehaviour
     {
         movesPower = new Dictionary<string, double[]>();
         // key is the move and dictionary [damage, defence]
-    
-       // movesPower.Add("Tackle", 30.0);
-       // movesPower.Add("Water Gun", 30.0);
-        //movesPower.Add("Defence Curl", 30.0);
-       // movesPower.Add("", 30.0);
-       // movesPower.Add("Tackle", 30.0);
+        double[] tack = {30.0, 40.0 };
+        movesPower.Add("Tackle", tack);
+
+        double[] wate = { 45.0, 55.0 };
+        movesPower.Add("Water Gun", wate);
+
+        double[] defe = { 45.0, 55.0 };
+        movesPower.Add("Defence Curl", defe);
+
+        double[] bubb = { 45.0, 55.0 };
+        movesPower.Add("Bubble", bubb);
+
+        double[] surf = { 45.0, 55.0 };
+        movesPower.Add("Surf", surf);
+
+        double[] hydr = { 45.0, 55.0 };
+        movesPower.Add("Hydro Pump", hydr);
+
+        // start of fire type moves
+        double[] scra = { 45.0, 55.0 };
+        movesPower.Add("Scratch", scra);
+
+        double[] embe = { 45.0, 55.0 };
+        movesPower.Add("Ember", embe);
+
+        double[] grow = { 45.0, 55.0 };
+        movesPower.Add("Growl", grow);
+
+        double[] quic = { 45.0, 55.0 };
+        movesPower.Add("Quick Attack", hydr);
+
+        double[] flame = { 45.0, 55.0 };
+
+        double[] fire = { 45.0, 55.0 };
+
     }
    public void pokedex()
     {
