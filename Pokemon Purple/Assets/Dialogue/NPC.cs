@@ -23,7 +23,7 @@ public class NPC : MonoBehaviour
     
     public void Update()
     {
-        if (isTouching == true && Input.GetKeyDown(KeyCode.E) )
+        if (isTouching == true /*&& Input.GetKeyDown(KeyCode.E)*/ )
         {
             triggerDialogue();
             isTouching = false;
