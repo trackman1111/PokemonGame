@@ -46,7 +46,7 @@ public class Pokemon : MonoBehaviour
         // All arrays are in the format of [health, attack, defence, speed, level, exp]
 
         //get pokemon number and an image for each pokemon
-        double[] test = { 0.0, 0.0, 0.0, 0.0, 0.0 };
+        double[] test = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
         pokemon.Add("", test);
 
         double[] tree = { 40.0, 45.0, 35.0, 65.0, 5.0, 0.0 };
