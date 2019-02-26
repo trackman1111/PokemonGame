@@ -5,12 +5,13 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     public Dialogue dialogue;
+    public DialogueController dialogueController;
     public Movement movement;
     private Collider2D collider;
     private bool isTouching;
     public void triggerDialogue()
     {
-        FindObjectOfType<DialogueController>().StartDialogue(dialogue);
+        dialogueController.StartDialogue(dialogue);
     }
     public void Start()
     {
@@ -32,7 +33,6 @@ public class NPC : MonoBehaviour
     {
         //isTouching = true;
         triggerDialogue();
-        print("yeadad");
     }
     public void OnCollisionExit2D(Collision2D collision)
     {
