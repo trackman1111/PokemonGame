@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Movement : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Movement : MonoBehaviour
     public Sprite rightIdle;
     public Sprite upIdle;
     public Sprite downIdle;
+    public Sprite bush;
+    public Tilemap walkable;
     private Vector3 desiredPosition;
     private Vector3 previousPosition;
     private int currDirection;
@@ -19,6 +22,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         desiredPosition = transform.position;
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = upIdle;
@@ -29,6 +33,15 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
+        print(walkable.GetSprite(new Vector3Int((int)transform.position.x, (int)transform.position.y, 0)));
+        if (walkable.GetSprite(new Vector3Int((int)transform.position.x,(int)transform.position.y,0)).Equals(bush))
+        {
+            print("ONBUSH");
+        }
+        else
+        {
+            print("NOT BUSH");
+        }
         KeyInput();
         transform.position = Vector3.MoveTowards(transform.position, desiredPosition, interpolationSpeed * Time.deltaTime);
 
