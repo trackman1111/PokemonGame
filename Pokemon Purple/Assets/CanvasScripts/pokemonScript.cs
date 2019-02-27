@@ -6,6 +6,8 @@ using TMPro;
 
 public class pokemonScript : MonoBehaviour
 {
+    // All the objects that I use to make canvas look ice 
+
 
     public TextMeshProUGUI p1name;
     public TextMeshProUGUI p1lvl;
@@ -63,12 +65,15 @@ public class pokemonScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Sets all the texts to "" and the images alpha to 0, making it invisable 
+
         p1name.text = "";
         p1lvl.text =  "";
         p1hp.text = "";
         p1image.GetComponent<Image>();
         p1image.GetComponent<SpriteRenderer>();
 
+        // a temp color with 0 alpha, used to set all 6 images to transparent.
         Color temp = p1image.color;
         temp.a = 0;
         p1image.color = temp;
@@ -113,10 +118,16 @@ public class pokemonScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if the canvas is open, check all this stuff. efficient
         if ( pokePanel.activeSelf )
         {
             pokemon = trainer.pokemon;
  
+            // FOR ALL OF THESE
+            // if the name is "", then the pokemon doesnt exist, so i set all of the texts to "" and the image alpha to 0
+            // if the pokemon does exist, sets all images and texts acordingly
+
+
             if ( pokemon[0].name.Equals("") )
             {
                 p1name.text = "";
