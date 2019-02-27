@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
     private Vector3 previousPosition;
     private int currDirection;
     private float interpolationSpeed = 5F;
+    private bool stasis = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +30,34 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        KeyInput();
-        transform.position = Vector3.MoveTowards(transform.position, desiredPosition, interpolationSpeed * Time.deltaTime);
+        if (stasis == false )
+        {
+            anim.enabled = true;
+            KeyInput();
+            transform.position = Vector3.MoveTowards(transform.position, desiredPosition, interpolationSpeed * Time.deltaTime);
+        }
+        else
+        {
+            anim.enabled = false;
+            if (currDirection == 0)
+            {
+                sr.sprite = upIdle;
+            }
+            else if (currDirection == 1)
+            {
+                sr.sprite = rightIdle;
+            }
+            else if (currDirection == 2)
+            {
+                sr.sprite = downIdle; ;
+            }
+            else if (currDirection == 3)
+            {
+                sr.sprite = leftIdle;
+            }
+            rb.velocity = new Vector3(0, 0, 0);
+        }
+
 
     }
     void KeyInput()
@@ -118,6 +145,10 @@ public class Movement : MonoBehaviour
         }
 
 
+    }
+    public void setStasis(bool given)
+    {
+        stasis = given;
     }
 }
 

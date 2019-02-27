@@ -9,6 +9,8 @@ public class CanvasManager : MonoBehaviour
     public GameObject bag;
     public GameObject pokemon;
     public GameObject battle;
+    public GameObject pokeCenter;
+    //private bool isPokeCenterOpen;
     private bool inBattle;
 
     // Start is called before the first frame update
@@ -60,6 +62,14 @@ public class CanvasManager : MonoBehaviour
                 pokemon.SetActive(true);
             }
         }
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            pokeCenter.SetActive(true);
+        }
+       // if(Input.GetKeyDown(KeyCode.K) && pokeCenter.)
+       // {
+        //    pokeCenter.SetActive(false);
+       // }
 
     }
     void run()
