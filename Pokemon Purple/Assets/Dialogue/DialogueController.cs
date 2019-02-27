@@ -15,16 +15,17 @@ public class DialogueController : MonoBehaviour
     {
         sentence = new Queue<string>();
         animator = GetComponent<Animator>();
+        sentence.Enqueue("dummy");
     }
     public void StartDialogue(Dialogue dialogue)
     {
-
+        visibility.SetActive(true);
         FindObjectOfType<Movement>().setStasis(true);
         //animator.SetBool("IsOpen", true);
         Debug.Log("Starting convo with " + dialogue.name);
 
         nameText.text = dialogue.name;
-        visibility.SetActive(true);
+        
         sentence.Clear();
 
         foreach (string sentences in dialogue.sentences)
