@@ -15,7 +15,7 @@ public class MenuScript : MonoBehaviour
     public Text saveText;
     public Text exitText;
 
-    int counter = 0;
+    int counter = 1;
     ArrayList menuList = new ArrayList();
 
     void Start()
