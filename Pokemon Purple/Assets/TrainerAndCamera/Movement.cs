@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Movement : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Movement : MonoBehaviour
     public Sprite rightIdle;
     public Sprite upIdle;
     public Sprite downIdle;
+    public Tilemap walkable;
+    public Sprite bush;
     private Vector3 desiredPosition;
     private Vector3 previousPosition;
     private int currDirection;
@@ -30,6 +33,14 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
+        if (walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(bush))
+        {
+            print("ONBUSH");
+        }
+        else
+        {
+            print("NOT BUSH");
+        }
         if (stasis == false )
         {
             anim.enabled = true;
