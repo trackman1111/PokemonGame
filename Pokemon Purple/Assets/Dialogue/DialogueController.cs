@@ -8,19 +8,24 @@ public class DialogueController : MonoBehaviour
     private Queue<string> sentence;
     public Text nameText;
     public Text dialogueText;
+    public GameObject visibility;
     public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         sentence = new Queue<string>();
+        animator = GetComponent<Animator>();
+        sentence.Enqueue("dummy");
     }
     public void StartDialogue(Dialogue dialogue)
     {
-        animator.SetBool("IsOpen", true);
+        visibility.SetActive(true);
+        FindObjectOfType<Movement>().setStasis(true);
+        //animator.SetBool("IsOpen", true);
         Debug.Log("Starting convo with " + dialogue.name);
 
         nameText.text = dialogue.name;
-
+        
         sentence.Clear();
 
         foreach (string sentences in dialogue.sentences)
@@ -53,7 +58,9 @@ public class DialogueController : MonoBehaviour
     void EndDialogue()
     {
         Debug.Log("end convo");
-        animator.SetBool("IsOpen", false);
+        FindObjectOfType<Movement>().setStasis(false);
+        // animator.SetBool("IsOpen", false);
+        visibility.SetActive(false);
     }
    
 }
