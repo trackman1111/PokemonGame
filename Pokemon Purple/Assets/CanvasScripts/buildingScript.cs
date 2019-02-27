@@ -9,6 +9,7 @@ public class buildingScript : MonoBehaviour
     public GameObject pokeMart;
     public GameObject gym;
     public GameObject other;
+    public GameObject PokeCenter;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,4 +25,14 @@ public class buildingScript : MonoBehaviour
         
     }
     // when u collide with something a canvas pops up and calls the add object on the trainer
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        PokeCenter.SetActive(true);
+        FindObjectOfType<Movement>().setStasis(true);
+    }
+    public void closeMenu()
+    {
+        PokeCenter.SetActive(false);
+    }
+
 }
