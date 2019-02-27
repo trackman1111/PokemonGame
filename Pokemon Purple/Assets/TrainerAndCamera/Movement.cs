@@ -33,8 +33,8 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        print(walkable.GetSprite(new Vector3Int((int)transform.position.x, (int)transform.position.y, 0)));
-        if (walkable.GetSprite(new Vector3Int((int)transform.position.x,(int)transform.position.y,0)).Equals(bush))
+        print(walkable.GetSprite(new Vector3Int((int)(transform.position.x -.5), (int)transform.position.y-1, 0)));
+        if (walkable.GetSprite(new Vector3Int((int)(transform.position.x-.5),(int)transform.position.y-1,0)).Equals(bush))
         {
             print("ONBUSH");
         }
