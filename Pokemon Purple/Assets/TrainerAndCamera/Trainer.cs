@@ -29,15 +29,16 @@ public class Trainer : MonoBehaviour
         bag.Add("Master Ball");
         bag.Add("Bike");
 
-        pokemon[0] = new Pokemon("");
+        string temp = PlayerPrefs.GetString("Starter");
+        pokemon[0] = new Pokemon("Treecko");
+
+
         pokemon[1] = new Pokemon("");
         pokemon[2] = new Pokemon("");
         pokemon[3] = new Pokemon("");
         pokemon[4] = new Pokemon("");
         pokemon[5] = new Pokemon("");
-        // Pokemon starter = new Pokemon( PlayerPrefs.GetString("Starter")));
     }
-
 
     // Update is called once per frame
     void Update()
@@ -64,7 +65,7 @@ public class Trainer : MonoBehaviour
             {
                 if ( pokemon[i].name.Equals("") && added == false )
                 {
-                    pokemon[i] = new Pokemon("Treeko");
+                    pokemon[i] = new Pokemon("Blaziken");
                     added = true;
                 }
             }
