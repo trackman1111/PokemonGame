@@ -35,6 +35,7 @@ public class Pokemon : MonoBehaviour
     public int speed;
     public int level;
     public int exp;
+    private int counter = 1;
     private IDictionary<string,double[]> pokemon;
     private IDictionary<string, double[]> movesPower;
     //private image image;
@@ -44,63 +45,68 @@ public class Pokemon : MonoBehaviour
     {
         Dictionary<string, double[]> pokemon = new Dictionary<string, double[]>();
         // All arrays are in the format of [health, attack, defence, speed, level, exp]
+        if (counter == 1)
+        {
+            //get pokemon number and an image for each pokemon
+            double[] test = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+            pokemon.Add("", test);
 
-        //get pokemon number and an image for each pokemon
-        double[] test = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
-        pokemon.Add("", test);
+            double[] tree = { 40.0, 45.0, 35.0, 65.0, 5.0, 0.0 };
+            pokemon.Add("Treecko", tree);
 
-        double[] tree = { 40.0, 45.0, 35.0, 65.0, 5.0, 0.0 };
-        pokemon.Add("Treecko", tree);
+            double[] grov = { 50.0, 65.0, 45.0, 85.0, 14.0, 0.0 };
+            pokemon.Add("Grovyle", grov);
 
-        double[] grov = { 50.0, 65.0, 45.0, 85.0, 14.0, 0.0 };
-        pokemon.Add("Grovyle", grov);
+            double[] scep = { 70.0, 85.0, 65.0, 105.0, 32.0, 0.0 };
+            pokemon.Add("Sceptile", scep);
 
-        double[] scep = { 70.0, 85.0, 65.0, 105.0, 32.0, 0.0 };
-        pokemon.Add("Sceptile", scep);
+            double[] torc = { 45.0, 60.0, 40.0, 70.0, 5.0, 0.0 };
+            pokemon.Add("Torchic", torc);
 
-        double[] torc = { 45.0, 60.0, 40.0, 70.0, 5.0, 0.0 };
-        pokemon.Add("Torchic", torc);
+            double[] comb = { 60.0, 85.0, 60.0, 85.0, 16.0, 0.0 };
+            pokemon.Add("Combusken", comb);
 
-        double[] comb = { 60.0, 85.0, 60.0, 85.0, 16.0, 0.0 };
-        pokemon.Add("Combusken", comb);
+            double[] blaz = { 80.0, 120.0, 70.0, 110.0, 36.0, 0.0 };
+            pokemon.Add("Blaziken", blaz);
 
-        double[] blaz = { 80.0, 120.0, 70.0, 110.0, 36.0, 0.0 };
-        pokemon.Add("Blaziken", blaz);
+            double[] mudk = { 50.0, 70.0, 50.0, 50.0, 5.0, 0.0 };
+            pokemon.Add("Mudkip", mudk);
 
-        double[] mudk = { 50.0, 70.0, 50.0, 50.0, 5.0, 0.0 };
-        pokemon.Add("Mudkip", mudk);
+            double[] mars = { 70.0, 85.0, 70.0, 60.0, 18.0, 0.0 };
+            pokemon.Add("Marshtomp", mars);
 
-        double[] mars = { 70.0, 85.0, 70.0, 60.0, 18.0, 0.0 };
-        pokemon.Add("Marshtomp", mars);
+            double[] swam = { 100.0, 110.0, 90.0, 85.0, 34.0, 0.0 };
+            pokemon.Add("Swampert", swam);
 
-        double[] swam = { 100.0, 110.0, 90.0, 85.0, 34.0, 0.0 };
-        pokemon.Add("Swampert", swam);
+            double[] pooc = { 35.0, 55.0, 35.0, 30.0, 4.0, 0.0 };
+            pokemon.Add("Poochyena", pooc);
 
-        double[] pooc = { 35.0, 55.0, 35.0, 30.0, 4.0, 0.0 };
-        pokemon.Add("Poochyena", pooc);
+            double[] migh = { 70.0, 90.0, 70.0, 60.0, 30.0, 0.0 };
+            pokemon.Add("Mightyena", migh);
 
-        double[] migh = { 70.0, 90.0, 70.0, 60.0, 30.0, 0.0 };
-        pokemon.Add("Mightyena", migh);
+            double[] zigz = { 38.0, 30.0, 41.0, 30.0, 3.0, 0.0 };
+            pokemon.Add("Zigzagoon", zigz);
 
-        double[] zigz = { 38.0, 30.0, 41.0, 30.0, 3.0, 0.0 };
-        pokemon.Add("Zigzagoon", zigz);
+            double[] lino = { 78.0, 70.0, 61.0, 50.0, 25.0, 0.0 };
+            pokemon.Add("Linoone", lino);
 
-        double[] lino = { 78.0, 70.0, 61.0, 50.0, 25.0, 0.0 };
-        pokemon.Add("Linoone", lino);
+            double[] kyog = { 100.0, 100.0, 90.0, 150.0, 45.0, 0.0 };
+            pokemon.Add("Kyogre", kyog);
 
-        double[] kyog = { 100.0, 100.0, 90.0, 150.0, 45.0, 0.0 };
-        pokemon.Add("Kyogre", kyog);
+            double[] grou = { 100.0, 150.0, 140.0, 90.0, 45.0, 0.0 };
+            pokemon.Add("Groudon", grou);
 
-        double[] grou = { 100.0, 150.0, 140.0, 90.0, 45.0, 0.0 };
-        pokemon.Add("Groudon", grou);
+            double[] rayq = { 625.0, 450.0, 817.0, 999.0, 70.0, 0.0 };
+            pokemon.Add("Rayquaza", rayq);
 
-        double[] rayq = { 625.0, 450.0, 817.0, 999.0, 70.0, 0.0 };
-        pokemon.Add("Rayquaza", rayq);
+            counter++;
+        }
         this.name = name;
         if (pokemon.ContainsKey(name))
         {
             double[] pokemonArrayStats = pokemon[name];
             this.health = (int)pokemonArrayStats[0];
+            this.currHealth = (int)pokemonArrayStats[0];
             this.attack = (int)pokemonArrayStats[1];
             this.defence = (int)pokemonArrayStats[2];
             this.speed = (int)pokemonArrayStats[3];
@@ -229,6 +235,8 @@ public class Pokemon : MonoBehaviour
     {
         movesPower = new Dictionary<string, double[]>();
         // key is the move and dictionary [damage, defence]
+
+        // start of water type moves
         double[] tack = {30.0, 40.0 };
         movesPower.Add("Tackle", tack);
 
@@ -266,6 +274,17 @@ public class Pokemon : MonoBehaviour
         double[] fire = { 45.0, 55.0 };
         movesPower.Add("Fire Blast", hydr);
 
+        // start of grass type moves
+        //"Peck", "Leech Seed", "Growl", "Razor Leaf" gigadrain solar beam
+        double[] peck = { 45.0, 55.0 };
+
+        double[] leec = { 45.0, 55.0 };
+
+        double[] gro = { 45.0, 55.0 };
+
+        double[] razo = { 45.0, 55.0 };
+
+
     }
    public void pokedex()
     {
@@ -280,69 +299,69 @@ public class Pokemon : MonoBehaviour
             }
         }
     }
-   public Sprite getImage(String q)
+   public Sprite getImage()
     {
-        if(q.Equals("Treecko"))
+        if(name.Equals("Treecko"))
         {
             return tree;
         }
-        else if(q.Equals("Grovyle"))
+        else if(name.Equals("Grovyle"))
         {
             return grov;
         }
-        else if(q.Equals("Sceptile"))
+        else if(name.Equals("Sceptile"))
         {
             return scep;
         }
-        else if(q.Equals("Torchic"))
+        else if(name.Equals("Torchic"))
         {
             return torc;
         }
-        else if(q.Equals("Combusken"))
+        else if(name.Equals("Combusken"))
         {
             return comb;
         }
-        else if (q.Equals("Blaziken"))
+        else if (name.Equals("Blaziken"))
         {
             return blaz;
         }
-        else if (q.Equals("Mudkip"))
+        else if (name.Equals("Mudkip"))
         {
             return mudk;
         }
-        else if (q.Equals("Marshtomp"))
+        else if (name.Equals("Marshtomp"))
         {
             return mars;
         }
-        else if (q.Equals("Swampert"))
+        else if (name.Equals("Swampert"))
         {
             return swam;
         }
-        else if (q.Equals("Poochyena"))
+        else if (name.Equals("Poochyena"))
         {
             return pooc;
         }
-        else if (q.Equals("Mightyena"))
+        else if (name.Equals("Mightyena"))
         {
             return migh;
         }
-        else if (q.Equals("Zigzagoon"))
+        else if (name.Equals("Zigzagoon"))
         {
             return zigz;
         }
-        else if (q.Equals("Linoone"))
+        else if (name.Equals("Linoone"))
         {
             return lino;
         }
-        else if (q.Equals("Kyogre"))
+        else if (name.Equals("Kyogre"))
         {
             return kyog;
         }
-        else if (q.Equals("Groudon"))
+        else if (name.Equals("Groudon"))
         {
             return grou;
         }
-        else if (q.Equals("Rayquaza"))
+        else if (name.Equals("Rayquaza"))
         {
             return rayq;
         }
