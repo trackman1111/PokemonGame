@@ -33,14 +33,14 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        if (walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(bush))
-        {
-            print("ONBUSH");
-        }
-        else
-        {
-            print("NOT BUSH");
-        }
+        //if (walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(bush))
+        //{
+        //    print("ONBUSH");
+        //}
+        //else
+        //{
+        //    print("NOT BUSH");
+        //}
         if (stasis == false )
         {
             anim.enabled = true;

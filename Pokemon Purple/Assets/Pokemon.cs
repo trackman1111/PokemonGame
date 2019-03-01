@@ -51,53 +51,37 @@ public class Pokemon : MonoBehaviour
             double[] test = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
             pokemon.Add("", test);
 
-            double[] tree = { 40.0, 45.0, 35.0, 65.0, 5.0, 0.0 };
-            pokemon.Add("Treecko", tree);
+            pokemon.Add("Treecko", new double[] { 40.0, 45.0, 35.0, 65.0, 5.0, 0.0 });
 
-            double[] grov = { 50.0, 65.0, 45.0, 85.0, 14.0, 0.0 };
-            pokemon.Add("Grovyle", grov);
+            pokemon.Add("Grovyle", new double[] { 50.0, 65.0, 45.0, 85.0, 14.0, 0.0 });
 
-            double[] scep = { 70.0, 85.0, 65.0, 105.0, 32.0, 0.0 };
-            pokemon.Add("Sceptile", scep);
+            pokemon.Add("Sceptile", new double[] { 70.0, 85.0, 65.0, 105.0, 32.0, 0.0 });
 
-            double[] torc = { 45.0, 60.0, 40.0, 70.0, 5.0, 0.0 };
-            pokemon.Add("Torchic", torc);
+            pokemon.Add("Torchic", new double[] { 45.0, 60.0, 40.0, 70.0, 5.0, 0.0 });
 
-            double[] comb = { 60.0, 85.0, 60.0, 85.0, 16.0, 0.0 };
-            pokemon.Add("Combusken", comb);
+            pokemon.Add("Combusken", new double[] { 60.0, 85.0, 60.0, 85.0, 16.0, 0.0 });
 
-            double[] blaz = { 80.0, 120.0, 70.0, 110.0, 36.0, 0.0 };
-            pokemon.Add("Blaziken", blaz);
+            pokemon.Add("Blaziken", new double[] { 80.0, 120.0, 70.0, 110.0, 36.0, 0.0 });
 
-            double[] mudk = { 50.0, 70.0, 50.0, 50.0, 5.0, 0.0 };
-            pokemon.Add("Mudkip", mudk);
+            pokemon.Add("Mudkip", new double[] { 50.0, 70.0, 50.0, 50.0, 5.0, 0.0 });
 
-            double[] mars = { 70.0, 85.0, 70.0, 60.0, 18.0, 0.0 };
-            pokemon.Add("Marshtomp", mars);
+            pokemon.Add("Marshtomp", new double[] { 70.0, 85.0, 70.0, 60.0, 18.0, 0.0 });
 
-            double[] swam = { 100.0, 110.0, 90.0, 85.0, 34.0, 0.0 };
-            pokemon.Add("Swampert", swam);
+            pokemon.Add("Swampert", new double[] { 100.0, 110.0, 90.0, 85.0, 34.0, 0.0 });
 
-            double[] pooc = { 35.0, 55.0, 35.0, 30.0, 4.0, 0.0 };
-            pokemon.Add("Poochyena", pooc);
+            pokemon.Add("Poochyena", new double[] { 35.0, 55.0, 35.0, 30.0, 4.0, 0.0 });
 
-            double[] migh = { 70.0, 90.0, 70.0, 60.0, 30.0, 0.0 };
-            pokemon.Add("Mightyena", migh);
+            pokemon.Add("Mightyena", new double[] { 70.0, 90.0, 70.0, 60.0, 30.0, 0.0 });
 
-            double[] zigz = { 38.0, 30.0, 41.0, 30.0, 3.0, 0.0 };
-            pokemon.Add("Zigzagoon", zigz);
+            pokemon.Add("Zigzagoon", new double[] { 38.0, 30.0, 41.0, 30.0, 3.0, 0.0 });
 
-            double[] lino = { 78.0, 70.0, 61.0, 50.0, 25.0, 0.0 };
-            pokemon.Add("Linoone", lino);
+            pokemon.Add("Linoone", new double[] { 78.0, 70.0, 61.0, 50.0, 25.0, 0.0 });
 
-            double[] kyog = { 100.0, 100.0, 90.0, 150.0, 45.0, 0.0 };
-            pokemon.Add("Kyogre", kyog);
+            pokemon.Add("Kyogre", new double[] { 100.0, 100.0, 90.0, 150.0, 45.0, 0.0 });
 
-            double[] grou = { 100.0, 150.0, 140.0, 90.0, 45.0, 0.0 };
-            pokemon.Add("Groudon", grou);
+            pokemon.Add("Groudon", new double[] { 100.0, 150.0, 140.0, 90.0, 45.0, 0.0 });
 
-            double[] rayq = { 625.0, 450.0, 817.0, 999.0, 70.0, 0.0 };
-            pokemon.Add("Rayquaza", rayq);
+            pokemon.Add("Rayquaza", new double[] { 625.0, 450.0, 817.0, 999.0, 70.0, 0.0 });
 
             counter++;
         }
@@ -287,7 +271,7 @@ public class Pokemon : MonoBehaviour
 
     }
    public void pokedex()
-    {
+   {
 
         // Have to display this on the screen when asked
         List<string> pokemonNames = new List<string>(this.pokemon.Keys);

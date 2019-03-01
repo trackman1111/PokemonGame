@@ -28,8 +28,6 @@ public class Trainer : MonoBehaviour
 
         string temp = PlayerPrefs.GetString("Starter");
         pokemon[0] = new Pokemon("Treecko");
-
-
         pokemon[1] = new Pokemon("");
         pokemon[2] = new Pokemon("");
         pokemon[3] = new Pokemon("");
@@ -47,15 +45,7 @@ public class Trainer : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            bool added = false;
-            for ( int i = 0; i < 6; i++ )
-            {
-                if ( pokemon[i].name.Equals("") && added == false )
-                {
-                    pokemon[i] = new Pokemon("Blaziken");
-                    added = true;
-                }
-            }
+            addPokemon("Blaziken");
         }
 
 
@@ -63,8 +53,25 @@ public class Trainer : MonoBehaviour
 
         if ( Input.GetKeyDown(KeyCode.Q) )
         {
-            bag.Add("Potion");
+            addItem("Master Ball");
         }
+    }
+
+    public void addPokemon(string name)
+    {
+        bool added = false;
+        for (int i = 0; i < 6; i++)
+        {
+            if (pokemon[i].name.Equals("") && added == false)
+            {
+                pokemon[i] = new Pokemon(name);
+                added = true;
+            }
+        }
+    }
+    public void addItem(string name)
+    {
+        bag.Add(name);
     }
 
     // used for bag. you give it an item name and it returns a description.
