@@ -41,13 +41,11 @@ public class Movement : MonoBehaviour
         bool onBush = walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(bush);
         if (onBush && transform.position == desiredPosition && !hasChecked)
         {
-
-            if (Random.value < .1)
-            {
-                string pokeName = pokeData.getRandomPokemon();
+            string pokeName = pokeData.getWildPokemon();
+            if ( Random.value < pokeData.getChances(pokeName) )
+            { 
                 mainCharacter.addPokemon(pokeName);
-                print("You have picked encountered a " + pokeName + "!");
-
+                print("You have encountered a " + pokeName + "!");
             }
             hasChecked = true;
         }

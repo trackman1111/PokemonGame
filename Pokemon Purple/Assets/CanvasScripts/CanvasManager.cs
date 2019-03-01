@@ -30,6 +30,7 @@ public class CanvasManager : MonoBehaviour
             if (menu.activeSelf)
             {
                 menu.SetActive(false);
+                FindObjectOfType<Movement>().setStasis(false);
             }
             else if ( bag.activeSelf )
             {
@@ -44,6 +45,7 @@ public class CanvasManager : MonoBehaviour
             else
             {
                 menu.SetActive(true);
+                FindObjectOfType<Movement>().setStasis(true);
             }
         }
         if (Input.GetKeyDown(KeyCode.B))
@@ -66,10 +68,7 @@ public class CanvasManager : MonoBehaviour
         {
             pokeCenter.SetActive(true);
         }
-       // if(Input.GetKeyDown(KeyCode.K) && pokeCenter.)
-       // {
-        //    pokeCenter.SetActive(false);
-       // }
+
 
     }
     void run()
