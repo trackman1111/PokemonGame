@@ -5,7 +5,7 @@ using System;
 using System.Drawing;
 using UnityEngine.UI;
 
-public class Pokemon : MonoBehaviour
+public class Pokemon
 {
     string type;
     public string name;
@@ -43,14 +43,11 @@ public class Pokemon : MonoBehaviour
 
      public Pokemon(String name)
     {
-        Dictionary<string, double[]> pokemon = new Dictionary<string, double[]>();
+        pokemon = new Dictionary<string, double[]>();
         // All arrays are in the format of [health, attack, defence, speed, level, exp]
         if (counter == 1)
         {
             //get pokemon number and an image for each pokemon
-            double[] test = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
-            pokemon.Add("", test);
-
             pokemon.Add("Treecko", new double[] { 40.0, 45.0, 35.0, 65.0, 5.0, 0.0 });
 
             pokemon.Add("Grovyle", new double[] { 50.0, 65.0, 45.0, 85.0, 14.0, 0.0 });
@@ -279,7 +276,7 @@ public class Pokemon : MonoBehaviour
         {
             for(int i = 0; i < pokemonNames.Count; i++)
             {
-                print(pokemonNames[i]);
+                //print(pokemonNames[i]);
             }
         }
     }

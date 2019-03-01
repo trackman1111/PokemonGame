@@ -24,7 +24,6 @@ public class BagTextScript : MonoBehaviour
     public Sprite revive;
 
     int cursor;
-    string position;
 
     ArrayList bag;
     string[,] pokemon;
@@ -34,7 +33,6 @@ public class BagTextScript : MonoBehaviour
     {
         //  bag = GlobalControl.Instance.bag;
         cursor = 0;
-        position = "Left";
 
         picture.GetComponent<Image>();
     }

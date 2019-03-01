@@ -7,18 +7,15 @@ public class NPC : MonoBehaviour
     public Dialogue dialogue;
     public DialogueController dialogueController;
     public Movement movement;
-    private Collider2D collider;
-    private bool isTouching;
+    private Collider2D colliderTwoD;
     public void triggerDialogue()
     {
         dialogueController.StartDialogue(dialogue);
     }
     public void Start()
     {
-        collider = GetComponent<Collider2D>();
+        colliderTwoD = GetComponent<Collider2D>();
         movement = GetComponent<Movement>();
-        isTouching = false;
-
     }
     
     public void Update()

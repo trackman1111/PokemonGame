@@ -128,7 +128,7 @@ public class PokemonCanvasScript : MonoBehaviour
             // if the pokemon does exist, sets all images and texts acordingly
 
 
-            if ( pokemon[0].name.Equals("") )
+            if ( pokemon[0] == null )
             {
                 p1name.text = "";
                 p1lvl.text = "";
@@ -150,7 +150,7 @@ public class PokemonCanvasScript : MonoBehaviour
                 p1image.sprite = getImage(pokemon[0].name);
             }
 
-            if (pokemon[1].name.Equals("") )
+            if (pokemon[1] == null )
             {
                 p2name.text = "";
                 p2lvl.text = "";
@@ -173,7 +173,7 @@ public class PokemonCanvasScript : MonoBehaviour
             }
 
 
-            if (pokemon[2].name.Equals(""))
+            if (pokemon[2] == null)
             {
                 p3name.text = "";
                 p3lvl.text = "";
@@ -196,7 +196,7 @@ public class PokemonCanvasScript : MonoBehaviour
             }
 
 
-            if (pokemon[3].name.Equals(""))
+            if (pokemon[3] == null)
             {
                 p4name.text = "";
                 p4lvl.text = "";
@@ -219,7 +219,7 @@ public class PokemonCanvasScript : MonoBehaviour
             }
 
 
-            if (pokemon[4].name.Equals(""))
+            if (pokemon[4] == null)
             {
                 p5name.text = "";
                 p5lvl.text = "";
@@ -242,7 +242,7 @@ public class PokemonCanvasScript : MonoBehaviour
             }
 
 
-            if (pokemon[5].name.Equals(""))
+            if (pokemon[5] == null)
             {
                 p6name.text = "";
                 p6lvl.text = "";

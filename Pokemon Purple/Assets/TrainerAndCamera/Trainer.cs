@@ -8,12 +8,14 @@ public class Trainer : MonoBehaviour
     // core 2d array for most of my methods. has 6 slots, 1 for each pokemon
     public Pokemon[] pokemon = new Pokemon[6];
     public ArrayList bag;
+    private GameObject gameObj;
 
     public int cash;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameObj = GetComponent<GameObject>();
         // adding all default items to bag array
         bag = new ArrayList();
 
@@ -27,12 +29,11 @@ public class Trainer : MonoBehaviour
         bag.Add("Bike");
 
         string temp = PlayerPrefs.GetString("Starter");
-        pokemon[0] = new Pokemon("Treecko");
-        pokemon[1] = new Pokemon("");
-        pokemon[2] = new Pokemon("");
-        pokemon[3] = new Pokemon("");
-        pokemon[4] = new Pokemon("");
-        pokemon[5] = new Pokemon("");
+        addPokemon("Treecko");
+        addPokemon("Torchic");
+        addPokemon("Swampert");
+        addPokemon("Kyogre");
+        addPokemon("Groudon");
     }
 
     // Update is called once per frame
@@ -62,7 +63,7 @@ public class Trainer : MonoBehaviour
         bool added = false;
         for (int i = 0; i < 6; i++)
         {
-            if (pokemon[i].name.Equals("") && added == false)
+            if (pokemon[i] == null && added == false)
             {
                 pokemon[i] = new Pokemon(name);
                 added = true;
