@@ -9,7 +9,7 @@ public class Pokemon
 {
     string type;
     public string name;
-
+    public GameObject trainer;
     public Sprite tree;
     public Sprite grov;
     public Sprite scep;
@@ -27,7 +27,7 @@ public class Pokemon
     public Sprite grou;
     public Sprite rayq;
     public Sprite other;
-
+    private PokemonData pokeData;
     public int health;
     public int currHealth;
     public int defence;
@@ -36,68 +36,22 @@ public class Pokemon
     public int level;
     public int exp;
     private int counter = 1;
-    private IDictionary<string,double[]> pokemon;
     private IDictionary<string, double[]> movesPower;
     //private image image;
 
-
-     public Pokemon(String name)
+    public Pokemon(String name)
     {
-        pokemon = new Dictionary<string, double[]>();
-        // All arrays are in the format of [health, attack, defence, speed, level, exp]
-        if (counter == 1)
-        {
-            //get pokemon number and an image for each pokemon
-            pokemon.Add("Treecko", new double[] { 40.0, 45.0, 35.0, 65.0, 5.0, 0.0 });
-
-            pokemon.Add("Grovyle", new double[] { 50.0, 65.0, 45.0, 85.0, 14.0, 0.0 });
-
-            pokemon.Add("Sceptile", new double[] { 70.0, 85.0, 65.0, 105.0, 32.0, 0.0 });
-
-            pokemon.Add("Torchic", new double[] { 45.0, 60.0, 40.0, 70.0, 5.0, 0.0 });
-
-            pokemon.Add("Combusken", new double[] { 60.0, 85.0, 60.0, 85.0, 16.0, 0.0 });
-
-            pokemon.Add("Blaziken", new double[] { 80.0, 120.0, 70.0, 110.0, 36.0, 0.0 });
-
-            pokemon.Add("Mudkip", new double[] { 50.0, 70.0, 50.0, 50.0, 5.0, 0.0 });
-
-            pokemon.Add("Marshtomp", new double[] { 70.0, 85.0, 70.0, 60.0, 18.0, 0.0 });
-
-            pokemon.Add("Swampert", new double[] { 100.0, 110.0, 90.0, 85.0, 34.0, 0.0 });
-
-            pokemon.Add("Poochyena", new double[] { 35.0, 55.0, 35.0, 30.0, 4.0, 0.0 });
-
-            pokemon.Add("Mightyena", new double[] { 70.0, 90.0, 70.0, 60.0, 30.0, 0.0 });
-
-            pokemon.Add("Zigzagoon", new double[] { 38.0, 30.0, 41.0, 30.0, 3.0, 0.0 });
-
-            pokemon.Add("Linoone", new double[] { 78.0, 70.0, 61.0, 50.0, 25.0, 0.0 });
-
-            pokemon.Add("Kyogre", new double[] { 100.0, 100.0, 90.0, 150.0, 45.0, 0.0 });
-
-            pokemon.Add("Groudon", new double[] { 100.0, 150.0, 140.0, 90.0, 45.0, 0.0 });
-
-            pokemon.Add("Rayquaza", new double[] { 625.0, 450.0, 817.0, 999.0, 70.0, 0.0 });
-
-            counter++;
-        }
+        pokeData = new PokemonData();
         this.name = name;
-        if (pokemon.ContainsKey(name))
-        {
-            double[] pokemonArrayStats = pokemon[name];
-            this.health = (int)pokemonArrayStats[0];
-            this.currHealth = (int)pokemonArrayStats[0];
-            this.attack = (int)pokemonArrayStats[1];
-            this.defence = (int)pokemonArrayStats[2];
-            this.speed = (int)pokemonArrayStats[3];
-            this.level = (int)pokemonArrayStats[4];
-            this.exp = (int)pokemonArrayStats[5];
-        }
-        else
-        {
-            throw new Exception("It did not work!  :(");
-        }
+        double[] pokemonArrayStats = pokeData.makePokemon(name);
+        this.health = (int)pokemonArrayStats[0];
+        this.currHealth = (int)pokemonArrayStats[0];
+        this.attack = (int)pokemonArrayStats[1];
+        this.defence = (int)pokemonArrayStats[2];
+        this.speed = (int)pokemonArrayStats[3];
+        this.level = (int)pokemonArrayStats[4];
+        this.exp = (int)pokemonArrayStats[5];
+
 
     }
     // Start is called before the first frame update
@@ -110,7 +64,7 @@ public class Pokemon
     // Update is called once per frame
     void Update()
     {
-        pokedex();
+        //pokedex();
     }
     //return a string array and it should have a new parameter int that represents the level
     public string[] makeMoves(string type, int level)
@@ -267,19 +221,19 @@ public class Pokemon
 
 
     }
-   public void pokedex()
-   {
+   //public void pokedex()
+   //{
 
-        // Have to display this on the screen when asked
-        List<string> pokemonNames = new List<string>(this.pokemon.Keys);
-        if(Input.GetKeyDown(KeyCode.H))
-        {
-            for(int i = 0; i < pokemonNames.Count; i++)
-            {
-                //print(pokemonNames[i]);
-            }
-        }
-    }
+    //    // Have to display this on the screen when asked
+    //    List<string> pokemonNames = new List<string>(this.pokemon.Keys);
+    //    if(Input.GetKeyDown(KeyCode.H))
+    //    {
+    //        for(int i = 0; i < pokemonNames.Count; i++)
+    //        {
+    //            //print(pokemonNames[i]);
+    //        }
+    //    }
+    //}
    public Sprite getImage()
     {
         if(name.Equals("Treecko"))
@@ -351,15 +305,5 @@ public class Pokemon
             return other;
         }
     }
-   public double[] getStats(String q)
-    {
-        if(pokemon.ContainsKey(q) || q != null)
-        {
-            return pokemon[q];
-        }
-        else
-        {
-            throw new System.ArgumentException("This pokemon does not exist colton. First letter should be capital.");
-        }
-    }
+
 }

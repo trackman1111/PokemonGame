@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Animator anim;
-    private Trainer mainCharacther;
+    private Trainer mainCharacter;
     public SpriteRenderer sr;
     public Sprite leftIdle;
     public Sprite rightIdle;
@@ -21,16 +21,18 @@ public class Movement : MonoBehaviour
     private int currDirection;
     private float interpolationSpeed = 5F;
     private bool stasis = false;
+    private PokemonData pokeData;
     // Start is called before the first frame update
     void Start()
     {
-        mainCharacther = GetComponent<Trainer>();
+        mainCharacter = GetComponent<Trainer>();
         desiredPosition = transform.position;
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = upIdle;
         currDirection = 0;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        pokeData = new PokemonData();
 
 
     }
@@ -42,7 +44,10 @@ public class Movement : MonoBehaviour
 
             if (Random.value < .1)
             {
-                mainCharacther.addPokemon("Treecko");
+                string pokeName = pokeData.getRandomPokemon();
+                mainCharacter.addPokemon(pokeName);
+                print("You have picked encountered a " + pokeName + "!");
+
             }
             hasChecked = true;
         }

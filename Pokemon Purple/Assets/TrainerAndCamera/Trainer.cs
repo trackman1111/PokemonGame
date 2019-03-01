@@ -28,12 +28,8 @@ public class Trainer : MonoBehaviour
         bag.Add("Master Ball");
         bag.Add("Bike");
 
-        string temp = PlayerPrefs.GetString("Starter");
-        addPokemon("Treecko");
-        addPokemon("Torchic");
-        addPokemon("Swampert");
-        addPokemon("Kyogre");
-        addPokemon("Groudon");
+        //string temp = PlayerPrefs.GetString("Starter");
+
     }
 
     // Update is called once per frame
@@ -67,6 +63,7 @@ public class Trainer : MonoBehaviour
             {
                 pokemon[i] = new Pokemon(name);
                 added = true;
+                print("You have added " + name+ " to your Bag!");
             }
         }
     }
