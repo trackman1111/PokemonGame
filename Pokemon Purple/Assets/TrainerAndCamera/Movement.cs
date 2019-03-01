@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Animator anim;
+    private Trainer mainCharacther;
     public SpriteRenderer sr;
     public Sprite leftIdle;
     public Sprite rightIdle;
@@ -14,15 +15,16 @@ public class Movement : MonoBehaviour
     public Sprite downIdle;
     public Tilemap walkable;
     public Sprite bush;
+    private bool hasChecked = false;
     private Vector3 desiredPosition;
     private Vector3 previousPosition;
     private int currDirection;
     private float interpolationSpeed = 5F;
     private bool stasis = false;
-
     // Start is called before the first frame update
     void Start()
     {
+        mainCharacther = GetComponent<Trainer>();
         desiredPosition = transform.position;
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = upIdle;
@@ -30,18 +32,29 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
+
     }
     void Update()
     {
-        //if (walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(bush))
-        //{
-        //    print("ONBUSH");
-        //}
+        bool onBush = walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(bush);
+        if (onBush && transform.position == desiredPosition && !hasChecked)
+        {
+
+            if (Random.value < .1)
+            {
+                mainCharacther.addPokemon("Treecko");
+            }
+            hasChecked = true;
+        }
+        else if(transform.position != desiredPosition)
+        {
+            hasChecked = false;
+        }
         //else
         //{
         //    print("NOT BUSH");
         //}
-        if (stasis == false )
+        if (stasis == false)
         {
             anim.enabled = true;
             KeyInput();
@@ -134,7 +147,7 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(currDirection == 0)
+        if (currDirection == 0)
         {
             transform.position = new Vector2(transform.position.x, transform.position.y - .1f);
             desiredPosition = previousPosition;
