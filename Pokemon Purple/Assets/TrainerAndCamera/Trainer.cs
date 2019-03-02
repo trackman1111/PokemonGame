@@ -54,6 +54,7 @@ public class Trainer : MonoBehaviour
         }
     }
 
+
     public void addPokemon(string name)
     {
         bool added = false;

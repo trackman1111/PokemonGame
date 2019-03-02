@@ -5,37 +5,41 @@ using UnityEngine;
 public class ItemClass : MonoBehaviour
 {
     public Trainer trainer;
-    ArrayList bag;
-    bool isTouching;
+    public Movement movement;
+
+    bool answered;
 
     // Start is called before the first frame update
     void Start()
     {
-        isTouching = false;
-
-        bag = trainer.bag;
+        movement.GetComponent<Movement>();
+        answered = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ( isTouching && Input.GetKeyDown(KeyCode.Y) )
+        if ( !answered )
         {
-            bag.Add("Pokeball");
-            print("pokeball added");
-        }
-        else if ( isTouching && Input.GetKeyDown(KeyCode.Y))
-        {
-            print("okie");
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                trainer.bag.Add("Pokeball");
+                answered = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.N))
+            {
+                answered = true;
+            }
         }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
         print("Would you like to pickup the pokeball? (Y/N)");
+        answered = false;
     }
     public void OnCollisionExit2D(Collision2D collision)
     {
-        isTouching = false;
+
     }
 }
