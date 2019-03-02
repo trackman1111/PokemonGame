@@ -26,26 +26,30 @@ public class ItemClass : MonoBehaviour
             {
                 trainer.bag.Add(itemName);
                 print("You have added " + name + " to your Bag!");
-                answered = true;
-
-                Destroy(this.gameObject);
+                answer();
             }
             else if (Input.GetKeyDown(KeyCode.N))
             {
-                answered = true;
-                Destroy(this.gameObject);
+                answer();
             }
         }
     }
 
+    void answer()
+    {
+        answered = true;
+        Destroy(this.gameObject);
+        FindObjectOfType<Movement>().setStasis(false);
+    }
+
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        FindObjectOfType<Movement>().setStasis(true);
+        FindObjectOfType<Movement>().setStasis(false);
         print("Would you like to pickup the " + itemName + "? (Y/N)");
         answered = false;
     }
     public void OnCollisionExit2D(Collision2D collision)
     {
-        FindObjectOfType<Movement>().setStasis(false);
+        FindObjectOfType<Movement>().setStasis(true);
     }
 }
