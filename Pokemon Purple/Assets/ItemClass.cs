@@ -7,7 +7,6 @@ public class ItemClass : MonoBehaviour
     public Trainer trainer;
     public string name;
  // public Movement movement;
-    int added = 0;
     bool answered;
     string itemName;
     // Start is called before the first frame update
@@ -21,37 +20,36 @@ public class ItemClass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ( !answered && added == 0 )
+        if ( !answered )
         {
             if (Input.GetKeyDown(KeyCode.Y))
             {
                 trainer.bag.Add(itemName);
                 print("You have added " + name + " to your Bag!");
-                answered = true;
-                added++;
+                answer();
             }
             else if (Input.GetKeyDown(KeyCode.N))
             {
-                answered = true;
+                answer();
             }
         }
     }
 
+    void answer()
+    {
+        answered = true;
+        Destroy(this.gameObject);
+        FindObjectOfType<Movement>().setStasis(false);
+    }
+
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        FindObjectOfType<Movement>().setStasis(true);
-        if ( added == 0 )
-        {
-            print("Would you like to pickup the " + itemName + "? (Y/N)");
-            answered = false;
-        }
-        else
-        {
-            print("This Pokeball has already been opened!");
-        }
+        FindObjectOfType<Movement>().setStasis(false);
+        print("Would you like to pickup the " + itemName + "? (Y/N)");
+        answered = false;
     }
     public void OnCollisionExit2D(Collision2D collision)
     {
-        FindObjectOfType<Movement>().setStasis(false);
+        FindObjectOfType<Movement>().setStasis(true);
     }
 }
