@@ -12,7 +12,27 @@ public class PokemonData
     public PokemonData()
     {
         pokemon = new Dictionary<string, double[]>();
+        createPokemon();
+        pokeNames = new List<string>(pokemon.Keys);
+        wildPokemon = new List<string>();
+        createWildPokemon();
 
+    }
+    public void createWildPokemon()
+    {
+        for (int i = 0; i < pokemon.Count; i++)
+        {
+            foreach (string name in pokemon.Keys)
+            {
+                if (pokemon[name][6] != 0)
+                {
+                    wildPokemon.Add(name);
+                }
+            }
+        }
+    }
+    public void createPokemon()
+    {
         pokemon.Add("Treecko", new double[] { 40.0, 45.0, 35.0, 65.0, 5.0, 0.0, 0 });
 
         pokemon.Add("Grovyle", new double[] { 50.0, 65.0, 45.0, 85.0, 14.0, 0.0, 0 });
@@ -44,18 +64,104 @@ public class PokemonData
         pokemon.Add("Groudon", new double[] { 100.0, 150.0, 140.0, 90.0, 45.0, 0.0, 0 });
 
         pokemon.Add("Rayquaza", new double[] { 625.0, 450.0, 817.0, 999.0, 70.0, 0.0, 0 });
+    }
+    public string[] makeMoves(string type, int level)
+    {
 
-        pokeNames = new List<string>(pokemon.Keys);
-        wildPokemon = new List<string>();
-        for(int i = 0; i < pokemon.Count; i ++)
+        if (type.Equals("Water"))
         {
-            foreach ( string name in pokemon.Keys )
+            if (level <= 10)
             {
-                if (pokemon[name][6] != 0)
-                {
-                    wildPokemon.Add(name);
-                }
+                string[] beginWaterMoves = { "Tackle", "Water Gun", "Defence Curl", "Bubble" };
+                return beginWaterMoves;
             }
+            else if (level <= 20)
+            {
+                string[] middleWaterMoves = { "Water Gun", "Bubble", "Defence Curl", "Surf" };
+                return middleWaterMoves;
+            }
+            else
+            {
+                string[] endWaterMoves = { "Bubble", "Defence Curl", "Surf", "Hydro Pump" };
+                return endWaterMoves;
+            }
+        }
+        else if (type.Equals("Fire"))
+        {
+            if (level <= 10)
+            {
+                string[] beginFireMoves = { "Scratch", "Ember", "Growl", "Quick Attack" };
+                return beginFireMoves;
+            }
+            else if (level <= 20)
+            {
+                string[] middleFireMoves = { "Ember", "Growl", "Flamethrower", "Quick Attack" };
+                return middleFireMoves;
+            }
+            else
+            {
+                string[] endFireMoves = { "Quick Attack", "Growl", "Flamethrower", "Fire Blast" };
+                return endFireMoves;
+            }
+        }
+        else if (type.Equals("Grass"))
+        {
+            if (level <= 10)
+            {
+                string[] beginGrassMoves = { "Peck", "Leech Seed", "Growl", "Razor Leaf" };
+                return beginGrassMoves;
+            }
+            else if (level <= 20)
+            {
+                string[] middleGrassMoves = { "Leech Seed", "Growl", "Razor Leaf", "Gigadrain" };
+                return middleGrassMoves;
+            }
+            else
+            {
+                string[] endGrassMoves = { "Leech Seed", "Razor Leaf", "Gigadrain", "Solar Beam" };
+                return endGrassMoves;
+            }
+        }
+        else if (type.Equals("Ground"))
+        {
+            if (level <= 10)
+            {
+                string[] beginGroundMoves = { "Tackle", "Bulk Up", "Mud Slap", "Dig" };
+                return beginGroundMoves;
+            }
+            else if (level <= 20)
+            {
+                string[] middleGroundMoves = { "Bulk Up", "Mud Slap", "Dig", "Mud Bomb" };
+                return middleGroundMoves;
+            }
+            else
+            {
+                string[] endGroundMoves = { "Bulk Up", "Dig", "Mud Bomb", "Earthquake" };
+                return endGroundMoves;
+            }
+        }
+        else if (type.Equals("Electric"))
+        {
+            if (level <= 10)
+            {
+                string[] beginElectricMoves = { "Quick Attack", "Charge", "Thunderbolt", "Shock Wave" };
+                return beginElectricMoves;
+            }
+            else if (level <= 20)
+            {
+                string[] middleElectricMoves = { "Quick Attack", "Charge", "Thunderbolt", "Spark" };
+                return middleElectricMoves;
+            }
+            else
+            {
+                string[] endElectricMoves = { "Quick Attack", "Charge", "Spark", "Thunder" };
+                return endElectricMoves;
+            }
+        }
+        else
+        {
+            string[] randomMoves = { "DragonBreath", "Iron Tail", "Ice Beam", "Confuse Ray" };
+            return randomMoves;
         }
     }
     // Update is called once per frame
