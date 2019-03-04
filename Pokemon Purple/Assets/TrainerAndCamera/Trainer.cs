@@ -12,6 +12,13 @@ public class Trainer : MonoBehaviour
 
     public int cash;
 
+    int pok1;
+    int pok2;
+
+    private bool pressed;
+    private bool firstPicked;
+    private bool secondPicked;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +35,11 @@ public class Trainer : MonoBehaviour
         bag.Add("Master Ball");
         bag.Add("Bike");
 
-        //string temp = PlayerPrefs.GetString("Starter");
+        pressed = false;
+        firstPicked = false;
 
+        pok1 = 0;
+        pok2 = 0;
     }
 
     // Update is called once per frame
@@ -45,6 +55,11 @@ public class Trainer : MonoBehaviour
             addPokemon("Blaziken");
         }
 
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            addPokemon("Swampert");
+        }
+
 
         // Press Q to add Potion to your bag 
 
@@ -52,7 +67,106 @@ public class Trainer : MonoBehaviour
         {
             addItem("Master Ball");
         }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            pressed = true;
+            print("Which two pokemon would you like to swap? (A-H)  (Z-N)");
+        }
+
+        if ( pressed )
+        {
+            if(Input.GetKeyDown(KeyCode.A))
+            {
+                pok1 = 1;
+                print(pokemon[pok1 - 1].name + " is highlighted");
+            }
+            if(Input.GetKeyDown(KeyCode.S))
+            {
+                pok1 = 2;
+                print(pokemon[pok1 - 1].name + " is highlighted");
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                pok1 = 3;
+                print(pokemon[pok1 - 1].name + " is highlighted");
+            }
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                pok1 = 4;
+                print(pokemon[pok1 - 1].name + " is highlighted");
+            }
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                pok1 = 5;
+                print(pokemon[pok1 - 1].name + " is highlighted");
+            }
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                pok1 = 6;
+                print(pokemon[pok1 - 1].name + " is highlighted");
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightShift))
+            {
+
+                if ( pok1 != 0 && pokemon[pok1 - 1] != null )
+                {
+                    print(pokemon[pok1 - 1].name + " was selected");
+                    firstPicked = true;
+                    pok2 = 0;
+                    pressed = false;
+                }
+            }
+        }
+
+        if(firstPicked)
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                pok2 = 1;
+                print(pokemon[pok2 - 1].name + " is highlighted");
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                pok2 = 2;
+                print(pokemon[pok2 - 1].name + " is highlighted");
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                pok2 = 3;
+                print(pokemon[pok2 - 1].name + " is highlighted");
+            }
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                pok2 = 4;
+                print(pokemon[pok2 - 1].name + " is highlighted");
+            }
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                pok2 = 5;
+                print(pokemon[pok2 - 1].name + " is highlighted");
+            }
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                pok2 = 6;
+                print(pokemon[pok2 - 1].name + " is highlighted");
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightShift))
+            {
+                if (pok2 != 0 && pokemon[pok2 - 1] != null)
+                {
+                    firstPicked = false;
+                    print(pokemon[pok2 - 1].name + " was selected");
+                    swapPokemon(pok1 - 1, pok2 - 1);
+                    pok1 = 0;
+                    pok2 = 0;
+                }
+            }
+        }
     }
+
 
     public void addPokemon(string name)
     {
@@ -71,6 +185,18 @@ public class Trainer : MonoBehaviour
     {
         bag.Add(name);
     }
+
+
+    public void swapPokemon(int movedPoke, int desiredSlot)
+    {
+        Pokemon temp = pokemon[desiredSlot];
+        pokemon[desiredSlot] = pokemon[movedPoke];
+        pokemon[movedPoke] = temp;
+
+        print(pokemon[desiredSlot].name + " was swapped with " + pokemon[movedPoke].name);
+    }
+
+
 
     // used for bag. you give it an item name and it returns a description.
 
