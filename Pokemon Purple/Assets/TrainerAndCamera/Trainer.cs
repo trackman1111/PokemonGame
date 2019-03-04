@@ -45,12 +45,22 @@ public class Trainer : MonoBehaviour
             addPokemon("Blaziken");
         }
 
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            addPokemon("Swampert");
+        }
+
 
         // Press Q to add Potion to your bag 
 
         if ( Input.GetKeyDown(KeyCode.Q) )
         {
             addItem("Master Ball");
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            swapPokemon();
         }
     }
 
@@ -72,6 +82,34 @@ public class Trainer : MonoBehaviour
     {
         bag.Add(name);
     }
+
+
+    public void swapPokemon()
+    {
+        // print("What Pokemon would you like to move? (1-6)");
+        // int movedPoke = int.Parse(Input.compositionString);
+
+        //  print("What slot would you like to put this pokemon?  (1-6)");
+        //  int desiredSlot = int.Parse(Input.compositionString);
+
+        int movedPoke = 2;
+        int desiredSlot = 1;
+
+        if (pokemon[movedPoke - 1] != null || pokemon[desiredSlot - 1] != null)
+        {
+            Pokemon temp = pokemon[desiredSlot - 1];
+            pokemon[desiredSlot - 1] = pokemon[movedPoke - 1];
+            pokemon[movedPoke - 1] = temp;
+
+            print(pokemon[desiredSlot - 1].name + " was swapped with " + pokemon[movedPoke - 1].name);
+        }
+        else
+        {
+            print("Bad Input");
+        }
+    }
+
+
 
     // used for bag. you give it an item name and it returns a description.
 
