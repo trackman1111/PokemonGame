@@ -59,7 +59,7 @@ public class CanvasManager : MonoBehaviour
             fadeScreen();
             inBattle = true;
         }
-        if ( inBattle && ( iterations == 2 ) )
+        if ( inBattle && ( iterations == 3 ) )
         {
             menu.SetActive(false);
             bag.SetActive(false);
@@ -82,10 +82,12 @@ public class CanvasManager : MonoBehaviour
 
     void fadeScreen()
     {
-        Invoke("turnOnBlack", 0.5f);
-        Invoke("turnOffBlack", 1.0f );
-        Invoke("turnOnBlack", 1.5f);
-        Invoke("turnOffBlack", 2.0f);
+        Invoke("turnOnBlack", 0.25f);
+        Invoke("turnOffBlack", 0.5f );
+        Invoke("turnOnBlack", 0.75f);
+        Invoke("turnOffBlack", 1.0f);
+        Invoke("turnOnBlack", 1.25f);
+        Invoke("turnOffBlack", 1.5f);
 
     }
 
