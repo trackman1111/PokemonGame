@@ -8,11 +8,13 @@ public class MenuScript : MonoBehaviour
     public GameObject bag;
     public GameObject menu;
     public GameObject pokemon;
+    public GameObject help;
 
     public Text pokedexText;
     public Text pokemonText;
     public Text bagText;
     public Text saveText;
+    public Text helpText;
     public Text exitText;
 
     int counter = 1;
@@ -30,6 +32,7 @@ public class MenuScript : MonoBehaviour
         pokemonText.text = "  POKEMON";
         bagText.text = "  BAG";
         saveText.text = "  SAVE";
+        helpText.text = "  HELP";
         exitText.text = "  EXIT";
     }
 
@@ -41,7 +44,7 @@ public class MenuScript : MonoBehaviour
             {
                 counter = 1;
             }
-            else if ( counter < 5 && Input.GetKeyDown(KeyCode.DownArrow) )
+            else if ( counter < 6 && Input.GetKeyDown(KeyCode.DownArrow) )
             {
                 counter++;
 
@@ -49,6 +52,7 @@ public class MenuScript : MonoBehaviour
                 pokemonText.text = "  POKEMON";
                 bagText.text = "  BAG";
                 saveText.text = "  SAVE";
+                helpText.text = "  HELP";
                 exitText.text = "  EXIT";
             }
             else if (counter > 1 && Input.GetKeyDown(KeyCode.UpArrow))
@@ -59,6 +63,7 @@ public class MenuScript : MonoBehaviour
                 pokemonText.text = "  POKEMON";
                 bagText.text = "  BAG";
                 saveText.text = "  SAVE";
+                helpText.text = "  HELP";
                 exitText.text = "  EXIT";
             }
 
@@ -79,6 +84,10 @@ public class MenuScript : MonoBehaviour
                 saveText.text = "->SAVE";
             }
             else if (counter == 5)
+            {
+                helpText.text = "->HELP";
+            }
+            else if (counter == 6)
             {
                 exitText.text = "->EXIT";
             }
@@ -103,6 +112,10 @@ public class MenuScript : MonoBehaviour
                 }
                 else if (counter == 5)
                 {
+                    openHelp();
+                }
+                else if (counter == 6)
+                {
                     exitGame();
                 }
             }
@@ -126,6 +139,11 @@ public class MenuScript : MonoBehaviour
     public void save()
     {
         
+    }
+    public void openHelp()
+    {
+        menu.SetActive(false);
+        help.SetActive(true);
     }
     public void exitGame()
     {

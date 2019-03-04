@@ -11,6 +11,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject battle;
     public GameObject pokeCenter;
     public GameObject blackScreen;
+    public GameObject helpMenu;
 
     private WaitForSeconds timer;
     //private bool isPokeCenterOpen;
@@ -45,6 +46,11 @@ public class CanvasManager : MonoBehaviour
             else if (pokemon.activeSelf)
             {
                 pokemon.SetActive(false);
+                menu.SetActive(true);
+            }
+            else if (helpMenu.activeSelf)
+            {
+                helpMenu.SetActive(false);
                 menu.SetActive(true);
             }
             else

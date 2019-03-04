@@ -71,7 +71,9 @@ public class Trainer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             pressed = true;
-            print("Which two pokemon would you like to swap? (A-H)  (Z-N)");
+            print("Which two pokemon would you like to swap?");
+
+            print("Use A-H to highlight a pokemon, press Right Shift to confirm selection");
         }
 
         if ( pressed )
@@ -112,7 +114,7 @@ public class Trainer : MonoBehaviour
 
                 if ( pok1 != 0 && pokemon[pok1 - 1] != null )
                 {
-                    print(pokemon[pok1 - 1].name + " was selected");
+                    print(pokemon[pok1 - 1].name + " was selected. Select the pokemon you would like to swap " + pokemon[pok1 - 1].name + " with");
                     firstPicked = true;
                     pok2 = 0;
                     pressed = false;
