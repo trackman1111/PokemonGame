@@ -53,12 +53,6 @@ public class CanvasManager : MonoBehaviour
                 FindObjectOfType<Movement>().setStasis(true);
             }
         }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            FindObjectOfType<Movement>().setStasis(true);
-            fadeScreen();
-            inBattle = true;
-        }
         if ( inBattle && ( iterations == 3 ) )
         {
             menu.SetActive(false);
@@ -78,6 +72,12 @@ public class CanvasManager : MonoBehaviour
         }
 
 
+    }
+    public void startBattle()
+    {
+        FindObjectOfType<Movement>().setStasis(true);
+        fadeScreen();
+        inBattle = true;
     }
 
     void fadeScreen()

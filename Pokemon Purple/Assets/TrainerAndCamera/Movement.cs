@@ -15,6 +15,8 @@ public class Movement : MonoBehaviour
     public Sprite downIdle;
     public Tilemap walkable;
     public Sprite bush;
+    public GameObject optionsMenuController;
+    private CanvasManager canMan;
     private bool hasChecked = false;
     private Vector3 desiredPosition;
     private Vector3 previousPosition;
@@ -33,7 +35,7 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         pokeData = new PokemonData();
-
+        canMan = optionsMenuController.GetComponent<CanvasManager>();
 
     }
     void Update()
@@ -45,7 +47,9 @@ public class Movement : MonoBehaviour
             if ( Random.value < pokeData.getChances(pokeName) )
             { 
                 mainCharacter.addPokemon(pokeName);
+                canMan.startBattle();
                 print("You have encountered a " + pokeName + "!");
+
             }
             hasChecked = true;
         }
