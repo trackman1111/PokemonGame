@@ -26,20 +26,18 @@ public class ItemClass : MonoBehaviour
             {
                 trainer.bag.Add(itemName);
                 print("You have added " + name + " to your Bag!");
-                answer();
+
+
+                answered = true;
+                Destroy(this.gameObject);
+                FindObjectOfType<Movement>().setStasis(false);
             }
             else if (Input.GetKeyDown(KeyCode.N))
             {
-                answer();
+                answered = true;
+                FindObjectOfType<Movement>().setStasis(false);
             }
         }
-    }
-
-    void answer()
-    {
-        answered = true;
-        Destroy(this.gameObject);
-        FindObjectOfType<Movement>().setStasis(false);
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

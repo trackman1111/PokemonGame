@@ -18,6 +18,7 @@ public class Trainer : MonoBehaviour
     private bool pressed;
     private bool firstPicked;
     private bool secondPicked;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,91 +76,93 @@ public class Trainer : MonoBehaviour
 
         if ( pressed )
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if(Input.GetKeyDown(KeyCode.A))
             {
                 pok1 = 1;
+                print(pokemon[pok1 - 1].name + " is highlighted");
             }
-            else if (Input.GetKeyDown(KeyCode.S))
+            if(Input.GetKeyDown(KeyCode.S))
             {
                 pok1 = 2;
+                print(pokemon[pok1 - 1].name + " is highlighted");
             }
-            else if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.D))
             {
                 pok1 = 3;
+                print(pokemon[pok1 - 1].name + " is highlighted");
             }
-            else if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 pok1 = 4;
+                print(pokemon[pok1 - 1].name + " is highlighted");
             }
-            else if (Input.GetKeyDown(KeyCode.G))
+            if (Input.GetKeyDown(KeyCode.G))
             {
                 pok1 = 5;
+                print(pokemon[pok1 - 1].name + " is highlighted");
             }
-            else if (Input.GetKeyDown(KeyCode.H))
+            if (Input.GetKeyDown(KeyCode.H))
             {
                 pok1 = 6;
+                print(pokemon[pok1 - 1].name + " is highlighted");
             }
 
-            if ( pok1 != 0 && pokemon[pok1] != null )
+            if (Input.GetKeyDown(KeyCode.RightShift))
             {
-                print(pokemon[pok1 - 1].name + " was selected");
-                pressed = false;
-                firstPicked = true;
-            }
-            else if ( pok1 != 0 )
-            {
-                print("Bad Input");
-                pok1 = 0;
-                pok2 = 0;
-                pressed = false;
+
+                if ( pok1 != 0 && pokemon[pok1 - 1] != null )
+                {
+                    print(pokemon[pok1 - 1].name + " was selected");
+                    firstPicked = true;
+                    pok2 = 0;
+                    pressed = false;
+                }
             }
         }
 
-        if (firstPicked)
+        if(firstPicked)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.A))
             {
                 pok2 = 1;
+                print(pokemon[pok2 - 1].name + " is highlighted");
             }
-            else if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.S))
             {
                 pok2 = 2;
+                print(pokemon[pok2 - 1].name + " is highlighted");
             }
-            else if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.D))
             {
                 pok2 = 3;
+                print(pokemon[pok2 - 1].name + " is highlighted");
             }
-            else if (Input.GetKeyDown(KeyCode.V))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 pok2 = 4;
+                print(pokemon[pok2 - 1].name + " is highlighted");
             }
-            else if (Input.GetKeyDown(KeyCode.B))
+            if (Input.GetKeyDown(KeyCode.G))
             {
                 pok2 = 5;
+                print(pokemon[pok2 - 1].name + " is highlighted");
             }
-            else if (Input.GetKeyDown(KeyCode.N))
+            if (Input.GetKeyDown(KeyCode.H))
             {
                 pok2 = 6;
+                print(pokemon[pok2 - 1].name + " is highlighted");
             }
 
-            if (pok2 != 0 && pokemon[pok1] != null)
+            if (Input.GetKeyDown(KeyCode.RightShift))
             {
-                print(pokemon[pok2 - 1].name + " was selected");
-                firstPicked = false;
-            }
-            else if (pok2 != 0)
-            {
-                print("Bad Input");
-                pok1 = 0;
-                pok2 = 0;
-
-            }
-
-            if (pok1 != 0 && pok2 != 0)
-            {
-                swapPokemon(pok1 - 1, pok2 - 1);
-                pok1 = 0;
-                pok2 = 0;
+                if (pok2 != 0 && pokemon[pok2 - 1] != null)
+                {
+                    firstPicked = false;
+                    print(pokemon[pok2 - 1].name + " was selected");
+                    swapPokemon(pok1 - 1, pok2 - 1);
+                    pok1 = 0;
+                    pok2 = 0;
+                }
             }
         }
     }
@@ -186,24 +189,11 @@ public class Trainer : MonoBehaviour
 
     public void swapPokemon(int movedPoke, int desiredSlot)
     {
-        // print("What Pokemon would you like to move? (1-6)");
-        // int movedPoke = int.Parse(Input.compositionString);
+        Pokemon temp = pokemon[desiredSlot];
+        pokemon[desiredSlot] = pokemon[movedPoke];
+        pokemon[movedPoke] = temp;
 
-        //  print("What slot would you like to put this pokemon?  (1-6)");
-        //  int desiredSlot = int.Parse(Input.compositionString);
-
-        if (pokemon[movedPoke] != null || pokemon[desiredSlot] != null)
-        {
-            Pokemon temp = pokemon[desiredSlot];
-            pokemon[desiredSlot] = pokemon[movedPoke];
-            pokemon[movedPoke] = temp;
-
-            print(pokemon[desiredSlot].name + " was swapped with " + pokemon[movedPoke].name);
-        }
-        else
-        {
-            print("Bad Input");
-        }
+        print(pokemon[desiredSlot].name + " was swapped with " + pokemon[movedPoke].name);
     }
 
 
