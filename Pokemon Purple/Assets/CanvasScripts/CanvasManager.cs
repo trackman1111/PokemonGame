@@ -10,8 +10,12 @@ public class CanvasManager : MonoBehaviour
     public GameObject pokemon;
     public GameObject battle;
     public GameObject pokeCenter;
+    public GameObject blackScreen;
+
+    private WaitForSeconds timer;
     //private bool isPokeCenterOpen;
     private bool inBattle;
+    private int iterations;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +23,7 @@ public class CanvasManager : MonoBehaviour
         bag.SetActive(false);
         menu.SetActive(false);
         inBattle = false;
+        iterations = 0;
     }
 
     // Update is called once per frame
@@ -50,15 +55,18 @@ public class CanvasManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
+            FindObjectOfType<Movement>().setStasis(true);
+            fadeScreen();
             inBattle = true;
         }
-        if ( inBattle )
+        if ( inBattle && ( iterations == 2 ) )
         {
             menu.SetActive(false);
             bag.SetActive(false);
             pokemon.SetActive(false);
+
             battle.SetActive(true);
-            if (Input.GetKeyDown("esc"))
+            if (Input.GetKeyDown("escape"))
             {
                 bag.SetActive(false);
                 pokemon.SetActive(true);
@@ -71,6 +79,36 @@ public class CanvasManager : MonoBehaviour
 
 
     }
+
+    void fadeScreen()
+    {
+        Invoke("turnOnBlack", 0.5f);
+        Invoke("turnOffBlack", 1.0f );
+        Invoke("turnOnBlack", 1.5f);
+        Invoke("turnOffBlack", 2.0f);
+
+    }
+
+    IEnumerator MyMethod()
+    {
+        Debug.Log("Before Waiting 1 seconds");
+        blackScreen.SetActive(true);
+        yield return new WaitForSeconds( 1 );
+        blackScreen.SetActive(false);
+        Debug.Log("After Waiting 1 Seconds");
+    }
+
+    void turnOnBlack()
+    {
+        blackScreen.SetActive(true);
+    }
+
+    void turnOffBlack()
+    {
+        blackScreen.SetActive(false);
+        iterations++;
+    }
+
     void run()
     {
         battle.SetActive(false);
