@@ -12,6 +12,12 @@ public class Trainer : MonoBehaviour
 
     public int cash;
 
+    int pok1;
+    int pok2;
+
+    private bool pressed;
+    private bool firstPicked;
+    private bool secondPicked;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +34,11 @@ public class Trainer : MonoBehaviour
         bag.Add("Master Ball");
         bag.Add("Bike");
 
-        //string temp = PlayerPrefs.GetString("Starter");
+        pressed = false;
+        firstPicked = false;
 
+        pok1 = 0;
+        pok2 = 0;
     }
 
     // Update is called once per frame
@@ -60,7 +69,98 @@ public class Trainer : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            swapPokemon();
+            pressed = true;
+            print("Which two pokemon would you like to swap? (A-H)  (Z-N)");
+        }
+
+        if ( pressed )
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                pok1 = 1;
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                pok1 = 2;
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                pok1 = 3;
+            }
+            else if (Input.GetKeyDown(KeyCode.F))
+            {
+                pok1 = 4;
+            }
+            else if (Input.GetKeyDown(KeyCode.G))
+            {
+                pok1 = 5;
+            }
+            else if (Input.GetKeyDown(KeyCode.H))
+            {
+                pok1 = 6;
+            }
+
+            if ( pok1 != 0 && pokemon[pok1] != null )
+            {
+                print(pokemon[pok1 - 1].name + " was selected");
+                pressed = false;
+                firstPicked = true;
+            }
+            else if ( pok1 != 0 )
+            {
+                print("Bad Input");
+                pok1 = 0;
+                pok2 = 0;
+                pressed = false;
+            }
+        }
+
+        if (firstPicked)
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                pok2 = 1;
+            }
+            else if (Input.GetKeyDown(KeyCode.X))
+            {
+                pok2 = 2;
+            }
+            else if (Input.GetKeyDown(KeyCode.C))
+            {
+                pok2 = 3;
+            }
+            else if (Input.GetKeyDown(KeyCode.V))
+            {
+                pok2 = 4;
+            }
+            else if (Input.GetKeyDown(KeyCode.B))
+            {
+                pok2 = 5;
+            }
+            else if (Input.GetKeyDown(KeyCode.N))
+            {
+                pok2 = 6;
+            }
+
+            if (pok2 != 0 && pokemon[pok1] != null)
+            {
+                print(pokemon[pok2 - 1].name + " was selected");
+                firstPicked = false;
+            }
+            else if (pok2 != 0)
+            {
+                print("Bad Input");
+                pok1 = 0;
+                pok2 = 0;
+
+            }
+
+            if (pok1 != 0 && pok2 != 0)
+            {
+                swapPokemon(pok1 - 1, pok2 - 1);
+                pok1 = 0;
+                pok2 = 0;
+            }
         }
     }
 
@@ -84,7 +184,7 @@ public class Trainer : MonoBehaviour
     }
 
 
-    public void swapPokemon()
+    public void swapPokemon(int movedPoke, int desiredSlot)
     {
         // print("What Pokemon would you like to move? (1-6)");
         // int movedPoke = int.Parse(Input.compositionString);
@@ -92,16 +192,13 @@ public class Trainer : MonoBehaviour
         //  print("What slot would you like to put this pokemon?  (1-6)");
         //  int desiredSlot = int.Parse(Input.compositionString);
 
-        int movedPoke = 2;
-        int desiredSlot = 1;
-
-        if (pokemon[movedPoke - 1] != null || pokemon[desiredSlot - 1] != null)
+        if (pokemon[movedPoke] != null || pokemon[desiredSlot] != null)
         {
-            Pokemon temp = pokemon[desiredSlot - 1];
-            pokemon[desiredSlot - 1] = pokemon[movedPoke - 1];
-            pokemon[movedPoke - 1] = temp;
+            Pokemon temp = pokemon[desiredSlot];
+            pokemon[desiredSlot] = pokemon[movedPoke];
+            pokemon[movedPoke] = temp;
 
-            print(pokemon[desiredSlot - 1].name + " was swapped with " + pokemon[movedPoke - 1].name);
+            print(pokemon[desiredSlot].name + " was swapped with " + pokemon[movedPoke].name);
         }
         else
         {
