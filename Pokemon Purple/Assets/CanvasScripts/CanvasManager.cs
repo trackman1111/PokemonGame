@@ -12,7 +12,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject pokeCenter;
     public GameObject blackScreen;
     public GameObject helpMenu;
-
+    private bool caught;
     private WaitForSeconds timer;
     //private bool isPokeCenterOpen;
     private bool inBattle;
@@ -59,18 +59,11 @@ public class CanvasManager : MonoBehaviour
                 FindObjectOfType<Movement>().setStasis(true);
             }
         }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            FindObjectOfType<Movement>().setStasis(true);
-            fadeScreen();
-            inBattle = true;
-        }
-        if ( inBattle && ( iterations == 3 ) )
+        else if ( inBattle && ( iterations == 3 ) )
         {
             menu.SetActive(false);
             bag.SetActive(false);
             pokemon.SetActive(false);
-
             battle.SetActive(true);
             if (Input.GetKeyDown("escape"))
             {
@@ -78,12 +71,28 @@ public class CanvasManager : MonoBehaviour
                 pokemon.SetActive(true);
             }
         }
-        if(Input.GetKeyDown(KeyCode.K))
+        else
+        {
+            battle.SetActive(false);
+        }
+        if (Input.GetKeyDown(KeyCode.R) && inBattle && !caught)
+        {
+            FindObjectOfType<Movement>().setStasis(false);
+            caught = true;
+            exitBattle();
+        }
+        if (Input.GetKeyDown(KeyCode.K))
         {
             pokeCenter.SetActive(true);
         }
 
 
+    }
+    public void startBattle()
+    {
+        FindObjectOfType<Movement>().setStasis(true);
+        fadeScreen();
+        inBattle = true;
     }
 
     void fadeScreen()
@@ -117,12 +126,23 @@ public class CanvasManager : MonoBehaviour
         iterations++;
     }
 
-    void run()
+    void exitBattle()
     {
         battle.SetActive(false);
         pokemon.SetActive(false);
         bag.SetActive(false);
+        inBattle = false;
+        iterations = 0;
     }
+    public bool getCaught()
+    {
+        return caught;
+    }
+    public void setCaught(bool a)
+    {
+        caught = a;
+    }
+
     void bagBattle()
     {
 

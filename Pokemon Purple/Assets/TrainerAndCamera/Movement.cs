@@ -15,6 +15,8 @@ public class Movement : MonoBehaviour
     public Sprite downIdle;
     public Tilemap walkable;
     public Sprite bush;
+    public GameObject optionsMenuController;
+    private CanvasManager canMan;
     private bool hasChecked = false;
     private Vector3 desiredPosition;
     private Vector3 previousPosition;
@@ -22,6 +24,7 @@ public class Movement : MonoBehaviour
     private float interpolationSpeed = 5F;
     private bool stasis = false;
     private PokemonData pokeData;
+    private string pokeName;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +36,7 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         pokeData = new PokemonData();
-
+        canMan = optionsMenuController.GetComponent<CanvasManager>();
 
     }
     void Update()
@@ -41,11 +44,12 @@ public class Movement : MonoBehaviour
         bool onBush = walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(bush);
         if (onBush && transform.position == desiredPosition && !hasChecked)
         {
-            string pokeName = pokeData.getWildPokemon();
+            pokeName = pokeData.getWildPokemon();
             if ( Random.value < pokeData.getChances(pokeName) )
-            { 
-                mainCharacter.addPokemon(pokeName);
+            {
+                canMan.startBattle();
                 print("You have encountered a " + pokeName + "!");
+
             }
             hasChecked = true;
         }
@@ -53,6 +57,12 @@ public class Movement : MonoBehaviour
         {
             hasChecked = false;
         }
+        if (canMan.getCaught() )
+        {
+            mainCharacter.addPokemon(pokeName);
+            canMan.setCaught(false);
+        }
+
         //else
         //{
         //    print("NOT BUSH");
