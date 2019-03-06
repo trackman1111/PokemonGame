@@ -91,7 +91,7 @@ public class CanvasManager : MonoBehaviour
 
             // BATTLE CODE HERE
 
-            enemyImage.sprite = getImage( enemyName );
+           enemyImage.sprite = getImage( enemyName );
 
         }
         else if (inBattle && (iterations == 0))
