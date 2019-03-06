@@ -45,7 +45,8 @@ public class Pokemon
         this.name = name;
         double[] pokemonArrayStats = pokeData.makePokemon(name);
         this.health = (int)pokemonArrayStats[0];
-        this.currHealth = (int)pokemonArrayStats[0];
+        //this.currHealth = (int)pokemonArrayStats[0];
+        this.currHealth = 5;
         this.attack = (int)pokemonArrayStats[1];
         this.defence = (int)pokemonArrayStats[2];
         this.speed = (int)pokemonArrayStats[3];
@@ -207,7 +208,7 @@ public class Pokemon
             return other;
         }
     }
-    void heal()
+    public void heal()
     {
         this.currHealth = this.health;
     }
