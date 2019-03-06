@@ -65,22 +65,23 @@ public class CanvasManager : MonoBehaviour
             bag.SetActive(false);
             pokemon.SetActive(false);
             battle.SetActive(true);
-            if (Input.GetKeyDown("escape"))
+            iterations = 0;
+        }
+        else if (inBattle && (iterations == 0))
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
+                menu.SetActive(false);
                 bag.SetActive(false);
-                pokemon.SetActive(true);
+                pokemon.SetActive(false);
+                battle.SetActive(true);
             }
         }
         else
         {
             battle.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.R) && inBattle && !caught)
-        {
-            FindObjectOfType<Movement>().setStasis(false);
-            caught = true;
-            exitBattle();
-        }
+
         if (Input.GetKeyDown(KeyCode.K))
         {
             pokeCenter.SetActive(true);
@@ -126,13 +127,19 @@ public class CanvasManager : MonoBehaviour
         iterations++;
     }
 
-    void exitBattle()
+    public void exitBattle()
     {
         battle.SetActive(false);
         pokemon.SetActive(false);
         bag.SetActive(false);
         inBattle = false;
-        iterations = 0;
+        FindObjectOfType<Movement>().setStasis(false);
+    }
+    public void catchPokemon()
+    {
+        caught = true;
+        exitBattle();
+
     }
     public bool getCaught()
     {
@@ -143,18 +150,17 @@ public class CanvasManager : MonoBehaviour
         caught = a;
     }
 
-    void bagBattle()
+    public void bagBattle()
     {
-
         bag.SetActive(true);
+    }
+    public void pokemonBattle()
+    {
+        pokemon.SetActive(true);
     }
     void fight()
     {
         print("fight");
-    }
-    void pokemonBattle()
-    {
-        pokemon.SetActive(true);
     }
 
 }
