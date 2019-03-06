@@ -47,7 +47,7 @@ public class Movement : MonoBehaviour
             pokeName = pokeData.getWildPokemon();
             if ( Random.value < pokeData.getChances(pokeName) )
             {
-                canMan.startBattle();
+                canMan.startBattle( pokeName );
                 print("You have encountered a " + pokeName + "!");
 
             }
