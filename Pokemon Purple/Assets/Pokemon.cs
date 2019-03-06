@@ -36,6 +36,10 @@ public class Pokemon
     public int level;
     public int exp;
     private int counter = 1;
+    public string moveOne;
+    public string moveTwo;
+    public string moveThree;
+    public string moveFour;
     private IDictionary<string, double[]> movesPower;
     //private image image;
 
@@ -45,12 +49,18 @@ public class Pokemon
         this.name = name;
         double[] pokemonArrayStats = pokeData.makePokemon(name);
         this.health = (int)pokemonArrayStats[0];
-        this.currHealth = (int)pokemonArrayStats[0];
+        //this.currHealth = (int)pokemonArrayStats[0];
+        this.currHealth = 5;
         this.attack = (int)pokemonArrayStats[1];
         this.defence = (int)pokemonArrayStats[2];
         this.speed = (int)pokemonArrayStats[3];
         this.level = (int)pokemonArrayStats[4];
         this.exp = (int)pokemonArrayStats[5];
+        string[] temp = pokeData.makeMoves(this.name, this.level);
+        this.moveOne = temp[0];
+        this.moveTwo = temp[1];
+        this.moveThree = temp[2];           // This code doesn't really work because i am sending it a name not a type
+        this.moveFour = temp[3];            // Need to fix this with prob a dictionary <pokemon, string>
 
 
     }
@@ -67,62 +77,6 @@ public class Pokemon
         //pokedex();
     }
     //return a string array and it should have a new parameter int that represents the level
-   
-    public void movePower()
-    {
-        movesPower = new Dictionary<string, double[]>();
-        // key is the move and dictionary [damage, defence]
-
-        // start of water type moves
-        double[] tack = {30.0, 40.0 };
-        movesPower.Add("Tackle", tack);
-
-        double[] wate = { 45.0, 55.0 };
-        movesPower.Add("Water Gun", wate);
-
-        double[] defe = { 45.0, 55.0 };
-        movesPower.Add("Defence Curl", defe);
-
-        double[] bubb = { 45.0, 55.0 };
-        movesPower.Add("Bubble", bubb);
-
-        double[] surf = { 45.0, 55.0 };
-        movesPower.Add("Surf", surf);
-
-        double[] hydr = { 45.0, 55.0 };
-        movesPower.Add("Hydro Pump", hydr);
-
-        // start of fire type moves
-        double[] scra = { 45.0, 55.0 };
-        movesPower.Add("Scratch", scra);
-
-        double[] embe = { 45.0, 55.0 };
-        movesPower.Add("Ember", embe);
-
-        double[] grow = { 45.0, 55.0 };
-        movesPower.Add("Growl", grow);
-
-        double[] quic = { 45.0, 55.0 };
-        movesPower.Add("Quick Attack", hydr);
-
-        double[] flam = { 45.0, 55.0 };
-        movesPower.Add("Flamethrower", flam);
-
-        double[] fire = { 45.0, 55.0 };
-        movesPower.Add("Fire Blast", hydr);
-
-        // start of grass type moves
-        //"Peck", "Leech Seed", "Growl", "Razor Leaf" gigadrain solar beam
-        double[] peck = { 45.0, 55.0 };
-
-        double[] leec = { 45.0, 55.0 };
-
-        double[] gro = { 45.0, 55.0 };
-
-        double[] razo = { 45.0, 55.0 };
-
-
-    }
    //public void pokedex()
    //{
 
@@ -207,7 +161,11 @@ public class Pokemon
             return other;
         }
     }
-    void heal()
+    //public string[] getMovesForPokemon(string name)
+    //{
+
+    //}
+    public void heal()
     {
         this.currHealth = this.health;
     }
