@@ -16,6 +16,7 @@ public class BuildingScript : MonoBehaviour
     }
     public void closeMenu()
     {
+        FindObjectOfType<Movement>().setStasis(false);
         buildingCanvas.SetActive(false);
     }
 
