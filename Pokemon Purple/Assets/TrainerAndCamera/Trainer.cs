@@ -262,6 +262,10 @@ public class Trainer : MonoBehaviour
     {
         for(int i = 0; i < pokemon.Length; i++ )
         {
+            if(pokemon[i] == null)
+            {
+                return;
+            }
             pokemon[i].heal();
         }
     }
