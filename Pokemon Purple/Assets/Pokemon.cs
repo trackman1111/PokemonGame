@@ -161,10 +161,10 @@ public class Pokemon
             return other;
         }
     }
-    public string[] getMovesForPokemon(string name)
-    {
+    //public string[] getMovesForPokemon(string name)
+    //{
 
-    }
+    //}
     public void heal()
     {
         this.currHealth = this.health;
