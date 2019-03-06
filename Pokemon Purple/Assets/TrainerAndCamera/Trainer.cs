@@ -297,16 +297,5 @@ public class Trainer : MonoBehaviour
             }
         }
     }
-    public void fullHealth()
-    {
-        for(int i = 0; i < pokemon.Length; i++ )
-        {
-            if(pokemon[i] == null)
-            {
-                return;
-            }
-            pokemon[i].heal();
-        }
-    }
 
 }

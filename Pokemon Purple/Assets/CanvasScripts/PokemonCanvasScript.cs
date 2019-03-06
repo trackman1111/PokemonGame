@@ -142,7 +142,7 @@ public class PokemonCanvasScript : MonoBehaviour
             {
                 p1name.text = pokemon[0].name + "";
                 p1lvl.text = "Lvl " + pokemon[0].level;
-                p1hp.text = pokemon[0].currHealth + "/" + pokemon[0].health;
+                p1hp.text = pokemon[0].health + "/" + pokemon[0].currHealth;
 
                 Color temp = p1image.color;
                 temp.a = 255;
@@ -164,7 +164,7 @@ public class PokemonCanvasScript : MonoBehaviour
             {
                 p2name.text = pokemon[1].name;
                 p2lvl.text = "Lvl " + pokemon[1].level;
-                p2hp.text = pokemon[1].currHealth + "/" + pokemon[1].health;
+                p2hp.text = pokemon[1].health + "/" + pokemon[1].currHealth;
 
                 Color temp = p2image.color;
                 temp.a = 255;
@@ -187,7 +187,7 @@ public class PokemonCanvasScript : MonoBehaviour
             {
                 p3name.text = pokemon[2].name;
                 p3lvl.text = "Lvl " + pokemon[2].level;
-                p3hp.text = pokemon[2].currHealth + "/" + pokemon[2].health;
+                p3hp.text = pokemon[2].health + "/" + pokemon[2].currHealth;
 
                 Color temp = p3image.color;
                 temp.a = 255;
@@ -210,7 +210,7 @@ public class PokemonCanvasScript : MonoBehaviour
             {
                 p4name.text = pokemon[3].name;
                 p4lvl.text = "Lvl " + pokemon[3].level;
-                p4hp.text = pokemon[3].currHealth + "/" + pokemon[3].health;
+                p4hp.text = pokemon[3].health + "/" + pokemon[3].currHealth;
 
                 Color temp = p4image.color;
                 temp.a = 255;
@@ -233,7 +233,7 @@ public class PokemonCanvasScript : MonoBehaviour
             {
                 p5name.text = pokemon[4].name;
                 p5lvl.text = "Lvl " + pokemon[4].level;
-                p5hp.text = pokemon[4].currHealth + "/" + pokemon[4].health;
+                p5hp.text = pokemon[4].health + "/" + pokemon[4].currHealth;
 
                 Color temp = p5image.color;
                 temp.a = 255;
@@ -256,7 +256,7 @@ public class PokemonCanvasScript : MonoBehaviour
             {
                 p6name.text = pokemon[5].name;
                 p6lvl.text = "Lvl " + pokemon[5].level;
-                p6hp.text = pokemon[5].currHealth + "/" + pokemon[5].health;
+                p6hp.text = pokemon[5].health + "/" + pokemon[5].currHealth;
 
                 Color temp = p6image.color;
                 temp.a = 255;
