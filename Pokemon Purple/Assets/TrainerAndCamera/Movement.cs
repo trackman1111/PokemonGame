@@ -45,9 +45,10 @@ public class Movement : MonoBehaviour
         if (onBush && transform.position == desiredPosition && !hasChecked)
         {
             pokeName = pokeData.getWildPokemon();
+            Pokemon wildPokemon = new Pokemon(pokeName);
             if ( Random.value < pokeData.getChances(pokeName) )
             {
-                canMan.startBattle( pokeName );
+                canMan.startBattle( wildPokemon );
                 print("You have encountered a " + pokeName + "!");
 
             }
@@ -56,11 +57,6 @@ public class Movement : MonoBehaviour
         else if(transform.position != desiredPosition)
         {
             hasChecked = false;
-        }
-        if (canMan.getCaught() )
-        {
-            mainCharacter.addPokemon(pokeName);
-            canMan.setCaught(false);
         }
 
         //else

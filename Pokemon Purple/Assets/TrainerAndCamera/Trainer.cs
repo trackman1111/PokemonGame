@@ -50,14 +50,10 @@ public class Trainer : MonoBehaviour
 
         // Press P to add Blaziken to your bag 
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            addPokemon("Blaziken");
-        }
 
         if (Input.GetKeyDown(KeyCode.O))
         {
-            addPokemon("Swampert");
+            addPokemon(new Pokemon("Swampert"));
         }
 
 
@@ -209,16 +205,16 @@ public class Trainer : MonoBehaviour
     }
 
 
-    public void addPokemon(string name)
+    public void addPokemon(Pokemon poke)
     {
         bool added = false;
         for (int i = 0; i < 6; i++)
         {
             if (pokemon[i] == null && added == false)
             {
-                pokemon[i] = new Pokemon(name);
+                pokemon[i] = poke;
                 added = true;
-                print("You have added " + name+ " to your Bag!");
+                print("You have added " + poke.name + " to your Bag!");
             }
         }
     }

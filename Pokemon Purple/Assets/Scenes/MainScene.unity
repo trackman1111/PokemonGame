@@ -55474,7 +55474,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 231256505}
+      - m_Target: {fileID: 1660598848}
         m_MethodName: catchPokemon
         m_Mode: 1
         m_Arguments:
@@ -87674,6 +87674,7 @@ MonoBehaviour:
   runButton: {fileID: 2106670758}
   pokemonButton: {fileID: 2136634209}
   battleCanvas: {fileID: 1660598843}
+  canvasManager: {fileID: 231256503}
   allyLevel: {fileID: 1383026538}
   enemyLevel: {fileID: 1500104249}
   allyNameText: {fileID: 568132253}
