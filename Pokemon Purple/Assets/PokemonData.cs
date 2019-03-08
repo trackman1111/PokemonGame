@@ -61,6 +61,24 @@ public class PokemonData
 
         pokemon.Add("Linoone", new double[] { 78.0, 70.0, 61.0, 50.0, 25.0, 0.0, 0.1 });
 
+        pokemon.Add("Lotad", new double[] { 40.0, 30.0, 30.0, 40.0, 11.0, 0.0, .02 });
+
+        pokemon.Add("Lombre", new double[] { 60.0, 50.0, 50.0, 60.0, 17.0, 0.0, .002 });
+
+        pokemon.Add("Ludicolo", new double[] { 80.0, 70.0, 70.0, 90.0, 29.0, 0.0, .002 });
+
+        pokemon.Add("Trapinch", new double[] { 45.0, 100.0, 45.0, 45.0, 10.0, 0.0, .08 });
+
+        pokemon.Add("Vibrava", new double[] { 50.0, 70.0, 50.0, 50.0, 16.0, 0.0, .03 });
+
+        pokemon.Add("Flygon", new double[] { 80.0, 100.0, 80.0, 80.0, 45.0, 0.0, .001 });
+
+        pokemon.Add("Bagon", new double[] { 45.0, 75.0, 60.0, 40.0, 23.0, 0.0, .01 });
+
+        pokemon.Add("Shelgon", new double[] { 65.0, 95.0, 100.0, 60.0, 34.0, 0.0, .0001 });
+
+        pokemon.Add("Salamence", new double[] { 95.0, 135.0, 80.0, 110.0, 55.0, 0.0, 0.0 });
+
         pokemon.Add("Kyogre", new double[] { 100.0, 100.0, 90.0, 150.0, 45.0, 0.0, 0 });
 
         pokemon.Add("Groudon", new double[] { 100.0, 150.0, 140.0, 90.0, 45.0, 0.0, 0 });
@@ -239,6 +257,15 @@ public class PokemonData
         pokemonTypes.Add("Mightyena", "Electric");
         pokemonTypes.Add("Zigzagoon", "Ground");
         pokemonTypes.Add("Linoone", "Ground");
+        pokemonTypes.Add("Lotad", "Water");
+        pokemonTypes.Add("Lombre", "Grass");
+        pokemonTypes.Add("Ludicolo", "Water");
+        pokemonTypes.Add("Trapinch", "Ground");
+        pokemonTypes.Add("Vibrava", "Ground");
+        pokemonTypes.Add("Flygon", "Other");
+        pokemonTypes.Add("Bagon", "Other");
+        pokemonTypes.Add("Shelgon", "Other");
+        pokemonTypes.Add("Salamence", "Other");
         pokemonTypes.Add("Kyogre", "Water");
         pokemonTypes.Add("Groudon", "Ground");
         pokemonTypes.Add("Rayquaza", "Other");
