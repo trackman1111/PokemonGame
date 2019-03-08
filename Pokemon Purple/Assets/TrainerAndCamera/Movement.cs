@@ -43,7 +43,6 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        print(desiredPosition);
 
         bool onBush;
         if (walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)) == null)
@@ -177,19 +176,19 @@ public class Movement : MonoBehaviour
         {
             if (currDirection == 0)
             {
-                transform.position = new Vector2(transform.position.x, transform.position.y - .1f);
+                transform.position = new Vector3(transform.position.x, transform.position.y - .1f, -1);
             }
             if (currDirection == 1)
             {
-                transform.position = new Vector2(transform.position.x - .1f, transform.position.y);
+                transform.position = new Vector3(transform.position.x - .1f, transform.position.y, -1);
             }
             if (currDirection == 2)
             {
-                transform.position = new Vector2(transform.position.x, transform.position.y + .1f);
+                transform.position = new Vector3(transform.position.x, transform.position.y + .1f, -1);
             }
             if (currDirection == 3)
             {
-                transform.position = new Vector2(transform.position.x + .1f, transform.position.y);
+                transform.position = new Vector3(transform.position.x + .1f, transform.position.y, -1);
             }
   
             desiredPosition = previousPosition;
