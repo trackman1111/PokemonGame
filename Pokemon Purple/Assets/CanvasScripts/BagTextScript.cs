@@ -23,6 +23,9 @@ public class BagTextScript : MonoBehaviour
     public Sprite bike;
     public Sprite revive;
 
+    public GameObject battleCanvas;
+    public GameObject pokemonCanvas;
+
     int cursor;
 
     ArrayList bag;
@@ -152,7 +155,91 @@ public class BagTextScript : MonoBehaviour
             {
                 cursor--;
             }
+
+            if ( Input.GetKeyDown(KeyCode.RightShift) && cursor != 0 )
+            {
+                useItem( keys[cursor] );
+            }
         }
+    }
+
+    void useItem( string item ) 
+    {
+        if (item.Equals("Pokeball"))
+        {
+            if ( battleCanvas.activeSelf )
+            {
+
+            }
+            else
+            {
+                print("STOOPID, I AINT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Great Ball"))
+        {
+            if (battleCanvas.activeSelf)
+            {
+
+            }
+            else
+            {
+                print("STOOPID, I AINT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Ultra Ball"))
+        {
+            if (battleCanvas.activeSelf)
+            {
+
+            }
+            else
+            {
+                print("STOOPID, I AINT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Master Ball"))
+        {
+            if (battleCanvas.activeSelf)
+            {
+
+            }
+            else
+            {
+                print("STOOPID, I AINT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Map"))
+        {
+            //HASIUEFHKWEHFKHWEFLJEKWF OPEN A MAP
+        }
+        else if (item.Equals("Bike"))
+        {
+            // get on de bike jaunt
+        }
+        else if (item.Equals("Potion"))
+        {
+            if (pokemonCanvas.activeSelf)
+            {
+
+            }
+            else
+            {
+                print("STOOPID, I AINT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Revive"))
+        {
+            if (pokemonCanvas.activeSelf)
+            {
+
+            }
+            else
+            {
+                print("STOOPID, I AINT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+
     }
 
     void SavePlayer()
