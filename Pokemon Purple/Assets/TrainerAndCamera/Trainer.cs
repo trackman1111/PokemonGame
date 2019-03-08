@@ -70,43 +70,62 @@ public class Trainer : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            pressed = true;
-            print("Which two pokemon would you like to swap?");
+            if (pokemon[1] != null)
+            {
+                pressed = true;
+                print("Which two pokemon would you like to swap?");
 
-            print("Use A-H to highlight a pokemon, press Right Shift to confirm selection");
+                print("Use 1-6 to highlight a pokemon, then press Right Shift to confirm selection");
+            }
+            else
+            {
+                print( "Not enough Pokemon to swap." );
+            }
         }
 
         if ( pressed )
         {
-            if(Input.GetKeyDown(KeyCode.A))
-            {
+            if(Input.GetKeyDown(KeyCode.Alpha1))
+            {            
                 pok1 = 1;
                 print(pokemon[pok1 - 1].name + " is highlighted");
             }
-            if(Input.GetKeyDown(KeyCode.S))
+            if(Input.GetKeyDown(KeyCode.Alpha2))
             {
                 pok1 = 2;
                 print(pokemon[pok1 - 1].name + " is highlighted");
             }
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                pok1 = 3;
-                print(pokemon[pok1 - 1].name + " is highlighted");
+                if ( pokemon[2] != null )
+                {
+                    pok1 = 3;
+                    print(pokemon[pok1 - 1].name + " is highlighted");
+                }
             }
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                pok1 = 4;
-                print(pokemon[pok1 - 1].name + " is highlighted");
+                if (pokemon[3] != null)
+                {
+                    pok1 = 4;
+                    print(pokemon[pok1 - 1].name + " is highlighted");
+                }
             }
-            if (Input.GetKeyDown(KeyCode.G))
+            if (Input.GetKeyDown(KeyCode.Alpha5))
             {
-                pok1 = 5;
-                print(pokemon[pok1 - 1].name + " is highlighted");
+                if (pokemon[4] != null)
+                {
+                    pok1 = 5;
+                    print(pokemon[pok1 - 1].name + " is highlighted");
+                }
             }
-            if (Input.GetKeyDown(KeyCode.H))
+            if (Input.GetKeyDown(KeyCode.Alpha6))
             {
-                pok1 = 6;
-                print(pokemon[pok1 - 1].name + " is highlighted");
+                if (pokemon[5] != null)
+                {
+                    pok1 = 6;
+                    print(pokemon[pok1 - 1].name + " is highlighted");
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.RightShift))
@@ -124,35 +143,47 @@ public class Trainer : MonoBehaviour
 
         if(firstPicked)
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 pok2 = 1;
                 print(pokemon[pok2 - 1].name + " is highlighted");
             }
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 pok2 = 2;
                 print(pokemon[pok2 - 1].name + " is highlighted");
             }
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                pok2 = 3;
-                print(pokemon[pok2 - 1].name + " is highlighted");
+                if (pokemon[2] != null)
+                {
+                    pok2 = 3;
+                    print(pokemon[pok2 - 1].name + " is highlighted");
+                }
             }
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                pok2 = 4;
-                print(pokemon[pok2 - 1].name + " is highlighted");
+                if (pokemon[3] != null)
+                {
+                    pok2 = 4;
+                    print(pokemon[pok2 - 1].name + " is highlighted");
+                }
             }
-            if (Input.GetKeyDown(KeyCode.G))
+            if (Input.GetKeyDown(KeyCode.Alpha5))
             {
-                pok2 = 5;
-                print(pokemon[pok2 - 1].name + " is highlighted");
+                if (pokemon[4] != null)
+                {
+                    pok2 = 5;
+                    print(pokemon[pok2 - 1].name + " is highlighted");
+                }
             }
-            if (Input.GetKeyDown(KeyCode.H))
+            if (Input.GetKeyDown(KeyCode.Alpha6))
             {
-                pok2 = 6;
-                print(pokemon[pok2 - 1].name + " is highlighted");
+                if (pokemon[5] != null)
+                {
+                    pok2 = 6;
+                    print(pokemon[pok2 - 1].name + " is highlighted");
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.RightShift))
@@ -161,7 +192,15 @@ public class Trainer : MonoBehaviour
                 {
                     firstPicked = false;
                     print(pokemon[pok2 - 1].name + " was selected");
-                    swapPokemon(pok1 - 1, pok2 - 1);
+
+                    if ( pok1 != pok2 )
+                    { 
+                        swapPokemon(pok1 - 1, pok2 - 1);
+                    }
+                    else
+                    {
+                        print("Select two different pokemon to swap.");
+                    }
                     pok1 = 0;
                     pok2 = 0;
                 }
@@ -256,6 +295,17 @@ public class Trainer : MonoBehaviour
                 cash = cash - 10;
                 // need to add the object to the bag
             }
+        }
+    }
+    public void fullHealth()
+    {
+        for (int i = 0; i < pokemon.Length; i++)
+        {
+            if (pokemon[i] == null)
+            {
+                return;
+            }
+            pokemon[i].heal();
         }
     }
 
