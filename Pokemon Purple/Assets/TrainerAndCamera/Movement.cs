@@ -25,6 +25,7 @@ public class Movement : MonoBehaviour
     private bool stasis = false;
     private PokemonData pokeData;
     private string pokeName;
+    private bool teleporting;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,11 +38,23 @@ public class Movement : MonoBehaviour
         anim = GetComponent<Animator>();
         pokeData = new PokemonData();
         canMan = optionsMenuController.GetComponent<CanvasManager>();
+        teleporting = false;
 
     }
     void Update()
     {
-        bool onBush = walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(bush);
+        print(desiredPosition);
+
+        bool onBush;
+        if (walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)) == null)
+        {
+            onBush = false;
+        }
+        else
+        {
+            onBush = walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(bush);
+        }
+
         if (onBush && transform.position == desiredPosition && !hasChecked)
         {
             pokeName = pokeData.getWildPokemon();
@@ -160,32 +173,43 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (currDirection == 0)
+        if (!teleporting)
         {
-            transform.position = new Vector2(transform.position.x, transform.position.y - .1f);
+            if (currDirection == 0)
+            {
+                transform.position = new Vector2(transform.position.x, transform.position.y - .1f);
+            }
+            if (currDirection == 1)
+            {
+                transform.position = new Vector2(transform.position.x - .1f, transform.position.y);
+            }
+            if (currDirection == 2)
+            {
+                transform.position = new Vector2(transform.position.x, transform.position.y + .1f);
+            }
+            if (currDirection == 3)
+            {
+                transform.position = new Vector2(transform.position.x + .1f, transform.position.y);
+            }
+  
             desiredPosition = previousPosition;
         }
-        if (currDirection == 1)
+        else
         {
-            transform.position = new Vector2(transform.position.x - .1f, transform.position.y);
-            desiredPosition = previousPosition;
+            teleporting = false;
         }
-        if (currDirection == 2)
-        {
-            transform.position = new Vector2(transform.position.x, transform.position.y + .1f);
-            desiredPosition = previousPosition;
-        }
-        if (currDirection == 3)
-        {
-            transform.position = new Vector2(transform.position.x + .1f, transform.position.y);
-            desiredPosition = previousPosition;
-        }
-
 
     }
     public void setStasis(bool given)
     {
         stasis = given;
     }
+    public void setPosition(float xCoord, float yCoord)
+    { 
+        transform.position = new Vector3(xCoord, yCoord, -1f);
+        desiredPosition = new Vector3(xCoord, yCoord, -1f);
+        teleporting = true;
+    }
+
 }
 
