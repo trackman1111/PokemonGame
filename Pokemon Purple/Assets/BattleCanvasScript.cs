@@ -33,6 +33,8 @@ public class BattleCanvasScript : MonoBehaviour
     public Button pokemonButton;
 
     public GameObject battleCanvas;
+    public GameObject canvasManager;
+    private CanvasManager cm;
 
     public TextMeshProUGUI allyLevel;
     public TextMeshProUGUI enemyLevel;
@@ -53,17 +55,15 @@ public class BattleCanvasScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        cm = canvasManager.GetComponent<CanvasManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ( battleCanvas.activeSelf )
-        {
             if ( t.pokemon[0] != null )
             {
-                enemy = new Pokemon(enemyNameText.text);
+                enemyNameText.text = enemy.name;
                 ally = t.pokemon[0];
 
                 allyNameText.text = ally.name;
@@ -76,13 +76,16 @@ public class BattleCanvasScript : MonoBehaviour
                 allyImage.sprite = getImage(ally.name);
                 enemyImage.sprite = getImage(enemy.name);
             }
-            else
-            {
-
-            }
-        }
     }
-
+    public void setEnemy(Pokemon enemy)
+    {
+        this.enemy = enemy;
+    }
+    public void catchPokemon()
+    {
+        t.addPokemon(enemy);
+        cm.exitBattle();
+    }
     public Sprite getImage(string name)
     {
         if (name.Equals("Treecko"))

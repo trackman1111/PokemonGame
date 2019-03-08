@@ -15,6 +15,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject blackScreen;
     public GameObject helpMenu;
     public Image enemyImage;
+    private BattleCanvasScript battleCanvas;
 
     public Trainer t;
     public TextMeshProUGUI enemy;
@@ -33,6 +34,7 @@ public class CanvasManager : MonoBehaviour
         menu.SetActive(false);
         inBattle = false;
         iterations = 1;
+        battleCanvas = battle.GetComponent<BattleCanvasScript>();
     }
 
     // Update is called once per frame
@@ -97,15 +99,15 @@ public class CanvasManager : MonoBehaviour
 
 
     }
-    public void startBattle( string tempName )
+    public void startBattle( Pokemon wildPokemon )
     {
         if ( t.pokemon[0] != null )
         {
-            enemy.text = tempName;
             FindObjectOfType<Movement>().setStasis(true);
             fadeScreen();
             inBattle = true;
             iterations = 1;
+            battleCanvas.setEnemy(wildPokemon);
         }
         else
         {
@@ -143,21 +145,6 @@ public class CanvasManager : MonoBehaviour
         inBattle = false;
         FindObjectOfType<Movement>().setStasis(false);
     }
-    public void catchPokemon()
-    {
-        caught = true;
-        exitBattle();
-
-    }
-    public bool getCaught()
-    {
-        return caught;
-    }
-    public void setCaught(bool a)
-    {
-        caught = a;
-    }
-
     public void bagBattle()
     {
         bag.SetActive(true);
