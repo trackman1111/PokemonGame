@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,23 +16,8 @@ public class CanvasManager : MonoBehaviour
     public GameObject helpMenu;
     public Image enemyImage;
 
-    public Sprite tree;
-    public Sprite grov;
-    public Sprite scep;
-    public Sprite torc;
-    public Sprite comb;
-    public Sprite blaz;
-    public Sprite mudk;
-    public Sprite mars;
-    public Sprite swam;
-    public Sprite pooc;
-    public Sprite migh;
-    public Sprite zigz;
-    public Sprite lino;
-    public Sprite kyog;
-    public Sprite grou;
-    public Sprite rayq;
-    public Sprite other;
+    public Trainer t;
+    public TextMeshProUGUI enemy;
 
     private bool caught;
     private WaitForSeconds timer;
@@ -46,7 +32,7 @@ public class CanvasManager : MonoBehaviour
         bag.SetActive(false);
         menu.SetActive(false);
         inBattle = false;
-        iterations = 0;
+        iterations = 1;
     }
 
     // Update is called once per frame
@@ -81,18 +67,13 @@ public class CanvasManager : MonoBehaviour
                 FindObjectOfType<Movement>().setStasis(true);
             }
         }
-        else if ( inBattle && ( iterations == 3 ) )
+        else if ( inBattle && ( iterations == 4 ) )
         {
             menu.SetActive(false);
             bag.SetActive(false);
             pokemon.SetActive(false);
             battle.SetActive(true);
             iterations = 0;
-
-            // BATTLE CODE HERE
-
-           enemyImage.sprite = getImage( enemyName );
-
         }
         else if (inBattle && (iterations == 0))
         {
@@ -118,10 +99,18 @@ public class CanvasManager : MonoBehaviour
     }
     public void startBattle( string tempName )
     {
-        enemyName = tempName;
-        FindObjectOfType<Movement>().setStasis(true);
-        fadeScreen();
-        inBattle = true;
+        if ( t.pokemon[0] != null )
+        {
+            enemy.text = tempName;
+            FindObjectOfType<Movement>().setStasis(true);
+            fadeScreen();
+            inBattle = true;
+            iterations = 1;
+        }
+        else
+        {
+            print("You have no pokemon so you ran.");
+        }
     }
 
     void fadeScreen()
@@ -133,15 +122,6 @@ public class CanvasManager : MonoBehaviour
         Invoke("turnOnBlack", 1.25f);
         Invoke("turnOffBlack", 1.5f);
 
-    }
-
-    IEnumerator MyMethod()
-    {
-        Debug.Log("Before Waiting 1 seconds");
-        blackScreen.SetActive(true);
-        yield return new WaitForSeconds( 1 );
-        blackScreen.SetActive(false);
-        Debug.Log("After Waiting 1 Seconds");
     }
 
     void turnOnBlack()
@@ -185,81 +165,5 @@ public class CanvasManager : MonoBehaviour
     public void pokemonBattle()
     {
         pokemon.SetActive(true);
-    }
-    void fight()
-    {
-        print("fight");
-    }
-
-    public Sprite getImage(string name)
-    {
-        if (name.Equals("Treecko"))
-        {
-            return tree;
-        }
-        else if (name.Equals("Grovyle"))
-        {
-            return grov;
-        }
-        else if (name.Equals("Sceptile"))
-        {
-            return scep;
-        }
-        else if (name.Equals("Torchic"))
-        {
-            return torc;
-        }
-        else if (name.Equals("Combusken"))
-        {
-            return comb;
-        }
-        else if (name.Equals("Blaziken"))
-        {
-            return blaz;
-        }
-        else if (name.Equals("Mudkip"))
-        {
-            return mudk;
-        }
-        else if (name.Equals("Marshtomp"))
-        {
-            return mars;
-        }
-        else if (name.Equals("Swampert"))
-        {
-            return swam;
-        }
-        else if (name.Equals("Poochyena"))
-        {
-            return pooc;
-        }
-        else if (name.Equals("Mightyena"))
-        {
-            return migh;
-        }
-        else if (name.Equals("Zigzagoon"))
-        {
-            return zigz;
-        }
-        else if (name.Equals("Linoone"))
-        {
-            return lino;
-        }
-        else if (name.Equals("Kyogre"))
-        {
-            return kyog;
-        }
-        else if (name.Equals("Groudon"))
-        {
-            return grou;
-        }
-        else if (name.Equals("Rayquaza"))
-        {
-            return rayq;
-        }
-        else
-        {
-            return other;
-        }
     }
 }
