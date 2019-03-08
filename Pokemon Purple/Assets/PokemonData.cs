@@ -9,6 +9,7 @@ public class PokemonData
     List<string> pokeNames;
     List<string> wildPokemon;
     private IDictionary<string, double[]> movesPower;
+    private IDictionary<string, string> pokemonTypes;
     // Start is called before the first frame update
     public PokemonData()
     {
@@ -221,6 +222,38 @@ public class PokemonData
         movesPower.Add("Iron Tail", new double[] { 70.0, 0.0, 0.0, 100.0, 10.0, 10.0 } );
         movesPower.Add("Ice Beam", new double[] { 70.0, 0.0, 0.0, 100.0, 10.0, 10.0 } );
         movesPower.Add("Shadow Ball", new double[] { 75.0, 0.0, 0.0, 100.0, 10.0, 10.0 });
+    }
+    public void pokemonToType()
+    {
+        pokemonTypes = new Dictionary<string, string>();
+        pokemonTypes.Add("Treecko", "Grass");
+        pokemonTypes.Add("Grovyle", "Grass");
+        pokemonTypes.Add("Sceptile", "Grass");
+        pokemonTypes.Add("Torchic", "Fire");
+        pokemonTypes.Add("Combusken", "Fire");
+        pokemonTypes.Add("Blaziken", "Fire");
+        pokemonTypes.Add("Mudkip", "Water");
+        pokemonTypes.Add("Marshtomp", "Water");
+        pokemonTypes.Add("Swampert", "Water");
+        pokemonTypes.Add("Poochyena", "Electric");
+        pokemonTypes.Add("Mightyena", "Electric");
+        pokemonTypes.Add("Zigzagoon", "Ground");
+        pokemonTypes.Add("Linoone", "Ground");
+        pokemonTypes.Add("Kyogre", "Water");
+        pokemonTypes.Add("Groudon", "Ground");
+        pokemonTypes.Add("Rayquaza", "Other");
+    }
+    public string getType(string name)
+    {
+        if (pokemonTypes.ContainsKey(name))
+        {
+            string q = pokemonTypes[name];
+            return q;
+        }
+        else
+        {
+            return "Other";
+        }
     }
         // Update is called once per frame
     public double[] makePokemon(string name)

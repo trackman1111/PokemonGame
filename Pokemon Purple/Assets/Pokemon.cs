@@ -36,6 +36,10 @@ public class Pokemon
     public int level;
     public int exp;
     private int counter = 1;
+    public string moveOne;
+    public string moveTwo;
+    public string moveThree;
+    public string moveFour;
     private IDictionary<string, double[]> movesPower;
     //private image image;
 
@@ -52,6 +56,12 @@ public class Pokemon
         this.speed = (int)pokemonArrayStats[3];
         this.level = (int)pokemonArrayStats[4];
         this.exp = (int)pokemonArrayStats[5];
+        string types = pokeData.getType(this.name);
+        string[] temp = pokeData.makeMoves(types, this.level);
+        moveOne = temp[0];
+        moveTwo = temp[1];
+        moveThree = temp[2];
+        moveFour = temp[3];
 
 
     }
