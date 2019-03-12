@@ -23,10 +23,14 @@ public class BagTextScript : MonoBehaviour
     public Sprite bike;
     public Sprite revive;
 
+    public GameObject battleCanvas;
+    public GameObject pokemonCanvas;
+
     int cursor;
 
     ArrayList bag;
     string[,] pokemon;
+
 
     // Start is called before the first frame update
     void Start()
@@ -45,9 +49,7 @@ public class BagTextScript : MonoBehaviour
             bag = trainer.bag;
             title.text = "Items";
 
-
-            Dictionary<string, int> items = new Dictionary<string, int>();
-
+            Dictionary<string, int> items =  new Dictionary<string, int>();
             for (int i = 0; i < bag.Count; i++)
             {
                 if (items.ContainsKey(bag[i] + ""))
@@ -152,7 +154,109 @@ public class BagTextScript : MonoBehaviour
             {
                 cursor--;
             }
+
+            if ( Input.GetKeyDown(KeyCode.RightShift) && cursor >= 0 )
+            {
+                useItem( keys[cursor] );
+            }
         }
+    }
+
+    void useItem( string item ) 
+    {
+        if (item.Equals("Pokeball"))
+        {
+            if ( battleCanvas.activeSelf )
+            {
+                bag.Remove(item);
+                print("You threw a " + item + "!");
+            }
+            else
+            {
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Great Ball"))
+        {
+            if (battleCanvas.activeSelf)
+            {
+                bag.Remove(item);
+                print("You threw a " + item + "!");
+            }
+            else
+            {
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Ultra Ball"))
+        {
+            if (battleCanvas.activeSelf)
+            {
+                bag.Remove(item);
+                print("You threw a " + item + "!");
+            }
+            else
+            {
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Master Ball"))
+        {
+            if (battleCanvas.activeSelf)
+            {
+                bag.Remove(item);
+                print("You threw a " + item + "!");
+            }
+            else
+            {
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Map"))
+        {
+            if (!battleCanvas.activeSelf)
+            {
+                print("Map Opened");
+            }
+            else
+            {
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Bike"))
+        {
+            if (!battleCanvas.activeSelf )
+            {
+
+            }
+            else
+            {
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Potion"))
+        {
+            if (pokemonCanvas.activeSelf || battleCanvas.activeSelf)
+            {
+                bag.Remove(item);
+            }
+            else
+            {
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Revive"))
+        {
+            if (pokemonCanvas.activeSelf || battleCanvas.activeSelf)
+            {
+                bag.Remove(item);
+            }
+            else
+            {
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+
     }
 
     void SavePlayer()
