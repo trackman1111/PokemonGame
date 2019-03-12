@@ -26,14 +26,16 @@ public class Trainer : MonoBehaviour
         // adding all default items to bag array
         bag = new ArrayList();
 
-        bag.Add("Pokeball");
+
         bag.Add("Pokeball");
         bag.Add("Ultra Ball");
         bag.Add("Great Ball");
         bag.Add("Potion");
         bag.Add("Revive");
         bag.Add("Master Ball");
+        bag.Add("Pokeball");
         bag.Add("Bike");
+        bag.Add("Map");
 
         pressed = false;
         firstPicked = false;
@@ -55,7 +57,10 @@ public class Trainer : MonoBehaviour
         {
             addPokemon(new Pokemon("Swampert"));
         }
-
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            addPokemon(new Pokemon("Blaziken"));
+        }
 
         // Press Q to add Potion to your bag 
 
