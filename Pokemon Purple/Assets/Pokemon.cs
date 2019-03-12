@@ -79,5 +79,16 @@ public class Pokemon
     {
         this.currHealth = this.health;
     }
+    public void addHealth(int healthAdded)
+    {
+        if(currHealth + healthAdded >= health)
+        {
+            currHealth = health;
+        }
+        else
+        {
+            currHealth = currHealth + healthAdded;
+        }
+    }
 
 }
