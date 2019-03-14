@@ -10,23 +10,6 @@ public class Pokemon
     string type;
     public string name;
     public GameObject trainer;
-    public Sprite tree;
-    public Sprite grov;
-    public Sprite scep;
-    public Sprite torc;
-    public Sprite comb;
-    public Sprite blaz;
-    public Sprite mudk;
-    public Sprite mars;
-    public Sprite swam;
-    public Sprite pooc;
-    public Sprite migh;
-    public Sprite zigz;
-    public Sprite lino;
-    public Sprite kyog;
-    public Sprite grou;
-    public Sprite rayq;
-    public Sprite other;
     private PokemonData pokeData;
     public int health;
     public int currHealth;
@@ -36,6 +19,11 @@ public class Pokemon
     public int level;
     public int exp;
     private int counter = 1;
+    public string types;
+    public string moveOne;
+    public string moveTwo;
+    public string moveThree;
+    public string moveFour;
     private IDictionary<string, double[]> movesPower;
     //private image image;
 
@@ -52,6 +40,13 @@ public class Pokemon
         this.speed = (int)pokemonArrayStats[3];
         this.level = (int)pokemonArrayStats[4];
         this.exp = (int)pokemonArrayStats[5];
+        string types = pokeData.getType(this.name);
+        this.types = types;
+        string[] temp = pokeData.makeMoves(types, this.level);
+        this.moveOne = temp[0];
+        this.moveTwo = temp[1];
+        this.moveThree = temp[2];
+        this.moveFour = temp[3];
 
 
     }
@@ -69,61 +64,6 @@ public class Pokemon
     }
     //return a string array and it should have a new parameter int that represents the level
    
-    public void movePower()
-    {
-        movesPower = new Dictionary<string, double[]>();
-        // key is the move and dictionary [damage, defence]
-
-        // start of water type moves
-        double[] tack = {30.0, 40.0 };
-        movesPower.Add("Tackle", tack);
-
-        double[] wate = { 45.0, 55.0 };
-        movesPower.Add("Water Gun", wate);
-
-        double[] defe = { 45.0, 55.0 };
-        movesPower.Add("Defence Curl", defe);
-
-        double[] bubb = { 45.0, 55.0 };
-        movesPower.Add("Bubble", bubb);
-
-        double[] surf = { 45.0, 55.0 };
-        movesPower.Add("Surf", surf);
-
-        double[] hydr = { 45.0, 55.0 };
-        movesPower.Add("Hydro Pump", hydr);
-
-        // start of fire type moves
-        double[] scra = { 45.0, 55.0 };
-        movesPower.Add("Scratch", scra);
-
-        double[] embe = { 45.0, 55.0 };
-        movesPower.Add("Ember", embe);
-
-        double[] grow = { 45.0, 55.0 };
-        movesPower.Add("Growl", grow);
-
-        double[] quic = { 45.0, 55.0 };
-        movesPower.Add("Quick Attack", hydr);
-
-        double[] flam = { 45.0, 55.0 };
-        movesPower.Add("Flamethrower", flam);
-
-        double[] fire = { 45.0, 55.0 };
-        movesPower.Add("Fire Blast", hydr);
-
-        // start of grass type moves
-        //"Peck", "Leech Seed", "Growl", "Razor Leaf" gigadrain solar beam
-        double[] peck = { 45.0, 55.0 };
-
-        double[] leec = { 45.0, 55.0 };
-
-        double[] gro = { 45.0, 55.0 };
-
-        double[] razo = { 45.0, 55.0 };
-
-
-    }
    //public void pokedex()
    //{
 
@@ -137,80 +77,25 @@ public class Pokemon
     //        }
     //    }
     //}
-   public Sprite getImage()
+    public string[] getMovesFromPokemon()
     {
-        if(name.Equals("Treecko"))
+        return pokeData.makeMoves(this.type, level);
+    }
+    public void heal()    // this method is used when you walk into a pokeCenter and press yes
+    {
+        this.currHealth = this.health;
+    }
+
+    public void addHealth(int healthAdded) // this is the method that is used when the user uses a potion of some sort
+    {
+        if(currHealth + healthAdded >= health)
         {
-            return tree;
-        }
-        else if(name.Equals("Grovyle"))
-        {
-            return grov;
-        }
-        else if(name.Equals("Sceptile"))
-        {
-            return scep;
-        }
-        else if(name.Equals("Torchic"))
-        {
-            return torc;
-        }
-        else if(name.Equals("Combusken"))
-        {
-            return comb;
-        }
-        else if (name.Equals("Blaziken"))
-        {
-            return blaz;
-        }
-        else if (name.Equals("Mudkip"))
-        {
-            return mudk;
-        }
-        else if (name.Equals("Marshtomp"))
-        {
-            return mars;
-        }
-        else if (name.Equals("Swampert"))
-        {
-            return swam;
-        }
-        else if (name.Equals("Poochyena"))
-        {
-            return pooc;
-        }
-        else if (name.Equals("Mightyena"))
-        {
-            return migh;
-        }
-        else if (name.Equals("Zigzagoon"))
-        {
-            return zigz;
-        }
-        else if (name.Equals("Linoone"))
-        {
-            return lino;
-        }
-        else if (name.Equals("Kyogre"))
-        {
-            return kyog;
-        }
-        else if (name.Equals("Groudon"))
-        {
-            return grou;
-        }
-        else if (name.Equals("Rayquaza"))
-        {
-            return rayq;
+            currHealth = health;
         }
         else
         {
-            return other;
+            currHealth = currHealth + healthAdded;
         }
-    }
-    public void heal()
-    {
-        this.currHealth = this.health;
     }
 
 }

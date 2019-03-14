@@ -31,6 +31,7 @@ public class BagTextScript : MonoBehaviour
     ArrayList bag;
     string[,] pokemon;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,9 +49,7 @@ public class BagTextScript : MonoBehaviour
             bag = trainer.bag;
             title.text = "Items";
 
-
-            Dictionary<string, int> items = new Dictionary<string, int>();
-
+            Dictionary<string, int> items =  new Dictionary<string, int>();
             for (int i = 0; i < bag.Count; i++)
             {
                 if (items.ContainsKey(bag[i] + ""))
@@ -156,7 +155,7 @@ public class BagTextScript : MonoBehaviour
                 cursor--;
             }
 
-            if ( Input.GetKeyDown(KeyCode.RightShift) && cursor != 0 )
+            if ( Input.GetKeyDown(KeyCode.RightShift) && cursor >= 0 )
             {
                 useItem( keys[cursor] );
             }
@@ -169,74 +168,92 @@ public class BagTextScript : MonoBehaviour
         {
             if ( battleCanvas.activeSelf )
             {
-
+                bag.Remove(item);
+                print("You threw a " + item + "!");
             }
             else
             {
-                print("STOOPID, I AINT GONNA LET YOU GET THE CHANCE");
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
             }
         }
         else if (item.Equals("Great Ball"))
         {
             if (battleCanvas.activeSelf)
             {
-
+                bag.Remove(item);
+                print("You threw a " + item + "!");
             }
             else
             {
-                print("STOOPID, I AINT GONNA LET YOU GET THE CHANCE");
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
             }
         }
         else if (item.Equals("Ultra Ball"))
         {
             if (battleCanvas.activeSelf)
             {
-
+                bag.Remove(item);
+                print("You threw a " + item + "!");
             }
             else
             {
-                print("STOOPID, I AINT GONNA LET YOU GET THE CHANCE");
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
             }
         }
         else if (item.Equals("Master Ball"))
         {
             if (battleCanvas.activeSelf)
             {
-
+                bag.Remove(item);
+                print("You threw a " + item + "!");
             }
             else
             {
-                print("STOOPID, I AINT GONNA LET YOU GET THE CHANCE");
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
             }
         }
         else if (item.Equals("Map"))
         {
-            //HASIUEFHKWEHFKHWEFLJEKWF OPEN A MAP
+            if (!battleCanvas.activeSelf)
+            {
+                print("Map Opened");
+            }
+            else
+            {
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
+            }
         }
         else if (item.Equals("Bike"))
         {
-            // get on de bike jaunt
-        }
-        else if (item.Equals("Potion"))
-        {
-            if (pokemonCanvas.activeSelf)
+            if (!battleCanvas.activeSelf )
             {
 
             }
             else
             {
-                print("STOOPID, I AINT GONNA LET YOU GET THE CHANCE");
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Potion"))
+        {
+            if (pokemonCanvas.activeSelf || battleCanvas.activeSelf)
+            {
+                bag.Remove(item);
+            }
+            else
+            {
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
             }
         }
         else if (item.Equals("Revive"))
         {
-            if (pokemonCanvas.activeSelf)
+            if (pokemonCanvas.activeSelf || battleCanvas.activeSelf)
             {
-
+                bag.Remove(item);
             }
             else
             {
-                print("STOOPID, I AINT GONNA LET YOU GET THE CHANCE");
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
             }
         }
 
