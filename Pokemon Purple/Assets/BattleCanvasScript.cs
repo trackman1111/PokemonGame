@@ -51,6 +51,7 @@ public class BattleCanvasScript : MonoBehaviour
 
     public Trainer t;
 
+    private BattleControl bc;
     private bool caught;
     private Pokemon enemy;
     private Pokemon ally;
@@ -60,7 +61,6 @@ public class BattleCanvasScript : MonoBehaviour
     void Start()
     {
         cm = canvasManager.GetComponent<CanvasManager>();
-
     }
 
     // Update is called once per frame
@@ -96,10 +96,34 @@ public class BattleCanvasScript : MonoBehaviour
     }
     public void catchPokemon()
     {
-        fightButtonText.text = ally.moveOne;
-        runButtonText.text = ally.moveTwo;
-        bagButtonText.text = ally.moveThree;
-        pokemonButtonText.text = ally.moveFour;
+        if (fightButtonText.text.Equals("FIGHT"))
+        {
+            fightButtonText.text = ally.moveOne;
+            runButtonText.text = ally.moveTwo;
+            bagButtonText.text = ally.moveThree;
+            pokemonButtonText.text = ally.moveFour;
+        }
+        else
+        {
+            bc.applyMove(ally.moveOne);
+        }
+    }
+
+    public void exitBattle()
+    {
+        if (runButtonText.text.Equals("RUN"))
+        {
+            battle.SetActive(false);
+            pokemon.SetActive(false);
+            bag.SetActive(false);
+            cm.inBattle = false;
+            FindObjectOfType<Movement>().setStasis(false);
+        }
+        else
+        {
+            bc.applyMove(ally.moveTwo);
+        }
+
     }
 
     public void bagBattle()
@@ -108,6 +132,10 @@ public class BattleCanvasScript : MonoBehaviour
         {
             bag.SetActive(true);
         }
+        else
+        {
+            bc.applyMove(ally.moveThree);
+        }
     }
     public void pokemonBattle()
     {
@@ -115,19 +143,15 @@ public class BattleCanvasScript : MonoBehaviour
         {
             pokemon.SetActive(true);
         }
+        else
+        {
+            bc.applyMove(ally.moveFour);
+        }
     }
 
-    public void exitBattle()
+    public void startBattle(Pokemon poke)
     {
-        if ( runButtonText.text.Equals("RUN") )
-        {
-            battle.SetActive(false);
-            pokemon.SetActive(false);
-            bag.SetActive(false);
-            cm.inBattle = false;
-            FindObjectOfType<Movement>().setStasis(false);
-        }
-
+        bc = new BattleControl(poke, t);
     }
 
     public Sprite getImage(string name)
