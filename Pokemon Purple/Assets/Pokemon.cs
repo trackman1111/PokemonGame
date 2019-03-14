@@ -19,6 +19,7 @@ public class Pokemon
     public int level;
     public int exp;
     private int counter = 1;
+    public string types;
     public string moveOne;
     public string moveTwo;
     public string moveThree;
@@ -40,11 +41,12 @@ public class Pokemon
         this.level = (int)pokemonArrayStats[4];
         this.exp = (int)pokemonArrayStats[5];
         string types = pokeData.getType(this.name);
+        this.types = types;
         string[] temp = pokeData.makeMoves(types, this.level);
-        moveOne = temp[0];
-        moveTwo = temp[1];
-        moveThree = temp[2];
-        moveFour = temp[3];
+        this.moveOne = temp[0];
+        this.moveTwo = temp[1];
+        this.moveThree = temp[2];
+        this.moveFour = temp[3];
 
 
     }
@@ -75,11 +77,16 @@ public class Pokemon
     //        }
     //    }
     //}
-    public void heal()
+    public string[] getMovesFromPokemon()
+    {
+        return pokeData.makeMoves(this.type, level);
+    }
+    public void heal()    // this method is used when you walk into a pokeCenter and press yes
     {
         this.currHealth = this.health;
     }
-    public void addHealth(int healthAdded)
+
+    public void addHealth(int healthAdded) // this is the method that is used when the user uses a potion of some sort
     {
         if(currHealth + healthAdded >= health)
         {
