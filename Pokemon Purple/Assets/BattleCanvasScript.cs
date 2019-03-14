@@ -49,6 +49,8 @@ public class BattleCanvasScript : MonoBehaviour
     public TextMeshProUGUI allyCurrHealth;
     public TextMeshProUGUI allyMaxHealth;
 
+    public TextMeshProUGUI enemyHealth;
+
     public Trainer t;
 
     private BattleControl bc;
@@ -77,6 +79,7 @@ public class BattleCanvasScript : MonoBehaviour
                 enemyLevel.text = enemy.level + "";
                 allyCurrHealth.text = ally.currHealth + "";
                 allyMaxHealth.text = ally.health + "";
+                enemyHealth.text = enemy.currHealth + "";
 
                 allyImage.sprite = getImage(ally.name);
                 enemyImage.sprite = getImage(enemy.name);
@@ -215,6 +218,34 @@ public class BattleCanvasScript : MonoBehaviour
         else if (name.Equals("Groudon"))
         {
             return grou;
+        }
+        else if (name.Equals("Rayquaza"))
+        {
+            return rayq;
+        }
+        else if (name.Equals("Rayquaza"))
+        {
+            return rayq;
+        }
+        else if (name.Equals("Rayquaza"))
+        {
+            return rayq;
+        }
+        else if (name.Equals("Rayquaza"))
+        {
+            return rayq;
+        }
+        else if (name.Equals("Rayquaza"))
+        {
+            return rayq;
+        }
+        else if (name.Equals("Rayquaza"))
+        {
+            return rayq;
+        }
+        else if (name.Equals("Rayquaza"))
+        {
+            return rayq;
         }
         else if (name.Equals("Rayquaza"))
         {
