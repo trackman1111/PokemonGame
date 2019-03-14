@@ -104,7 +104,7 @@ public class CanvasManager : MonoBehaviour
     {
         if ( t.pokemon[0] != null )
         {
-            battleControl = new BattleControl(wildPokemon);
+            battleCanvas.startBattle(wildPokemon);
             FindObjectOfType<Movement>().setStasis(true);
             fadeScreen();
             inBattle = true;
