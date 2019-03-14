@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,9 +15,10 @@ public class BattleControl
     {
        //pokemonList = NPC.getPokemon();
     }
-    public  BattleControl(Pokemon p)
+    public  BattleControl(Pokemon p, Trainer t)
     {
          pokemonList.Add(p);
+         this.t = t;
     }
 
     public bool getTurn()
