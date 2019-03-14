@@ -56,26 +56,27 @@ public class BattleCanvasScript : MonoBehaviour
     void Start()
     {
         cm = canvasManager.GetComponent<CanvasManager>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-            if ( t.pokemon[0] != null )
-            {
-                enemyNameText.text = enemy.name;
-                ally = t.pokemon[0];
+        if (t.pokemon[0] != null)
+        {
+            enemyNameText.text = enemy.name;
+            ally = t.pokemon[0];
 
-                allyNameText.text = ally.name;
-                enemyNameText.text = enemy.name;
-                allyLevel.text = ally.level + "";
-                enemyLevel.text = enemy.level + "";
-                allyCurrHealth.text = ally.currHealth + "";
-                allyMaxHealth.text = ally.health + "";
+            allyNameText.text = ally.name;
+            enemyNameText.text = enemy.name;
+            allyLevel.text = ally.level + "";
+            enemyLevel.text = enemy.level + "";
+            allyCurrHealth.text = ally.currHealth + "";
+            allyMaxHealth.text = ally.health + "";
 
-                allyImage.sprite = getImage(ally.name);
-                enemyImage.sprite = getImage(enemy.name);
-            }
+            allyImage.sprite = getImage(ally.name);
+            enemyImage.sprite = getImage(enemy.name);
+        }
     }
     public void setEnemy(Pokemon enemy)
     {

@@ -6,7 +6,7 @@ public class BattleControl
 {
     private Trainer t;
     private bool yourTurn;
-    private Pokemon[] pokemonList;
+    private List<Pokemon> pokemonList = new List<Pokemon>();
     private int currEnemyPokemon = 0;
     public BattleCanvasScript battleCanvas;
     // Start is called before the first frame update
@@ -16,7 +16,7 @@ public class BattleControl
     }
     public  BattleControl(Pokemon p)
     {
-        pokemonList[0] = p;
+         pokemonList.Add(p);
     }
 
     public bool getTurn()
