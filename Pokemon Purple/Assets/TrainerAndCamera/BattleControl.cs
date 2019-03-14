@@ -52,18 +52,14 @@ public class BattleControl
     }
     public void swapPokemon()
     {
-        if (pokemonList[currEnemyPokemon].currHealth < 0)
+        if (pokemonList[currEnemyPokemon + 1] != null)
+        {  
+            pokemonList[currEnemyPokemon] = pokemonList[currEnemyPokemon + 1];
+            battleCanvas.setEnemy(pokemonList[currEnemyPokemon]);
+        }
+        else
         {
-            if (pokemonList[currEnemyPokemon + 1] != null)
-            {
-                pokemonList[currEnemyPokemon] = pokemonList[currEnemyPokemon + 1];
-                battleCanvas.setEnemy(pokemonList[currEnemyPokemon]);
-            }
-            else
-            {
-                //battleCanvas.endBattle();
-            }
-
+                battleCanvas.exitBattle();
         }
     }
     public void faint()
