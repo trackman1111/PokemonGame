@@ -23,7 +23,7 @@ public class CanvasManager : MonoBehaviour
     private bool caught;
     private WaitForSeconds timer;
     //private bool isPokeCenterOpen;
-    private bool inBattle;
+    public bool inBattle;
     private int iterations;
     private string enemyName;
 
@@ -135,22 +135,5 @@ public class CanvasManager : MonoBehaviour
     {
         blackScreen.SetActive(false);
         iterations++;
-    }
-
-    public void exitBattle()
-    {
-        battle.SetActive(false);
-        pokemon.SetActive(false);
-        bag.SetActive(false);
-        inBattle = false;
-        FindObjectOfType<Movement>().setStasis(false);
-    }
-    public void bagBattle()
-    {
-        bag.SetActive(true);
-    }
-    public void pokemonBattle()
-    {
-        pokemon.SetActive(true);
     }
 }
