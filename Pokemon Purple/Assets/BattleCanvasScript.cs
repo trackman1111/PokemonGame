@@ -19,6 +19,21 @@ public class BattleCanvasScript : MonoBehaviour
     public Sprite migh;
     public Sprite zigz;
     public Sprite lino;
+    public Sprite ralt;
+    public Sprite kirl;
+    public Sprite gard;
+    public Sprite aron;
+    public Sprite lair;
+    public Sprite aggr;
+    public Sprite lota;
+    public Sprite lomb;
+    public Sprite ludi;
+    public Sprite trap;
+    public Sprite vibr;
+    public Sprite flyg;
+    public Sprite bago;
+    public Sprite shel;
+    public Sprite sala;
     public Sprite kyog;
     public Sprite grou;
     public Sprite rayq;
@@ -211,6 +226,66 @@ public class BattleCanvasScript : MonoBehaviour
         {
             return lino;
         }
+        else if (name.Equals("Raltz"))
+        {
+            return ralt;
+        }
+        else if (name.Equals("Kirlia"))
+        {
+            return kirl;
+        }
+        else if (name.Equals("Gardevoir"))
+        {
+            return gard;
+        }
+        else if (name.Equals("Aron"))
+        {
+            return aron;
+        }
+        else if (name.Equals("Lairon"))
+        {
+            return lair;
+        }
+        else if (name.Equals("Aggron"))
+        {
+            return aggr;
+        }
+        else if (name.Equals("Lotad"))
+        {
+            return lota;
+        }
+        else if (name.Equals("Lombre"))
+        {
+            return lomb;
+        }
+        else if (name.Equals("Ludicolo"))
+        {
+            return ludi;
+        }
+        else if (name.Equals("Trapinch"))
+        {
+            return trap;
+        }
+        else if (name.Equals("Vibrava"))
+        {
+            return vibr;
+        }
+        else if (name.Equals("Flygon"))
+        {
+            return flyg;
+        }
+        else if (name.Equals("Bagon"))
+        {
+            return bago;
+        }
+        else if (name.Equals("Shelgon"))
+        {
+            return shel;
+        }
+        else if (name.Equals("Salamance"))
+        {
+            return sala;
+        }
         else if (name.Equals("Kyogre"))
         {
             return kyog;
@@ -218,34 +293,6 @@ public class BattleCanvasScript : MonoBehaviour
         else if (name.Equals("Groudon"))
         {
             return grou;
-        }
-        else if (name.Equals("Rayquaza"))
-        {
-            return rayq;
-        }
-        else if (name.Equals("Rayquaza"))
-        {
-            return rayq;
-        }
-        else if (name.Equals("Rayquaza"))
-        {
-            return rayq;
-        }
-        else if (name.Equals("Rayquaza"))
-        {
-            return rayq;
-        }
-        else if (name.Equals("Rayquaza"))
-        {
-            return rayq;
-        }
-        else if (name.Equals("Rayquaza"))
-        {
-            return rayq;
-        }
-        else if (name.Equals("Rayquaza"))
-        {
-            return rayq;
         }
         else if (name.Equals("Rayquaza"))
         {
