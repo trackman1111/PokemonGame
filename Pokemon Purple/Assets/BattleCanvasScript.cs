@@ -27,10 +27,14 @@ public class BattleCanvasScript : MonoBehaviour
     public Image enemyImage;
     public Image allyImage;
 
-    public Button fightButton;
-    public Button bagButton;
-    public Button runButton;
-    public Button pokemonButton;
+    public GameObject pokemon;
+    public GameObject bag;
+    public GameObject battle;
+
+    public Text fightButtonText;
+    public Text bagButtonText;
+    public Text runButtonText;
+    public Text pokemonButtonText;
 
     public GameObject battleCanvas;
     public GameObject canvasManager;
@@ -62,26 +66,70 @@ public class BattleCanvasScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (t.pokemon[0] != null)
+            if ( t.pokemon[0] != null )
+            {
+                enemyNameText.text = enemy.name;
+                ally = t.pokemon[0];
+
+                allyNameText.text = ally.name;
+                enemyNameText.text = enemy.name;
+                allyLevel.text = ally.level + "";
+                enemyLevel.text = enemy.level + "";
+                allyCurrHealth.text = ally.currHealth + "";
+                allyMaxHealth.text = ally.health + "";
+
+                allyImage.sprite = getImage(ally.name);
+                enemyImage.sprite = getImage(enemy.name);
+            }
+
+        if ( Input.GetKeyDown(KeyCode.Escape) )
         {
-            enemyNameText.text = enemy.name;
-            ally = t.pokemon[0];
-
-            allyNameText.text = ally.name;
-            enemyNameText.text = enemy.name;
-            allyLevel.text = ally.level + "";
-            enemyLevel.text = enemy.level + "";
-            allyCurrHealth.text = ally.currHealth + "";
-            allyMaxHealth.text = ally.health + "";
-
-            allyImage.sprite = getImage(ally.name);
-            enemyImage.sprite = getImage(enemy.name);
+            fightButtonText.text = "FIGHT";
+            runButtonText.text = "RUN";
+            bagButtonText.text = "BAG";
+            pokemonButtonText.text = "POKEMON";
         }
     }
     public void setEnemy(Pokemon enemy)
     {
         this.enemy = enemy;
     }
+    public void catchPokemon()
+    {
+        fightButtonText.text = ally.moveOne;
+        runButtonText.text = ally.moveTwo;
+        bagButtonText.text = ally.moveThree;
+        pokemonButtonText.text = ally.moveFour;
+    }
+
+    public void bagBattle()
+    {
+        if (bagButtonText.text.Equals("BAG"))
+        {
+            bag.SetActive(true);
+        }
+    }
+    public void pokemonBattle()
+    {
+        if (pokemonButtonText.text.Equals("POKEMON"))
+        {
+            pokemon.SetActive(true);
+        }
+    }
+
+    public void exitBattle()
+    {
+        if ( runButtonText.text.Equals("RUN") )
+        {
+            battle.SetActive(false);
+            pokemon.SetActive(false);
+            bag.SetActive(false);
+            cm.inBattle = false;
+            FindObjectOfType<Movement>().setStasis(false);
+        }
+
+    }
+
     public Sprite getImage(string name)
     {
         if (name.Equals("Treecko"))

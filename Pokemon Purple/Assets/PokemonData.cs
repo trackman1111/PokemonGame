@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PokemonData 
+public class PokemonData
 {
     // private int counter = 1;
     private Dictionary<string, double[]> pokemon;
@@ -62,17 +62,17 @@ public class PokemonData
 
         pokemon.Add("Linoone", new double[] { 78.0, 70.0, 61.0, 50.0, 20.0, 0.0, 0.1, 150.0 });
 
-        pokemon.Add("Ralts", new double[] { 28.0, 25.0, 25.0, 45.0, 3.0, 0.0, .01, 20.0 } );
+        pokemon.Add("Ralts", new double[] { 28.0, 25.0, 25.0, 45.0, 3.0, 0.0, .01, 20.0 });
 
         pokemon.Add("Kirlia", new double[] { 38.0, 35.0, 35.0, 65.0, 20.0, 0.0, .015, 30.0 });
 
         pokemon.Add("Gardevoir", new double[] { 68.0, 65.0, 65.0, 125.0, 30.0, 0.0, .005, 150.0 });
 
-        pokemon.Add("Aron", new double[] { 50.0, 70.0, 100.0, 40.0, 9.0, 0.0, 0, 32.0 } );
+        pokemon.Add("Aron", new double[] { 50.0, 70.0, 100.0, 40.0, 9.0, 0.0, 0, 32.0 });
 
-        pokemon.Add("Lairon", new double[] { 60.0, 90.0, 140.0, 50.0, 32.0, 0.0, 0, 42.0 } );
+        pokemon.Add("Lairon", new double[] { 60.0, 90.0, 140.0, 50.0, 32.0, 0.0, 0, 42.0 });
 
-        pokemon.Add("Aggron", new double[] { 70.0, 110.0, 180.0, 60.0, 42.0, 0.0, 0, 150.0 } );
+        pokemon.Add("Aggron", new double[] { 70.0, 110.0, 180.0, 60.0, 42.0, 0.0, 0, 150.0 });
 
         pokemon.Add("Lotad", new double[] { 40.0, 30.0, 30.0, 40.0, 6.0, 0.0, .02, 14.0 });
 
@@ -204,33 +204,33 @@ public class PokemonData
 
         // start of water type moves
 
-        movesPower.Add("Tackle", new double[] { 30.0, 0.0, 0.0, 100.0, 35.0, 35.0 } );
-        movesPower.Add("Water Gun", new double[] { 35.0, 0.0, 0.0, 100.0, 25.0, 25.0 } );
-        movesPower.Add("Defence Curl", new double[] { 0.0, 15.0, 0.0, 100.0, 35.0, 35.0 } );
-        movesPower.Add("Bubble", new double[] { 45.0, 0.0, 0.0, 99.0, 25.0, 25.0 } );
-        movesPower.Add("Surf", new double[] { 60.0, 0.0, 0.0, 95.0, 15.0, 15.0 } );
-        movesPower.Add("Hydro Pump", new double[] { 85.0, 0.0, 0.0, 80.0, 10.0, 10.0 } );
+        movesPower.Add("Tackle", new double[] { 30.0, 0.0, 0.0, 100.0, 35.0, 35.0 });
+        movesPower.Add("Water Gun", new double[] { 35.0, 0.0, 0.0, 100.0, 25.0, 25.0 });
+        movesPower.Add("Defence Curl", new double[] { 0.0, 15.0, 0.0, 100.0, 35.0, 35.0 });
+        movesPower.Add("Bubble", new double[] { 45.0, 0.0, 0.0, 99.0, 25.0, 25.0 });
+        movesPower.Add("Surf", new double[] { 60.0, 0.0, 0.0, 95.0, 15.0, 15.0 });
+        movesPower.Add("Hydro Pump", new double[] { 85.0, 0.0, 0.0, 80.0, 10.0, 10.0 });
 
         // start of fire type moves
 
-        movesPower.Add("Scratch", new double[] { 30.0, 0.0, 0.0, 100.0, 30.0, 30.0 } );
-        movesPower.Add("Ember", new double[] { 35.0, 0.0, 0.0, 100.0, 25.0, 25.0 } );
-        movesPower.Add("Growl", new double[] { 0.0, 0.0, 15.0, 100.0, 30.0, 30.0 } );
-        movesPower.Add("Quick Attack", new double[] { 35.0, 0.0, 0.0, 100.0, 35.0, 35.0 } );
-        movesPower.Add("Flamethrower", new double[] { 60.0, 0.0, 0.0, 95.0, 15.0, 15.0 } );
-        movesPower.Add("Fire Blast", new double[] { 75.0, 0.0, 0.0, 85.0, 10.0, 10.0 } );
+        movesPower.Add("Scratch", new double[] { 30.0, 0.0, 0.0, 100.0, 30.0, 30.0 });
+        movesPower.Add("Ember", new double[] { 35.0, 0.0, 0.0, 100.0, 25.0, 25.0 });
+        movesPower.Add("Growl", new double[] { 0.0, 0.0, 15.0, 100.0, 30.0, 30.0 });
+        movesPower.Add("Quick Attack", new double[] { 35.0, 0.0, 0.0, 100.0, 35.0, 35.0 });
+        movesPower.Add("Flamethrower", new double[] { 60.0, 0.0, 0.0, 95.0, 15.0, 15.0 });
+        movesPower.Add("Fire Blast", new double[] { 75.0, 0.0, 0.0, 85.0, 10.0, 10.0 });
 
         // start of grass type moves
-        
-        movesPower.Add("Peck", new double[] { 30.0, 0.0, 0.0, 100.0, 30.0, 30.0 } );
-        movesPower.Add("Defence Curl", new double[] { 0.0, 15.0, 0.0, 100.0, 35.0, 35.0 } );
-        movesPower.Add("Growl", new double[] { 0.0, 0.0, 15.0, 100.0, 30.0, 30.0 } );
-        movesPower.Add("Razor Leaf", new double[] { 35.0, 0.0, 0.0, 100.0, 25.0, 25.0 } );
-        movesPower.Add("Giga Drain", new double[] { 45.0, 0.0, 10.0, 95.0, 15.0, 15.0 } );
-        movesPower.Add("Solar Beam", new double[] { 75.0, 0.0, 0.0, 85.0, 10.0, 10.0 } );
+
+        movesPower.Add("Peck", new double[] { 30.0, 0.0, 0.0, 100.0, 30.0, 30.0 });
+        movesPower.Add("Defence Curl", new double[] { 0.0, 15.0, 0.0, 100.0, 35.0, 35.0 });
+        movesPower.Add("Growl", new double[] { 0.0, 0.0, 15.0, 100.0, 30.0, 30.0 });
+        movesPower.Add("Razor Leaf", new double[] { 35.0, 0.0, 0.0, 100.0, 25.0, 25.0 });
+        movesPower.Add("Giga Drain", new double[] { 45.0, 0.0, 10.0, 95.0, 15.0, 15.0 });
+        movesPower.Add("Solar Beam", new double[] { 75.0, 0.0, 0.0, 85.0, 10.0, 10.0 });
 
         // start of ground type moves
-        
+
         //movesPower.Add("Tackle", new double[]  { 30.0, 0.0, 0.0, 100.0, 35.0, 35.0 } );
         movesPower.Add("Bulk Up", new double[] { 0.0, 15.0, 15.0, 100.0, 15.0, 15.0 });
         movesPower.Add("Mud Slap", new double[] { 30.0, 0.0, 0.0, 100.0, 30.0, 30.0 });
@@ -239,22 +239,22 @@ public class PokemonData
         movesPower.Add("Earthquake", new double[] { 75.0, 0.0, 0.0, 90.0, 10.0, 10.0 });
 
         // start of eletric type moves
-        
+
         //movesPower.Add("Quick Attack", new double[] { 35.0, 0.0, 0.0, 100.0, 35.0, 35.0 } );
-        movesPower.Add("Charge", new double[] { 0.0, 15.0, 5.0, 100.0, 30.0, 30.0} );
-        movesPower.Add("Thunderbolt", new double[] { 30.0, 0.0, 0.0, 100.0, 30.0, 30.0 } );
-        movesPower.Add("Shock Wave", new double[] { 45.0, 0.0, 0.0, 100.0, 30.0, 30.0 } );
-        movesPower.Add("Spark", new double[] { 45.0, 10.0, 0.0, 100.0, 30.0, 30.0 } );
-        movesPower.Add("Thunder", new double[] { 60.0, 0.0, 0.0, 100.0, 30.0, 30.0 } );
+        movesPower.Add("Charge", new double[] { 0.0, 15.0, 5.0, 100.0, 30.0, 30.0 });
+        movesPower.Add("Thunderbolt", new double[] { 30.0, 0.0, 0.0, 100.0, 30.0, 30.0 });
+        movesPower.Add("Shock Wave", new double[] { 45.0, 0.0, 0.0, 100.0, 30.0, 30.0 });
+        movesPower.Add("Spark", new double[] { 45.0, 10.0, 0.0, 100.0, 30.0, 30.0 });
+        movesPower.Add("Thunder", new double[] { 60.0, 0.0, 0.0, 100.0, 30.0, 30.0 });
 
         // start of other moves
         //"DragonBreath", "Iron Tail", "Ice Beam", "Shadow Ball"
-        movesPower.Add("DragonBreath", new double[] { 40.0, 40.0, 40.0, 100.0, 10.0, 10.0 } );
-        movesPower.Add("Iron Tail", new double[] { 70.0, 0.0, 0.0, 100.0, 10.0, 10.0 } );
-        movesPower.Add("Ice Beam", new double[] { 70.0, 0.0, 0.0, 100.0, 10.0, 10.0 } );
+        movesPower.Add("DragonBreath", new double[] { 40.0, 40.0, 40.0, 100.0, 10.0, 10.0 });
+        movesPower.Add("Iron Tail", new double[] { 70.0, 0.0, 0.0, 100.0, 10.0, 10.0 });
+        movesPower.Add("Ice Beam", new double[] { 70.0, 0.0, 0.0, 100.0, 10.0, 10.0 });
         movesPower.Add("Shadow Ball", new double[] { 75.0, 0.0, 0.0, 100.0, 10.0, 10.0 });
     }
-        // Update is called once per frame
+    // Update is called once per frame
     public double[] makePokemon(string name)
     {
         double[] pokemonStats = pokemon[name];
@@ -271,7 +271,7 @@ public class PokemonData
 
     public double[] getMovePower(string q)
     {
-        if(movesPower.ContainsKey(q))
+        if (movesPower.ContainsKey(q))
         {
             return movesPower[q];
         }
@@ -329,5 +329,5 @@ public class PokemonData
             return "Other";
         }
     }
+    // Update is called once per frame
 }
-        // Update is called once per frame
