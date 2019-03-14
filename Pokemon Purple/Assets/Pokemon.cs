@@ -34,7 +34,7 @@ public class Pokemon
         double[] pokemonArrayStats = pokeData.makePokemon(name);
         this.health = (int)pokemonArrayStats[0];
         this.currHealth = (int)pokemonArrayStats[0];
-        currHealth = 5;
+        currHealth = health;
         this.attack = (int)pokemonArrayStats[1];
         this.defence = (int)pokemonArrayStats[2];
         this.speed = (int)pokemonArrayStats[3];

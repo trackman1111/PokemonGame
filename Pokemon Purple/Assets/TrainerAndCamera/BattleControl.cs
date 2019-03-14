@@ -9,7 +9,7 @@ public class BattleControl
     private List<Pokemon> pokemonList = new List<Pokemon>();
     private int currEnemyPokemon = 0;
     public BattleCanvasScript battleCanvas;
-    public PokemonData pokeData;
+    public PokemonData pokeData = new PokemonData();
     // Start is called before the first frame update
     public BattleControl(NPC enemy)
     {
@@ -37,14 +37,14 @@ public class BattleControl
  
         if (temp[3] >= randomForAccuracy)
         {
-            if (pokemonList[currEnemyPokemon].currHealth - (int)temp[0] > 0)
-            {
+       //     if (pokemonList[currEnemyPokemon].currHealth - (int)temp[0] > 0)
+       //     {
                 pokemonList[currEnemyPokemon].currHealth = pokemonList[currEnemyPokemon].currHealth - (int)temp[0];
-            }
-            else
-            {
-                swapPokemon();
-            }
+       //     }
+       //     else
+       //     {
+       //         swapPokemon();
+       //     }
             t.pokemon[0].defence = t.pokemon[0].defence + (int)temp[1];
             t.pokemon[0].attack = t.pokemon[0].attack + (int)temp[2];
             temp[4]--;

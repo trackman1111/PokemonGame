@@ -18,7 +18,7 @@ public class PokemonData
         pokeNames = new List<string>(pokemon.Keys);
         wildPokemon = new List<string>();
         createWildPokemon();
-
+        movePower();
     }
     public void createWildPokemon()
     {
@@ -215,7 +215,7 @@ public class PokemonData
 
         movesPower.Add("Scratch", new double[] { 30.0, 0.0, 0.0, 100.0, 30.0, 30.0 });
         movesPower.Add("Ember", new double[] { 35.0, 0.0, 0.0, 100.0, 25.0, 25.0 });
-        movesPower.Add("Growl", new double[] { 0.0, 0.0, 15.0, 100.0, 30.0, 30.0 });
+      //  movesPower.Add("Growl", new double[] { 0.0, 0.0, 15.0, 100.0, 30.0, 30.0 });
         movesPower.Add("Quick Attack", new double[] { 35.0, 0.0, 0.0, 100.0, 35.0, 35.0 });
         movesPower.Add("Flamethrower", new double[] { 60.0, 0.0, 0.0, 95.0, 15.0, 15.0 });
         movesPower.Add("Fire Blast", new double[] { 75.0, 0.0, 0.0, 85.0, 10.0, 10.0 });
@@ -223,7 +223,7 @@ public class PokemonData
         // start of grass type moves
 
         movesPower.Add("Peck", new double[] { 30.0, 0.0, 0.0, 100.0, 30.0, 30.0 });
-        movesPower.Add("Defence Curl", new double[] { 0.0, 15.0, 0.0, 100.0, 35.0, 35.0 });
+      //  movesPower.Add("Defence Curl", new double[] { 0.0, 15.0, 0.0, 100.0, 35.0, 35.0 });
         movesPower.Add("Growl", new double[] { 0.0, 0.0, 15.0, 100.0, 30.0, 30.0 });
         movesPower.Add("Razor Leaf", new double[] { 35.0, 0.0, 0.0, 100.0, 25.0, 25.0 });
         movesPower.Add("Giga Drain", new double[] { 45.0, 0.0, 10.0, 95.0, 15.0, 15.0 });
