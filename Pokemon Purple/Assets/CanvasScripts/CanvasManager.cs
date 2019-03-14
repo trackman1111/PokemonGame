@@ -16,6 +16,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject helpMenu;
     public Image enemyImage;
     private BattleCanvasScript battleCanvas;
+    private BattleControl battleControl;
 
     public Trainer t;
     public TextMeshProUGUI enemy;
@@ -103,11 +104,27 @@ public class CanvasManager : MonoBehaviour
     {
         if ( t.pokemon[0] != null )
         {
+            battleControl = new BattleControl(wildPokemon);
             FindObjectOfType<Movement>().setStasis(true);
             fadeScreen();
             inBattle = true;
             iterations = 1;
             battleCanvas.setEnemy(wildPokemon);
+        }
+        else
+        {
+            print("You have no pokemon so you ran.");
+        }
+    }
+    public void startBattle(NPC enemy)
+    {
+        if (t.pokemon[0] != null)
+        {
+            battleControl = new BattleControl(enemy);
+            FindObjectOfType<Movement>().setStasis(true);
+            fadeScreen();
+            inBattle = true;
+            iterations = 1;
         }
         else
         {

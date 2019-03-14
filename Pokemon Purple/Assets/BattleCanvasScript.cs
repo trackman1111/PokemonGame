@@ -81,11 +81,6 @@ public class BattleCanvasScript : MonoBehaviour
     {
         this.enemy = enemy;
     }
-    public void catchPokemon()
-    {
-        t.addPokemon(enemy);
-        cm.exitBattle();
-    }
     public Sprite getImage(string name)
     {
         if (name.Equals("Treecko"))
