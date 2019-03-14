@@ -108,6 +108,12 @@ public class CanvasManager : MonoBehaviour
             inBattle = true;
             iterations = 1;
             battleCanvas.setEnemy(wildPokemon);
+            // 
+            Pokemon temp = t.pokemon[0];
+            print(temp.moveOne);
+            print(temp.moveTwo);
+            print(temp.moveThree);
+            print(temp.moveFour);
         }
         else
         {

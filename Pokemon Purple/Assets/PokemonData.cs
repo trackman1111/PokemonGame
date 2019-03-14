@@ -283,6 +283,7 @@ public class PokemonData
     public void pokemonToType()
     {
         pokemonTypes = new Dictionary<string, string>();
+
         pokemonTypes.Add("Treecko", "Grass");
         pokemonTypes.Add("Grovyle", "Grass");
         pokemonTypes.Add("Sceptile", "Grass");
