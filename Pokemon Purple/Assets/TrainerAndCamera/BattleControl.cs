@@ -30,7 +30,24 @@ public class BattleControl
     }
     public void applyMove(string move)
     {
-
+        double[] temp = pokeData.getMovePower(move);
+        //[damage, defenceBoost, attackBoost, accuracy, currpp, pp]
+        int randomForAccuracy = (int)Random.Range(0, 100);
+ 
+        if (temp[3] >= randomForAccuracy)
+        {
+            if (pokemonList[currEnemyPokemon].currHealth - (int)temp[0] > 0)
+            {
+                pokemonList[currEnemyPokemon].currHealth = pokemonList[currEnemyPokemon].currHealth - (int)temp[0];
+            }
+            else
+            {
+                swapPokemon();
+            }
+            t.pokemon[0].defence = t.pokemon[0].defence + (int)temp[1];
+            t.pokemon[0].attack = t.pokemon[0].attack + (int)temp[2];
+            temp[4]--;
+        }
     }
     public void swapPokemon()
     {
