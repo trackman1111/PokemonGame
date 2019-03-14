@@ -9,6 +9,7 @@ public class BattleControl
     private List<Pokemon> pokemonList = new List<Pokemon>();
     private int currEnemyPokemon = 0;
     public BattleCanvasScript battleCanvas;
+    public PokemonData pokeData;
     // Start is called before the first frame update
     public BattleControl(NPC enemy)
     {
@@ -27,7 +28,10 @@ public class BattleControl
     {
         yourTurn = !yourTurn;
     }
+    public void applyMove(string move)
+    {
 
+    }
     public void swapPokemon()
     {
         if (pokemonList[currEnemyPokemon].currHealth < 0)
