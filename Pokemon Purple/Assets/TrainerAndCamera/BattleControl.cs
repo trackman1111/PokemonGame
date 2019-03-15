@@ -15,7 +15,7 @@ public class BattleControl
     {
        //pokemonList = NPC.getPokemon();
     }
-    public  BattleControl(Pokemon p, Trainer t)
+    public BattleControl(Pokemon p, Trainer t)
     {
          pokemonList.Add(p);
          this.t = t;

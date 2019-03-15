@@ -57,14 +57,12 @@ public class BattleCanvasScript : MonoBehaviour
 
     public TextMeshProUGUI allyLevel;
     public TextMeshProUGUI enemyLevel;
-
     public TextMeshProUGUI allyNameText;
     public TextMeshProUGUI enemyNameText;
-
     public TextMeshProUGUI allyCurrHealth;
     public TextMeshProUGUI allyMaxHealth;
-
     public TextMeshProUGUI enemyHealth;
+    public TextMeshProUGUI titleText;
 
     public Trainer t;
 
@@ -73,63 +71,166 @@ public class BattleCanvasScript : MonoBehaviour
     private Pokemon enemy;
     private Pokemon ally;
     private string enemyName;
-       
+    private PokemonData pokeData;
+    private int cursor;
+
     // Start is called before the first frame update
     void Start()
     {
         cm = canvasManager.GetComponent<CanvasManager>();
+        pokeData = new PokemonData();
+
+        fightButtonText.text = "-> FIGHT";
+        runButtonText.text = "RUN";
+        bagButtonText.text = "BAG";
+        pokemonButtonText.text = "POKEMON";
+        cursor = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-            if ( t.pokemon[0] != null )
-            {
-                enemyNameText.text = enemy.name;
-                ally = t.pokemon[0];
+        setArrow();
 
-                allyNameText.text = ally.name;
-                enemyNameText.text = enemy.name;
-                allyLevel.text = ally.level + "";
-                enemyLevel.text = enemy.level + "";
-                allyCurrHealth.text = ally.currHealth + "";
-                allyMaxHealth.text = ally.health + "";
-                enemyHealth.text = enemy.currHealth + "";
-
-                allyImage.sprite = getImage(ally.name);
-                enemyImage.sprite = getImage(enemy.name);
-            }
-
-        if ( Input.GetKeyDown(KeyCode.Escape) )
+        if ( t.pokemon[0] != null )
         {
-            fightButtonText.text = "FIGHT";
+            enemyNameText.text = enemy.name;
+            ally = t.pokemon[0];
+
+            allyNameText.text = ally.name;
+            enemyNameText.text = enemy.name;
+            allyLevel.text = ally.level + "";
+            enemyLevel.text = enemy.level + "";
+            allyCurrHealth.text = ally.currHealth + "";
+            allyMaxHealth.text = ally.health + "";
+            enemyHealth.text = enemy.currHealth + "/" + enemy.health;
+            titleText.text = "What will \n" + ally.name + " do?";
+
+            allyImage.sprite = getImage(ally.name);
+            enemyImage.sprite = getImage(enemy.name);
+        }
+
+        if ( Input.GetKeyDown(KeyCode.RightArrow) && (cursor == 1 || cursor == 3))
+        {
+            cursor++;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && (cursor == 2 || cursor == 4))
+        {
+            cursor--;
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow) && cursor > 2)
+        {
+            cursor-=2;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow) && cursor < 3)
+        {
+            cursor+=2;
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightShift))
+        {
+            if (cursor == 1)
+            {
+                catchPokemon();
+            }
+            else if (cursor == 2)
+            {
+                bagBattle();
+            }
+            else if (cursor == 3)
+            {
+                pokemonBattle();
+            }
+            else if (cursor == 4)
+            {
+                exitBattle();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && (fightButtonText.text.Equals(ally.moveOne) || bagButtonText.text.Equals(ally.moveTwo)))
+        {
+            cursor = 1;
+            fightButtonText.text = "-> FIGHT";
+            bagButtonText.text = "BAG";
+            pokemonButtonText.text = "POKEMON";
+            runButtonText.text = "RUN";
+            titleText.text = "What will \n" + ally.name + " do?";
+        }
+    }
+
+    public void setEnemy(Pokemon enemy)
+    {
+        this.enemy = enemy;
+    }
+
+    // ON FIGHT BUTTON CLICK
+
+    public void catchPokemon()
+    {
+        cursor = 1;
+        if (fightButtonText.text.Equals("-> FIGHT"))
+        {
+            fightButtonText.text = "-> " + ally.moveOne;
+            bagButtonText.text = ally.moveTwo;
+            pokemonButtonText.text = ally.moveThree;
+            runButtonText.text = ally.moveFour;
+        }
+        else
+        {
+            bc.applyMove(ally.moveOne);
+
+            fightButtonText.text = "-> FIGHT";
             runButtonText.text = "RUN";
             bagButtonText.text = "BAG";
             pokemonButtonText.text = "POKEMON";
         }
     }
-    public void setEnemy(Pokemon enemy)
+
+    // ON BAG BUTTON CLICK
+
+    public void bagBattle()
     {
-        this.enemy = enemy;
-    }
-    public void catchPokemon()
-    {
-        if (fightButtonText.text.Equals("FIGHT"))
+        if (bagButtonText.text.Equals("-> BAG"))
         {
-            fightButtonText.text = ally.moveOne;
-            runButtonText.text = ally.moveTwo;
-            bagButtonText.text = ally.moveThree;
-            pokemonButtonText.text = ally.moveFour;
+            bag.SetActive(true);
         }
         else
         {
-            bc.applyMove(ally.moveOne);
+            bc.applyMove(ally.moveTwo);
+
+            cursor = 1;
+            fightButtonText.text = "-> FIGHT";
+            runButtonText.text = "RUN";
+            bagButtonText.text = "BAG";
+            pokemonButtonText.text = "POKEMON";
         }
     }
 
+    // ON POKEMON BUTTON CLICK
+
+    public void pokemonBattle()
+    {
+        if (pokemonButtonText.text.Equals("-> POKEMON"))
+        {
+            pokemon.SetActive(true);
+        }
+        else
+        {
+            bc.applyMove(ally.moveThree);
+
+            cursor = 1;
+            fightButtonText.text = "-> FIGHT";
+            runButtonText.text = "RUN";
+            bagButtonText.text = "BAG";
+            pokemonButtonText.text = "POKEMON";
+        }
+    }
+
+    // ON RUN BUTTON CLICK
+
     public void exitBattle()
     {
-        if (runButtonText.text.Equals("RUN"))
+        if (runButtonText.text.Equals("-> RUN"))
         {
             battle.SetActive(false);
             pokemon.SetActive(false);
@@ -139,31 +240,13 @@ public class BattleCanvasScript : MonoBehaviour
         }
         else
         {
-            bc.applyMove(ally.moveTwo);
-        }
-
-    }
-
-    public void bagBattle()
-    {
-        if (bagButtonText.text.Equals("BAG"))
-        {
-            bag.SetActive(true);
-        }
-        else
-        {
-            bc.applyMove(ally.moveThree);
-        }
-    }
-    public void pokemonBattle()
-    {
-        if (pokemonButtonText.text.Equals("POKEMON"))
-        {
-            pokemon.SetActive(true);
-        }
-        else
-        {
             bc.applyMove(ally.moveFour);
+
+            cursor = 1;
+            fightButtonText.text = "-> FIGHT";
+            runButtonText.text = "RUN";
+            bagButtonText.text = "BAG";
+            pokemonButtonText.text = "POKEMON";
         }
     }
 
@@ -172,7 +255,74 @@ public class BattleCanvasScript : MonoBehaviour
         bc = new BattleControl(poke, t);
     }
 
-    public Sprite getImage(string name)
+    public void setArrow()
+    {
+        if (fightButtonText.text.Equals("FIGHT") || bagButtonText.text.Equals("BAG"))
+        {
+            if (cursor == 1)
+            {
+                fightButtonText.text = "-> FIGHT";
+                bagButtonText.text = "BAG";
+                pokemonButtonText.text = "POKEMON";
+                runButtonText.text = "RUN";
+            }
+            else if (cursor == 2)
+            {
+                fightButtonText.text = "FIGHT";
+                bagButtonText.text = "-> BAG";
+                pokemonButtonText.text = "POKEMON";
+                runButtonText.text = "RUN";
+
+            }
+            else if (cursor == 3)
+            {
+                fightButtonText.text = "FIGHT";
+                bagButtonText.text = "BAG";
+                pokemonButtonText.text = "-> POKEMON";
+                runButtonText.text = "RUN";
+            }
+            else if (cursor == 4)
+            {
+                fightButtonText.text = "FIGHT";
+                bagButtonText.text = "BAG";
+                pokemonButtonText.text = "POKEMON";
+                runButtonText.text = "-> RUN";
+            }
+        }
+        else
+        {
+            if (cursor == 1)
+            {
+                fightButtonText.text = "-> " + ally.moveOne;
+                bagButtonText.text = ally.moveTwo;
+                pokemonButtonText.text = ally.moveThree;
+                runButtonText.text = ally.moveFour;
+            }
+            else if (cursor == 2)
+            {
+                fightButtonText.text = ally.moveOne;
+                bagButtonText.text = "-> " + ally.moveTwo;
+                pokemonButtonText.text = ally.moveThree;
+                runButtonText.text = ally.moveFour;
+            }
+            else if (cursor == 3)
+            {
+                fightButtonText.text = ally.moveOne;
+                bagButtonText.text = ally.moveTwo;
+                pokemonButtonText.text = "-> " + ally.moveThree;
+                runButtonText.text = ally.moveFour;
+            }
+            else if (cursor == 4)
+            {
+                fightButtonText.text = ally.moveOne;
+                bagButtonText.text = ally.moveTwo;
+                pokemonButtonText.text = ally.moveThree;
+                runButtonText.text = "-> " + ally.moveFour;
+            }
+        }
+    }
+
+        public Sprite getImage(string name)
     {
         if (name.Equals("Treecko"))
         {

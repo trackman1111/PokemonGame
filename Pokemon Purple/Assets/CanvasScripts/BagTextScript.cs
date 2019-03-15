@@ -23,6 +23,7 @@ public class BagTextScript : MonoBehaviour
     public Sprite bike;
     public Sprite revive;
 
+    public GameObject bagCanvas;
     public GameObject battleCanvas;
     public GameObject pokemonCanvas;
 
@@ -169,6 +170,7 @@ public class BagTextScript : MonoBehaviour
             if ( battleCanvas.activeSelf )
             {
                 bag.Remove(item);
+                bagCanvas.SetActive(false);
                 print("You threw a " + item + "!");
             }
             else
@@ -181,6 +183,7 @@ public class BagTextScript : MonoBehaviour
             if (battleCanvas.activeSelf)
             {
                 bag.Remove(item);
+                bagCanvas.SetActive(false);
                 print("You threw a " + item + "!");
             }
             else
@@ -193,6 +196,7 @@ public class BagTextScript : MonoBehaviour
             if (battleCanvas.activeSelf)
             {
                 bag.Remove(item);
+                bagCanvas.SetActive(false);
                 print("You threw a " + item + "!");
             }
             else
@@ -205,6 +209,7 @@ public class BagTextScript : MonoBehaviour
             if (battleCanvas.activeSelf)
             {
                 bag.Remove(item);
+                bagCanvas.SetActive(false);
                 print("You threw a " + item + "!");
             }
             else
@@ -216,6 +221,7 @@ public class BagTextScript : MonoBehaviour
         {
             if (!battleCanvas.activeSelf)
             {
+                bagCanvas.SetActive(false);
                 print("Map Opened");
             }
             else
@@ -227,7 +233,7 @@ public class BagTextScript : MonoBehaviour
         {
             if (!battleCanvas.activeSelf )
             {
-
+                bagCanvas.SetActive(false);
             }
             else
             {
@@ -238,6 +244,7 @@ public class BagTextScript : MonoBehaviour
         {
             if (pokemonCanvas.activeSelf || battleCanvas.activeSelf)
             {
+                bagCanvas.SetActive(false);
                 bag.Remove(item);
             }
             else
@@ -249,6 +256,7 @@ public class BagTextScript : MonoBehaviour
         {
             if (pokemonCanvas.activeSelf || battleCanvas.activeSelf)
             {
+                bagCanvas.SetActive(false);
                 bag.Remove(item);
             }
             else
