@@ -67,7 +67,14 @@ public class Movement : MonoBehaviour
         {
             anim.enabled = true;
             KeyInput();
-            transform.position = Vector3.MoveTowards(transform.position, desiredPosition, interpolationSpeed * Time.deltaTime);
+            if (!Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                transform.position = Vector3.MoveTowards(transform.position, desiredPosition, interpolationSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, desiredPosition, interpolationSpeed * Time.deltaTime);
+            }
         }
         else
         {

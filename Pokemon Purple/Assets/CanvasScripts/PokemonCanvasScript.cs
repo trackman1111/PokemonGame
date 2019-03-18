@@ -55,17 +55,147 @@ public class PokemonCanvasScript : MonoBehaviour
     public Sprite migh;
     public Sprite zigz;
     public Sprite lino;
+    public Sprite wurm;
+    public Sprite sili;
+    public Sprite beau;
+    public Sprite casc;
+    public Sprite dust;
+    public Sprite lota;
+    public Sprite lomb;
+    public Sprite ludi;
+    public Sprite seed;
+    public Sprite nuzl;
+    public Sprite shif;
+    public Sprite ninc;
+    public Sprite ninj;
+    public Sprite shed;
+    public Sprite tail;
+    public Sprite swel;
+    public Sprite shro;
+    public Sprite brel;
+    public Sprite spin;
+    public Sprite wing;
+    public Sprite peli;
+    public Sprite surs;
+    public Sprite masq;
+    public Sprite wailm;
+    public Sprite waill;
+    public Sprite skit;
+    public Sprite delc;
+    public Sprite kecl;
+    public Sprite balt;
+    public Sprite clay;
+    public Sprite nose;
+    public Sprite tork;
+    public Sprite sabl;
+    public Sprite barb;
+    public Sprite whisc;
+    public Sprite luvd;
+    public Sprite corp;
+    public Sprite craw;
+    public Sprite feeb;
+    public Sprite milo;
+    public Sprite carv;
+    public Sprite shar;
+    public Sprite trap;
+    public Sprite vibr;
+    public Sprite flyg;
+    public Sprite maku;
+    public Sprite hari;
+    public Sprite elec;
+    public Sprite mane;
+    public Sprite nume;
+    public Sprite came;
+    public Sprite sphe;
+    public Sprite seal;
+    public Sprite walr;
+    public Sprite cacn;
+    public Sprite cact;
+    public Sprite snor;
+    public Sprite glal;
+    public Sprite luna;
+    public Sprite solr;
+    public Sprite azuri;
+    public Sprite spoi;
+    public Sprite grum;
+    public Sprite plus;
+    public Sprite minu;
+    public Sprite mawi;
+    public Sprite medit;
+    public Sprite medic;
+    public Sprite swab;
+    public Sprite alta;
+    public Sprite wyna;
+    public Sprite dusk;
+    public Sprite dusc;
+    public Sprite rose;
+    public Sprite slako;
+    public Sprite vigo;
+    public Sprite slaki;
+    public Sprite gulp;
+    public Sprite swal;
+    public Sprite trop;
+    public Sprite whism;
+    public Sprite loud;
+    public Sprite expl;
+    public Sprite clam;
+    public Sprite hunt;
+    public Sprite gore;
+    public Sprite abso;
+    public Sprite shup;
+    public Sprite bane;
+    public Sprite sevi;
+    public Sprite zang;
+    public Sprite reli;
+    public Sprite aron;
+    public Sprite lair;
+    public Sprite aggr;
+    public Sprite cast;
+    public Sprite volb;
+    public Sprite illu;
+    public Sprite lile;
+    public Sprite crad;
+    public Sprite anor;
+    public Sprite arma;
+    public Sprite ralt;
+    public Sprite kirl;
+    public Sprite gard;
+    public Sprite bago;
+    public Sprite shel;
+    public Sprite sala;
+    public Sprite beld;
+    public Sprite metan;
+    public Sprite metag;
+    public Sprite regir;
+    public Sprite regic;
+    public Sprite regis;
     public Sprite kyog;
     public Sprite grou;
     public Sprite rayq;
+    public Sprite latia;
+    public Sprite latio;
     public Sprite other;
 
     Pokemon[] pokemon;
+    int pok1;
+    int pok2;
+
+    private bool pressed;
+    private bool firstPicked;
+    private bool secondPicked;
+
 
     // Start is called before the first frame update
     void Start()
     {
         // Sets all the texts to "" and the images alpha to 0, making it invisable 
+
+        pressed = false;
+        firstPicked = false;
+
+        pok1 = 0;
+        pok2 = 0;
+
 
         p1name.text = "";
         p1lvl.text =  "";
@@ -264,7 +394,158 @@ public class PokemonCanvasScript : MonoBehaviour
                 p6image.sprite = getImage(pokemon[5].name);
             }
         }
+
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (pokemon[1] != null)
+            {
+                pressed = true;
+                print("Which two pokemon would you like to swap?");
+
+                print("Use 1-6 to highlight a pokemon, then press Right Shift to confirm selection");
+            }
+            else
+            {
+                print("Not enough Pokemon to swap.");
+            }
+        }
+
+        if (pressed)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                pok1 = 1;
+                print(pokemon[pok1 - 1].name + " is highlighted");
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                pok1 = 2;
+                print(pokemon[pok1 - 1].name + " is highlighted");
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                if (pokemon[2] != null)
+                {
+                    pok1 = 3;
+                    print(pokemon[pok1 - 1].name + " is highlighted");
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                if (pokemon[3] != null)
+                {
+                    pok1 = 4;
+                    print(pokemon[pok1 - 1].name + " is highlighted");
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                if (pokemon[4] != null)
+                {
+                    pok1 = 5;
+                    print(pokemon[pok1 - 1].name + " is highlighted");
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha6))
+            {
+                if (pokemon[5] != null)
+                {
+                    pok1 = 6;
+                    print(pokemon[pok1 - 1].name + " is highlighted");
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightShift))
+            {
+
+                if (pok1 != 0 && pokemon[pok1 - 1] != null)
+                {
+                    print(pokemon[pok1 - 1].name + " was selected. Select the pokemon you would like to swap " + pokemon[pok1 - 1].name + " with");
+                    firstPicked = true;
+                    pok2 = 0;
+                    pressed = false;
+                }
+            }
+        }
+
+        if (firstPicked)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                pok2 = 1;
+                print(pokemon[pok2 - 1].name + " is highlighted");
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                pok2 = 2;
+                print(pokemon[pok2 - 1].name + " is highlighted");
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                if (pokemon[2] != null)
+                {
+                    pok2 = 3;
+                    print(pokemon[pok2 - 1].name + " is highlighted");
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                if (pokemon[3] != null)
+                {
+                    pok2 = 4;
+                    print(pokemon[pok2 - 1].name + " is highlighted");
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                if (pokemon[4] != null)
+                {
+                    pok2 = 5;
+                    print(pokemon[pok2 - 1].name + " is highlighted");
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha6))
+            {
+                if (pokemon[5] != null)
+                {
+                    pok2 = 6;
+                    print(pokemon[pok2 - 1].name + " is highlighted");
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightShift))
+            {
+                if (pok2 != 0 && pokemon[pok2 - 1] != null)
+                {
+                    firstPicked = false;
+                    print(pokemon[pok2 - 1].name + " was selected");
+
+                    if (pok1 != pok2)
+                    {
+                        swapPokemon(pok1 - 1, pok2 - 1);
+                    }
+                    else
+                    {
+                        print("Select two different pokemon to swap.");
+                    }
+                    pok1 = 0;
+                    pok2 = 0;
+                }
+            }
+        }
     }
+
+
+    public void swapPokemon(int movedPoke, int desiredSlot)
+    {
+        Pokemon temp = pokemon[desiredSlot];
+        pokemon[desiredSlot] = pokemon[movedPoke];
+        pokemon[movedPoke] = temp;
+
+        print(pokemon[desiredSlot].name + " was swapped with " + pokemon[movedPoke].name);
+    }
+
 
     public Sprite getImage(string name)
     {
@@ -319,6 +600,454 @@ public class PokemonCanvasScript : MonoBehaviour
         else if (name.Equals("Linoone"))
         {
             return lino;
+        }
+        else if (name.Equals("Wurmple"))
+        {
+            return wurm;
+        }
+        else if (name.Equals("Silicoon"))
+        {
+            return sili;
+        }
+        else if (name.Equals("Beautifly"))
+        {
+            return beau;
+        }
+        else if (name.Equals("Cascoon"))
+        {
+            return casc;
+        }
+        else if (name.Equals("Dustox"))
+        {
+            return dust;
+        }
+        else if (name.Equals("Lotad"))
+        {
+            return lota;
+        }
+        else if (name.Equals("Lombre"))
+        {
+            return lomb;
+        }
+        else if (name.Equals("Ludicolo"))
+        {
+            return ludi;
+        }
+        else if (name.Equals("Seedot"))
+        {
+            return seed;
+        }
+        else if (name.Equals("Nuzleaf"))
+        {
+            return nuzl;
+        }
+        else if (name.Equals("Shiftry"))
+        {
+            return shif;
+        }
+        else if (name.Equals("Nincada"))
+        {
+            return ninc;
+        }
+        else if (name.Equals("Ninjask"))
+        {
+            return ninj;
+        }
+        else if (name.Equals("Shedinja"))
+        {
+            return shed;
+        }
+        else if (name.Equals("Taillow"))
+        {
+            return tail;
+        }
+        else if (name.Equals("Swellow"))
+        {
+            return swel;
+        }
+        else if (name.Equals("Shroomish"))
+        {
+            return shro;
+        }
+        else if (name.Equals("Breloom"))
+        {
+            return brel;
+        }
+        else if (name.Equals("Spinda"))
+        {
+            return spin;
+        }
+        else if (name.Equals("Wingull"))
+        {
+            return wing;
+        }
+        else if (name.Equals("Pelipper"))
+        {
+            return peli;
+        }
+        else if (name.Equals("Surskit"))
+        {
+            return surs;
+        }
+        else if (name.Equals("Masquerain"))
+        {
+            return masq;
+        }
+        else if (name.Equals("Wailmer"))
+        {
+            return wailm;
+        }
+        else if (name.Equals("Wailord"))
+        {
+            return waill;
+        }
+        else if (name.Equals("Skitty"))
+        {
+            return skit;
+        }
+        else if (name.Equals("Delcatty"))
+        {
+            return delc;
+        }
+        else if (name.Equals("Kecleon"))
+        {
+            return kecl;
+        }
+        else if (name.Equals("Baltoy"))
+        {
+            return balt;
+        }
+        else if (name.Equals("Claydol"))
+        {
+            return clay;
+        }
+        else if (name.Equals("Nosepass"))
+        {
+            return nose;
+        }
+        else if (name.Equals("Torkoal"))
+        {
+            return tork;
+        }
+        else if (name.Equals("Sableye"))
+        {
+            return sabl;
+        }
+        else if (name.Equals("Barboach"))
+        {
+            return barb;
+        }
+        else if (name.Equals("Whiscash"))
+        {
+            return whisc;
+        }
+        else if (name.Equals("Luvdisc"))
+        {
+            return luvd;
+        }
+        else if (name.Equals("Corphish"))
+        {
+            return corp;
+        }
+        else if (name.Equals("Crawdaunt"))
+        {
+            return craw;
+        }
+        else if (name.Equals("Feebas"))
+        {
+            return feeb;
+        }
+        else if (name.Equals("Milotic"))
+        {
+            return milo;
+        }
+        else if (name.Equals("Carvanha"))
+        {
+            return carv;
+        }
+        else if (name.Equals("Sharpedo"))
+        {
+            return shar;
+        }
+        else if (name.Equals("Trapinch"))
+        {
+            return trap;
+        }
+        else if (name.Equals("Vibrava"))
+        {
+            return vibr;
+        }
+        else if (name.Equals("Flygon"))
+        {
+            return flyg;
+        }
+        else if (name.Equals("Makuhita"))
+        {
+            return maku;
+        }
+        else if (name.Equals("Hariyama"))
+        {
+            return hari;
+        }
+        else if (name.Equals("Electrike"))
+        {
+            return elec;
+        }
+        else if (name.Equals("Manectric"))
+        {
+            return mane;
+        }
+        else if (name.Equals("Numel"))
+        {
+            return nume;
+        }
+        else if (name.Equals("Camerupt"))
+        {
+            return came;
+        }
+        else if (name.Equals("Spheal"))
+        {
+            return sphe;
+        }
+        else if (name.Equals("Sealeo"))
+        {
+            return seal;
+        }
+        else if (name.Equals("Walrein"))
+        {
+            return walr;
+        }
+        else if (name.Equals("Cacnea"))
+        {
+            return cacn;
+        }
+        else if (name.Equals("Cacturne"))
+        {
+            return cact;
+        }
+        else if (name.Equals("Snorunt"))
+        {
+            return snor;
+        }
+        else if (name.Equals("Glalie"))
+        {
+            return glal;
+        }
+        else if (name.Equals("Lunatone"))
+        {
+            return luna;
+        }
+        else if (name.Equals("Solrock"))
+        {
+            return solr;
+        }
+        else if (name.Equals("Azurill"))
+        {
+            return azuri;
+        }
+        else if (name.Equals("Spoink"))
+        {
+            return spoi;
+        }
+        else if (name.Equals("Grumpig"))
+        {
+            return grum;
+        }
+        else if (name.Equals("Plusle"))
+        {
+            return plus;
+        }
+        else if (name.Equals("Minun"))
+        {
+            return minu;
+        }
+        else if (name.Equals("Mawile"))
+        {
+            return mawi;
+        }
+        else if (name.Equals("Meditite"))
+        {
+            return medit;
+        }
+        else if (name.Equals("Medicham"))
+        {
+            return medic;
+        }
+        else if (name.Equals("Swablu"))
+        {
+            return swab;
+        }
+        else if (name.Equals("Altaria"))
+        {
+            return alta;
+        }
+        else if (name.Equals("Wynaut"))
+        {
+            return wyna;
+        }
+        else if (name.Equals("Duskell"))
+        {
+            return dusk;
+        }
+        else if (name.Equals("Dusclops"))
+        {
+            return dusc;
+        }
+        else if (name.Equals("Roselia"))
+        {
+            return rose;
+        }
+        else if (name.Equals("Slakoth"))
+        {
+            return slako;
+        }
+        else if (name.Equals("Vigorath"))
+        {
+            return vigo;
+        }
+        else if (name.Equals("Slaking"))
+        {
+            return slaki;
+        }
+        else if (name.Equals("Gulpin"))
+        {
+            return gulp;
+        }
+        else if (name.Equals("Swalot"))
+        {
+            return swal;
+        }
+        else if (name.Equals("Tropius"))
+        {
+            return trop;
+        }
+        else if (name.Equals("Whismur"))
+        {
+            return whism;
+        }
+        else if (name.Equals("Loudred"))
+        {
+            return loud;
+        }
+        else if (name.Equals("Exploud"))
+        {
+            return expl;
+        }
+        else if (name.Equals("Clampearl"))
+        {
+            return clam;
+        }
+        else if (name.Equals("Huntail"))
+        {
+            return hunt;
+        }
+        else if (name.Equals("Absol"))
+        {
+            return abso;
+        }
+        else if (name.Equals("Shuppet"))
+        {
+            return shup;
+        }
+        else if (name.Equals("Banette"))
+        {
+            return bane;
+        }
+        else if (name.Equals("Seviper"))
+        {
+            return sevi;
+        }
+        else if (name.Equals("Zangoose"))
+        {
+            return zang;
+        }
+        else if (name.Equals("Relicanth"))
+        {
+            return reli;
+        }
+        else if (name.Equals("Aron"))
+        {
+            return aron;
+        }
+        else if (name.Equals("Lairon"))
+        {
+            return lair;
+        }
+        else if (name.Equals("Aggron"))
+        {
+            return aggr;
+        }
+        else if (name.Equals("Castform"))
+        {
+            return cast;
+        }
+        else if (name.Equals("Volbeat"))
+        {
+            return volb;
+        }
+        else if (name.Equals("Illumise"))
+        {
+            return illu;
+        }
+        else if (name.Equals("Lileep"))
+        {
+            return lile;
+        }
+        else if (name.Equals("Cradily"))
+        {
+            return crad;
+        }
+        else if (name.Equals("Anorith"))
+        {
+            return anor;
+        }
+        else if (name.Equals("Armaldo"))
+        {
+            return arma;
+        }
+        else if (name.Equals("Ralts"))
+        {
+            return ralt;
+        }
+        else if (name.Equals("Kirlia"))
+        {
+            return kirl;
+        }
+        else if (name.Equals("Gardevoir"))
+        {
+            return gard;
+        }
+        else if (name.Equals("Bagon"))
+        {
+            return bago;
+        }
+        else if (name.Equals("Salamance"))
+        {
+            return sala;
+        }
+        else if (name.Equals("Beldum"))
+        {
+            return beld;
+        }
+        else if (name.Equals("Metang"))
+        {
+            return metan;
+        }
+        else if (name.Equals("Metagross"))
+        {
+            return metag;
+        }
+        else if (name.Equals("Regirock"))
+        {
+            return regir;
+        }
+        else if (name.Equals("Regice"))
+        {
+            return regic;
+        }
+        else if (name.Equals("Registeel"))
+        {
+            return regis;
         }
         else if (name.Equals("Kyogre"))
         {
