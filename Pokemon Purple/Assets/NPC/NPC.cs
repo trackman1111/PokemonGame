@@ -12,15 +12,17 @@ public class NPC : MonoBehaviour
     private Collider2D colliderTwoD;
     public GameObject optionsMenuController;
     private PokemonData pokeData;
+    public GameObject dcan;
     private string pokeName;
     private bool isFinished;
     public void triggerDialogue()
     {
-        dialogueController.StartDialogue(dialogue);
+        dialogueController.StartDialogue(dialogue, sender: this);
         if ( isTrainer == true )
         {
-            moveToBattle();
+           // moveToBattle();
         }
+        
 
     }
     public void Start()

@@ -11,6 +11,7 @@ public class DialogueController : MonoBehaviour
     public GameObject visibility;
     public Animator animator;
     public NPC npc;
+
     private GameObject jawnt;
     // Start is called before the first frame update
     void Start()
@@ -26,8 +27,9 @@ public class DialogueController : MonoBehaviour
             DisplayNextSentence();
         }
     }
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue, NPC sender)
     {
+        npc = sender;
         visibility.SetActive(true);
         FindObjectOfType<Movement>().setStasis(true);
         //animator.SetBool("IsOpen", true);
@@ -70,6 +72,7 @@ public class DialogueController : MonoBehaviour
         FindObjectOfType<Movement>().setStasis(false);
         // animator.SetBool("IsOpen", false);
         visibility.SetActive(false);
+        npc.moveToBattle();
         //if ( npc.isTrainer == true )
         //{
         //    npc.moveToBattle();
