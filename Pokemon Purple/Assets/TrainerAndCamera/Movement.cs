@@ -41,6 +41,15 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            interpolationSpeed = 10F;
+        }
+        else
+        {
+            interpolationSpeed = 5F;
+        }
+
         bool onBush = walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(bush);
         if (onBush && transform.position == desiredPosition && !hasChecked)
         {
