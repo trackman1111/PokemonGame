@@ -55846,10 +55846,126 @@ MonoBehaviour:
   migh: {fileID: 21300000, guid: b26155ac3b013aa40bab16d9b983c49f, type: 3}
   zigz: {fileID: 21300000, guid: 92e36f1f6809b794bada3aad6dd07826, type: 3}
   lino: {fileID: 21300000, guid: 2dcea10da06cfb544bde43552934dc74, type: 3}
+  wurm: {fileID: 21300000, guid: 0f0c663cca1528742a06d35ae8f29ec3, type: 3}
+  sili: {fileID: 21300000, guid: ee6145ec4ee6285488465f7f874f3850, type: 3}
+  beau: {fileID: 21300000, guid: 525e95cb9ab04cd45a0bb690b025e5c4, type: 3}
+  casc: {fileID: 21300000, guid: 522a11d4210c7c741ad5f1240b84b462, type: 3}
+  dust: {fileID: 21300000, guid: 1dc4b54e3eaf0d746bc888f4f4115e6d, type: 3}
+  lota: {fileID: 21300000, guid: 4efeb38c6f1a5b041930ddac4091902c, type: 3}
+  lomb: {fileID: 21300000, guid: 36dd9c40984e33f41b603e67f7cf19f7, type: 3}
+  ludi: {fileID: 21300000, guid: c71c0a2341ded124fa6cecef64a1f9e3, type: 3}
+  seed: {fileID: 21300000, guid: 6e8eb2ca66747ad48a6b19d4bc38036b, type: 3}
+  nuzl: {fileID: 21300000, guid: f53962bd17a196b49bd95e3f43c8e462, type: 3}
+  shif: {fileID: 21300000, guid: 7541d9414d3e0d6458cc554cd6e53036, type: 3}
+  ninc: {fileID: 21300000, guid: ff0b20c0f62e4854a988c4416b43554c, type: 3}
+  ninj: {fileID: 21300000, guid: 40b5c0ca8057aac42988956195b28d37, type: 3}
+  shed: {fileID: 21300000, guid: fa52bcb080c9fd4428b5dac520d81567, type: 3}
+  tail: {fileID: 21300000, guid: 68a8acebbba96274aa0e5eaed870db3d, type: 3}
+  swel: {fileID: 21300000, guid: 7749432f2f70d374da56c6535d2b690f, type: 3}
+  shro: {fileID: 21300000, guid: 11a57f13b4326aa408cedd930ff226ae, type: 3}
+  brel: {fileID: 21300000, guid: 2a62cfd30e3f0274a9c280e384b03b63, type: 3}
+  spin: {fileID: 0}
+  wing: {fileID: 21300000, guid: 5c66ad482e433dc498249600021a35cd, type: 3}
+  peli: {fileID: 21300000, guid: 7a389371c6e8ae141814d4374cde1dd3, type: 3}
+  surs: {fileID: 21300000, guid: 8b707c924e87b7b458e8979087ba5261, type: 3}
+  masq: {fileID: 21300000, guid: 37de0785fddcedc4c971d0f36bd04e69, type: 3}
+  wailm: {fileID: 21300000, guid: 002758a8568d51d47b1f81e0eb4c5b8c, type: 3}
+  waill: {fileID: 21300000, guid: 00aed960c57d8424fb971eb202699c66, type: 3}
+  skit: {fileID: 21300000, guid: 285dd9f8cc8f6484792d2db85ee23b2e, type: 3}
+  delc: {fileID: 21300000, guid: 58033d88e53994845ad4a450624d467d, type: 3}
+  kecl: {fileID: 21300000, guid: 3e6e302eb2db6bb43bd915cfd54095d3, type: 3}
+  balt: {fileID: 21300000, guid: 823aa3d4bf0bb3e47b0dcc6407a52789, type: 3}
+  clay: {fileID: 21300000, guid: 49a69e477931b534985070a02c31091f, type: 3}
+  nose: {fileID: 21300000, guid: edf7b6b691ee46948bda9adbed4d1268, type: 3}
+  tork: {fileID: 21300000, guid: df40afada7fcfa040a37fa7b94220fa6, type: 3}
+  sabl: {fileID: 21300000, guid: 85f3acb6ca2043e4ea2ca26fdbcfb6ec, type: 3}
+  barb: {fileID: 21300000, guid: 0dc948dd0aa79154a988d69917ef410f, type: 3}
+  whisc: {fileID: 21300000, guid: dcd28670bf224614e80fe1f73f021fa9, type: 3}
+  luvd: {fileID: 21300000, guid: fa488f47cf949bc4eae948eb0f81ee89, type: 3}
+  corp: {fileID: 21300000, guid: 25ae4381602167a49a1167ff7be13fc1, type: 3}
+  craw: {fileID: 21300000, guid: 660c5d5d9cd721c499a5cb3d8574e391, type: 3}
+  feeb: {fileID: 21300000, guid: c7c785fabec8a824d8ce395a0a52b3b2, type: 3}
+  milo: {fileID: 21300000, guid: a56a5e7f5f0c4be44b93ed46c7ad00b3, type: 3}
+  carv: {fileID: 21300000, guid: 521f506deccf3d44dba096ae96688542, type: 3}
+  shar: {fileID: 21300000, guid: b6401557f67aca2419c94b2dda41adfd, type: 3}
+  trap: {fileID: 21300000, guid: 48b69fc09d3a1ff4da120ab62d69ea24, type: 3}
+  vibr: {fileID: 21300000, guid: 60005011d604af9438ffca291775929b, type: 3}
+  flyg: {fileID: 21300000, guid: 40fdbcaf88b1ee04eb3156df93d74faf, type: 3}
+  maku: {fileID: 21300000, guid: dcc6a6de6ca2e6341a096e52dd4b5152, type: 3}
+  hari: {fileID: 21300000, guid: 7ae477566a705104e82989fee9f6e337, type: 3}
+  elec: {fileID: 21300000, guid: 36e3e3eadfa5b654a99bcab78bed6c8f, type: 3}
+  mane: {fileID: 21300000, guid: 192b5134bbd1c154dbb4c0466277ca09, type: 3}
+  nume: {fileID: 21300000, guid: 04d75486d3a82c240a389b2d73640474, type: 3}
+  came: {fileID: 21300000, guid: b672abef5557ba24885fcd0fdbb3b82d, type: 3}
+  sphe: {fileID: 21300000, guid: 0f8fa0991e53c15428e412b8142a602d, type: 3}
+  seal: {fileID: 21300000, guid: 08c6a912b90cf1246bf46f5fd22a3d2d, type: 3}
+  walr: {fileID: 21300000, guid: 046ab59f7fb38c74f9a57594d346afc2, type: 3}
+  cacn: {fileID: 21300000, guid: 9501bd81ed05e714e969f0fcbbcdc1cd, type: 3}
+  cact: {fileID: 21300000, guid: 85710b50d2831504881bc92d3d4acec6, type: 3}
+  snor: {fileID: 21300000, guid: 3c0f8b30d5fae7649a78f13c54fe948c, type: 3}
+  glal: {fileID: 21300000, guid: 1c81fbf5f5a0403498ba473a8caea61e, type: 3}
+  luna: {fileID: 21300000, guid: 8da160cc059392248a1cfe6e2c8d3176, type: 3}
+  solr: {fileID: 21300000, guid: 7364cca3b5069d14fabf801bc840979d, type: 3}
+  azuri: {fileID: 21300000, guid: 8a0464301b3763743b814d3ecbd02266, type: 3}
+  spoi: {fileID: 21300000, guid: 456e03ec62ec33d4b8dfd1ce93924848, type: 3}
+  grum: {fileID: 21300000, guid: 93ebdb2e82cda8b4298cddd789217645, type: 3}
+  plus: {fileID: 21300000, guid: 9480efab993828443a2b29e4af249455, type: 3}
+  minu: {fileID: 21300000, guid: 28103d153d35fc84f96e3b2b47877b80, type: 3}
+  mawi: {fileID: 21300000, guid: 24e2eaa2aa07883459a633a672750a6f, type: 3}
+  medit: {fileID: 21300000, guid: c7cd46b8258dcaf459e330a7653e4e9d, type: 3}
+  medic: {fileID: 21300000, guid: ab70554202088124aa391b283cd7c8e7, type: 3}
+  swab: {fileID: 21300000, guid: 837ccbc99e75b464ba3b04c2300774c4, type: 3}
+  alta: {fileID: 21300000, guid: f671a5e1db83cd04b8b8375836bc0be7, type: 3}
+  wyna: {fileID: 21300000, guid: 1d797cb6201d7414b8b856608ee17d8d, type: 3}
+  dusk: {fileID: 21300000, guid: 42fdd2347c827474fa47a2867961f434, type: 3}
+  dusc: {fileID: 21300000, guid: 1274ea3a7e308d24a94e6ed4fe14cd2c, type: 3}
+  rose: {fileID: 21300000, guid: 4bd6dde7cd34e684c9fefb0090e85546, type: 3}
+  slako: {fileID: 21300000, guid: 0053a66464138a04a8bdaa8da8927ae6, type: 3}
+  vigo: {fileID: 21300000, guid: 8897b32508dac634aa51722e1818bb32, type: 3}
+  slaki: {fileID: 21300000, guid: 33a048e53d96dbb41897a8d19b214b16, type: 3}
+  gulp: {fileID: 21300000, guid: eb2659723d7bc1549b26eef41b96c796, type: 3}
+  swal: {fileID: 21300000, guid: add5aacbd4b31094684925ae3c935b20, type: 3}
+  trop: {fileID: 21300000, guid: 1f15205e063c5d14f8fbb8552f5cded1, type: 3}
+  whism: {fileID: 21300000, guid: 740eeee7c5e7904498e9ba895ff068b1, type: 3}
+  loud: {fileID: 21300000, guid: 45539b595134ff8489122115d077b805, type: 3}
+  expl: {fileID: 21300000, guid: eee42a21066d34148b243d68ade84020, type: 3}
+  clam: {fileID: 21300000, guid: 627234ab9502a494eb02c1dbbfc3a724, type: 3}
+  hunt: {fileID: 21300000, guid: 29679fc3dc8e29941a67ce132a8e2e0f, type: 3}
+  gore: {fileID: 21300000, guid: 5ab73d1501f5096429520ab137a01a7a, type: 3}
+  abso: {fileID: 21300000, guid: 5757402b6e885f445983854b34be1198, type: 3}
+  shup: {fileID: 21300000, guid: fa5a0cdc9bc5d0c45ba0756fc466b879, type: 3}
+  bane: {fileID: 21300000, guid: 3983b669d08c0eb41a86b97942e95076, type: 3}
+  sevi: {fileID: 21300000, guid: a2aeced49116cc8429aefc586967de80, type: 3}
+  zang: {fileID: 21300000, guid: a0a2b88c040b6534882fa7cd71c80e95, type: 3}
+  reli: {fileID: 21300000, guid: 72af5040b9d3fcc4ba77eaaa62863aaf, type: 3}
+  aron: {fileID: 21300000, guid: f224182d85b050d4c837fc07309aa6b7, type: 3}
+  lair: {fileID: 21300000, guid: afa623bbfca1ddf40909af65f55d5f73, type: 3}
+  aggr: {fileID: 21300000, guid: e8e593c672fd60446bdf3cbf075ff8fe, type: 3}
+  cast: {fileID: 21300000, guid: 64a8b70aae676ab4a936f76427b9fbd9, type: 3}
+  volb: {fileID: 21300000, guid: eae9dd78de281c44c9a94a51d61e5bca, type: 3}
+  illu: {fileID: 21300000, guid: b04bc580506596e4fa06e61d5c082ef9, type: 3}
+  lile: {fileID: 21300000, guid: fbc8996f3d1c0a643bb28bb5ec8edf40, type: 3}
+  crad: {fileID: 21300000, guid: 4209eaf5d38179242a6c1565c4d1578e, type: 3}
+  anor: {fileID: 21300000, guid: b7a100356a488084ab1b6c7d0a6cbcf6, type: 3}
+  arma: {fileID: 21300000, guid: e6e4191d9d0cdaf48ae9a3079605b38b, type: 3}
+  ralt: {fileID: 21300000, guid: 63f32dcca6efcf04086cb1744df4ad17, type: 3}
+  kirl: {fileID: 21300000, guid: e4ee952684d71dd468648f2f652bd0b9, type: 3}
+  gard: {fileID: 21300000, guid: 98069241291637f47b54b030a7b317c0, type: 3}
+  bago: {fileID: 21300000, guid: 5b8512bb2853a8e488aee1f0210a34cc, type: 3}
+  shel: {fileID: 21300000, guid: 85e1db60a2097e64fbc1caeee9e624a7, type: 3}
+  sala: {fileID: 21300000, guid: e151a20775fdcf044ba27b09d21b6855, type: 3}
+  beld: {fileID: 21300000, guid: 5e1f35d73df63d343b0e1eb5b9b2ba75, type: 3}
+  metan: {fileID: 21300000, guid: 5e05ab6eb563d9e43b384ddfe35983a6, type: 3}
+  metag: {fileID: 21300000, guid: f29f340e2f855e54baaad4cd68711512, type: 3}
+  regir: {fileID: 21300000, guid: 8fee41bfd7cd3aa459b5532f8dd35214, type: 3}
+  regic: {fileID: 21300000, guid: 214e155cc2a4ef24181436a7e9c5945d, type: 3}
+  regis: {fileID: 21300000, guid: 96ebe347da5be2744bd4296aa9fb6a10, type: 3}
   kyog: {fileID: 21300000, guid: d134895cc1cda0849bb439416ffa66f2, type: 3}
   grou: {fileID: 21300000, guid: eb180de9d05da29408363008d345ae51, type: 3}
   rayq: {fileID: 21300000, guid: 1e8563838e3df2b44b515e19aed6a925, type: 3}
-  other: {fileID: 0}
+  latia: {fileID: 21300000, guid: a03b3d9e5af6f224a9c0a2357c4e536d, type: 3}
+  latio: {fileID: 21300000, guid: 065bb98cca730ad419250fdc60b81421, type: 3}
+  other: {fileID: 21300000, guid: 98f34fb21cd549d428692128b208da26, type: 3}
 --- !u!1 &1340776020
 GameObject:
   m_ObjectHideFlags: 0
@@ -87974,6 +88090,7 @@ MonoBehaviour:
   enemyHealth: {fileID: 167953991}
   titleText: {fileID: 2002809238}
   t: {fileID: 1134962121}
+  ballType: 
 --- !u!1 &1704919073
 GameObject:
   m_ObjectHideFlags: 0
