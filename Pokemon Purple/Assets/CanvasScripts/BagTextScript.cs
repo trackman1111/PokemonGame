@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -27,6 +28,8 @@ public class BagTextScript : MonoBehaviour
     public GameObject battleCanvas;
     public GameObject pokemonCanvas;
 
+    public BattleCanvasScript bcScript;
+
     int cursor;
 
     ArrayList bag;
@@ -38,8 +41,8 @@ public class BagTextScript : MonoBehaviour
     {
         //  bag = GlobalControl.Instance.bag;
         cursor = 0;
-
         picture.GetComponent<Image>();
+        bcScript = battleCanvas.GetComponent<BattleCanvasScript>();
     }
 
     // Update is called once per frame
@@ -170,7 +173,9 @@ public class BagTextScript : MonoBehaviour
             if ( battleCanvas.activeSelf )
             {
                 bag.Remove(item);
+                useBall("Pokeball");
                 bagCanvas.SetActive(false);
+
                 print("You threw a " + item + "!");
             }
             else
@@ -184,6 +189,8 @@ public class BagTextScript : MonoBehaviour
             {
                 bag.Remove(item);
                 bagCanvas.SetActive(false);
+
+                useBall("Great Ball");
                 print("You threw a " + item + "!");
             }
             else
@@ -197,6 +204,8 @@ public class BagTextScript : MonoBehaviour
             {
                 bag.Remove(item);
                 bagCanvas.SetActive(false);
+
+                useBall("Ultra Ball");
                 print("You threw a " + item + "!");
             }
             else
@@ -210,6 +219,8 @@ public class BagTextScript : MonoBehaviour
             {
                 bag.Remove(item);
                 bagCanvas.SetActive(false);
+
+                useBall("Master Ball");
                 print("You threw a " + item + "!");
             }
             else
@@ -244,6 +255,7 @@ public class BagTextScript : MonoBehaviour
         {
             if (pokemonCanvas.activeSelf || battleCanvas.activeSelf)
             {
+                usePotion("Potion");
                 bagCanvas.SetActive(false);
                 bag.Remove(item);
             }
@@ -265,6 +277,79 @@ public class BagTextScript : MonoBehaviour
             }
         }
 
+    }
+
+    public void usePotion(string type)
+    {
+        if (type.Equals("Potion"))
+        {
+         // trainer.pokemon[0].heal(20);
+        }
+        else if (type.Equals("Super Potion"))
+        {
+            // trainer.pokemon[0].heal(50);
+        }
+        else if (type.Equals("Hyper Potion"))
+        {
+            // trainer.pokemon[0].heal(100);
+        }
+        else
+        {
+            trainer.pokemon[0].heal();
+        }
+    }
+
+    public void useBall(string type)
+    {
+        int randoNum = 100;
+
+        System.Random rnd = new System.Random();
+       
+
+
+        if (type.Equals("Pokeball"))
+        {
+            randoNum = rnd.Next(1 ,100);
+
+            if ( randoNum <= 50 )
+            {
+                bcScript.catchPokemon("Pokeball");
+            }
+            else
+            {
+                bcScript.badThrow("Pokeball");
+            }
+        }
+        else if (type.Equals("Great Ball"))
+        {;
+            randoNum = rnd.Next(1, 100);
+
+            if (randoNum <= 75)
+            {
+                bcScript.catchPokemon("Great Ball");
+            }
+            else
+            {
+                bcScript.badThrow("Great Ball");
+            }
+        }
+        else if (type.Equals("Ultra Ball"))
+        {
+            randoNum = rnd.Next(1, 100);
+
+            if (randoNum <= 90)
+            {
+                bcScript.catchPokemon("Ultra Ball");
+            }
+            else
+            {
+                bcScript.badThrow("Ultra Ball");
+            }
+        }
+        else
+        {
+            bcScript.catchPokemon("Master Ball");
+        }
     }
 
     void SavePlayer()

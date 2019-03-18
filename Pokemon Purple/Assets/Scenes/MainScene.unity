@@ -1548,6 +1548,7 @@ MonoBehaviour:
   bagCanvas: {fileID: 223817796}
   battleCanvas: {fileID: 1660598843}
   pokemonCanvas: {fileID: 1318977754}
+  bcScript: {fileID: 0}
 --- !u!114 &223817798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55639,7 +55640,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1660598848}
-        m_MethodName: catchPokemon
+        m_MethodName: fightButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -57074,7 +57075,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1660598848}
-        m_MethodName: bagBattle
+        m_MethodName: bagButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -87890,7 +87891,7 @@ MonoBehaviour:
   luna: {fileID: 21300000, guid: 8da160cc059392248a1cfe6e2c8d3176, type: 3}
   solr: {fileID: 21300000, guid: 7364cca3b5069d14fabf801bc840979d, type: 3}
   azuri: {fileID: 21300000, guid: 8a0464301b3763743b814d3ecbd02266, type: 3}
-  spoink: {fileID: 21300000, guid: 456e03ec62ec33d4b8dfd1ce93924848, type: 3}
+  spoi: {fileID: 21300000, guid: 95c11b781802f0c4e9116bc557efd399, type: 3}
   grum: {fileID: 21300000, guid: 93ebdb2e82cda8b4298cddd789217645, type: 3}
   plus: {fileID: 21300000, guid: 9480efab993828443a2b29e4af249455, type: 3}
   minu: {fileID: 21300000, guid: 28103d153d35fc84f96e3b2b47877b80, type: 3}
@@ -87949,6 +87950,10 @@ MonoBehaviour:
   latia: {fileID: 21300000, guid: a03b3d9e5af6f224a9c0a2357c4e536d, type: 3}
   latio: {fileID: 21300000, guid: 065bb98cca730ad419250fdc60b81421, type: 3}
   other: {fileID: 21300000, guid: 87261986c1d875e4cba32316595bfea7, type: 3}
+  pokeballSprite: {fileID: 21300000, guid: 087cdb2df405c0a4fb2d052dbeecf691, type: 3}
+  greatballSprite: {fileID: 21300000, guid: 94894341acc964847b6f0c994c726aa1, type: 3}
+  ultraBallSprite: {fileID: 21300000, guid: e07ff0dd5e8fef14d81e77cb8993c0bc, type: 3}
+  masterBallSprite: {fileID: 21300000, guid: 68094f977df832b42a8751ec1c940e77, type: 3}
   enemyImage: {fileID: 2029399008}
   allyImage: {fileID: 950134911}
   pokemon: {fileID: 1318977754}
@@ -90571,7 +90576,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1660598848}
-        m_MethodName: exitBattle
+        m_MethodName: runButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -90774,7 +90779,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1660598848}
-        m_MethodName: pokemonBattle
+        m_MethodName: pokemonButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

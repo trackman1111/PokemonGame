@@ -33,6 +33,9 @@ public class Trainer : MonoBehaviour
         bag.Add("Potion");
         bag.Add("Revive");
         bag.Add("Master Ball");
+        bag.Add("Master Ball");
+        bag.Add("Master Ball");
+        bag.Add("Master Ball");
         bag.Add("Pokeball");
         bag.Add("Bike");
         bag.Add("Map");
