@@ -15,7 +15,6 @@ public class BattleCanvasScript : MonoBehaviour
     public Sprite mudk;
     public Sprite mars;
     public Sprite swam;
-
     public Sprite pooc;
     public Sprite migh;
     public Sprite zigz;
@@ -214,15 +213,7 @@ public class BattleCanvasScript : MonoBehaviour
         titleText.text = "What will \n" + ally.name + " do?";
 
         allyImage.sprite = getImage(ally.name);
-
-        if (ballType.Equals(""))
-        {
-            enemyImage.sprite = getImage(enemy.name);
-        }
-        else
-        {
-            enemyImage.sprite = pokeballSprite;
-        }
+        enemyImage.sprite = getEnemyImage(ballType);
     }
 
     void Update()
@@ -368,6 +359,7 @@ public class BattleCanvasScript : MonoBehaviour
 
     public void exitBattle()
     {
+        ballType = "";
         battle.SetActive(false);
         pokemon.SetActive(false);
         bag.SetActive(false);
@@ -400,8 +392,7 @@ public class BattleCanvasScript : MonoBehaviour
     public void badShake()
     {
         // shake animation;
-        numShakes++;
-        print(numShakes);
+        shake();
         if (numShakes == 3)
         {
             numShakes = 0;
@@ -413,8 +404,7 @@ public class BattleCanvasScript : MonoBehaviour
     public void goodShake()
     {
         // shake animation;
-        numShakes++;
-        print(numShakes);
+        shake();
         if (numShakes == 3)
         {
             numShakes = 0;
@@ -422,6 +412,27 @@ public class BattleCanvasScript : MonoBehaviour
             print("The " + enemy.name + " was Caught!");
             Invoke("exitBattle", 3);
         }
+    }
+
+    public void shake()
+    {
+        numShakes++;
+        print(numShakes);
+
+        Invoke("rotateLeft", 0.25f);
+        Invoke("rotateRight", 0.35f);
+        Invoke("rotateRight", 0.55f);
+        Invoke("rotateLeft", 0.7f);
+    }
+
+    void rotateLeft()
+    {
+        enemyImage.transform.Rotate(new Vector3(0, 0, 20));
+    }
+
+    void rotateRight()
+    {
+        enemyImage.transform.Rotate(new Vector3(0, 0, -20));
     }
 
     public void setArrow()
@@ -491,7 +502,7 @@ public class BattleCanvasScript : MonoBehaviour
         }
     }
 
-    public Sprite getItemImage(string item)
+    public Sprite getEnemyImage(string item)
     {
         if (item.Equals("Pokeball"))
         {
@@ -505,9 +516,13 @@ public class BattleCanvasScript : MonoBehaviour
         {
             return ultraBallSprite;
         }
-        else 
+        else if (item.Equals("Master Ball"))
         {
             return masterBallSprite;
+        }
+        else
+        {
+            return getImage(enemy.name);
         }
     }
 
