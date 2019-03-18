@@ -230,24 +230,6 @@ public class BattleCanvasScript : MonoBehaviour
         setArrow();
         setTexts();
 
-        if ( t.pokemon[0] != null )
-        {
-            enemyNameText.text = enemy.name;
-            ally = t.pokemon[0];
-
-            allyNameText.text = ally.name;
-            enemyNameText.text = enemy.name;
-            allyLevel.text = ally.level + "";
-            enemyLevel.text = enemy.level + "";
-            allyCurrHealth.text = ally.currHealth + "";
-            allyMaxHealth.text = ally.health + "";
-            enemyHealth.text = numShakes + "";
-            titleText.text = "What will \n" + ally.name + " do?";
-
-            allyImage.sprite = getImage(ally.name);
-            enemyImage.sprite = getImage(enemy.name);
-        }
-
         if ( Input.GetKeyDown(KeyCode.RightArrow) && !bag.activeSelf && !pokemon.activeSelf && (cursor == 1 || cursor == 3))
         {
             cursor++;
@@ -398,18 +380,18 @@ public class BattleCanvasScript : MonoBehaviour
         bc = new BattleControl(poke, t);
     }
 
-    public void catchPokemon(string ballType2)
+    public void catchPokemon(string ballType)
     {
-        ballType = ballType2;
+        this.ballType = ballType;
         print(ballType);
         Invoke("goodShake", 1);
         Invoke("goodShake", 2);
         Invoke("goodShake", 3);
     }
 
-    public void badThrow(string ballType2)
+    public void badThrow(string ballType)
     {
-        ballType = ballType2;
+        this.ballType = ballType;
         Invoke("badShake", 1);
         Invoke("badShake", 2);
         Invoke("badShake", 3);
@@ -424,6 +406,7 @@ public class BattleCanvasScript : MonoBehaviour
         {
             numShakes = 0;
             print("The " + enemy.name + " broke free!");
+            ballType = "";
         }
     }
 
