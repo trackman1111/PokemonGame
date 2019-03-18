@@ -11,6 +11,8 @@ public class DialogueController : MonoBehaviour
     public GameObject visibility;
     public Animator animator;
     public NPC npc;
+    private bool inDialogue;
+    private bool isTrainer;
 
     private GameObject jawnt;
     // Start is called before the first frame update
@@ -19,16 +21,23 @@ public class DialogueController : MonoBehaviour
         sentence = new Queue<string>();
         animator = GetComponent<Animator>();
         sentence.Enqueue("dummy");
+        inDialogue = false;
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if ( inDialogue == true )
         {
-            DisplayNextSentence();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                DisplayNextSentence();
+            }
         }
+       
     }
-    public void StartDialogue(Dialogue dialogue, NPC sender)
+    public void StartDialogue(Dialogue dialogue, NPC sender, bool isTrainerGiven)
     {
+        isTrainer = isTrainerGiven;
+        inDialogue = true;
         npc = sender;
         visibility.SetActive(true);
         FindObjectOfType<Movement>().setStasis(true);
@@ -68,11 +77,16 @@ public class DialogueController : MonoBehaviour
     }
     void EndDialogue()
     {
+        inDialogue = false;
         Debug.Log("end convo");
         FindObjectOfType<Movement>().setStasis(false);
         // animator.SetBool("IsOpen", false);
         visibility.SetActive(false);
-        npc.moveToBattle();
+        if ( isTrainer == true)
+        {
+            npc.moveToBattle();
+        }
+        
         //if ( npc.isTrainer == true )
         //{
         //    npc.moveToBattle();

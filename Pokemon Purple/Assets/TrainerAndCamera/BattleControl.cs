@@ -13,7 +13,7 @@ public class BattleControl
     // Start is called before the first frame update
     public BattleControl(NPC enemy)
     {
-       //pokemonList = NPC.getPokemon();
+       pokemonList = enemy.getPokemon();
     }
     public BattleControl(Pokemon p, Trainer t)
     {

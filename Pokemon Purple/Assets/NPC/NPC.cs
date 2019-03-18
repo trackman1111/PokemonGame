@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     public Dialogue dialogue;
+    public PokemonList pokemonList;
     public DialogueController dialogueController;
     public Movement movement;
     public bool isTrainer;
@@ -12,16 +13,12 @@ public class NPC : MonoBehaviour
     private Collider2D colliderTwoD;
     public GameObject optionsMenuController;
     private PokemonData pokeData;
-    public GameObject dcan;
+    private List<Pokemon> actualPokemonList = new List<Pokemon>();
     private string pokeName;
     private bool isFinished;
     public void triggerDialogue()
     {
-        dialogueController.StartDialogue(dialogue, sender: this);
-        if ( isTrainer == true )
-        {
-           // moveToBattle();
-        }
+        dialogueController.StartDialogue(dialogue, sender: this, isTrainer);
         
 
     }
@@ -32,6 +29,10 @@ public class NPC : MonoBehaviour
         canMan = optionsMenuController.GetComponent<CanvasManager>();
         pokeData = new PokemonData();
         isFinished = false;
+        foreach (string names in pokemonList.pokemon)
+        {
+            actualPokemonList.Add(new Pokemon(names));
+        }
     }
 
     public void Update()
@@ -59,13 +60,17 @@ public class NPC : MonoBehaviour
     }
     public Pokemon firstPokemon()
     {
-        pokeName = pokeData.getWildPokemon();
-        return new Pokemon(pokeName);
+        return actualPokemonList[0];
+        //return new Pokemon(pokeName);
         print("movetobattle");
     }
     public void setFinished(bool given)
     {
         isFinished = given;
+    }
+    public List<Pokemon> getPokemon()
+    {
+        return actualPokemonList;
     }
 }
 
