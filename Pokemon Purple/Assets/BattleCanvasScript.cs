@@ -15,7 +15,6 @@ public class BattleCanvasScript : MonoBehaviour
     public Sprite mudk;
     public Sprite mars;
     public Sprite swam;
-
     public Sprite pooc;
     public Sprite migh;
     public Sprite zigz;
@@ -182,6 +181,8 @@ public class BattleCanvasScript : MonoBehaviour
     private int cursor;
     private int numShakes;
     public string ballType;
+    public string currMove;
+    public bool canMove;
 
     // Start is called before the first frame update
     void Start()
@@ -196,6 +197,8 @@ public class BattleCanvasScript : MonoBehaviour
         ballType = "";
         cursor = 1;
         numShakes = 0;
+        currMove = "";
+        canMove = true;
     }
 
     // Update is called once per frame
@@ -211,18 +214,10 @@ public class BattleCanvasScript : MonoBehaviour
         allyCurrHealth.text = ally.currHealth + "";
         allyMaxHealth.text = ally.health + "";
         enemyHealth.text = enemy.currHealth + "/" + enemy.health;
-        titleText.text = "What will \n" + ally.name + " do?";
+        titleText.text = getTitleText();
 
         allyImage.sprite = getImage(ally.name);
-
-        if (ballType.Equals(""))
-        {
-            enemyImage.sprite = getImage(enemy.name);
-        }
-        else
-        {
-            enemyImage.sprite = pokeballSprite;
-        }
+        enemyImage.sprite = getEnemyImage(ballType);
     }
 
     void Update()
@@ -230,24 +225,24 @@ public class BattleCanvasScript : MonoBehaviour
         setArrow();
         setTexts();
 
-        if ( Input.GetKeyDown(KeyCode.RightArrow) && !bag.activeSelf && !pokemon.activeSelf && (cursor == 1 || cursor == 3))
+        if (canMove && Input.GetKeyDown(KeyCode.RightArrow) && !bag.activeSelf && !pokemon.activeSelf && (cursor == 1 || cursor == 3))
         {
             cursor++;
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && !bag.activeSelf && !pokemon.activeSelf && (cursor == 2 || cursor == 4))
+        if (canMove && Input.GetKeyDown(KeyCode.LeftArrow) && !bag.activeSelf && !pokemon.activeSelf && (cursor == 2 || cursor == 4))
         {
             cursor--;
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && !bag.activeSelf && !pokemon.activeSelf && cursor > 2)
+        if (canMove && Input.GetKeyDown(KeyCode.UpArrow) && !bag.activeSelf && !pokemon.activeSelf && cursor > 2)
         {
-            cursor-=2;
+            cursor -= 2;
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow) && !bag.activeSelf && !pokemon.activeSelf && cursor < 3)
+        if (canMove && Input.GetKeyDown(KeyCode.DownArrow) && !bag.activeSelf && !pokemon.activeSelf && cursor < 3)
         {
-            cursor+=2;
+            cursor += 2;
         }
 
-        if (Input.GetKeyDown(KeyCode.RightShift))
+        if (canMove && Input.GetKeyDown(KeyCode.RightShift))
         {
             if (cursor == 1)
             {
@@ -267,7 +262,7 @@ public class BattleCanvasScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && (fightButtonText.text.Equals(ally.moveOne) || bagButtonText.text.Equals(ally.moveTwo)))
+        if ( canMove && Input.GetKeyDown(KeyCode.Escape) && (fightButtonText.text.Equals(ally.moveOne) || bagButtonText.text.Equals(ally.moveTwo)))
         {
             cursor = 1;
             fightButtonText.text = "-> FIGHT";
@@ -297,12 +292,9 @@ public class BattleCanvasScript : MonoBehaviour
         }
         else
         {
-            bc.applyMove(ally.moveOne);
-
-            fightButtonText.text = "-> FIGHT";
-            runButtonText.text = "RUN";
-            bagButtonText.text = "BAG";
-            pokemonButtonText.text = "POKEMON";
+            currMove = ally.moveOne;
+            canMove = false;
+            Invoke("useMoveOne", 2);
         }
     }
 
@@ -316,13 +308,9 @@ public class BattleCanvasScript : MonoBehaviour
         }
         else
         {
-            bc.applyMove(ally.moveTwo);
-
-            cursor = 1;
-            fightButtonText.text = "-> FIGHT";
-            runButtonText.text = "RUN";
-            bagButtonText.text = "BAG";
-            pokemonButtonText.text = "POKEMON";
+            currMove = ally.moveTwo;
+            canMove = false;
+            Invoke("useMoveTwo", 2);
         }
     }
 
@@ -336,13 +324,9 @@ public class BattleCanvasScript : MonoBehaviour
         }
         else
         {
-            bc.applyMove(ally.moveThree);
-
-            cursor = 1;
-            fightButtonText.text = "-> FIGHT";
-            runButtonText.text = "RUN";
-            bagButtonText.text = "BAG";
-            pokemonButtonText.text = "POKEMON";
+            currMove = ally.moveThree;
+            canMove = false;
+            Invoke("useMoveThree", 2);
         }
     }
 
@@ -356,18 +340,15 @@ public class BattleCanvasScript : MonoBehaviour
         }
         else
         {
-            bc.applyMove(ally.moveFour);
-
-            cursor = 1;
-            fightButtonText.text = "-> FIGHT";
-            runButtonText.text = "RUN";
-            bagButtonText.text = "BAG";
-            pokemonButtonText.text = "POKEMON";
+            currMove = ally.moveFour;
+            canMove = false;
+            Invoke("useMoveFour", 2);
         }
     }
 
     public void exitBattle()
     {
+        ballType = "";
         battle.SetActive(false);
         pokemon.SetActive(false);
         bag.SetActive(false);
@@ -375,13 +356,79 @@ public class BattleCanvasScript : MonoBehaviour
         FindObjectOfType<Movement>().setStasis(false);
     }
 
+    void useMoveOne()
+    {
+        bc.applyMove(ally.moveOne);
+        currMove = "";
+        canMove = true;
+        changeBackText();
+    }
+    void useMoveTwo()
+    {
+        bc.applyMove(ally.moveTwo);
+        currMove = "";
+        canMove = true;
+        changeBackText();
+    }
+    void useMoveThree()
+    {
+        bc.applyMove(ally.moveThree);
+        currMove = "";
+        canMove = true;
+        changeBackText();
+    }
+    void useMoveFour()
+    {
+        bc.applyMove(ally.moveFour);
+        currMove = "";
+        canMove = true;
+        changeBackText();
+    }
+
+    string getTitleText()
+    {
+        if (currMove.Equals(ally.moveOne))
+        {
+            return ally.name + " used " + ally.moveOne + "!";
+        }
+        else if (currMove.Equals(ally.moveTwo))
+        {
+            return ally.name + " used " + ally.moveTwo + "!";
+        }
+        else if (currMove.Equals(ally.moveThree))
+        {
+            return ally.name + " used " + ally.moveThree + "!";
+        }
+        else if (currMove.Equals(ally.moveFour))
+        {
+            return ally.name + " used " + ally.moveFour + "!";
+        }
+        else
+        {
+            return "What will " + ally.name + " do?";
+        }
+    }
+
+    void changeBackText()
+    {
+        cursor = 1;
+        fightButtonText.text = "-> FIGHT";
+        runButtonText.text = "RUN";
+        bagButtonText.text = "BAG";
+        pokemonButtonText.text = "POKEMON";
+    }
+
+
     public void startBattle(Pokemon poke)
     {
         bc = new BattleControl(poke, t);
     }
 
+
+
     public void catchPokemon(string ballType)
     {
+        canMove = false;
         this.ballType = ballType;
         print(ballType);
         Invoke("goodShake", 1);
@@ -400,28 +447,49 @@ public class BattleCanvasScript : MonoBehaviour
     public void badShake()
     {
         // shake animation;
-        numShakes++;
-        print(numShakes);
+        shake();
         if (numShakes == 3)
         {
             numShakes = 0;
             print("The " + enemy.name + " broke free!");
             ballType = "";
+            canMove = true;
         }
     }
 
     public void goodShake()
     {
         // shake animation;
-        numShakes++;
-        print(numShakes);
+        shake();
         if (numShakes == 3)
         {
             numShakes = 0;
             t.addPokemon(enemy);
             print("The " + enemy.name + " was Caught!");
             Invoke("exitBattle", 3);
+            canMove = true;
         }
+    }
+
+    public void shake()
+    {
+        numShakes++;
+        print(numShakes);
+
+        Invoke("rotateLeft", 0.25f);
+        Invoke("rotateRight", 0.35f);
+        Invoke("rotateRight", 0.55f);
+        Invoke("rotateLeft", 0.7f);
+    }
+
+    void rotateLeft()
+    {
+        enemyImage.transform.Rotate(new Vector3(0, 0, 20));
+    }
+
+    void rotateRight()
+    {
+        enemyImage.transform.Rotate(new Vector3(0, 0, -20));
     }
 
     public void setArrow()
@@ -491,7 +559,7 @@ public class BattleCanvasScript : MonoBehaviour
         }
     }
 
-    public Sprite getItemImage(string item)
+    public Sprite getEnemyImage(string item)
     {
         if (item.Equals("Pokeball"))
         {
@@ -505,9 +573,13 @@ public class BattleCanvasScript : MonoBehaviour
         {
             return ultraBallSprite;
         }
-        else 
+        else if (item.Equals("Master Ball"))
         {
             return masterBallSprite;
+        }
+        else
+        {
+            return getImage(enemy.name);
         }
     }
 
