@@ -102,7 +102,7 @@ public class CanvasManager : MonoBehaviour
     }
     public void startBattle( Pokemon wildPokemon )
     {
-        if ( t.pokemon[0] != null )
+        if (t.pokemon[0] != null)
         {
             battleCanvas.startBattle(wildPokemon);
             FindObjectOfType<Movement>().setStasis(true);
@@ -110,12 +110,6 @@ public class CanvasManager : MonoBehaviour
             inBattle = true;
             iterations = 1;
             battleCanvas.setEnemy(wildPokemon);
-            // 
-            Pokemon temp = t.pokemon[0];
-            print(temp.moveOne);
-            print(temp.moveTwo);
-            print(temp.moveThree);
-            print(temp.moveFour);
         }
         else
         {
@@ -126,7 +120,7 @@ public class CanvasManager : MonoBehaviour
     {
         if (t.pokemon[0] != null)
         {
-            battleControl = new BattleControl(enemy);
+            battleCanvas.startBattle(enemy);
             FindObjectOfType<Movement>().setStasis(true);
             fadeScreen();
             inBattle = true;

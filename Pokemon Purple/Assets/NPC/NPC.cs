@@ -55,14 +55,12 @@ public class NPC : MonoBehaviour
     }
     public void moveToBattle()
     {
-        canMan.startBattle(firstPokemon());
-        print("move to battle");
+        canMan.startBattle(this);
     }
     public Pokemon firstPokemon()
     {
         return actualPokemonList[0];
         //return new Pokemon(pokeName);
-        print("movetobattle");
     }
     public void setFinished(bool given)
     {

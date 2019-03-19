@@ -11,9 +11,10 @@ public class BattleControl
     public BattleCanvasScript battleCanvas;
     public PokemonData pokeData = new PokemonData();
     // Start is called before the first frame update
-    public BattleControl(NPC enemy)
+    public BattleControl(NPC enemy, Trainer t)
     {
        pokemonList = enemy.getPokemon();
+        this.t = t;
     }
     public BattleControl(Pokemon p, Trainer t)
     {

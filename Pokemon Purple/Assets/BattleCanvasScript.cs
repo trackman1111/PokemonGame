@@ -183,6 +183,7 @@ public class BattleCanvasScript : MonoBehaviour
     public string ballType;
     public string currMove;
     public bool canMove;
+    public bool isTrainer;
 
     // Start is called before the first frame update
     void Start()
@@ -422,29 +423,55 @@ public class BattleCanvasScript : MonoBehaviour
     public void startBattle(Pokemon poke)
     {
         bc = new BattleControl(poke, t);
+        isTrainer = false;
     }
 
-
+    public void startBattle(NPC enemyTrainer)
+    {
+        bc = new BattleControl(enemyTrainer, t);
+        isTrainer = true;
+        enemy = enemyTrainer.firstPokemon();
+    }
 
     public void catchPokemon(string ballType)
     {
-        canMove = false;
-        this.ballType = ballType;
-        print(ballType);
-        Invoke("goodShake", 1);
-        Invoke("goodShake", 2);
-        Invoke("goodShake", 3);
-        changeBackText();
+        print(isTrainer.ToString());
+
+        if (isTrainer == false)
+        {
+            canMove = false;
+            this.ballType = ballType;
+            print(ballType);
+            Invoke("goodShake", 1);
+            Invoke("goodShake", 2);
+            Invoke("goodShake", 3);
+            changeBackText();
+        }
+        else
+        {
+            t.addItem(ballType);
+            print("You cant catch another trainer's pokemon!");
+        }
     }
 
     public void badThrow(string ballType)
     {
-        canMove = false;
-        this.ballType = ballType;
-        Invoke("badShake", 1);
-        Invoke("badShake", 2);
-        Invoke("badShake", 3);
-        changeBackText();
+        print(isTrainer.ToString());
+
+        if (isTrainer == false)
+        {
+            canMove = false;
+            this.ballType = ballType;
+            Invoke("badShake", 1);
+            Invoke("badShake", 2);
+            Invoke("badShake", 3);
+            changeBackText();
+        }
+        else
+        {
+            t.addItem(ballType);
+            print("Let me drive da boat");
+        }
     }
 
     public void badShake()
