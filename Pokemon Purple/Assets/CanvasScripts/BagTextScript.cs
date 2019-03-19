@@ -172,11 +172,7 @@ public class BagTextScript : MonoBehaviour
         {
             if ( battleCanvas.activeSelf )
             {
-                bag.Remove(item);
                 useBall("Pokeball");
-                bagCanvas.SetActive(false);
-
-                print("You threw a " + item + "!");
             }
             else
             {
@@ -187,11 +183,7 @@ public class BagTextScript : MonoBehaviour
         {
             if (battleCanvas.activeSelf)
             {
-                bag.Remove(item);
-                bagCanvas.SetActive(false);
-
                 useBall("Great Ball");
-                print("You threw a " + item + "!");
             }
             else
             {
@@ -202,11 +194,7 @@ public class BagTextScript : MonoBehaviour
         {
             if (battleCanvas.activeSelf)
             {
-                bag.Remove(item);
-                bagCanvas.SetActive(false);
-
                 useBall("Ultra Ball");
-                print("You threw a " + item + "!");
             }
             else
             {
@@ -217,11 +205,7 @@ public class BagTextScript : MonoBehaviour
         {
             if (battleCanvas.activeSelf)
             {
-                bag.Remove(item);
-                bagCanvas.SetActive(false);
-
                 useBall("Master Ball");
-                print("You threw a " + item + "!");
             }
             else
             {
@@ -301,54 +285,67 @@ public class BagTextScript : MonoBehaviour
 
     public void useBall(string type)
     {
-        int randoNum = 100;
 
-        System.Random rnd = new System.Random();
-       
-
-
-        if (type.Equals("Pokeball"))
+        if (bcScript.isTrainer)
         {
-            randoNum = rnd.Next(1 ,100);
-
-            if ( randoNum <= 50 )
-            {
-                bcScript.catchPokemon("Pokeball");
-            }
-            else
-            {
-                bcScript.badThrow("Pokeball");
-            }
-        }
-        else if (type.Equals("Great Ball"))
-        {;
-            randoNum = rnd.Next(1, 100);
-
-            if (randoNum <= 75)
-            {
-                bcScript.catchPokemon("Great Ball");
-            }
-            else
-            {
-                bcScript.badThrow("Great Ball");
-            }
-        }
-        else if (type.Equals("Ultra Ball"))
-        {
-            randoNum = rnd.Next(1, 100);
-
-            if (randoNum <= 90)
-            {
-                bcScript.catchPokemon("Ultra Ball");
-            }
-            else
-            {
-                bcScript.badThrow("Ultra Ball");
-            }
+            print("You cannot catch another trainer's pokemon!");
         }
         else
         {
-            bcScript.catchPokemon("Master Ball");
+            print("You threw a " + type + "!");
+            bagCanvas.SetActive(false);
+            bag.Remove(type);
+
+
+            int randoNum = 100;
+
+            System.Random rnd = new System.Random();
+
+
+            if (type.Equals("Pokeball"))
+            {
+                randoNum = rnd.Next(1, 100);
+
+                if (randoNum <= 50)
+                {
+                    bcScript.catchPokemon("Pokeball");
+                }
+                else
+                {
+                    bcScript.badThrow("Pokeball");
+                }
+            }
+            else if (type.Equals("Great Ball"))
+            {
+                ;
+                randoNum = rnd.Next(1, 100);
+
+                if (randoNum <= 75)
+                {
+                    bcScript.catchPokemon("Great Ball");
+                }
+                else
+                {
+                    bcScript.badThrow("Great Ball");
+                }
+            }
+            else if (type.Equals("Ultra Ball"))
+            {
+                randoNum = rnd.Next(1, 100);
+
+                if (randoNum <= 90)
+                {
+                    bcScript.catchPokemon("Ultra Ball");
+                }
+                else
+                {
+                    bcScript.badThrow("Ultra Ball");
+                }
+            }
+            else
+            {
+                bcScript.catchPokemon("Master Ball");
+            }
         }
     }
 

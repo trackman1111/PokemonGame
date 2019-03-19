@@ -337,7 +337,15 @@ public class BattleCanvasScript : MonoBehaviour
     {
         if (runButtonText.text.Equals("-> RUN"))
         {
-            exitBattle();
+            if (!isTrainer)
+            {
+                exitBattle();
+            }
+            else
+            {
+                print("You cannot run from a trainer!");
+            }
+
         }
         else
         {
@@ -435,43 +443,23 @@ public class BattleCanvasScript : MonoBehaviour
 
     public void catchPokemon(string ballType)
     {
-        print(isTrainer.ToString());
-
-        if (isTrainer == false)
-        {
-            canMove = false;
-            this.ballType = ballType;
-            print(ballType);
-            Invoke("goodShake", 1);
-            Invoke("goodShake", 2);
-            Invoke("goodShake", 3);
-            changeBackText();
-        }
-        else
-        {
-            t.addItem(ballType);
-            print("You cant catch another trainer's pokemon!");
-        }
+        canMove = false;
+        this.ballType = ballType;
+        print(ballType);
+        Invoke("goodShake", 1);
+        Invoke("goodShake", 2);
+        Invoke("goodShake", 3);
+        changeBackText();
     }
 
     public void badThrow(string ballType)
     {
-        print(isTrainer.ToString());
-
-        if (isTrainer == false)
-        {
-            canMove = false;
-            this.ballType = ballType;
-            Invoke("badShake", 1);
-            Invoke("badShake", 2);
-            Invoke("badShake", 3);
-            changeBackText();
-        }
-        else
-        {
-            t.addItem(ballType);
-            print("Let me drive da boat");
-        }
+        canMove = false;
+        this.ballType = ballType;
+        Invoke("badShake", 1);
+        Invoke("badShake", 2);
+        Invoke("badShake", 3);
+        changeBackText();
     }
 
     public void badShake()
