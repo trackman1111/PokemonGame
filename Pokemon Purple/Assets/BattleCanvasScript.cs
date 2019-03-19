@@ -434,14 +434,17 @@ public class BattleCanvasScript : MonoBehaviour
         Invoke("goodShake", 1);
         Invoke("goodShake", 2);
         Invoke("goodShake", 3);
+        changeBackText();
     }
 
     public void badThrow(string ballType)
     {
+        canMove = false;
         this.ballType = ballType;
         Invoke("badShake", 1);
         Invoke("badShake", 2);
         Invoke("badShake", 3);
+        changeBackText();
     }
 
     public void badShake()
