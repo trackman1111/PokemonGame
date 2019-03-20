@@ -3576,9 +3576,9 @@ MonoBehaviour:
 '
   pokemonList:
     pokemon:
-    - Rayquaza
-    - Kyogre
-    - Groudon
+    - Zigzagoon
+    - Lombre
+    - Lotad
   dialogueController: {fileID: 1993070650}
   movement: {fileID: 0}
   isTrainer: 1

@@ -10,6 +10,7 @@ public class BattleControl
     private int currEnemyPokemon = 0;
     private BattleCanvasScript battleCanvas;
     public PokemonData pokeData = new PokemonData();
+    private int counter;
     // Start is called before the first frame update
     public BattleControl(NPC enemy, Trainer t, BattleCanvasScript b)
     {
@@ -55,17 +56,21 @@ public class BattleControl
                 ourTurnFighting(move);
             }
             // next line is the start of the enemy attacking
-            enemyTurnFight();
+            if(pokemonList[currEnemyPokemon].health > 0)
+            {
+                enemyTurnFight();
+            }
         }
 
     }
     public void swapPokemon()
-    {
-        if (currEnemyPokemon + 1 > pokemonList.Count)
+    { 
+        if (currEnemyPokemon + 1 < pokemonList.Count)
         {
             pokemonList[currEnemyPokemon] = pokemonList[currEnemyPokemon + 1];
             battleCanvas.setEnemy(pokemonList[currEnemyPokemon]);
             currEnemyPokemon++;
+   
         }
         else
         {
@@ -74,7 +79,7 @@ public class BattleControl
     }
     public void faint()
     {
-
+        
     }
     public void ourTurnFighting(string q)
     {
@@ -86,7 +91,7 @@ public class BattleControl
         }
         else
         {
-            pokemonList[currEnemyPokemon].health = 0;
+            pokemonList[currEnemyPokemon].currHealth = 0;
             swapPokemon();
         }
         t.pokemon[0].defence = t.pokemon[0].defence + (int)temp[1];
