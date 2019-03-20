@@ -430,13 +430,13 @@ public class BattleCanvasScript : MonoBehaviour
 
     public void startBattle(Pokemon poke)
     {
-        bc = new BattleControl(poke, t);
+        bc = new BattleControl(poke, t, this);
         isTrainer = false;
     }
 
     public void startBattle(NPC enemyTrainer)
     {
-        bc = new BattleControl(enemyTrainer, t);
+        bc = new BattleControl(enemyTrainer, t, this);
         isTrainer = true;
         enemy = enemyTrainer.firstPokemon();
     }
