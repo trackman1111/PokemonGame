@@ -23,6 +23,9 @@ public class BagTextScript : MonoBehaviour
     public Sprite potion;
     public Sprite bike;
     public Sprite revive;
+    public Sprite superPotion;
+    public Sprite hyperPotion;
+    public Sprite maxPotion;
 
     public GameObject bagCanvas;
     public GameObject battleCanvas;
@@ -81,7 +84,17 @@ public class BagTextScript : MonoBehaviour
                     {
                         ans += "   " + keys[i] + " \t\t\tX" + items[keys[i]] + "\n";
                     }
-
+                }
+                else if (keys[i].Equals("Max Potion"))
+                {
+                    if (i == cursor)
+                    {
+                        ans += "->" + keys[i] + " \t\tX" + items[keys[i]] + "\n"; ;
+                    }
+                    else
+                    {
+                        ans += "   " + keys[i] + " \t\tX" + items[keys[i]] + "\n";
+                    }
                 }
                 else if (keys[i].Length <= 10 )
                 {
@@ -141,6 +154,18 @@ public class BagTextScript : MonoBehaviour
             else if (keys[cursor].Equals("Potion"))
             {
                 picture.sprite = potion;
+            }
+            else if (keys[cursor].Equals("Super Potion"))
+            {
+                picture.sprite = superPotion;
+            }
+            else if (keys[cursor].Equals("Hyper Potion"))
+            {
+                picture.sprite = superPotion;
+            }
+            else if (keys[cursor].Equals("Max Potion"))
+            {
+                picture.sprite = maxPotion;
             }
             else if (keys[cursor].Equals("Revive"))
             {
@@ -240,8 +265,39 @@ public class BagTextScript : MonoBehaviour
             if (pokemonCanvas.activeSelf || battleCanvas.activeSelf)
             {
                 usePotion("Potion");
-                bagCanvas.SetActive(false);
-                bag.Remove(item);
+            }
+            else
+            {
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Super Potion"))
+        {
+            if (pokemonCanvas.activeSelf || battleCanvas.activeSelf)
+            {
+                usePotion("Super Potion");
+            }
+            else
+            {
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Hyper Potion"))
+        {
+            if (pokemonCanvas.activeSelf || battleCanvas.activeSelf)
+            {
+                usePotion("Hyper Potion");
+            }
+            else
+            {
+                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
+            }
+        }
+        else if (item.Equals("Max Potion"))
+        {
+            if (pokemonCanvas.activeSelf || battleCanvas.activeSelf)
+            {
+                usePotion("Max Potion");
             }
             else
             {
@@ -265,21 +321,15 @@ public class BagTextScript : MonoBehaviour
 
     public void usePotion(string type)
     {
-        if (type.Equals("Potion"))
+        if (trainer.pokemon[0].currHealth != trainer.pokemon[0].health)
         {
-         // trainer.pokemon[0].heal(20);
-        }
-        else if (type.Equals("Super Potion"))
-        {
-            // trainer.pokemon[0].heal(50);
-        }
-        else if (type.Equals("Hyper Potion"))
-        {
-            // trainer.pokemon[0].heal(100);
+            bcScript.usePotion(type);
+            bagCanvas.SetActive(false);
+            bag.Remove(type);
         }
         else
         {
-            trainer.pokemon[0].heal();
+            print("Your Pokemon is already at full health!");
         }
     }
 
@@ -317,7 +367,6 @@ public class BagTextScript : MonoBehaviour
             }
             else if (type.Equals("Great Ball"))
             {
-                ;
                 randoNum = rnd.Next(1, 100);
 
                 if (randoNum <= 75)
