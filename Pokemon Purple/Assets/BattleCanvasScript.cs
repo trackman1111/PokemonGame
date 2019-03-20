@@ -396,7 +396,11 @@ public class BattleCanvasScript : MonoBehaviour
 
     string getTitleText()
     {
-        if (currMove.Equals(ally.moveOne))
+        if ( !ballType.Equals("") )
+        {
+            return "You threw a " + ballType + "!";
+        }
+        else if (currMove.Equals(ally.moveOne))
         {
             return ally.name + " used " + ally.moveOne + "!";
         }
@@ -441,6 +445,30 @@ public class BattleCanvasScript : MonoBehaviour
         enemy = enemyTrainer.firstPokemon();
     }
 
+
+    public void usePotion(string type)
+    {
+        if (type.Equals("Potion"))
+        {
+            t.pokemon[0].addHealth(20);
+        }
+        else if (type.Equals("Super Potion"))
+        {
+            t.pokemon[0].addHealth(50);
+        }
+        else if (type.Equals("Hyper Potion"))
+        {
+            t.pokemon[0].addHealth(100);
+        }
+        else
+        {
+            t.pokemon[0].heal();
+        }
+
+        bc.changeTurn();
+    }
+
+
     public void catchPokemon(string ballType)
     {
         canMove = false;
@@ -450,6 +478,8 @@ public class BattleCanvasScript : MonoBehaviour
         Invoke("goodShake", 2);
         Invoke("goodShake", 3);
         changeBackText();
+
+        bc.changeTurn();
     }
 
     public void badThrow(string ballType)
@@ -460,6 +490,8 @@ public class BattleCanvasScript : MonoBehaviour
         Invoke("badShake", 2);
         Invoke("badShake", 3);
         changeBackText();
+
+                bc.changeTurn();
     }
 
     public void badShake()

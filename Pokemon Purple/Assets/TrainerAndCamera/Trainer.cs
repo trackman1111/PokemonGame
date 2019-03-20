@@ -22,6 +22,10 @@ public class Trainer : MonoBehaviour
         bag.Add("Ultra Ball");
         bag.Add("Great Ball");
         bag.Add("Potion");
+        bag.Add("Super Potion");
+        bag.Add("Hyper Potion");
+        bag.Add("Max Potion");
+        bag.Add("Potion");
         bag.Add("Revive");
         bag.Add("Master Ball");
         bag.Add("Master Ball");
@@ -105,6 +109,18 @@ public class Trainer : MonoBehaviour
         else if(s.Equals("Potion"))
         {
             return "A potion allows a trainer to heal a pokemon for 20hp";
+        }
+        else if (s.Equals("Super Potion"))
+        {
+            return "A potion allows a trainer to heal a pokemon for 50hp";
+        }
+        else if (s.Equals("Hyper Potion"))
+        {
+            return "A potion allows a trainer to heal a pokemon for 100hp";
+        }
+        else if (s.Equals("Max Potion"))
+        {
+            return "A potion allows a trainer to heal a pokemon to max heal";
         }
         else if (s.Equals("Revive"))
         {
