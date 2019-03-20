@@ -54,19 +54,19 @@ public class PokemonData
 
         pokemon.Add("Swampert", new double[] { 100.0, 110.0, 90.0, 85.0, 36.0, 0.0, 0, 150.0 });
 
-        pokemon.Add("Poochyena", new double[] { 35.0, 55.0, 35.0, 30.0, 4.0, 0.0, 0.1, 18.0 });
+        pokemon.Add("Poochyena", new double[] { 35.0, 55.0, 35.0, 30.0, 4.0, 0.0, 0.9, 18.0 });
 
-        pokemon.Add("Mightyena", new double[] { 70.0, 90.0, 70.0, 60.0, 18.0, 0.0, 0.05, 150.0 });
+        pokemon.Add("Mightyena", new double[] { 70.0, 90.0, 70.0, 60.0, 18.0, 0.0, 0.3, 150.0 });
 
-        pokemon.Add("Zigzagoon", new double[] { 38.0, 30.0, 41.0, 30.0, 3.0, 0.0, 0.2, 20.0 });
+        pokemon.Add("Zigzagoon", new double[] { 38.0, 30.0, 41.0, 30.0, 3.0, 0.0, 1.0, 20.0 });
 
-        pokemon.Add("Linoone", new double[] { 78.0, 70.0, 61.0, 50.0, 20.0, 0.0, 0.1, 150.0 });
+        pokemon.Add("Linoone", new double[] { 78.0, 70.0, 61.0, 50.0, 20.0, 0.0, 0.4, 150.0 });
 
-        pokemon.Add("Ralts", new double[] { 28.0, 25.0, 25.0, 45.0, 3.0, 0.0, .01, 20.0 });
+        pokemon.Add("Ralts", new double[] { 28.0, 25.0, 25.0, 45.0, 3.0, 0.0, 0.3, 20.0 });
 
-        pokemon.Add("Kirlia", new double[] { 38.0, 35.0, 35.0, 65.0, 20.0, 0.0, .015, 30.0 });
+        pokemon.Add("Kirlia", new double[] { 38.0, 35.0, 35.0, 65.0, 20.0, 0.0, 0.1, 30.0 });
 
-        pokemon.Add("Gardevoir", new double[] { 68.0, 65.0, 65.0, 125.0, 30.0, 0.0, .005, 150.0 });
+        pokemon.Add("Gardevoir", new double[] { 68.0, 65.0, 65.0, 125.0, 30.0, 0.0, .05, 150.0 });
 
         pokemon.Add("Aron", new double[] { 50.0, 70.0, 100.0, 40.0, 9.0, 0.0, 0, 32.0 });
 
@@ -74,21 +74,21 @@ public class PokemonData
 
         pokemon.Add("Aggron", new double[] { 70.0, 110.0, 180.0, 60.0, 42.0, 0.0, 0, 150.0 });
 
-        pokemon.Add("Lotad", new double[] { 40.0, 30.0, 30.0, 40.0, 6.0, 0.0, .02, 14.0 });
+        pokemon.Add("Lotad", new double[] { 40.0, 30.0, 30.0, 40.0, 6.0, 0.0, .2, 14.0 });
 
-        pokemon.Add("Lombre", new double[] { 60.0, 50.0, 50.0, 60.0, 14.0, 0.0, .002, 26.0 });
+        pokemon.Add("Lombre", new double[] { 60.0, 50.0, 50.0, 60.0, 14.0, 0.0, .05, 26.0 });
 
-        pokemon.Add("Ludicolo", new double[] { 80.0, 70.0, 70.0, 90.0, 26.0, 0.0, .002, 150.0 });
+        pokemon.Add("Ludicolo", new double[] { 80.0, 70.0, 70.0, 90.0, 26.0, 0.0, .02, 150.0 });
 
-        pokemon.Add("Trapinch", new double[] { 45.0, 100.0, 45.0, 45.0, 10.0, 0.0, .08, 35.0 });
+        pokemon.Add("Trapinch", new double[] { 45.0, 100.0, 45.0, 45.0, 10.0, 0.0, .1, 35.0 });
 
-        pokemon.Add("Vibrava", new double[] { 50.0, 70.0, 50.0, 50.0, 35.0, 0.0, .03, 45.0 });
+        pokemon.Add("Vibrava", new double[] { 50.0, 70.0, 50.0, 50.0, 35.0, 0.0, .05, 45.0 });
 
-        pokemon.Add("Flygon", new double[] { 80.0, 100.0, 80.0, 80.0, 45.0, 0.0, .001, 150.0 });
+        pokemon.Add("Flygon", new double[] { 80.0, 100.0, 80.0, 80.0, 45.0, 0.0, .01, 150.0 });
 
-        pokemon.Add("Bagon", new double[] { 45.0, 75.0, 60.0, 40.0, 15.0, 0.0, .01, 30.0 });
+        pokemon.Add("Bagon", new double[] { 45.0, 75.0, 60.0, 40.0, 15.0, 0.0, .05, 30.0 });
 
-        pokemon.Add("Shelgon", new double[] { 65.0, 95.0, 100.0, 60.0, 30.0, 0.0, .0001, 50.0 });
+        pokemon.Add("Shelgon", new double[] { 65.0, 95.0, 100.0, 60.0, 30.0, 0.0, .02, 50.0 });
 
         pokemon.Add("Salamence", new double[] { 95.0, 135.0, 80.0, 110.0, 50.0, 0.0, 0, 150.0 });
 

@@ -97,5 +97,4 @@ public class Pokemon
             currHealth = currHealth + healthAdded;
         }
     }
-
 }
