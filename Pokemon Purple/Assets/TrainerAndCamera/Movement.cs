@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            interpolationSpeed = 10F;
+            interpolationSpeed = 8F;
         }
         else
         {
@@ -76,14 +76,7 @@ public class Movement : MonoBehaviour
         {
             anim.enabled = true;
             KeyInput();
-            if (!Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                transform.position = Vector3.MoveTowards(transform.position, desiredPosition, interpolationSpeed * Time.deltaTime);
-            }
-            else
-            {
-                transform.position = Vector3.MoveTowards(transform.position, desiredPosition, interpolationSpeed * Time.deltaTime);
-            }
+            transform.position = Vector3.MoveTowards(transform.position, desiredPosition, interpolationSpeed * Time.deltaTime);
         }
         else
         {
