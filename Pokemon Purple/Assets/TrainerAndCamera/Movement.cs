@@ -192,5 +192,12 @@ public class Movement : MonoBehaviour
     {
         stasis = given;
     }
+    public void setPostition(Vector3 position)
+    {
+        desiredPosition = position;
+        previousPosition = position;
+        transform.position = position;
+        currDirection = 2;
+    }
 }
 

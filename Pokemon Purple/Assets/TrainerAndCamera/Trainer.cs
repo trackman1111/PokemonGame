@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,12 +9,14 @@ public class Trainer : MonoBehaviour
     // core 2d array for most of my methods. has 6 slots, 1 for each pokemon
     public Pokemon[] pokemon = new Pokemon[6];
     public ArrayList bag;
+    private Movement movement;
 
     public int cash;
 
     // Start is called before the first frame update
     void Start()
     {
+        movement = gameObject.GetComponent<Movement>();
         // adding all default items to bag array
         bag = new ArrayList();
 
@@ -47,7 +50,7 @@ public class Trainer : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.O))
         {
-            addPokemon(new Pokemon("Swampert"));
+            addPokemon(new Pokemon("Zigzagoon"));
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -134,6 +137,13 @@ public class Trainer : MonoBehaviour
         {
             return "Invalid item name";
         }
+    }
+
+    internal void reset()
+    {
+        movement.setPostition(new Vector3(-5.5f, 6,-1));
+        fullHealth();
+        print("You were sent back to pokecenter/all your pokemon were healed");
     }
 
 

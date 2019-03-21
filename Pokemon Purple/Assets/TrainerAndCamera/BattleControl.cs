@@ -8,12 +8,15 @@ public class BattleControl
     private bool yourTurn;
     private List<Pokemon> pokemonList = new List<Pokemon>();
     private int currEnemyPokemon = 0;
+    private NPC nPC;
+    private bool canBattle = true;
     private BattleCanvasScript battleCanvas;
     public PokemonData pokeData = new PokemonData();
     private int counter;
     // Start is called before the first frame update
     public BattleControl(NPC enemy, Trainer t, BattleCanvasScript b)
     {
+        nPC = enemy;
         pokemonList = enemy.getPokemon();
         battleCanvas = b;
         this.t = t;
@@ -41,9 +44,13 @@ public class BattleControl
 
         if (pokemonList[currEnemyPokemon].speed >= t.pokemon[0].speed)
         {
-            enemyTurnFight();
+            if (canBattle)
+            {
+                enemyTurnFight();
+            }
+
             // next line is the start of our pokemon attacking
-            if(temp[3] >= randomForAccuracy)
+            if(temp[3] >= randomForAccuracy && canBattle)
             {
                 ourTurnFighting(move);
             }
@@ -51,31 +58,35 @@ public class BattleControl
         }
         else 
         {
-            if(temp[3] >= randomForAccuracy)
+            if(temp[3] >= randomForAccuracy && canBattle)
             {
                 ourTurnFighting(move);
             }
             // next line is the start of the enemy attacking
-            if(pokemonList[currEnemyPokemon].health > 0)
+            if(pokemonList[currEnemyPokemon].health > 0 && canBattle)
             {
                 enemyTurnFight();
             }
         }
-
+        canBattle = true;
     }
     public void swapPokemon()
     { 
         if (currEnemyPokemon + 1 < pokemonList.Count)
         {
-            pokemonList[currEnemyPokemon] = pokemonList[currEnemyPokemon + 1];
-            battleCanvas.setEnemy(pokemonList[currEnemyPokemon]);
             currEnemyPokemon++;
+            battleCanvas.setEnemy(pokemonList[currEnemyPokemon]);
    
         }
         else
         {
+            if (nPC != null)
+            {
+                nPC.fullHealth();
+            }
             battleCanvas.exitBattle();
         }
+        canBattle = false;
     }
     public void faint()
     {
@@ -126,6 +137,12 @@ public class BattleControl
         else
         {
             t.pokemon[0].currHealth = 0;
+            if (nPC != null)
+            {
+                nPC.fullHealth();
+            }
+            t.reset();
+            canBattle = false;
             battleCanvas.exitBattle();
 
         }

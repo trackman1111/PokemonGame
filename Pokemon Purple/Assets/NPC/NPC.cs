@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -69,6 +70,15 @@ public class NPC : MonoBehaviour
     public List<Pokemon> getPokemon()
     {
         return actualPokemonList;
+    }
+
+    public void fullHealth()
+    {
+        print("Heyyy");
+       for (int i = 0; i < actualPokemonList.Count; i++)
+       {
+            actualPokemonList[i].heal(); 
+        }
     }
 }
 

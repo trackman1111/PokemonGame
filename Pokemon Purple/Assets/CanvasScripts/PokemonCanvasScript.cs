@@ -39,6 +39,8 @@ public class PokemonCanvasScript : MonoBehaviour
     public TextMeshProUGUI p6hp;
     public Image p6image;
 
+    public TextMeshProUGUI description;
+
     public GameObject pokePanel;
     public Trainer trainer;
 
@@ -401,13 +403,13 @@ public class PokemonCanvasScript : MonoBehaviour
             if (pokemon[1] != null)
             {
                 pressed = true;
-                print("Which two pokemon would you like to swap?");
+                description.text = ("Which two pokemon would you like to swap?");
 
-                print("Use 1-6 to highlight a pokemon, then press Right Shift to confirm selection");
+                description.text = ("Use 1-6 to highlight a pokemon, then press Right Shift to confirm selection");
             }
             else
             {
-                print("Not enough Pokemon to swap.");
+                description.text = ("Not enough Pokemon to swap.");
             }
         }
 
@@ -416,19 +418,19 @@ public class PokemonCanvasScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 pok1 = 1;
-                print(pokemon[pok1 - 1].name + " is highlighted");
+                description.text = pokemon[pok1 - 1].name + " is highlighted";
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 pok1 = 2;
-                print(pokemon[pok1 - 1].name + " is highlighted");
+                description.text = (pokemon[pok1 - 1].name + " is highlighted");
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 if (pokemon[2] != null)
                 {
                     pok1 = 3;
-                    print(pokemon[pok1 - 1].name + " is highlighted");
+                    description.text = (pokemon[pok1 - 1].name + " is highlighted");
                 }
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
@@ -436,7 +438,7 @@ public class PokemonCanvasScript : MonoBehaviour
                 if (pokemon[3] != null)
                 {
                     pok1 = 4;
-                    print(pokemon[pok1 - 1].name + " is highlighted");
+                    description.text = (pokemon[pok1 - 1].name + " is highlighted");
                 }
             }
             if (Input.GetKeyDown(KeyCode.Alpha5))
@@ -444,7 +446,7 @@ public class PokemonCanvasScript : MonoBehaviour
                 if (pokemon[4] != null)
                 {
                     pok1 = 5;
-                    print(pokemon[pok1 - 1].name + " is highlighted");
+                    description.text = (pokemon[pok1 - 1].name + " is highlighted");
                 }
             }
             if (Input.GetKeyDown(KeyCode.Alpha6))
@@ -452,7 +454,7 @@ public class PokemonCanvasScript : MonoBehaviour
                 if (pokemon[5] != null)
                 {
                     pok1 = 6;
-                    print(pokemon[pok1 - 1].name + " is highlighted");
+                    description.text = (pokemon[pok1 - 1].name + " is highlighted");
                 }
             }
 
@@ -461,10 +463,18 @@ public class PokemonCanvasScript : MonoBehaviour
 
                 if (pok1 != 0 && pokemon[pok1 - 1] != null)
                 {
-                    print(pokemon[pok1 - 1].name + " was selected. Select the pokemon you would like to swap " + pokemon[pok1 - 1].name + " with");
-                    firstPicked = true;
-                    pok2 = 0;
-                    pressed = false;
+                    if (pokemon[pok1 - 1].currHealth == 0)
+                    {
+                        description.text = ("You cannot swap a pokemon with no hp");
+                    }
+                    else
+                    {
+                        description.text = (pokemon[pok1 - 1].name + " was selected. Select the pokemon you would like to swap " + pokemon[pok1 - 1].name + " with");
+                        firstPicked = true;
+                        pok2 = 0;
+                        pressed = false;
+                    }
+
                 }
             }
         }
@@ -474,19 +484,19 @@ public class PokemonCanvasScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 pok2 = 1;
-                print(pokemon[pok2 - 1].name + " is highlighted");
+                description.text = (pokemon[pok2 - 1].name + " is highlighted");
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 pok2 = 2;
-                print(pokemon[pok2 - 1].name + " is highlighted");
+                description.text = (pokemon[pok2 - 1].name + " is highlighted");
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 if (pokemon[2] != null)
                 {
                     pok2 = 3;
-                    print(pokemon[pok2 - 1].name + " is highlighted");
+                    description.text = (pokemon[pok2 - 1].name + " is highlighted");
                 }
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
@@ -494,7 +504,7 @@ public class PokemonCanvasScript : MonoBehaviour
                 if (pokemon[3] != null)
                 {
                     pok2 = 4;
-                    print(pokemon[pok2 - 1].name + " is highlighted");
+                    description.text = (pokemon[pok2 - 1].name + " is highlighted");
                 }
             }
             if (Input.GetKeyDown(KeyCode.Alpha5))
@@ -502,7 +512,7 @@ public class PokemonCanvasScript : MonoBehaviour
                 if (pokemon[4] != null)
                 {
                     pok2 = 5;
-                    print(pokemon[pok2 - 1].name + " is highlighted");
+                    description.text = (pokemon[pok2 - 1].name + " is highlighted");
                 }
             }
             if (Input.GetKeyDown(KeyCode.Alpha6))
@@ -510,7 +520,7 @@ public class PokemonCanvasScript : MonoBehaviour
                 if (pokemon[5] != null)
                 {
                     pok2 = 6;
-                    print(pokemon[pok2 - 1].name + " is highlighted");
+                    description.text = (pokemon[pok2 - 1].name + " is highlighted");
                 }
             }
 
@@ -518,19 +528,28 @@ public class PokemonCanvasScript : MonoBehaviour
             {
                 if (pok2 != 0 && pokemon[pok2 - 1] != null)
                 {
-                    firstPicked = false;
-                    print(pokemon[pok2 - 1].name + " was selected");
-
-                    if (pok1 != pok2)
+                    if (pokemon[pok2 - 1].currHealth == 0)
                     {
-                        swapPokemon(pok1 - 1, pok2 - 1);
+                        description.text = ("You cannot swap a pokemon with no hp");
                     }
                     else
                     {
-                        print("Select two different pokemon to swap.");
+                        firstPicked = false;
+                        description.text = (pokemon[pok2 - 1].name + " was selected");
+
+
+                        if (pok1 != pok2)
+                        {
+                            swapPokemon(pok1 - 1, pok2 - 1);
+                        }
+                        else
+                        {
+                            description.text = ("Select two different pokemon to swap.");
+                        }
+                        pok1 = 0;
+                        pok2 = 0;
                     }
-                    pok1 = 0;
-                    pok2 = 0;
+
                 }
             }
         }
@@ -543,7 +562,7 @@ public class PokemonCanvasScript : MonoBehaviour
         pokemon[desiredSlot] = pokemon[movedPoke];
         pokemon[movedPoke] = temp;
 
-        print(pokemon[desiredSlot].name + " was swapped with " + pokemon[movedPoke].name);
+        description.text = "";
     }
 
 
