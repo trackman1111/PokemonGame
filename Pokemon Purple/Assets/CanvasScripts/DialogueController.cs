@@ -13,8 +13,6 @@ public class DialogueController : MonoBehaviour
     public NPC npc;
     private bool inDialogue;
     private bool isTrainer;
-
-    private GameObject jawnt;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +43,7 @@ public class DialogueController : MonoBehaviour
         Debug.Log("Starting convo with " + dialogue.name);
 
         nameText.text = dialogue.name;
-        
+
         sentence.Clear();
 
         foreach (string sentences in dialogue.sentences)
@@ -55,6 +53,27 @@ public class DialogueController : MonoBehaviour
 
         DisplayNextSentence();
     }
+    public void StartDialogue(Dialogue dialogue)
+    {
+        isTrainer = false;
+        inDialogue = true;
+        visibility.SetActive(true);
+        FindObjectOfType<Movement>().setStasis(true);
+        //animator.SetBool("IsOpen", true);
+        Debug.Log("Starting convo with " + dialogue.name);
+
+        nameText.text = dialogue.name;
+
+        sentence.Clear();
+
+        foreach (string sentences in dialogue.sentences)
+        {
+            sentence.Enqueue(sentences);
+        }
+
+        DisplayNextSentence();
+    }
+
     public void DisplayNextSentence()
     {
         if ( sentence.Count == 0)
