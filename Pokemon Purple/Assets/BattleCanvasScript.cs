@@ -457,7 +457,9 @@ public class BattleCanvasScript : MonoBehaviour
         {
             pokemon.SetActive(true);
             print( t.pokemon[0].name + " has feinted.");
-            print("Press I to select a new pokemon to swap with.");
+            print("Select a new pokemon to swap with.");
+            PokemonCanvasScript pcScript = pokemon.GetComponent<PokemonCanvasScript>();
+            pcScript.iDied();
         }
     }
 

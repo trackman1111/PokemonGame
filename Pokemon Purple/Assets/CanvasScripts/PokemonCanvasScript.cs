@@ -179,13 +179,15 @@ public class PokemonCanvasScript : MonoBehaviour
     public Sprite other;
 
     Pokemon[] pokemon;
+    public GameObject pokemonCanvas;
+
     int pok1;
     int pok2;
-
+    int revPoke;
     private bool pressed;
     private bool firstPicked;
     private bool secondPicked;
-
+    public bool revived;
 
     // Start is called before the first frame update
     void Start()
@@ -194,10 +196,10 @@ public class PokemonCanvasScript : MonoBehaviour
 
         pressed = false;
         firstPicked = false;
-
+        revived = true;
         pok1 = 0;
         pok2 = 0;
-
+        revPoke = 0;
 
         p1name.text = "";
         p1lvl.text =  "";
@@ -251,16 +253,16 @@ public class PokemonCanvasScript : MonoBehaviour
     void Update()
     {
         // if the canvas is open, check all this stuff. efficient
-        if ( pokePanel.activeSelf )
+        if (pokePanel.activeSelf)
         {
             pokemon = trainer.pokemon;
- 
+
             // FOR ALL OF THESE
             // if the name is "", then the pokemon doesnt exist, so i set all of the texts to "" and the image alpha to 0
             // if the pokemon does exist, sets all images and texts acordingly
 
 
-            if ( pokemon[0] == null )
+            if (pokemon[0] == null)
             {
                 p1name.text = "";
                 p1lvl.text = "";
@@ -282,7 +284,7 @@ public class PokemonCanvasScript : MonoBehaviour
                 p1image.sprite = getImage(pokemon[0].name);
             }
 
-            if (pokemon[1] == null )
+            if (pokemon[1] == null)
             {
                 p2name.text = "";
                 p2lvl.text = "";
@@ -397,15 +399,16 @@ public class PokemonCanvasScript : MonoBehaviour
             }
         }
 
+        // DONE SETTING TEXTS
+
+        // SWAP USING I
 
         if (Input.GetKeyDown(KeyCode.I))
         {
             if (pokemon[1] != null)
             {
                 pressed = true;
-                description.text = ("Which two pokemon would you like to swap?");
-
-                description.text = ("Use 1-6 to highlight a pokemon, then press Right Shift to confirm selection");
+                description.text = ("Use 1-6 to highlight a pokemon to swap, then press Right Shift to confirm selection");
             }
             else
             {
@@ -413,143 +416,237 @@ public class PokemonCanvasScript : MonoBehaviour
             }
         }
 
+
         if (pressed)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                pok1 = 1;
-                description.text = pokemon[pok1 - 1].name + " is highlighted";
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                pok1 = 2;
-                description.text = (pokemon[pok1 - 1].name + " is highlighted");
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                if (pokemon[2] != null)
-                {
-                    pok1 = 3;
-                    description.text = (pokemon[pok1 - 1].name + " is highlighted");
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                if (pokemon[3] != null)
-                {
-                    pok1 = 4;
-                    description.text = (pokemon[pok1 - 1].name + " is highlighted");
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                if (pokemon[4] != null)
-                {
-                    pok1 = 5;
-                    description.text = (pokemon[pok1 - 1].name + " is highlighted");
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha6))
-            {
-                if (pokemon[5] != null)
-                {
-                    pok1 = 6;
-                    description.text = (pokemon[pok1 - 1].name + " is highlighted");
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.RightShift))
-            {
-
-                if (pok1 != 0 && pokemon[pok1 - 1] != null)
-                {
-                    description.text = (pokemon[pok1 - 1].name + " was selected. Select the pokemon you would like to swap " + pokemon[pok1 - 1].name + " with");
-                    firstPicked = true;
-                    pok2 = 0;
-                    pressed = false;
-
-                }
-            }
+            pickPoke1();
         }
 
         if (firstPicked)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                pok2 = 1;
-                description.text = (pokemon[pok2 - 1].name + " is highlighted");
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                pok2 = 2;
-                description.text = (pokemon[pok2 - 1].name + " is highlighted");
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                if (pokemon[2] != null)
-                {
-                    pok2 = 3;
-                    description.text = (pokemon[pok2 - 1].name + " is highlighted");
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                if (pokemon[3] != null)
-                {
-                    pok2 = 4;
-                    description.text = (pokemon[pok2 - 1].name + " is highlighted");
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                if (pokemon[4] != null)
-                {
-                    pok2 = 5;
-                    description.text = (pokemon[pok2 - 1].name + " is highlighted");
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha6))
-            {
-                if (pokemon[5] != null)
-                {
-                    pok2 = 6;
-                    description.text = (pokemon[pok2 - 1].name + " is highlighted");
-                }
-            }
+            pickPoke2();
+        }
 
-            if (Input.GetKeyDown(KeyCode.RightShift))
+        if (!revived)
+        {
+            pickRevPoke();
+        }
+    }
+
+    public void iDied()
+    {
+        firstPicked = true;
+        pok1 = 1;
+        description.text = "Select a pokemon to swap with " + trainer.pokemon[0].name;
+        if (trainer.pokemon[0].currHealth != 0)
+        {
+            pokemonCanvas.SetActive(false);
+        }
+    }
+
+    public void pickPoke1()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            pok1 = 1;
+            description.text = pokemon[pok1 - 1].name + " is highlighted";
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            pok1 = 2;
+            description.text = (pokemon[pok1 - 1].name + " is highlighted");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (pokemon[2] != null)
             {
-                if (pok2 != 0 && pokemon[pok2 - 1] != null)
-                {
-                    firstPicked = false;
-                    description.text = (pokemon[pok2 - 1].name + " was selected");
+                pok1 = 3;
+                description.text = (pokemon[pok1 - 1].name + " is highlighted");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (pokemon[3] != null)
+            {
+                pok1 = 4;
+                description.text = (pokemon[pok1 - 1].name + " is highlighted");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            if (pokemon[4] != null)
+            {
+                pok1 = 5;
+                description.text = (pokemon[pok1 - 1].name + " is highlighted");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            if (pokemon[5] != null)
+            {
+                pok1 = 6;
+                description.text = (pokemon[pok1 - 1].name + " is highlighted");
+            }
+        }
 
+        if (Input.GetKeyDown(KeyCode.RightShift))
+        {
 
-                    if (pok1 != pok2)
-                    {
-                        swapPokemon(pok1 - 1, pok2 - 1);
-                    }
-                    else
-                    {
-                        description.text = ("Select two different pokemon to swap.");
-                    }
-                    pok1 = 0;
-                    pok2 = 0;
-                }
+            if (pok1 != 0 && pokemon[pok1 - 1] != null)
+            {
+                description.text = (pokemon[pok1 - 1].name + " was selected. Select the pokemon you would like to swap " + pokemon[pok1 - 1].name + " with");
+                firstPicked = true;
+                pok2 = 0;
+                pressed = false;
+
             }
         }
     }
 
+    public void pickPoke2()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            pok2 = 1;
+            description.text = (pokemon[pok2 - 1].name + " is highlighted");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            pok2 = 2;
+            description.text = (pokemon[pok2 - 1].name + " is highlighted");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (pokemon[2] != null)
+            {
+                pok2 = 3;
+                description.text = (pokemon[pok2 - 1].name + " is highlighted");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (pokemon[3] != null)
+            {
+                pok2 = 4;
+                description.text = (pokemon[pok2 - 1].name + " is highlighted");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            if (pokemon[4] != null)
+            {
+                pok2 = 5;
+                description.text = (pokemon[pok2 - 1].name + " is highlighted");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            if (pokemon[5] != null)
+            {
+                pok2 = 6;
+                description.text = (pokemon[pok2 - 1].name + " is highlighted");
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightShift))
+        {
+            if (pok2 != 0 && pokemon[pok2 - 1] != null)
+            {
+                firstPicked = false;
+                description.text = (pokemon[pok2 - 1].name + " was selected");
+
+
+                if (pok1 != pok2)
+                {
+                    swapPokemon(pok1 - 1, pok2 - 1);
+                }
+                else
+                {
+                    description.text = ("Select two different pokemon to swap.");
+                }
+                pok1 = 0;
+                pok2 = 0;
+            }
+        }
+    }
+
+    public void pickRevPoke()
+    { 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (pokemon[0] != null)
+            {
+                revPoke = 1;
+                description.text = (pokemon[revPoke - 1].name + " is highlighted");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (pokemon[1] != null)
+            {
+                revPoke = 2;
+                description.text = (pokemon[revPoke - 1].name + " is highlighted");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (pokemon[2] != null)
+            {
+                revPoke = 3;
+                description.text = (pokemon[revPoke - 1].name + " is highlighted");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (pokemon[3] != null)
+            {
+                revPoke = 4;
+                description.text = (pokemon[revPoke - 1].name + " is highlighted");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            if (pokemon[4] != null)
+            {
+                revPoke = 5;
+                description.text = (pokemon[revPoke - 1].name + " is highlighted");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            if (pokemon[5] != null)
+            {
+                revPoke = 6;
+                description.text = (pokemon[revPoke - 1].name + " is highlighted");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.RightShift))
+        {
+            if (revPoke != 0)
+            {
+                if (trainer.pokemon[revPoke - 1].currHealth == 0)
+                {
+                    trainer.pokemon[revPoke - 1].heal();
+                    description.text = (pokemon[pok2 - 1].name + " was Revived!");
+                    revPoke = 0;
+                    revived = true;
+                }
+                else
+                {
+                    description.text = "This pokemon is not dead. Select a different pokemon.";
+                }
+            }
+        }
+    }
 
     public void swapPokemon(int movedPoke, int desiredSlot)
     {
         Pokemon temp = pokemon[desiredSlot];
         pokemon[desiredSlot] = pokemon[movedPoke];
         pokemon[movedPoke] = temp;
-
+        pokemonCanvas.SetActive(false);
         description.text = "";
     }
-
 
     public Sprite getImage(string name)
     {
@@ -1024,6 +1121,10 @@ public class PokemonCanvasScript : MonoBehaviour
         else if (name.Equals("Bagon"))
         {
             return bago;
+        }
+        else if (name.Equals("Shelgon"))
+        {
+            return shel;
         }
         else if (name.Equals("Salamance"))
         {

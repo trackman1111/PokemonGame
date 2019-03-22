@@ -22,11 +22,7 @@ public class Trainer : MonoBehaviour
 
 
         bag.Add("Pokeball");
-        bag.Add("Ultra Ball");
-        bag.Add("Great Ball");
         bag.Add("Potion");
-        bag.Add("Super Potion");
-        bag.Add("Hyper Potion");
         bag.Add("Max Potion");
         bag.Add("Potion");
         bag.Add("Revive");
