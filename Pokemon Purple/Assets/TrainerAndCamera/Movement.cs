@@ -15,6 +15,8 @@ public class Movement : MonoBehaviour
     public Sprite downIdle;
     public Tilemap walkable;
     public Sprite bush;
+    public Sprite halfSnowBush;
+    public Sprite snowBush;
     public GameObject optionsMenuController;
     private CanvasManager canMan;
     private bool hasChecked = false;
@@ -50,7 +52,9 @@ public class Movement : MonoBehaviour
             interpolationSpeed = 5F;
         }
 
-        bool onBush = walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(bush);
+        bool onBush = getOnBush();
+        //bool onHalfBush = walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(halfSnowBush);
+        //bool onSnowBush = walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(halfSnowBush);
         if (onBush && transform.position == desiredPosition && !hasChecked)
         {
             pokeName = pokeData.getWildPokemon();
@@ -101,6 +105,19 @@ public class Movement : MonoBehaviour
         }
 
 
+    }
+    bool getOnBush()
+    {
+        if (walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(bush) ||
+            walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(halfSnowBush) ||
+            walkable.GetSprite(new Vector3Int((int)(transform.position.x - .5), (int)transform.position.y - 1, 0)).Equals(snowBush))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     void KeyInput()
     {
