@@ -463,17 +463,10 @@ public class PokemonCanvasScript : MonoBehaviour
 
                 if (pok1 != 0 && pokemon[pok1 - 1] != null)
                 {
-                    if (pokemon[pok1 - 1].currHealth == 0)
-                    {
-                        description.text = ("You cannot swap a pokemon with no hp");
-                    }
-                    else
-                    {
-                        description.text = (pokemon[pok1 - 1].name + " was selected. Select the pokemon you would like to swap " + pokemon[pok1 - 1].name + " with");
-                        firstPicked = true;
-                        pok2 = 0;
-                        pressed = false;
-                    }
+                    description.text = (pokemon[pok1 - 1].name + " was selected. Select the pokemon you would like to swap " + pokemon[pok1 - 1].name + " with");
+                    firstPicked = true;
+                    pok2 = 0;
+                    pressed = false;
 
                 }
             }
@@ -528,28 +521,20 @@ public class PokemonCanvasScript : MonoBehaviour
             {
                 if (pok2 != 0 && pokemon[pok2 - 1] != null)
                 {
-                    if (pokemon[pok2 - 1].currHealth == 0)
+                    firstPicked = false;
+                    description.text = (pokemon[pok2 - 1].name + " was selected");
+
+
+                    if (pok1 != pok2)
                     {
-                        description.text = ("You cannot swap a pokemon with no hp");
+                        swapPokemon(pok1 - 1, pok2 - 1);
                     }
                     else
                     {
-                        firstPicked = false;
-                        description.text = (pokemon[pok2 - 1].name + " was selected");
-
-
-                        if (pok1 != pok2)
-                        {
-                            swapPokemon(pok1 - 1, pok2 - 1);
-                        }
-                        else
-                        {
-                            description.text = ("Select two different pokemon to swap.");
-                        }
-                        pok1 = 0;
-                        pok2 = 0;
+                        description.text = ("Select two different pokemon to swap.");
                     }
-
+                    pok1 = 0;
+                    pok2 = 0;
                 }
             }
         }
