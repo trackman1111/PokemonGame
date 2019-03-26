@@ -20,7 +20,7 @@ public class Trainer : MonoBehaviour
         // adding all default items to bag array
         bag = new ArrayList();
 
-
+        addPokemon(new Pokemon(PlayerPrefs.GetString("Starter")));
         bag.Add("Pokeball");
         bag.Add("Potion");
         bag.Add("Max Potion");
