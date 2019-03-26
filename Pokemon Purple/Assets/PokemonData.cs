@@ -97,6 +97,7 @@ public class PokemonData
         pokemon.Add("Groudon", new double[] { 100.0, 150.0, 140.0, 90.0, 45.0, 0.0, 0, 150.0 });
 
         pokemon.Add("Rayquaza", new double[] { 625.0, 450.0, 817.0, 999.0, 70.0, 0.0, 0, 150.0 });
+
     }
     public string[] makeMoves(string type, int level)
     {
