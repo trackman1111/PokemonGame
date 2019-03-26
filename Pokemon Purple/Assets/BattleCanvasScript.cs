@@ -451,7 +451,6 @@ public class BattleCanvasScript : MonoBehaviour
         pokemonButtonText.text = "POKEMON";
     }
 
-
     public void startBattle(Pokemon poke)
     {
         bc = new BattleControl(poke, t, this);
