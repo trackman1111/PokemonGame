@@ -96,7 +96,7 @@ public class BattleControl
     {
         int randomForAccuracy = (int)Random.Range(0, 100);
         double[] temp = pokeData.getMovePower(q);
-        int colton = actualDamageDone(pokemonList[currEnemyPokemon].defence, t.pokemon[0].attack, (int)temp[0], t.pokemon[0].level);
+        int colton = actualDamageDone(pokemonList[currEnemyPokemon].defence, t.pokemon[0].attack, (int)temp[0], t.pokemon[0].level, pokemonList[currEnemyPokemon].level);
         if (pokemonList[currEnemyPokemon].currHealth - colton > 0)
         {
             pokemonList[currEnemyPokemon].currHealth = pokemonList[currEnemyPokemon].currHealth - colton;
@@ -131,7 +131,7 @@ public class BattleControl
         {
             tempForEnemyPokemon = pokeData.getMovePower(pokemonList[currEnemyPokemon].moveFour);
         }
-        int brandon = actualDamageDone(t.pokemon[0].defence, pokemonList[currEnemyPokemon].attack, (int)tempForEnemyPokemon[0], pokemonList[currEnemyPokemon].level);
+        int brandon = actualDamageDone(t.pokemon[0].defence, pokemonList[currEnemyPokemon].attack, (int)tempForEnemyPokemon[0], pokemonList[currEnemyPokemon].level, t.pokemon[0].level);
         if (t.pokemon[0].currHealth - brandon > 0)
         {
             t.pokemon[0].currHealth = t.pokemon[0].currHealth - brandon;
@@ -152,11 +152,10 @@ public class BattleControl
         pokemonList[currEnemyPokemon].attack = pokemonList[currEnemyPokemon].attack + (int)tempForEnemyPokemon[2];
         tempForEnemyPokemon[4]--;
     }
-    public int actualDamageDone(int defence, int attack, int power, int level)
+    public int actualDamageDone(double defence, double attack, double power, double otherLevel, double ourLevel)
     {
-        int first = ((level * 2) / 5) + 2;
-        int second = (attack / defence);
-        return (((first * power * second) / 50));
+        int blah = (int)(power * attack / defence + (ourLevel - otherLevel) / 2);
+        return blah;
         // multiply the whole return statement by the modifier to finish this later
     }
 }
