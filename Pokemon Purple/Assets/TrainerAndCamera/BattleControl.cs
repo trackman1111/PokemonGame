@@ -5,7 +5,6 @@ using UnityEngine;
 public class BattleControl
 {
     private Trainer t;
-    private bool yourTurn;
     private List<Pokemon> pokemonList = new List<Pokemon>();
     private int currEnemyPokemon = 0;
     private NPC nPC;
@@ -28,14 +27,6 @@ public class BattleControl
         battleCanvas = b;
     }
 
-    public bool getTurn()
-    {
-        return yourTurn;
-    }
-    public void changeTurn()
-    {
-        yourTurn = !yourTurn;
-    }
     public void applyMove(string move)
     {
         double[] temp = pokeData.getMovePower(move);
@@ -88,15 +79,17 @@ public class BattleControl
         }
         canBattle = false;
     }
+
     public void faint()
     {
         
     }
+
     public void ourTurnFighting(string q)
     {
         int randomForAccuracy = (int)Random.Range(0, 100);
         double[] temp = pokeData.getMovePower(q);
-        int colton = actualDamageDone(pokemonList[currEnemyPokemon].defence, t.pokemon[0].attack, (int)temp[0], t.pokemon[0].level);
+        int colton = actualDamageDone(pokemonList[currEnemyPokemon].defence, t.pokemon[0].attack, (int)temp[0], t.pokemon[0].level, pokemonList[currEnemyPokemon].level);
         if (pokemonList[currEnemyPokemon].currHealth - colton > 0)
         {
             pokemonList[currEnemyPokemon].currHealth = pokemonList[currEnemyPokemon].currHealth - colton;
@@ -106,8 +99,8 @@ public class BattleControl
             pokemonList[currEnemyPokemon].currHealth = 0;
             swapPokemon();
         }
-        t.pokemon[0].defence = t.pokemon[0].defence + (int)temp[1];
-        t.pokemon[0].attack = t.pokemon[0].attack + (int)temp[2];
+        t.pokemon[0].defence += (int)temp[1];
+        t.pokemon[0].attack += (int)temp[2];
         temp[4]--;
     }
 
@@ -118,45 +111,54 @@ public class BattleControl
         if (randomForAccuracy >= 75)
         {
             tempForEnemyPokemon = pokeData.getMovePower(pokemonList[currEnemyPokemon].moveOne);
+            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveOne);
         }
         else if (randomForAccuracy >= 50)
         {
             tempForEnemyPokemon = pokeData.getMovePower(pokemonList[currEnemyPokemon].moveTwo);
+            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveTwo);
         }
         else if (randomForAccuracy >= 25)
         {
             tempForEnemyPokemon = pokeData.getMovePower(pokemonList[currEnemyPokemon].moveThree);
+            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveThree);
         }
         else
         {
             tempForEnemyPokemon = pokeData.getMovePower(pokemonList[currEnemyPokemon].moveFour);
+            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveFour);
         }
-        int brandon = actualDamageDone(t.pokemon[0].defence, pokemonList[currEnemyPokemon].attack, (int)tempForEnemyPokemon[0], pokemonList[currEnemyPokemon].level);
+        int brandon = actualDamageDone(t.pokemon[0].defence, pokemonList[currEnemyPokemon].attack, (int)tempForEnemyPokemon[0], pokemonList[currEnemyPokemon].level, t.pokemon[0].level);
         if (t.pokemon[0].currHealth - brandon > 0)
         {
             t.pokemon[0].currHealth = t.pokemon[0].currHealth - brandon;
+            battleCanvas.takeDamage(false, (int)tempForEnemyPokemon[0]);
         }
         else
         {
-            t.pokemon[0].currHealth = 0;
-            if (nPC != null)
-            {
-                nPC.fullHealth();
-            }
-            t.reset();
-            canBattle = false;
-            battleCanvas.exitBattle();
+            battleCanvas.takeDamage(true, (int)tempForEnemyPokemon[0]);
 
+            if (battleCanvas.allDead())
+            {
+                if (nPC != null)
+                {
+                    nPC.fullHealth();
+                }
+                t.reset();
+                canBattle = false;
+                battleCanvas.exitBattle();
+            }
         }
-        pokemonList[currEnemyPokemon].defence = pokemonList[currEnemyPokemon].defence + (int)tempForEnemyPokemon[1];
-        pokemonList[currEnemyPokemon].attack = pokemonList[currEnemyPokemon].attack + (int)tempForEnemyPokemon[2];
+        pokemonList[currEnemyPokemon].defence += (int)tempForEnemyPokemon[1];
+        pokemonList[currEnemyPokemon].attack += (int)tempForEnemyPokemon[2];
         tempForEnemyPokemon[4]--;
+
+        battleCanvas.setTexts();
     }
-    public int actualDamageDone(int defence, int attack, int power, int level)
+    public int actualDamageDone(double defence, double attack, double power, double otherLevel, double ourLevel)
     {
-        int first = ((level * 2) / 5) + 2;
-        int second = (attack / defence);
-        return (((first * power * second) / 50));
+        int blah = (int)(power * attack / defence + (ourLevel - otherLevel) / 2);
+        return blah;
         // multiply the whole return statement by the modifier to finish this later
     }
 }

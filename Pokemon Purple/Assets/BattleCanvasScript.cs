@@ -182,8 +182,13 @@ public class BattleCanvasScript : MonoBehaviour
     private int numShakes;
     public string ballType;
     public string currMove;
+    public string potionType;
     public bool canMove;
     public bool isTrainer;
+    public string enemyMove;
+    public bool setToZero;
+    public int damageAmount;
+    public bool pokemonDied;
 
     // Start is called before the first frame update
     void Start()
@@ -199,11 +204,14 @@ public class BattleCanvasScript : MonoBehaviour
         cursor = 1;
         numShakes = 0;
         currMove = "";
+        potionType = "";
         canMove = true;
+        enemyMove = "";
+        pokemonDied = false;
     }
 
     // Update is called once per frame
-    void setTexts()
+    public void setTexts()
     {
         enemyNameText.text = enemy.name;
         ally = t.pokemon[0];
@@ -367,30 +375,30 @@ public class BattleCanvasScript : MonoBehaviour
 
     void useMoveOne()
     {
+        canMove = true;
         bc.applyMove(ally.moveOne);
         currMove = "";
-        canMove = true;
         changeBackText();
     }
     void useMoveTwo()
     {
+        canMove = true;
         bc.applyMove(ally.moveTwo);
         currMove = "";
-        canMove = true;
         changeBackText();
     }
     void useMoveThree()
     {
+        canMove = true;
         bc.applyMove(ally.moveThree);
         currMove = "";
-        canMove = true;
         changeBackText();
     }
     void useMoveFour()
     {
+        canMove = true;
         bc.applyMove(ally.moveFour);
         currMove = "";
-        canMove = true;
         changeBackText();
     }
 
@@ -399,6 +407,18 @@ public class BattleCanvasScript : MonoBehaviour
         if ( !ballType.Equals("") )
         {
             return "You threw a " + ballType + "!";
+        }
+        else if ( pokemonDied )
+        {
+            return ally.name + " has feinted.";
+        }
+        else if ( !potionType.Equals("") )
+        {
+            return "You used a " + potionType + "!";
+        }
+        else if( !enemyMove.Equals("") )
+        {
+            return "The wild " + enemy.name + " used " + enemyMove + "!";
         }
         else if (currMove.Equals(ally.moveOne))
         {
@@ -431,7 +451,6 @@ public class BattleCanvasScript : MonoBehaviour
         pokemonButtonText.text = "POKEMON";
     }
 
-
     public void startBattle(Pokemon poke)
     {
         bc = new BattleControl(poke, t, this);
@@ -445,18 +464,53 @@ public class BattleCanvasScript : MonoBehaviour
         enemy = enemyTrainer.firstPokemon();
     }
 
+    public void pickNewPoke()
+    {
+        if ( !allDead() )
+        {
+            pokemonDied = false;
+            pokemon.SetActive(true);
+            print("Select a new pokemon to swap with.");
+            PokemonCanvasScript pcScript = pokemon.GetComponent<PokemonCanvasScript>();
+            pcScript.iDied();
+        }
+    }
+
+    public bool allDead()
+    {
+        bool isEmpty = true;
+
+        for ( int i = 0; i < t.pokemon.Length; i++ )
+        {
+            if ( t.pokemon[i] != null )
+            {
+                if ( t.pokemon[i].currHealth != 0 )
+                {
+                    isEmpty = false;
+                }
+            }
+        }
+        return isEmpty;
+    }
 
     public void usePotion(string type)
     {
-        if (type.Equals("Potion"))
+        potionType = type;
+
+        Invoke("usePotion", 2);
+    }
+
+    public void usePotion()
+    {
+        if (potionType.Equals("Potion"))
         {
             t.pokemon[0].addHealth(20);
         }
-        else if (type.Equals("Super Potion"))
+        else if (potionType.Equals("Super Potion"))
         {
             t.pokemon[0].addHealth(50);
         }
-        else if (type.Equals("Hyper Potion"))
+        else if (potionType.Equals("Hyper Potion"))
         {
             t.pokemon[0].addHealth(100);
         }
@@ -465,9 +519,14 @@ public class BattleCanvasScript : MonoBehaviour
             t.pokemon[0].heal();
         }
 
-        bc.changeTurn();
+        potionType = "";
+        enemyTurnFight();
     }
 
+    public void enemyTurnFight()
+    {
+        bc.enemyTurnFight();
+    }
 
     public void catchPokemon(string ballType)
     {
@@ -478,8 +537,6 @@ public class BattleCanvasScript : MonoBehaviour
         Invoke("goodShake", 2);
         Invoke("goodShake", 3);
         changeBackText();
-
-        bc.changeTurn();
     }
 
     public void badThrow(string ballType)
@@ -491,7 +548,7 @@ public class BattleCanvasScript : MonoBehaviour
         Invoke("badShake", 3);
         changeBackText();
 
-                bc.changeTurn();
+        bc.enemyTurnFight();
     }
 
     public void badShake()
@@ -606,6 +663,43 @@ public class BattleCanvasScript : MonoBehaviour
                 pokemonButtonText.text = ally.moveThree;
                 runButtonText.text = "-> " + ally.moveFour;
             }
+        }
+    }
+
+    public void printForBC(string s)
+    {
+        print(s);
+    }
+    public void printEnemyMove(string s)
+    {
+        canMove = false;
+        enemyMove = s;
+        Invoke("moveAgain", 2);
+    }
+
+    public void moveAgain()
+    {
+        enemyMove = "";
+        canMove = true;
+    }
+
+    public void takeDamage(bool setToZero, int amount)
+    {
+        this.setToZero = setToZero;
+        damageAmount = amount;
+        Invoke("lowerHealth", 2);
+    }
+    public void lowerHealth()
+    {
+        if (!setToZero)
+        {
+            ally.currHealth -= damageAmount;
+        }
+        else
+        {
+            ally.currHealth = 0;
+            pokemonDied = true;
+            Invoke("pickNewPoke", 2);
         }
     }
 
