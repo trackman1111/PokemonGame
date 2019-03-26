@@ -32,6 +32,7 @@ public class BagTextScript : MonoBehaviour
     public GameObject pokemonCanvas;
 
     public BattleCanvasScript bcScript;
+    public PokemonCanvasScript pcScript;
 
     int cursor;
 
@@ -46,6 +47,7 @@ public class BagTextScript : MonoBehaviour
         cursor = 0;
         picture.GetComponent<Image>();
         bcScript = battleCanvas.GetComponent<BattleCanvasScript>();
+        pcScript = pokemonCanvas.GetComponent<PokemonCanvasScript>();
     }
 
     // Update is called once per frame
@@ -306,17 +308,17 @@ public class BagTextScript : MonoBehaviour
         }
         else if (item.Equals("Revive"))
         {
-            if (pokemonCanvas.activeSelf || battleCanvas.activeSelf)
-            {
-                bagCanvas.SetActive(false);
-                bag.Remove(item);
-            }
-            else
-            {
-                print("STOOPID, IM NOT GONNA LET YOU GET THE CHANCE");
-            }
+            useRevive(item);
         }
 
+    }
+
+    public void useRevive(string item)
+    {
+        bagCanvas.SetActive(false);
+        pokemonCanvas.SetActive(true);
+        pcScript.revived = false;
+        pcScript.description.text = "Select a pokemon to revive";
     }
 
     public void usePotion(string type)
@@ -346,9 +348,7 @@ public class BagTextScript : MonoBehaviour
             bagCanvas.SetActive(false);
             bag.Remove(type);
 
-
             int randoNum = 100;
-
             System.Random rnd = new System.Random();
 
 
