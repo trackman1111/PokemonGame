@@ -185,6 +185,10 @@ public class BattleCanvasScript : MonoBehaviour
     public string potionType;
     public bool canMove;
     public bool isTrainer;
+    public string enemyMove;
+    public bool setToZero;
+    public int damageAmount;
+    public bool pokemonDied;
 
     // Start is called before the first frame update
     void Start()
@@ -202,6 +206,8 @@ public class BattleCanvasScript : MonoBehaviour
         currMove = "";
         potionType = "";
         canMove = true;
+        enemyMove = "";
+        pokemonDied = false;
     }
 
     // Update is called once per frame
@@ -369,30 +375,30 @@ public class BattleCanvasScript : MonoBehaviour
 
     void useMoveOne()
     {
+        canMove = true;
         bc.applyMove(ally.moveOne);
         currMove = "";
-        canMove = true;
         changeBackText();
     }
     void useMoveTwo()
     {
+        canMove = true;
         bc.applyMove(ally.moveTwo);
         currMove = "";
-        canMove = true;
         changeBackText();
     }
     void useMoveThree()
     {
+        canMove = true;
         bc.applyMove(ally.moveThree);
         currMove = "";
-        canMove = true;
         changeBackText();
     }
     void useMoveFour()
     {
+        canMove = true;
         bc.applyMove(ally.moveFour);
         currMove = "";
-        canMove = true;
         changeBackText();
     }
 
@@ -402,9 +408,17 @@ public class BattleCanvasScript : MonoBehaviour
         {
             return "You threw a " + ballType + "!";
         }
+        else if ( pokemonDied )
+        {
+            return ally.name + " has feinted.";
+        }
         else if ( !potionType.Equals("") )
         {
             return "You used a " + potionType + "!";
+        }
+        else if( !enemyMove.Equals("") )
+        {
+            return "The wild " + enemy.name + " used " + enemyMove + "!";
         }
         else if (currMove.Equals(ally.moveOne))
         {
@@ -455,8 +469,8 @@ public class BattleCanvasScript : MonoBehaviour
     {
         if ( !allDead() )
         {
+            pokemonDied = false;
             pokemon.SetActive(true);
-            print( t.pokemon[0].name + " has feinted.");
             print("Select a new pokemon to swap with.");
             PokemonCanvasScript pcScript = pokemon.GetComponent<PokemonCanvasScript>();
             pcScript.iDied();
@@ -479,7 +493,6 @@ public class BattleCanvasScript : MonoBehaviour
         }
         return isEmpty;
     }
-
 
     public void usePotion(string type)
     {
@@ -508,7 +521,7 @@ public class BattleCanvasScript : MonoBehaviour
         }
 
         potionType = "";
-        Invoke("enemyTurnFight", 2);
+        enemyTurnFight();
     }
 
     public void enemyTurnFight()
@@ -651,6 +664,43 @@ public class BattleCanvasScript : MonoBehaviour
                 pokemonButtonText.text = ally.moveThree;
                 runButtonText.text = "-> " + ally.moveFour;
             }
+        }
+    }
+
+    public void printForBC(string s)
+    {
+        print(s);
+    }
+    public void printEnemyMove(string s)
+    {
+        canMove = false;
+        enemyMove = s;
+        Invoke("moveAgain", 2);
+    }
+
+    public void moveAgain()
+    {
+        enemyMove = "";
+        canMove = true;
+    }
+
+    public void takeDamage(bool setToZero, int amount)
+    {
+        this.setToZero = setToZero;
+        damageAmount = amount;
+        Invoke("lowerHealth", 2);
+    }
+    public void lowerHealth()
+    {
+        if (!setToZero)
+        {
+            ally.currHealth -= damageAmount;
+        }
+        else
+        {
+            ally.currHealth = 0;
+            pokemonDied = true;
+            Invoke("pickNewPoke", 2);
         }
     }
 

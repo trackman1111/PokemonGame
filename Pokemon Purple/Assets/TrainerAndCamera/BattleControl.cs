@@ -110,28 +110,32 @@ public class BattleControl
         if (randomForAccuracy >= 75)
         {
             tempForEnemyPokemon = pokeData.getMovePower(pokemonList[currEnemyPokemon].moveOne);
+            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveOne);
         }
         else if (randomForAccuracy >= 50)
         {
             tempForEnemyPokemon = pokeData.getMovePower(pokemonList[currEnemyPokemon].moveTwo);
+            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveTwo);
         }
         else if (randomForAccuracy >= 25)
         {
             tempForEnemyPokemon = pokeData.getMovePower(pokemonList[currEnemyPokemon].moveThree);
+            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveThree);
         }
         else
         {
             tempForEnemyPokemon = pokeData.getMovePower(pokemonList[currEnemyPokemon].moveFour);
+            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveFour);
         }
 
 
         if (t.pokemon[0].currHealth - (int)tempForEnemyPokemon[0] > 0)
         {
-            t.pokemon[0].currHealth -= (int)tempForEnemyPokemon[0];
+            battleCanvas.takeDamage(false, (int)tempForEnemyPokemon[0]);
         }
         else
         {
-            t.pokemon[0].currHealth = 0;
+            battleCanvas.takeDamage(true, (int)tempForEnemyPokemon[0]);
 
             if (battleCanvas.allDead())
             {
@@ -143,7 +147,6 @@ public class BattleControl
                 canBattle = false;
                 battleCanvas.exitBattle();
             }
-            battleCanvas.pickNewPoke();
         }
         pokemonList[currEnemyPokemon].defence += (int)tempForEnemyPokemon[1];
         pokemonList[currEnemyPokemon].attack += (int)tempForEnemyPokemon[2];
