@@ -5,7 +5,6 @@ using UnityEngine;
 public class BattleControl
 {
     private Trainer t;
-    private bool yourTurn;
     private List<Pokemon> pokemonList = new List<Pokemon>();
     private int currEnemyPokemon = 0;
     private NPC nPC;
@@ -28,14 +27,6 @@ public class BattleControl
         battleCanvas = b;
     }
 
-    public bool getTurn()
-    {
-        return yourTurn;
-    }
-    public void changeTurn()
-    {
-        yourTurn = !yourTurn;
-    }
     public void applyMove(string move)
     {
         double[] temp = pokeData.getMovePower(move);
@@ -88,10 +79,12 @@ public class BattleControl
         }
         canBattle = false;
     }
+
     public void faint()
     {
         
     }
+
     public void ourTurnFighting(string q)
     {
         int randomForAccuracy = (int)Random.Range(0, 100);
@@ -106,8 +99,8 @@ public class BattleControl
             pokemonList[currEnemyPokemon].currHealth = 0;
             swapPokemon();
         }
-        t.pokemon[0].defence = t.pokemon[0].defence + (int)temp[1];
-        t.pokemon[0].attack = t.pokemon[0].attack + (int)temp[2];
+        t.pokemon[0].defence += (int)temp[1];
+        t.pokemon[0].attack += (int)temp[2];
         temp[4]--;
     }
 
@@ -139,18 +132,24 @@ public class BattleControl
         else
         {
             t.pokemon[0].currHealth = 0;
-            if (nPC != null)
-            {
-                nPC.fullHealth();
-            }
-            t.reset();
-            canBattle = false;
-            battleCanvas.exitBattle();
 
+            if (battleCanvas.allDead())
+            {
+                if (nPC != null)
+                {
+                    nPC.fullHealth();
+                }
+                t.reset();
+                canBattle = false;
+                battleCanvas.exitBattle();
+            }
+            battleCanvas.pickNewPoke();
         }
-        pokemonList[currEnemyPokemon].defence = pokemonList[currEnemyPokemon].defence + (int)tempForEnemyPokemon[1];
-        pokemonList[currEnemyPokemon].attack = pokemonList[currEnemyPokemon].attack + (int)tempForEnemyPokemon[2];
+        pokemonList[currEnemyPokemon].defence += (int)tempForEnemyPokemon[1];
+        pokemonList[currEnemyPokemon].attack += (int)tempForEnemyPokemon[2];
         tempForEnemyPokemon[4]--;
+
+        battleCanvas.setTexts();
     }
     public int actualDamageDone(double defence, double attack, double power, double otherLevel, double ourLevel)
     {
