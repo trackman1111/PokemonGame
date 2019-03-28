@@ -46,7 +46,7 @@ public class Trainer : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.O))
         {
-            addPokemon(new Pokemon("Zigzagoon"));
+            addPokemon(new Pokemon("Rayquaza"));
         }
         if (Input.GetKeyDown(KeyCode.P))
         {

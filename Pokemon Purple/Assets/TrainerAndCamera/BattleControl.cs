@@ -131,8 +131,8 @@ public class BattleControl
         int brandon = actualDamageDone(t.pokemon[0].defence, pokemonList[currEnemyPokemon].attack, (int)tempForEnemyPokemon[0], pokemonList[currEnemyPokemon].level, t.pokemon[0].level);
         if (t.pokemon[0].currHealth - brandon > 0)
         {
-            t.pokemon[0].currHealth = t.pokemon[0].currHealth - brandon;
-            battleCanvas.takeDamage(false, (int)tempForEnemyPokemon[0]);
+        
+            battleCanvas.takeDamage(false, brandon);
         }
         else
         {
@@ -157,8 +157,16 @@ public class BattleControl
     }
     public int actualDamageDone(double defence, double attack, double power, double otherLevel, double ourLevel)
     {
-        int blah = (int)(power * attack / defence + (ourLevel - otherLevel) / 2);
-        return blah;
+        if(power == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            double first = (int)(ourLevel - otherLevel) / 5 + 2;
+            int goatAlg= (int)((power * attack / defence * first / 50) + 2);
+            return goatAlg;
+        }
         // multiply the whole return statement by the modifier to finish this later
     }
 }
