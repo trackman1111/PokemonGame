@@ -177,7 +177,6 @@ public class BattleCanvasScript : MonoBehaviour
     private Pokemon enemy;
     private Pokemon ally;
     private string enemyName;
-    private PokemonData pokeData;
     private int cursor;
     private int numShakes;
     public bool canMove;
@@ -185,14 +184,12 @@ public class BattleCanvasScript : MonoBehaviour
     public bool isTrainer;
     public bool setToZero;
     public int damageAmount;
-    public bool pokemonDied;
     public int currMove;
 
     // Start is called before the first frame update
     void Start()
     {
         cm = canvasManager.GetComponent<CanvasManager>();
-        pokeData = new PokemonData();
 
         fightButtonText.text = "-> FIGHT";
         runButtonText.text = "RUN";
@@ -203,7 +200,6 @@ public class BattleCanvasScript : MonoBehaviour
         cursor = 1;
         numShakes = 0;
         canMove = true;
-        pokemonDied = false;
         currMove = 0;
     }
 
@@ -282,6 +278,21 @@ public class BattleCanvasScript : MonoBehaviour
                 runButtonText.text = "RUN";
             }
         }
+    }
+
+    // STARTING BATTLES
+
+    public void startBattle(Pokemon poke)
+    {
+        bc = new BattleControl(poke, t, this);
+        isTrainer = false;
+    }
+
+    public void startBattle(NPC enemyTrainer)
+    {
+        bc = new BattleControl(enemyTrainer, t, this);
+        isTrainer = true;
+        enemy = enemyTrainer.firstPokemon();
     }
 
     public void setEnemy(Pokemon enemy)
@@ -444,6 +455,16 @@ public class BattleCanvasScript : MonoBehaviour
         }
     }
 
+    public void exitBattle()
+    {
+        ballType = "";
+        battle.SetActive(false);
+        pokemon.SetActive(false);
+        bag.SetActive(false);
+        cm.inBattle = false;
+        FindObjectOfType<Movement>().setStasis(false);
+    }
+
     // END OF BUTTON STUFF ----------------------------------------------------
 
     void useMove(int num)
@@ -475,18 +496,6 @@ public class BattleCanvasScript : MonoBehaviour
 
     }
 
-    public void exitBattle()
-    {
-        ballType = "";
-        battle.SetActive(false);
-        pokemon.SetActive(false);
-        bag.SetActive(false);
-        cm.inBattle = false;
-        FindObjectOfType<Movement>().setStasis(false);
-    }
-
-
-
     void changeTitleText(string message)
     {
         titleText.text = message;
@@ -498,18 +507,7 @@ public class BattleCanvasScript : MonoBehaviour
         titleText.text = "What will " + ally.name + " do?";
     }
 
-    public void startBattle(Pokemon poke)
-    {
-        bc = new BattleControl(poke, t, this);
-        isTrainer = false;
-    }
 
-    public void startBattle(NPC enemyTrainer)
-    {
-        bc = new BattleControl(enemyTrainer, t, this);
-        isTrainer = true;
-        enemy = enemyTrainer.firstPokemon();
-    }
 
     // USING POTIONS
 
@@ -595,7 +593,6 @@ public class BattleCanvasScript : MonoBehaviour
         else
         {
             ally.currHealth = 0;
-            pokemonDied = true;
             Invoke("pickNewPoke", 2);
         }
     }
@@ -626,7 +623,6 @@ public class BattleCanvasScript : MonoBehaviour
 
     public void badShake()
     {
-        // shake animation;
         shake();
         if (numShakes == 3)
         {
@@ -639,7 +635,6 @@ public class BattleCanvasScript : MonoBehaviour
 
     public void goodShake()
     {
-        // shake animation;
         shake();
         if (numShakes == 3)
         {
@@ -661,14 +656,10 @@ public class BattleCanvasScript : MonoBehaviour
         numShakes++;
         print(numShakes);
     }
-
-    void rotateLeft()
-    {
+    void rotateLeft()  {
         enemyImage.transform.Rotate(new Vector3(0, 0, 20));
     }
-
-    void rotateRight()
-    {
+    void rotateRight() {
         enemyImage.transform.Rotate(new Vector3(0, 0, -20));
     }
 
@@ -680,7 +671,6 @@ public class BattleCanvasScript : MonoBehaviour
     {
         if (!allDead())
         {
-            pokemonDied = false;
             pokemon.SetActive(true);
             print("Select a new pokemon to swap with.");
             PokemonCanvasScript pcScript = pokemon.GetComponent<PokemonCanvasScript>();
