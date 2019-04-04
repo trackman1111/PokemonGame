@@ -188,18 +188,19 @@ public class PokemonCanvasScript : MonoBehaviour
     private bool firstPicked;
     private bool secondPicked;
     public bool revived;
+    public GameObject battleCanvas;
 
     // Start is called before the first frame update
     void Start()
     {
         // Sets all the texts to "" and the images alpha to 0, making it invisable 
-
         pressed = false;
         firstPicked = false;
         revived = true;
         pok1 = 0;
         pok2 = 0;
         revPoke = 0;
+        pokemon = trainer.pokemon;
 
         p1name.text = "";
         p1lvl.text =  "";
@@ -558,14 +559,12 @@ public class PokemonCanvasScript : MonoBehaviour
 
                 if (pok1 != pok2)
                 {
-                    swapPokemon(pok1 - 1, pok2 - 1);
+                    swapPokemon();
                 }
                 else
                 {
                     description.text = ("Select two different pokemon to swap.");
                 }
-                pok1 = 0;
-                pok2 = 0;
             }
         }
     }
@@ -639,13 +638,59 @@ public class PokemonCanvasScript : MonoBehaviour
         }
     }
 
-    public void swapPokemon(int movedPoke, int desiredSlot)
+    public void swapPokemon()
     {
-        Pokemon temp = pokemon[desiredSlot];
-        pokemon[desiredSlot] = pokemon[movedPoke];
-        pokemon[movedPoke] = temp;
+        pok1--;
+        pok2--;
+
+        int movedPoke = pok1;
+        int desiredPoke = pok2;
+
+        if (battleCanvas.activeSelf)
+        {
+            if (movedPoke == 0)
+            {
+                BattleCanvasScript bcScript = battleCanvas.GetComponent<BattleCanvasScript>();
+                bcScript.changeTitleText("Good Stuff " + pokemon[movedPoke].name + "!", 2);
+
+                Invoke("printNewPoke", 2);
+                Invoke("enemyTurnFight", 4);
+            }
+            else
+            {
+                Pokemon temp = pokemon[pok2];
+                pokemon[pok2] = pokemon[pok1];
+                pokemon[pok1] = temp;
+
+                enemyTurnFight();
+            }
+        }
+        else
+        {
+            Pokemon temp = pokemon[pok2];
+            pokemon[pok2] = pokemon[pok1];
+            pokemon[pok1] = temp;
+        }
+
         pokemonCanvas.SetActive(false);
         description.text = "";
+    }
+
+    public void printNewPoke()
+    {
+        BattleCanvasScript bcScript = battleCanvas.GetComponent<BattleCanvasScript>();
+
+        Pokemon temp = pokemon[pok2];
+        pokemon[pok2] = pokemon[pok1];
+        pokemon[pok1] = temp;
+
+        bcScript.changeTitleText("Lets Go " + pokemon[0].name + "!", 2);
+    }
+
+    public void enemyTurnFight()
+    {
+        BattleCanvasScript bcScript = battleCanvas.GetComponent<BattleCanvasScript>();
+        bcScript.enemyTurnFight();
     }
 
     public Sprite getImage(string name)
@@ -674,6 +719,8 @@ public class PokemonCanvasScript : MonoBehaviour
                 return pooc;
             case "Mightyena":
                 return migh;
+            case "Zigzagoon":
+                return zigz;
             case "Linoone":
                 return lino;
             case "Wurmple":
@@ -886,8 +933,8 @@ public class PokemonCanvasScript : MonoBehaviour
                 return bago;
             case "Shelgon":
                 return shel;
-            case "Salamance":
-                return came;
+            case "Salamence":
+                return sala;
             case "Beldum":
                 return beld;
             case "Metang":

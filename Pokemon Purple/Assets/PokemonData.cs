@@ -250,7 +250,7 @@ public class PokemonData
 
         // start of other moves
         //"DragonBreath", "Iron Tail", "Ice Beam", "Shadow Ball"
-        movesPower.Add("DragonBreath", new double[] { 40.0, 40.0, 40.0, 100.0, 10.0, 10.0 });
+        movesPower.Add("Dragon Breath", new double[] { 40.0, 40.0, 40.0, 100.0, 10.0, 10.0 });
         movesPower.Add("Iron Tail", new double[] { 70.0, 0.0, 0.0, 100.0, 10.0, 10.0 });
         movesPower.Add("Ice Beam", new double[] { 70.0, 0.0, 0.0, 100.0, 10.0, 10.0 });
         movesPower.Add("Shadow Ball", new double[] { 75.0, 0.0, 0.0, 100.0, 10.0, 10.0 });
@@ -278,7 +278,7 @@ public class PokemonData
         }
         else
         {
-            return new double[] { 40.0, 40.0, 40.0, 100.0, 10.0, 10.0 }; // dragonbreath's stats
+            return new double[] { 40.0, 40.0, 40.0, 100.0, 10.0, 10.0 }; // dragon breath's stats
         }
     }
     public void pokemonToType()

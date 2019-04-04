@@ -27,7 +27,7 @@ public class BattleControl
         battleCanvas = b;
     }
 
-    public void applyMove(string move)
+    public double[] applyMove(string move)
     {
         double[] temp = pokeData.getMovePower(move);
         //[damage, defenceBoost, attackBoost, accuracy, currpp, pp]
@@ -35,10 +35,10 @@ public class BattleControl
 
         if (pokemonList[currEnemyPokemon].speed >= t.pokemon[0].speed)
         {
-            if (canBattle)
-            {
-                enemyTurnFight();
-            }
+          //  if (canBattle)
+          //  {
+          //      enemyTurnFight();
+          //  }
 
             // next line is the start of our pokemon attacking
             if(temp[3] >= randomForAccuracy && canBattle)
@@ -54,12 +54,13 @@ public class BattleControl
                 ourTurnFighting(move);
             }
             // next line is the start of the enemy attacking
-            if(pokemonList[currEnemyPokemon].health > 0 && canBattle)
-            {
-                enemyTurnFight();
-            }
+       //     if(pokemonList[currEnemyPokemon].health > 0 && canBattle)
+       //     {
+       //         enemyTurnFight();
+       //     }
         }
         canBattle = true;
+        return temp;
     }
     public void swapPokemon()
     { 
@@ -90,6 +91,8 @@ public class BattleControl
         int randomForAccuracy = (int)Random.Range(0, 100);
         double[] temp = pokeData.getMovePower(q);
         int colton = actualDamageDone(pokemonList[currEnemyPokemon].defence, t.pokemon[0].attack, (int)temp[0], t.pokemon[0].level, pokemonList[currEnemyPokemon].level);
+
+
         if (pokemonList[currEnemyPokemon].currHealth - colton > 0)
         {
             pokemonList[currEnemyPokemon].currHealth = pokemonList[currEnemyPokemon].currHealth - colton;
@@ -111,24 +114,28 @@ public class BattleControl
         if (randomForAccuracy >= 75)
         {
             tempForEnemyPokemon = pokeData.getMovePower(pokemonList[currEnemyPokemon].moveOne);
-            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveOne);
+            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveOne, tempForEnemyPokemon);
         }
         else if (randomForAccuracy >= 50)
         {
             tempForEnemyPokemon = pokeData.getMovePower(pokemonList[currEnemyPokemon].moveTwo);
-            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveTwo);
+            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveTwo, tempForEnemyPokemon);
         }
         else if (randomForAccuracy >= 25)
         {
             tempForEnemyPokemon = pokeData.getMovePower(pokemonList[currEnemyPokemon].moveThree);
-            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveThree);
+            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveThree, tempForEnemyPokemon);
         }
         else
         {
             tempForEnemyPokemon = pokeData.getMovePower(pokemonList[currEnemyPokemon].moveFour);
-            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveFour);
+            battleCanvas.printEnemyMove(pokemonList[currEnemyPokemon].moveFour, tempForEnemyPokemon);
         }
+
+
         int brandon = actualDamageDone(t.pokemon[0].defence, pokemonList[currEnemyPokemon].attack, (int)tempForEnemyPokemon[0], pokemonList[currEnemyPokemon].level, t.pokemon[0].level);
+        
+
         if (t.pokemon[0].currHealth - brandon > 0)
         {
         
@@ -152,8 +159,6 @@ public class BattleControl
         pokemonList[currEnemyPokemon].defence += (int)tempForEnemyPokemon[1];
         pokemonList[currEnemyPokemon].attack += (int)tempForEnemyPokemon[2];
         tempForEnemyPokemon[4]--;
-
-        battleCanvas.setTexts();
     }
 
 
