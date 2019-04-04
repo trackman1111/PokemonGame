@@ -155,6 +155,8 @@ public class BattleControl
 
         battleCanvas.setTexts();
     }
+
+
     public int actualDamageDone(double defence, double attack, double power, double otherLevel, double ourLevel)
     {
         if(power == 0)

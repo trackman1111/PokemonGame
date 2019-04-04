@@ -650,525 +650,265 @@ public class PokemonCanvasScript : MonoBehaviour
 
     public Sprite getImage(string name)
     {
-        if (name.Equals("Treecko"))
-        {
-            return tree;
-        }
-        else if (name.Equals("Grovyle"))
-        {
-            return grov;
-        }
-        else if (name.Equals("Sceptile"))
-        {
-            return scep;
-        }
-        else if (name.Equals("Torchic"))
-        {
-            return torc;
-        }
-        else if (name.Equals("Combusken"))
-        {
-            return comb;
-        }
-        else if (name.Equals("Blaziken"))
-        {
-            return blaz;
-        }
-        else if (name.Equals("Mudkip"))
-        {
-            return mudk;
-        }
-        else if (name.Equals("Marshtomp"))
-        {
-            return mars;
-        }
-        else if (name.Equals("Swampert"))
-        {
-            return swam;
-        }
-        else if (name.Equals("Poochyena"))
-        {
-            return pooc;
-        }
-        else if (name.Equals("Mightyena"))
-        {
-            return migh;
-        }
-        else if (name.Equals("Zigzagoon"))
-        {
-            return zigz;
-        }
-        else if (name.Equals("Linoone"))
-        {
-            return lino;
-        }
-        else if (name.Equals("Wurmple"))
-        {
-            return wurm;
-        }
-        else if (name.Equals("Silicoon"))
-        {
-            return sili;
-        }
-        else if (name.Equals("Beautifly"))
-        {
-            return beau;
-        }
-        else if (name.Equals("Cascoon"))
-        {
-            return casc;
-        }
-        else if (name.Equals("Dustox"))
-        {
-            return dust;
-        }
-        else if (name.Equals("Lotad"))
-        {
-            return lota;
-        }
-        else if (name.Equals("Lombre"))
-        {
-            return lomb;
-        }
-        else if (name.Equals("Ludicolo"))
-        {
-            return ludi;
-        }
-        else if (name.Equals("Seedot"))
-        {
-            return seed;
-        }
-        else if (name.Equals("Nuzleaf"))
-        {
-            return nuzl;
-        }
-        else if (name.Equals("Shiftry"))
-        {
-            return shif;
-        }
-        else if (name.Equals("Nincada"))
-        {
-            return ninc;
-        }
-        else if (name.Equals("Ninjask"))
-        {
-            return ninj;
-        }
-        else if (name.Equals("Shedinja"))
-        {
-            return shed;
-        }
-        else if (name.Equals("Taillow"))
-        {
-            return tail;
-        }
-        else if (name.Equals("Swellow"))
-        {
-            return swel;
-        }
-        else if (name.Equals("Shroomish"))
-        {
-            return shro;
-        }
-        else if (name.Equals("Breloom"))
-        {
-            return brel;
-        }
-        else if (name.Equals("Spinda"))
-        {
-            return spin;
-        }
-        else if (name.Equals("Wingull"))
-        {
-            return wing;
-        }
-        else if (name.Equals("Pelipper"))
-        {
-            return peli;
-        }
-        else if (name.Equals("Surskit"))
-        {
-            return surs;
-        }
-        else if (name.Equals("Masquerain"))
-        {
-            return masq;
-        }
-        else if (name.Equals("Wailmer"))
-        {
-            return wailm;
-        }
-        else if (name.Equals("Wailord"))
-        {
-            return waill;
-        }
-        else if (name.Equals("Skitty"))
-        {
-            return skit;
-        }
-        else if (name.Equals("Delcatty"))
-        {
-            return delc;
-        }
-        else if (name.Equals("Kecleon"))
-        {
-            return kecl;
-        }
-        else if (name.Equals("Baltoy"))
-        {
-            return balt;
-        }
-        else if (name.Equals("Claydol"))
-        {
-            return clay;
-        }
-        else if (name.Equals("Nosepass"))
-        {
-            return nose;
-        }
-        else if (name.Equals("Torkoal"))
-        {
-            return tork;
-        }
-        else if (name.Equals("Sableye"))
-        {
-            return sabl;
-        }
-        else if (name.Equals("Barboach"))
-        {
-            return barb;
-        }
-        else if (name.Equals("Whiscash"))
-        {
-            return whisc;
-        }
-        else if (name.Equals("Luvdisc"))
-        {
-            return luvd;
-        }
-        else if (name.Equals("Corphish"))
-        {
-            return corp;
-        }
-        else if (name.Equals("Crawdaunt"))
-        {
-            return craw;
-        }
-        else if (name.Equals("Feebas"))
-        {
-            return feeb;
-        }
-        else if (name.Equals("Milotic"))
-        {
-            return milo;
-        }
-        else if (name.Equals("Carvanha"))
-        {
-            return carv;
-        }
-        else if (name.Equals("Sharpedo"))
-        {
-            return shar;
-        }
-        else if (name.Equals("Trapinch"))
-        {
-            return trap;
-        }
-        else if (name.Equals("Vibrava"))
-        {
-            return vibr;
-        }
-        else if (name.Equals("Flygon"))
-        {
-            return flyg;
-        }
-        else if (name.Equals("Makuhita"))
-        {
-            return maku;
-        }
-        else if (name.Equals("Hariyama"))
-        {
-            return hari;
-        }
-        else if (name.Equals("Electrike"))
-        {
-            return elec;
-        }
-        else if (name.Equals("Manectric"))
-        {
-            return mane;
-        }
-        else if (name.Equals("Numel"))
-        {
-            return nume;
-        }
-        else if (name.Equals("Camerupt"))
-        {
-            return came;
-        }
-        else if (name.Equals("Spheal"))
-        {
-            return sphe;
-        }
-        else if (name.Equals("Sealeo"))
-        {
-            return seal;
-        }
-        else if (name.Equals("Walrein"))
-        {
-            return walr;
-        }
-        else if (name.Equals("Cacnea"))
-        {
-            return cacn;
-        }
-        else if (name.Equals("Cacturne"))
-        {
-            return cact;
-        }
-        else if (name.Equals("Snorunt"))
-        {
-            return snor;
-        }
-        else if (name.Equals("Glalie"))
-        {
-            return glal;
-        }
-        else if (name.Equals("Lunatone"))
-        {
-            return luna;
-        }
-        else if (name.Equals("Solrock"))
-        {
-            return solr;
-        }
-        else if (name.Equals("Azurill"))
-        {
-            return azuri;
-        }
-        else if (name.Equals("Spoink"))
-        {
-            return spoi;
-        }
-        else if (name.Equals("Grumpig"))
-        {
-            return grum;
-        }
-        else if (name.Equals("Plusle"))
-        {
-            return plus;
-        }
-        else if (name.Equals("Minun"))
-        {
-            return minu;
-        }
-        else if (name.Equals("Mawile"))
-        {
-            return mawi;
-        }
-        else if (name.Equals("Meditite"))
-        {
-            return medit;
-        }
-        else if (name.Equals("Medicham"))
-        {
-            return medic;
-        }
-        else if (name.Equals("Swablu"))
-        {
-            return swab;
-        }
-        else if (name.Equals("Altaria"))
-        {
-            return alta;
-        }
-        else if (name.Equals("Wynaut"))
-        {
-            return wyna;
-        }
-        else if (name.Equals("Duskell"))
-        {
-            return dusk;
-        }
-        else if (name.Equals("Dusclops"))
-        {
-            return dusc;
-        }
-        else if (name.Equals("Roselia"))
-        {
-            return rose;
-        }
-        else if (name.Equals("Slakoth"))
-        {
-            return slako;
-        }
-        else if (name.Equals("Vigorath"))
-        {
-            return vigo;
-        }
-        else if (name.Equals("Slaking"))
-        {
-            return slaki;
-        }
-        else if (name.Equals("Gulpin"))
-        {
-            return gulp;
-        }
-        else if (name.Equals("Swalot"))
-        {
-            return swal;
-        }
-        else if (name.Equals("Tropius"))
-        {
-            return trop;
-        }
-        else if (name.Equals("Whismur"))
-        {
-            return whism;
-        }
-        else if (name.Equals("Loudred"))
-        {
-            return loud;
-        }
-        else if (name.Equals("Exploud"))
-        {
-            return expl;
-        }
-        else if (name.Equals("Clampearl"))
-        {
-            return clam;
-        }
-        else if (name.Equals("Huntail"))
-        {
-            return hunt;
-        }
-        else if (name.Equals("Absol"))
-        {
-            return abso;
-        }
-        else if (name.Equals("Shuppet"))
-        {
-            return shup;
-        }
-        else if (name.Equals("Banette"))
-        {
-            return bane;
-        }
-        else if (name.Equals("Seviper"))
-        {
-            return sevi;
-        }
-        else if (name.Equals("Zangoose"))
-        {
-            return zang;
-        }
-        else if (name.Equals("Relicanth"))
-        {
-            return reli;
-        }
-        else if (name.Equals("Aron"))
-        {
-            return aron;
-        }
-        else if (name.Equals("Lairon"))
-        {
-            return lair;
-        }
-        else if (name.Equals("Aggron"))
-        {
-            return aggr;
-        }
-        else if (name.Equals("Castform"))
-        {
-            return cast;
-        }
-        else if (name.Equals("Volbeat"))
-        {
-            return volb;
-        }
-        else if (name.Equals("Illumise"))
-        {
-            return illu;
-        }
-        else if (name.Equals("Lileep"))
-        {
-            return lile;
-        }
-        else if (name.Equals("Cradily"))
-        {
-            return crad;
-        }
-        else if (name.Equals("Anorith"))
-        {
-            return anor;
-        }
-        else if (name.Equals("Armaldo"))
-        {
-            return arma;
-        }
-        else if (name.Equals("Ralts"))
-        {
-            return ralt;
-        }
-        else if (name.Equals("Kirlia"))
-        {
-            return kirl;
-        }
-        else if (name.Equals("Gardevoir"))
-        {
-            return gard;
-        }
-        else if (name.Equals("Bagon"))
-        {
-            return bago;
-        }
-        else if (name.Equals("Shelgon"))
-        {
-            return shel;
-        }
-        else if (name.Equals("Salamance"))
-        {
-            return sala;
-        }
-        else if (name.Equals("Beldum"))
-        {
-            return beld;
-        }
-        else if (name.Equals("Metang"))
-        {
-            return metan;
-        }
-        else if (name.Equals("Metagross"))
-        {
-            return metag;
-        }
-        else if (name.Equals("Regirock"))
-        {
-            return regir;
-        }
-        else if (name.Equals("Regice"))
-        {
-            return regic;
-        }
-        else if (name.Equals("Registeel"))
-        {
-            return regis;
-        }
-        else if (name.Equals("Kyogre"))
-        {
-            return kyog;
-        }
-        else if (name.Equals("Groudon"))
-        {
-            return grou;
-        }
-        else if (name.Equals("Rayquaza"))
-        {
-            return rayq;
-        }
-        else
-        {
-            return other;
+        switch (name)
+        {
+            case "Treecko":
+                return tree;
+            case "Grovyle":
+                return grov;
+            case "Sceptile":
+                return scep;
+            case "Torchic":
+                return torc;
+            case "Combusken":
+                return comb;
+            case "Blaziken":
+                return blaz;
+            case "Mudkip":
+                return mudk;
+            case "Marshtomp":
+                return mars;
+            case "Swampert":
+                return swam;
+            case "Poochyena":
+                return pooc;
+            case "Mightyena":
+                return migh;
+            case "Linoone":
+                return lino;
+            case "Wurmple":
+                return wurm;
+            case "Silicoon":
+                return sili;
+            case "Beautifly":
+                return beau;
+            case "Cascoon":
+                return casc;
+            case "Dustox":
+                return dust;
+            case "Lotad":
+                return lota;
+            case "Lombre":
+                return lomb;
+            case "Ludicolo":
+                return ludi;
+            case "Seedot":
+                return seed;
+            case "Nuzleaf":
+                return nuzl;
+            case "Shiftry":
+                return shif;
+            case "Nincada":
+                return ninc;
+            case "Ninjask":
+                return ninj;
+            case "Shedninja":
+                return shed;
+            case "Taillow":
+                return tail;
+            case "Swellow":
+                return swel;
+            case "Shroomish":
+                return shro;
+            case "Breloom":
+                return brel;
+            case "Spinda":
+                return spin;
+            case "Wingull":
+                return wing;
+            case "Pelipper":
+                return peli;
+            case "Surskit":
+                return surs;
+            case "Masquerein":
+                return masq;
+            case "Wailmer":
+                return wailm;
+            case "Waillord":
+                return waill;
+            case "Skitty":
+                return skit;
+            case "Delcatty":
+                return delc;
+            case "Kecleon":
+                return kecl;
+            case "Baltoy":
+                return balt;
+            case "Claydol":
+                return clay;
+            case "Nosepass":
+                return nose;
+            case "Torkoal":
+                return tork;
+            case "Sableye":
+                return sabl;
+            case "Barboach":
+                return barb;
+            case "Whiscash":
+                return whisc;
+            case "Luvdisc":
+                return luvd;
+            case "Corphish":
+                return corp;
+            case "Crawdaunt":
+                return craw;
+            case "Feebas":
+                return feeb;
+            case "Milotic":
+                return milo;
+            case "Carvanha":
+                return carv;
+            case "Sharpedo":
+                return shar;
+            case "Trapinch":
+                return trap;
+            case "Vibrava":
+                return vibr;
+            case "Flygon":
+                return flyg;
+            case "Makuhita":
+                return maku;
+            case "Hariyama":
+                return hari;
+            case "Electrike":
+                return elec;
+            case "Manectric":
+                return mane;
+            case "Numel":
+                return nume;
+            case "Camerupt":
+                return came;
+            case "Spheal":
+                return sphe;
+            case "Sealeo":
+                return seal;
+            case "Walrein":
+                return walr;
+            case "Cacnea":
+                return cacn;
+            case "Cacturne":
+                return cact;
+            case "Snorunt":
+                return snor;
+            case "Glalie":
+                return glal;
+            case "Lunatone":
+                return luna;
+            case "Solrock":
+                return solr;
+            case "Azurill":
+                return azuri;
+            case "Spoink":
+                return spoi;
+            case "Grumpug":
+                return grum;
+            case "Plusle":
+                return plus;
+            case "Minun":
+                return seal;
+            case "Mawhile":
+                return mawi;
+            case "Meditite":
+                return medit;
+            case "Medicham":
+                return medic;
+            case "Swablu":
+                return swab;
+            case "Altaria":
+                return alta;
+            case "Wynaut":
+                return wyna;
+            case "Duskell":
+                return dusk;
+            case "Dusclops":
+                return dusc;
+            case "Roselia":
+                return rose;
+            case "Vigorath":
+                return vigo;
+            case "Slaking":
+                return slaki;
+            case "Gulpin":
+                return gulp;
+            case "Swalot":
+                return swal;
+            case "Tropius":
+                return trop;
+            case "Whismur":
+                return whism;
+            case "Loudred":
+                return loud;
+            case "Exploud":
+                return expl;
+            case "Clampearl":
+                return clam;
+            case "Huntail":
+                return hunt;
+            case "Absol":
+                return abso;
+            case "Shuppet":
+                return shup;
+            case "Banette":
+                return bane;
+            case "Seviper":
+                return sevi;
+            case "Zangoose":
+                return zang;
+            case "Relicanth":
+                return reli;
+            case "Aron":
+                return aron;
+            case "Lairon":
+                return lair;
+            case "Aggron":
+                return aggr;
+            case "Castform":
+                return cast;
+            case "Volbeat":
+                return volb;
+            case "Illumise":
+                return illu;
+            case "Lileep":
+                return lile;
+            case "Cradily":
+                return crad;
+            case "Anorith":
+                return anor;
+            case "Armaldo":
+                return arma;
+            case "Ralts":
+                return ralt;
+            case "Kirlia":
+                return kirl;
+            case "Gardevoir":
+                return gard;
+            case "Bagon":
+                return bago;
+            case "Shelgon":
+                return shel;
+            case "Salamance":
+                return came;
+            case "Beldum":
+                return beld;
+            case "Metang":
+                return metan;
+            case "Metagross":
+                return metag;
+            case "Regirock":
+                return regir;
+            case "Regice":
+                return regic;
+            case "Registeel":
+                return regis;
+            case "Kyogre":
+                return kyog;
+            case "Groudon":
+                return grou;
+            case "Rayquaza":
+                return rayq;
+
+            default:
+                return rayq;
         }
     }
 }

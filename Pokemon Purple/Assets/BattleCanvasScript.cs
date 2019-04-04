@@ -180,15 +180,13 @@ public class BattleCanvasScript : MonoBehaviour
     private PokemonData pokeData;
     private int cursor;
     private int numShakes;
-    public string ballType;
-    public string currMove;
-    public string potionType;
     public bool canMove;
+    public string ballType;
     public bool isTrainer;
-    public string enemyMove;
     public bool setToZero;
     public int damageAmount;
     public bool pokemonDied;
+    public int currMove;
 
     // Start is called before the first frame update
     void Start()
@@ -200,14 +198,13 @@ public class BattleCanvasScript : MonoBehaviour
         runButtonText.text = "RUN";
         bagButtonText.text = "BAG";
         pokemonButtonText.text = "POKEMON";
+        titleText.text = "What will " + t.pokemon[0] + " do?";
         ballType = "";
         cursor = 1;
         numShakes = 0;
-        currMove = "";
-        potionType = "";
         canMove = true;
-        enemyMove = "";
         pokemonDied = false;
+        currMove = 0;
     }
 
     // Update is called once per frame
@@ -223,7 +220,6 @@ public class BattleCanvasScript : MonoBehaviour
         allyCurrHealth.text = ally.currHealth + "";
         allyMaxHealth.text = ally.health + "";
         enemyHealth.text = enemy.currHealth + "/" + enemy.health;
-        titleText.text = getTitleText();
 
         allyImage.sprite = getImage(ally.name);
         enemyImage.sprite = getEnemyImage(ballType);
@@ -234,51 +230,57 @@ public class BattleCanvasScript : MonoBehaviour
         setArrow();
         setTexts();
 
-        if (canMove && Input.GetKeyDown(KeyCode.RightArrow) && !bag.activeSelf && !pokemon.activeSelf && (cursor == 1 || cursor == 3))
+        if (canMove)
         {
-            cursor++;
-        }
-        if (canMove && Input.GetKeyDown(KeyCode.LeftArrow) && !bag.activeSelf && !pokemon.activeSelf && (cursor == 2 || cursor == 4))
-        {
-            cursor--;
-        }
-        if (canMove && Input.GetKeyDown(KeyCode.UpArrow) && !bag.activeSelf && !pokemon.activeSelf && cursor > 2)
-        {
-            cursor -= 2;
-        }
-        if (canMove && Input.GetKeyDown(KeyCode.DownArrow) && !bag.activeSelf && !pokemon.activeSelf && cursor < 3)
-        {
-            cursor += 2;
-        }
+            if (!bag.activeSelf && !pokemon.activeSelf)
+            {
+                if (Input.GetKeyDown(KeyCode.RightArrow) && (cursor == 1 || cursor == 3))
+                {
+                    cursor++;
+                }
+                if (Input.GetKeyDown(KeyCode.LeftArrow) && (cursor == 2 || cursor == 4))
+                {
+                    cursor--;
+                }
+                if (Input.GetKeyDown(KeyCode.UpArrow) && cursor > 2)
+                {
+                    cursor -= 2;
+                }
+                if (Input.GetKeyDown(KeyCode.DownArrow) && cursor < 3)
+                {
+                    cursor += 2;
+                }
+                if (canMove && Input.GetKeyDown(KeyCode.RightShift))
+                {
 
-        if (canMove && Input.GetKeyDown(KeyCode.RightShift))
-        {
-            if (cursor == 1)
-            {
-                fightButton();
-            }
-            else if (cursor == 2)
-            {
-                bagButton();
-            }
-            else if (cursor == 3)
-            {
-                pokemonButton();
-            }
-            else if (cursor == 4)
-            {
-                runButton();
-            }
-        }
+                    switch (cursor)
+                    {
+                        case 1:
+                            fightButton();
+                            break;
+                        case 2:
+                            bagButton();
+                            break;
+                        case 3:
+                            pokemonButton();
+                            break;
+                        case 4:
+                            runButton();
+                            break;
 
-        if ( canMove && Input.GetKeyDown(KeyCode.Escape) && (fightButtonText.text.Equals(ally.moveOne) || bagButtonText.text.Equals(ally.moveTwo)))
-        {
-            cursor = 1;
-            fightButtonText.text = "-> FIGHT";
-            bagButtonText.text = "BAG";
-            pokemonButtonText.text = "POKEMON";
-            runButtonText.text = "RUN";
-            titleText.text = "What will \n" + ally.name + " do?";
+                        default:
+                            break;
+                    }
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Escape) && (fightButtonText.text.Equals(ally.moveOne) || bagButtonText.text.Equals(ally.moveTwo)))
+            {
+                cursor = 1;
+                fightButtonText.text = "-> FIGHT";
+                bagButtonText.text = "BAG";
+                pokemonButtonText.text = "POKEMON";
+                runButtonText.text = "RUN";
+            }
         }
     }
 
@@ -286,6 +288,90 @@ public class BattleCanvasScript : MonoBehaviour
     {
         this.enemy = enemy;
     }
+
+    // BUTTON TEXTS
+
+    public void setArrow()
+    {
+        if (fightButtonText.text.Equals("FIGHT") || bagButtonText.text.Equals("BAG"))
+        {
+            switch (cursor)
+            {
+                case 1:
+                    fightButtonText.text = "-> FIGHT";
+                    bagButtonText.text = "BAG";
+                    pokemonButtonText.text = "POKEMON";
+                    runButtonText.text = "RUN";
+                    break;
+                case 2:
+                    fightButtonText.text = "FIGHT";
+                    bagButtonText.text = "-> BAG";
+                    pokemonButtonText.text = "POKEMON";
+                    runButtonText.text = "RUN";
+                    break;
+                case 3:
+                    fightButtonText.text = "FIGHT";
+                    bagButtonText.text = "BAG";
+                    pokemonButtonText.text = "-> POKEMON";
+                    runButtonText.text = "RUN";
+                    break;
+                case 4:
+                    fightButtonText.text = "FIGHT";
+                    bagButtonText.text = "BAG";
+                    pokemonButtonText.text = "POKEMON";
+                    runButtonText.text = "-> RUN";
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        else
+        {
+
+            switch (cursor)
+            {
+                case 1:
+                    fightButtonText.text = "-> " + ally.moveOne;
+                    bagButtonText.text = ally.moveTwo;
+                    pokemonButtonText.text = ally.moveThree;
+                    runButtonText.text = ally.moveFour;
+                    break;
+                case 2:
+                    fightButtonText.text = ally.moveOne;
+                    bagButtonText.text = "-> " + ally.moveTwo;
+                    pokemonButtonText.text = ally.moveThree;
+                    runButtonText.text = ally.moveFour;
+                    break;
+                case 3:
+                    fightButtonText.text = ally.moveOne;
+                    bagButtonText.text = ally.moveTwo;
+                    pokemonButtonText.text = "-> " + ally.moveThree;
+                    runButtonText.text = ally.moveFour;
+                    break;
+                case 4:
+                    fightButtonText.text = ally.moveOne;
+                    bagButtonText.text = ally.moveTwo;
+                    pokemonButtonText.text = ally.moveThree;
+                    runButtonText.text = "-> " + ally.moveFour;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+
+    void changeBackButtonTexts()
+    {
+        cursor = 1;
+        fightButtonText.text = "-> FIGHT";
+        runButtonText.text = "RUN";
+        bagButtonText.text = "BAG";
+        pokemonButtonText.text = "POKEMON";
+    }
+
+    // BUTTON STUFF-------------------------------------------------------------
 
     // ON FIGHT BUTTON CLICK
 
@@ -301,9 +387,8 @@ public class BattleCanvasScript : MonoBehaviour
         }
         else
         {
-            currMove = ally.moveOne;
-            canMove = false;
-            Invoke("useMoveOne", 2);
+            changeTitleText(ally.name + " used " + ally.moveOne + "!");
+            useMove(1);
         }
     }
 
@@ -317,9 +402,8 @@ public class BattleCanvasScript : MonoBehaviour
         }
         else
         {
-            currMove = ally.moveTwo;
-            canMove = false;
-            Invoke("useMoveTwo", 2);
+            changeTitleText(ally.name + " used " + ally.moveTwo + "!");
+            useMove(2);
         }
     }
 
@@ -333,9 +417,8 @@ public class BattleCanvasScript : MonoBehaviour
         }
         else
         {
-            currMove = ally.moveThree;
-            canMove = false;
-            Invoke("useMoveThree", 2);
+            changeTitleText(ally.name + " used " + ally.moveThree + "!");
+            useMove(3);
         }
     }
 
@@ -353,14 +436,43 @@ public class BattleCanvasScript : MonoBehaviour
             {
                 print("You cannot run from a trainer!");
             }
-
         }
         else
         {
-            currMove = ally.moveFour;
-            canMove = false;
-            Invoke("useMoveFour", 2);
+            changeTitleText(ally.name + " used " + ally.moveFour + "!");
+            useMove(4);
         }
+    }
+
+    // END OF BUTTON STUFF ----------------------------------------------------
+
+    void useMove(int num)
+    {
+        currMove = num;
+        canMove = false;
+        Invoke("moveDamage", 2);
+    }
+
+    void moveDamage()
+    {
+        switch (currMove)
+        {
+            case 1:
+                bc.applyMove(ally.moveOne);
+                break;
+            case 2:
+                bc.applyMove(ally.moveTwo);
+                break;
+            case 3:
+                bc.applyMove(ally.moveThree);
+                break;
+            case 4:
+                bc.applyMove(ally.moveFour);
+                break;
+            default:
+                break;
+        }
+
     }
 
     public void exitBattle()
@@ -373,82 +485,17 @@ public class BattleCanvasScript : MonoBehaviour
         FindObjectOfType<Movement>().setStasis(false);
     }
 
-    void useMoveOne()
+
+
+    void changeTitleText(string message)
     {
-        canMove = true;
-        bc.applyMove(ally.moveOne);
-        currMove = "";
-        changeBackText();
-    }
-    void useMoveTwo()
-    {
-        canMove = true;
-        bc.applyMove(ally.moveTwo);
-        currMove = "";
-        changeBackText();
-    }
-    void useMoveThree()
-    {
-        canMove = true;
-        bc.applyMove(ally.moveThree);
-        currMove = "";
-        changeBackText();
-    }
-    void useMoveFour()
-    {
-        canMove = true;
-        bc.applyMove(ally.moveFour);
-        currMove = "";
-        changeBackText();
+        titleText.text = message;
+        Invoke("changeBackTitleText", 2);
     }
 
-    string getTitleText()
+    void changeBackTitleText()
     {
-        if ( !ballType.Equals("") )
-        {
-            return "You threw a " + ballType + "!";
-        }
-        else if ( pokemonDied )
-        {
-            return ally.name + " has feinted.";
-        }
-        else if ( !potionType.Equals("") )
-        {
-            return "You used a " + potionType + "!";
-        }
-        else if( !enemyMove.Equals("") )
-        {
-            return "The wild " + enemy.name + " used " + enemyMove + "!";
-        }
-        else if (currMove.Equals(ally.moveOne))
-        {
-            return ally.name + " used " + ally.moveOne + "!";
-        }
-        else if (currMove.Equals(ally.moveTwo))
-        {
-            return ally.name + " used " + ally.moveTwo + "!";
-        }
-        else if (currMove.Equals(ally.moveThree))
-        {
-            return ally.name + " used " + ally.moveThree + "!";
-        }
-        else if (currMove.Equals(ally.moveFour))
-        {
-            return ally.name + " used " + ally.moveFour + "!";
-        }
-        else
-        {
-            return "What will " + ally.name + " do?";
-        }
-    }
-
-    void changeBackText()
-    {
-        cursor = 1;
-        fightButtonText.text = "-> FIGHT";
-        runButtonText.text = "RUN";
-        bagButtonText.text = "BAG";
-        pokemonButtonText.text = "POKEMON";
+        titleText.text = "What will " + ally.name + " do?";
     }
 
     public void startBattle(Pokemon poke)
@@ -464,91 +511,117 @@ public class BattleCanvasScript : MonoBehaviour
         enemy = enemyTrainer.firstPokemon();
     }
 
-    public void pickNewPoke()
+    // USING POTIONS
+
+    public void usePotion(string potionType)
     {
-        if ( !allDead() )
+        changeTitleText("You used a " + potionType + "!");
+        canMove = false;
+        changeBackButtonTexts();
+
+        switch (potionType)
         {
-            pokemonDied = false;
-            pokemon.SetActive(true);
-            print("Select a new pokemon to swap with.");
-            PokemonCanvasScript pcScript = pokemon.GetComponent<PokemonCanvasScript>();
-            pcScript.iDied();
+            case "Potion":
+                Invoke("useRegularPotion", 2);
+                break;
+            case "Super Potion":
+                Invoke("useSuperPotion", 2);
+                break;
+            case "Hyper Potion":
+                Invoke("useHyperPotion", 2);
+                break;
+            case "Max Potion":
+                Invoke("useMaxPotion", 2);
+                break;
         }
     }
 
-    public bool allDead()
+    public void useRegularPotion()
     {
-        bool isEmpty = true;
-
-        for ( int i = 0; i < t.pokemon.Length; i++ )
-        {
-            if ( t.pokemon[i] != null )
-            {
-                if ( t.pokemon[i].currHealth != 0 )
-                {
-                    isEmpty = false;
-                }
-            }
-        }
-        return isEmpty;
+        t.pokemon[0].addHealth(20);
+        canMove = true;
+    }
+    public void useSuperPotion()
+    {
+        t.pokemon[0].addHealth(50);
+        canMove = true;
+    }
+    public void useHyperPotion()
+    {
+        t.pokemon[0].addHealth(100);
+        canMove = true;
+    }
+    public void useMaxPotion()
+    {
+        t.pokemon[0].heal();
+        canMove = true;
     }
 
-    public void usePotion(string type)
-    {
-        potionType = type;
-
-        Invoke("usePotion", 2);
-    }
-
-    public void usePotion()
-    {
-        if (potionType.Equals("Potion"))
-        {
-            t.pokemon[0].addHealth(20);
-        }
-        else if (potionType.Equals("Super Potion"))
-        {
-            t.pokemon[0].addHealth(50);
-        }
-        else if (potionType.Equals("Hyper Potion"))
-        {
-            t.pokemon[0].addHealth(100);
-        }
-        else
-        {
-            t.pokemon[0].heal();
-        }
-
-        potionType = "";
-        enemyTurnFight();
-    }
+    // ENEMY USING MOVES
 
     public void enemyTurnFight()
     {
         bc.enemyTurnFight();
     }
 
-    public void catchPokemon(string ballType)
+    public void printEnemyMove(string move)
     {
         canMove = false;
-        this.ballType = ballType;
-        print(ballType);
-        Invoke("goodShake", 1);
-        Invoke("goodShake", 2);
-        Invoke("goodShake", 3);
-        changeBackText();
+        changeBackButtonTexts();
+        changeTitleText(enemy.name + " used " + move + "!");
+        Invoke("afterEnemyMove", 2);
     }
 
-    public void badThrow(string ballType)
+    public void afterEnemyMove()
     {
+        canMove = true;
+    }
+
+
+    // ALLY TAKING DAMAGE 
+
+    public void takeDamage(bool setToZero, int amount)
+    {
+        this.setToZero = setToZero;
+        damageAmount = amount;
+        Invoke("lowerHealth", 2);
+    }
+    public void lowerHealth()
+    {
+        if (!setToZero)
+        {
+            ally.currHealth -= damageAmount;
+        }
+        else
+        {
+            ally.currHealth = 0;
+            pokemonDied = true;
+            Invoke("pickNewPoke", 2);
+        }
+    }
+
+
+    // USING POKEBALLS -----------------------------------------------------------
+
+    public void usePokeball(string ballType, bool caught)
+    {
+        changeBackButtonTexts();
         canMove = false;
         this.ballType = ballType;
-        Invoke("badShake", 1);
-        Invoke("badShake", 2);
-        Invoke("badShake", 3);
-        changeBackText();
 
-        bc.enemyTurnFight();
+        if (caught)
+        {
+            Invoke("goodShake", 1);
+            Invoke("goodShake", 2);
+            Invoke("goodShake", 3);
+        }
+        else
+        {
+            Invoke("badShake", 1);
+            Invoke("badShake", 2);
+            Invoke("badShake", 3);
+            bc.enemyTurnFight();
+        }
     }
 
     public void badShake()
@@ -573,20 +646,20 @@ public class BattleCanvasScript : MonoBehaviour
             numShakes = 0;
             t.addPokemon(enemy);
             print("The " + enemy.name + " was Caught!");
-            Invoke("exitBattle", 3);
-            canMove = true;
+            Invoke("moveAgain", 2.9f);
+            Invoke("exitBattle", 3f);
         }
     }
 
     public void shake()
     {
-        numShakes++;
-        print(numShakes);
-
         Invoke("rotateLeft", 0.25f);
         Invoke("rotateRight", 0.35f);
         Invoke("rotateRight", 0.55f);
         Invoke("rotateLeft", 0.7f);
+
+        numShakes++;
+        print(numShakes);
     }
 
     void rotateLeft()
@@ -599,652 +672,331 @@ public class BattleCanvasScript : MonoBehaviour
         enemyImage.transform.Rotate(new Vector3(0, 0, -20));
     }
 
-    public void setArrow()
-    {
-        if (fightButtonText.text.Equals("FIGHT") || bagButtonText.text.Equals("BAG"))
-        {
-            if (cursor == 1)
-            {
-                fightButtonText.text = "-> FIGHT";
-                bagButtonText.text = "BAG";
-                pokemonButtonText.text = "POKEMON";
-                runButtonText.text = "RUN";
-            }
-            else if (cursor == 2)
-            {
-                fightButtonText.text = "FIGHT";
-                bagButtonText.text = "-> BAG";
-                pokemonButtonText.text = "POKEMON";
-                runButtonText.text = "RUN";
+    // END OF USING POKEBALLS----------------------------------------------------------------------------------
 
-            }
-            else if (cursor == 3)
-            {
-                fightButtonText.text = "FIGHT";
-                bagButtonText.text = "BAG";
-                pokemonButtonText.text = "-> POKEMON";
-                runButtonText.text = "RUN";
-            }
-            else if (cursor == 4)
-            {
-                fightButtonText.text = "FIGHT";
-                bagButtonText.text = "BAG";
-                pokemonButtonText.text = "POKEMON";
-                runButtonText.text = "-> RUN";
-            }
-        }
-        else
+    // IF YOUR POKEMON DIES
+
+    public void pickNewPoke()
+    {
+        if (!allDead())
         {
-            if (cursor == 1)
-            {
-                fightButtonText.text = "-> " + ally.moveOne;
-                bagButtonText.text = ally.moveTwo;
-                pokemonButtonText.text = ally.moveThree;
-                runButtonText.text = ally.moveFour;
-            }
-            else if (cursor == 2)
-            {
-                fightButtonText.text = ally.moveOne;
-                bagButtonText.text = "-> " + ally.moveTwo;
-                pokemonButtonText.text = ally.moveThree;
-                runButtonText.text = ally.moveFour;
-            }
-            else if (cursor == 3)
-            {
-                fightButtonText.text = ally.moveOne;
-                bagButtonText.text = ally.moveTwo;
-                pokemonButtonText.text = "-> " + ally.moveThree;
-                runButtonText.text = ally.moveFour;
-            }
-            else if (cursor == 4)
-            {
-                fightButtonText.text = ally.moveOne;
-                bagButtonText.text = ally.moveTwo;
-                pokemonButtonText.text = ally.moveThree;
-                runButtonText.text = "-> " + ally.moveFour;
-            }
+            pokemonDied = false;
+            pokemon.SetActive(true);
+            print("Select a new pokemon to swap with.");
+            PokemonCanvasScript pcScript = pokemon.GetComponent<PokemonCanvasScript>();
+            pcScript.iDied();
         }
     }
+
+    public bool allDead()
+    {
+        bool isEmpty = true;
+
+        for (int i = 0; i < t.pokemon.Length; i++)
+        {
+            if (t.pokemon[i] != null)
+            {
+                if (t.pokemon[i].currHealth != 0)
+                {
+                    isEmpty = false;
+                }
+            }
+        }
+        return isEmpty;
+    }
+
+
+    // PRINT FOR BattleControl 
 
     public void printForBC(string s)
     {
         print(s);
     }
-    public void printEnemyMove(string s)
-    {
-        canMove = false;
-        enemyMove = s;
-        Invoke("moveAgain", 2);
-    }
 
-    public void moveAgain()
-    {
-        enemyMove = "";
-        canMove = true;
-    }
 
-    public void takeDamage(bool setToZero, int amount)
-    {
-        this.setToZero = setToZero;
-        damageAmount = amount;
-        Invoke("lowerHealth", 2);
-    }
-    public void lowerHealth()
-    {
-        if (!setToZero)
-        {
-            ally.currHealth -= damageAmount;
-        }
-        else
-        {
-            ally.currHealth = 0;
-            pokemonDied = true;
-            Invoke("pickNewPoke", 2);
-        }
-    }
+
+    // GETTING ALLY AND ENEMY IMAGES
 
     public Sprite getEnemyImage(string item)
     {
-        if (item.Equals("Pokeball"))
+        switch (item)
         {
-           return pokeballSprite;
-        }
-        else if (item.Equals("Great Ball"))
-        {
-            return greatballSprite;
-        }
-        else if (item.Equals("Ultra Ball"))
-        {
-            return ultraBallSprite;
-        }
-        else if (item.Equals("Master Ball"))
-        {
-            return masterBallSprite;
-        }
-        else
-        {
-            return getImage(enemy.name);
+            case "Pokeball":
+                return pokeballSprite;
+            case "Great Ball":
+                return greatballSprite;
+            case "Ultra Ball":
+                return ultraBallSprite;
+            case "Master Ball":
+                return masterBallSprite;
+
+            default:
+                return getImage(enemy.name);
         }
     }
 
 
-        public Sprite getImage(string name)
+    public Sprite getImage(string name)
     {
-        if (name.Equals("Treecko"))
-        {
-            return tree;
-        }
-        else if (name.Equals("Grovyle"))
-        {
-            return grov;
-        }
-        else if (name.Equals("Sceptile"))
-        {
-            return scep;
-        }
-        else if (name.Equals("Torchic"))
-        {
-            return torc;
-        }
-        else if (name.Equals("Combusken"))
-        {
-            return comb;
-        }
-        else if (name.Equals("Blaziken"))
-        {
-            return blaz;
-        }
-        else if (name.Equals("Mudkip"))
-        {
-            return mudk;
-        }
-        else if (name.Equals("Marshtomp"))
-        {
-            return mars;
-        }
-        else if (name.Equals("Swampert"))
-        {
-            return swam;
-        }
-        else if (name.Equals("Poochyena"))
-        {
-            return pooc;
-        }
-        else if (name.Equals("Mightyena"))
-        {
-            return migh;
-        }
-        else if (name.Equals("Zigzagoon"))
-        {
-            return zigz;
-        }
-        else if (name.Equals("Linoone"))
-        {
-            return lino;
-        }
-        else if (name.Equals("Wurmple"))
-        {
-            return wurm;
-        }
-        else if (name.Equals("Silicoon"))
-        {
-            return sili;
-        }
-        else if (name.Equals("Beautifly"))
-        {
-            return beau;
-        }
-        else if (name.Equals("Cascoon"))
-        {
-            return casc;
-        }
-        else if (name.Equals("Dustox"))
-        {
-            return dust;
-        }
-        else if (name.Equals("Lotad"))
-        {
-            return lota;
-        }
-        else if (name.Equals("Lombre"))
-        {
-            return lomb;
-        }
-        else if (name.Equals("Ludicolo"))
-        {
-            return ludi;
-        }
-        else if (name.Equals("Seedot"))
-        {
-            return seed;
-        }
-        else if (name.Equals("Nuzleaf"))
-        {
-            return nuzl;
-        }
-        else if (name.Equals("Shiftry"))
-        {
-            return shif;
-        }
-        else if (name.Equals("Nincada"))
-        {
-            return ninc;
-        }
-        else if (name.Equals("Ninjask"))
-        {
-            return ninj;
-        }
-        else if (name.Equals("Shedinja"))
-        {
-            return shed;
-        }
-        else if (name.Equals("Taillow"))
-        {
-            return tail;
-        }
-        else if (name.Equals("Swellow"))
-        {
-            return swel;
-        }
-        else if (name.Equals("Shroomish"))
-        {
-            return shro;
-        }
-        else if (name.Equals("Breloom"))
-        {
-            return brel;
-        }
-        else if (name.Equals("Spinda"))
-        {
-            return spin;
-        }
-        else if (name.Equals("Wingull"))
-        {
-            return wing;
-        }
-        else if (name.Equals("Pelipper"))
-        {
-            return peli;
-        }
-        else if (name.Equals("Surskit"))
-        {
-            return surs;
-        }
-        else if (name.Equals("Masquerain"))
-        {
-            return masq;
-        }
-        else if (name.Equals("Wailmer"))
-        {
-            return wailm;
-        }
-        else if (name.Equals("Wailord"))
-        {
-            return waill;
-        }
-        else if (name.Equals("Skitty"))
-        {
-            return skit;
-        }
-        else if (name.Equals("Delcatty"))
-        {
-            return delc;
-        }
-        else if (name.Equals("Kecleon"))
-        {
-            return kecl;
-        }
-        else if (name.Equals("Baltoy"))
-        {
-            return balt;
-        }
-        else if (name.Equals("Claydol"))
-        {
-            return clay;
-        }
-        else if (name.Equals("Nosepass"))
-        {
-            return nose;
-        }
-        else if (name.Equals("Torkoal"))
-        {
-            return tork;
-        }
-        else if (name.Equals("Sableye"))
-        {
-            return sabl;
-        }
-        else if (name.Equals("Barboach"))
-        {
-            return barb;
-        }
-        else if (name.Equals("Whiscash"))
-        {
-            return whisc;
-        }
-        else if (name.Equals("Luvdisc"))
-        {
-            return luvd;
-        }
-        else if (name.Equals("Corphish"))
-        {
-            return corp;
-        }
-        else if (name.Equals("Crawdaunt"))
-        {
-            return craw;
-        }
-        else if (name.Equals("Feebas"))
-        {
-            return feeb;
-        }
-        else if (name.Equals("Milotic"))
-        {
-            return milo;
-        }
-        else if (name.Equals("Carvanha"))
-        {
-            return carv;
-        }
-        else if (name.Equals("Sharpedo"))
-        {
-            return shar;
-        }
-        else if (name.Equals("Trapinch"))
-        {
-            return trap;
-        }
-        else if (name.Equals("Vibrava"))
-        {
-            return vibr;
-        }
-        else if (name.Equals("Flygon"))
-        {
-            return flyg;
-        }
-        else if (name.Equals("Makuhita"))
-        {
-            return maku;
-        }
-        else if (name.Equals("Hariyama"))
-        {
-            return hari;
-        }
-        else if (name.Equals("Electrike"))
-        {
-            return elec;
-        }
-        else if (name.Equals("Manectric"))
-        {
-            return mane;
-        }
-        else if (name.Equals("Numel"))
-        {
-            return nume;
-        }
-        else if (name.Equals("Camerupt"))
-        {
-            return came;
-        }
-        else if (name.Equals("Spheal"))
-        {
-            return sphe;
-        }
-        else if (name.Equals("Sealeo"))
-        {
-            return seal;
-        }
-        else if (name.Equals("Walrein"))
-        {
-            return walr;
-        }
-        else if (name.Equals("Cacnea"))
-        {
-            return cacn;
-        }
-        else if (name.Equals("Cacturne"))
-        {
-            return cact;
-        }
-        else if (name.Equals("Snorunt"))
-        {
-            return snor;
-        }
-        else if (name.Equals("Glalie"))
-        {
-            return glal;
-        }
-        else if (name.Equals("Lunatone"))
-        {
-            return luna;
-        }
-        else if (name.Equals("Solrock"))
-        {
-            return solr;
-        }
-        else if (name.Equals("Azurill"))
-        {
-            return azuri;
-        }
-        else if (name.Equals("Spoink"))
-        {
-            return spoi;
-        }
-        else if (name.Equals("Grumpig"))
-        {
-            return grum;
-        }
-        else if (name.Equals("Plusle"))
-        {
-            return plus;
-        }
-        else if (name.Equals("Minun"))
-        {
-            return minu;
-        }
-        else if (name.Equals("Mawile"))
-        {
-            return mawi;
-        }
-        else if (name.Equals("Meditite"))
-        {
-            return medit;
-        }
-        else if (name.Equals("Medicham"))
-        {
-            return medic;
-        }
-        else if (name.Equals("Swablu"))
-        {
-            return swab;
-        }
-        else if (name.Equals("Altaria"))
-        {
-            return alta;
-        }
-        else if (name.Equals("Wynaut"))
-        {
-            return wyna;
-        }
-        else if (name.Equals("Duskell"))
-        {
-            return dusk;
-        }
-        else if (name.Equals("Dusclops"))
-        {
-            return dusc;
-        }
-        else if (name.Equals("Roselia"))
-        {
-            return rose;
-        }
-        else if (name.Equals("Slakoth"))
-        {
-            return slako;
-        }
-        else if (name.Equals("Vigorath"))
-        {
-            return vigo;
-        }
-        else if (name.Equals("Slaking"))
-        {
-            return slaki;
-        }
-        else if (name.Equals("Gulpin"))
-        {
-            return gulp;
-        }
-        else if (name.Equals("Swalot"))
-        {
-            return swal;
-        }
-        else if (name.Equals("Tropius"))
-        {
-            return trop;
-        }
-        else if (name.Equals("Whismur"))
-        {
-            return whism;
-        }
-        else if (name.Equals("Loudred"))
-        {
-            return loud;
-        }
-        else if (name.Equals("Exploud"))
-        {
-            return expl;
-        }
-        else if (name.Equals("Clampearl"))
-        {
-            return clam;
-        }
-        else if (name.Equals("Huntail"))
-        {
-            return hunt;
-        }
-        else if (name.Equals("Absol"))
-        {
-            return abso;
-        }
-        else if (name.Equals("Shuppet"))
-        {
-            return shup;
-        }
-        else if (name.Equals("Banette"))
-        {
-            return bane;
-        }
-        else if (name.Equals("Seviper"))
-        {
-            return sevi;
-        }
-        else if (name.Equals("Zangoose"))
-        {
-            return zang;
-        }
-        else if (name.Equals("Relicanth"))
-        {
-            return reli;
-        }
-        else if (name.Equals("Aron"))
-        {
-            return aron;
-        }
-        else if (name.Equals("Lairon"))
-        {
-            return lair;
-        }
-        else if (name.Equals("Aggron"))
-        {
-            return aggr;
-        }
-        else if (name.Equals("Castform"))
-        {
-            return cast;
-        }
-        else if (name.Equals("Volbeat"))
-        {
-            return volb;
-        }
-        else if (name.Equals("Illumise"))
-        {
-            return illu;
-        }
-        else if (name.Equals("Lileep"))
-        {
-            return lile;
-        }
-        else if (name.Equals("Cradily"))
-        {
-            return crad;
-        }
-        else if (name.Equals("Anorith"))
-        {
-            return anor;
-        }
-        else if (name.Equals("Armaldo"))
-        {
-            return arma;
-        }
-        else if (name.Equals("Ralts"))
-        {
-            return ralt;
-        }
-        else if (name.Equals("Kirlia"))
-        {
-            return kirl;
-        }
-        else if (name.Equals("Gardevoir"))
-        {
-            return gard;
-        }
-        else if (name.Equals("Bagon"))
-        {
-            return bago;
-        }
-        else if (name.Equals("Salamance"))
-        {
-            return sala;
-        }
-        else if (name.Equals("Beldum"))
-        {
-            return beld;
-        }
-        else if (name.Equals("Metang"))
-        {
-            return metan;
-        }
-        else if (name.Equals("Metagross"))
-        {
-            return metag;
-        }
-        else if (name.Equals("Regirock"))
-        {
-            return regir;
-        }
-        else if (name.Equals("Regice"))
-        {
-            return regic;
-        }
-        else if (name.Equals("Registeel"))
-        {
-            return regis;
-        }
-        else if (name.Equals("Kyogre"))
-        {
-            return kyog;
-        }
-        else if (name.Equals("Groudon"))
-        {
-            return grou;
-        }
-        else if (name.Equals("Rayquaza"))
-        {
-            return rayq;
-        }
-        else
-        {
-            return other;
+        switch (name)
+        {
+            case "Treecko":
+                return tree;
+            case "Grovyle":
+                return grov;
+            case "Sceptile":
+                return scep;
+            case "Torchic":
+                return torc;
+            case "Combusken":
+                return comb;
+            case "Blaziken":
+                return blaz;
+            case "Mudkip":
+                return mudk;
+            case "Marshtomp":
+                return mars;
+            case "Swampert":
+                return swam;
+            case "Poochyena":
+                return pooc;
+            case "Mightyena":
+                return migh;
+            case "Linoone":
+                return lino;
+            case "Wurmple":
+                return wurm;
+            case "Silicoon":
+                return sili;
+            case "Beautifly":
+                return beau;
+            case "Cascoon":
+                return casc;
+            case "Dustox":
+                return dust;
+            case "Lotad":
+                return lota;
+            case "Lombre":
+                return lomb;
+            case "Ludicolo":
+                return ludi;
+            case "Seedot":
+                return seed;
+            case "Nuzleaf":
+                return nuzl;
+            case "Shiftry":
+                return shif;
+            case "Nincada":
+                return ninc;
+            case "Ninjask":
+                return ninj;
+            case "Shedninja":
+                return shed;
+            case "Taillow":
+                return tail;
+            case "Swellow":
+                return swel;
+            case "Shroomish":
+                return shro;
+            case "Breloom":
+                return brel;
+            case "Spinda":
+                return spin;
+            case "Wingull":
+                return wing;
+            case "Pelipper":
+                return peli;
+            case "Surskit":
+                return surs;
+            case "Masquerein":
+                return masq;
+            case "Wailmer":
+                return wailm;
+            case "Waillord":
+                return waill;
+            case "Skitty":
+                return skit;
+            case "Delcatty":
+                return delc;
+            case "Kecleon":
+                return kecl;
+            case "Baltoy":
+                return balt;
+            case "Claydol":
+                return clay;
+            case "Nosepass":
+                return nose;
+            case "Torkoal":
+                return tork;
+            case "Sableye":
+                return sabl;
+            case "Barboach":
+                return barb;
+            case "Whiscash":
+                return whisc;
+            case "Luvdisc":
+                return luvd;
+            case "Corphish":
+                return corp;
+            case "Crawdaunt":
+                return craw;
+            case "Feebas":
+                return feeb;
+            case "Milotic":
+                return milo;
+            case "Carvanha":
+                return carv;
+            case "Sharpedo":
+                return shar;
+            case "Trapinch":
+                return trap;
+            case "Vibrava":
+                return vibr;
+            case "Flygon":
+                return flyg;
+            case "Makuhita":
+                return maku;
+            case "Hariyama":
+                return hari;
+            case "Electrike":
+                return elec;
+            case "Manectric":
+                return mane;
+            case "Numel":
+                return nume;
+            case "Camerupt":
+                return came;
+            case "Spheal":
+                return sphe;
+            case "Sealeo":
+                return seal;
+            case "Walrein":
+                return walr;
+            case "Cacnea":
+                return cacn;
+            case "Cacturne":
+                return cact;
+            case "Snorunt":
+                return snor;
+            case "Glalie":
+                return glal;
+            case "Lunatone":
+                return luna;
+            case "Solrock":
+                return solr;
+            case "Azurill":
+                return azuri;
+            case "Spoink":
+                return spoi;
+            case "Grumpug":
+                return grum;
+            case "Plusle":
+                return plus;
+            case "Minun":
+                return seal;
+            case "Mawhile":
+                return mawi;
+            case "Meditite":
+                return medit;
+            case "Medicham":
+                return medic;
+            case "Swablu":
+                return swab;
+            case "Altaria":
+                return alta;
+            case "Wynaut":
+                return wyna;
+            case "Duskell":
+                return dusk;
+            case "Dusclops":
+                return dusc;
+            case "Roselia":
+                return rose;
+            case "Vigorath":
+                return vigo;
+            case "Slaking":
+                return slaki;
+            case "Gulpin":
+                return gulp;
+            case "Swalot":
+                return swal;
+            case "Tropius":
+                return trop;
+            case "Whismur":
+                return whism;
+            case "Loudred":
+                return loud;
+            case "Exploud":
+                return expl;
+            case "Clampearl":
+                return clam;
+            case "Huntail":
+                return hunt;
+            case "Absol":
+                return abso;
+            case "Shuppet":
+                return shup;
+            case "Banette":
+                return bane;
+            case "Seviper":
+                return sevi;
+            case "Zangoose":
+                return zang;
+            case "Relicanth":
+                return reli;
+            case "Aron":
+                return aron;
+            case "Lairon":
+                return lair;
+            case "Aggron":
+                return aggr;
+            case "Castform":
+                return cast;
+            case "Volbeat":
+                return volb;
+            case "Illumise":
+                return illu;
+            case "Lileep":
+                return lile;
+            case "Cradily":
+                return crad;
+            case "Anorith":
+                return anor;
+            case "Armaldo":
+                return arma;
+            case "Ralts":
+                return ralt;
+            case "Kirlia":
+                return kirl;
+            case "Gardevoir":
+                return gard;
+            case "Bagon":
+                return bago;
+            case "Shelgon":
+                return shel;
+            case "Salamance":
+                return came;
+            case "Beldum":
+                return beld;
+            case "Metang":
+                return metan;
+            case "Metagross":
+                return metag;
+            case "Regirock":
+                return regir;
+            case "Regice":
+                return regic;
+            case "Registeel":
+                return regis;
+            case "Kyogre":
+                return kyog;
+            case "Groudon":
+                return grou;
+            case "Rayquaza":
+                return rayq;
+
+            default:
+                return rayq;
         }
     }
 }

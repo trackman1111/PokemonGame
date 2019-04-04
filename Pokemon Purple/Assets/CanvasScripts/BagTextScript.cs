@@ -358,11 +358,11 @@ public class BagTextScript : MonoBehaviour
 
                 if (randoNum <= 50)
                 {
-                    bcScript.catchPokemon("Pokeball");
+                    bcScript.usePokeball(type, true);
                 }
                 else
                 {
-                    bcScript.badThrow("Pokeball");
+                    bcScript.usePokeball(type, false);
                 }
             }
             else if (type.Equals("Great Ball"))
@@ -371,11 +371,11 @@ public class BagTextScript : MonoBehaviour
 
                 if (randoNum <= 75)
                 {
-                    bcScript.catchPokemon("Great Ball");
+                    bcScript.usePokeball(type, true);
                 }
                 else
                 {
-                    bcScript.badThrow("Great Ball");
+                    bcScript.usePokeball(type, false);
                 }
             }
             else if (type.Equals("Ultra Ball"))
@@ -384,16 +384,16 @@ public class BagTextScript : MonoBehaviour
 
                 if (randoNum <= 90)
                 {
-                    bcScript.catchPokemon("Ultra Ball");
+                    bcScript.usePokeball(type, true);
                 }
                 else
                 {
-                    bcScript.badThrow("Ultra Ball");
+                    bcScript.usePokeball(type, false);
                 }
             }
             else
             {
-                bcScript.catchPokemon("Master Ball");
+                bcScript.usePokeball("Master Ball", true);
             }
         }
     }
