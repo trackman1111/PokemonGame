@@ -204,7 +204,7 @@ public class BattleCanvasScript : MonoBehaviour
         runButtonText.text = "RUN";
         bagButtonText.text = "BAG";
         pokemonButtonText.text = "POKEMON";
-        titleText.text = "What will " + t.pokemon[0] + " do?";
+        titleText.text = "What will " + t.pokemon[0].name + " do?";
         ballType = "";
         cursor = 1;
         numShakes = 0;
@@ -279,7 +279,8 @@ public class BattleCanvasScript : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Escape) && (fightButtonText.text.Equals(ally.moveOne) || bagButtonText.text.Equals(ally.moveTwo)))
+
+            if (Input.GetKeyDown(KeyCode.Escape) && !fightButtonText.text.Equals("FIGHT"))
             {
                 cursor = 1;
                 fightButtonText.text = "-> FIGHT";
@@ -641,6 +642,7 @@ public class BattleCanvasScript : MonoBehaviour
 
     public void usePokeball(string ballType, bool caught)
     {
+        changeTitleText("You threw a " + ballType + "!", 2);    //TIME HERE
         changeBackButtonTexts();
         buttonTransparent();
         canMove = false;
@@ -648,17 +650,15 @@ public class BattleCanvasScript : MonoBehaviour
 
         if (caught)
         {
-            Invoke("goodShake", 1);
-            Invoke("goodShake", 2);
-            Invoke("goodShake", 3);
-            Invoke("buttonVisible", 3);
+            Invoke("goodShake", 2); 
+            Invoke("goodShake", 4);  
+            Invoke("goodShake", 6);
         }
         else
         {
-            Invoke("badShake", 1);
-            Invoke("badShake", 2);
-            Invoke("badShake", 3);
-            Invoke("enemyTurnFight", 3);
+            Invoke("badShake", 2);   
+            Invoke("badShake", 4);  
+            Invoke("badShake", 6);    
         }
     }
 
@@ -667,9 +667,9 @@ public class BattleCanvasScript : MonoBehaviour
         shake();
         if (numShakes == 3)
         {
-            numShakes = 0;
-            print("The " + enemy.name + " broke free!");
-            ballType = "";
+            numShakes = 0;  
+            Invoke("itBrokeFree", 2);
+            Invoke("enemyTurnFight", 5);  
             canMove = true;
         }
     }
@@ -680,22 +680,33 @@ public class BattleCanvasScript : MonoBehaviour
         if (numShakes == 3)
         {
             numShakes = 0;
+            Invoke("itWasCaught", 2);
             t.addPokemon(enemy);
-            print("The " + enemy.name + " was Caught!");
-            Invoke("moveAgain", 2.9f);
-            Invoke("exitBattle", 3f);
+            Invoke("moveAgain", 5f);   
+            Invoke("buttonVisible", 5f); 
+            Invoke("exitBattle", 5f);    
         }
+    }
+
+    public void itBrokeFree()
+    {
+        changeTitleText("The wild " + enemy.name + " broke free!", 3);
+        ballType = "";
+    }
+
+    public void itWasCaught()
+    {
+        changeTitleText("The wild " + enemy.name + " was Caught!", 3);
     }
 
     public void shake()
     {
-        Invoke("rotateLeft", 0.25f);
-        Invoke("rotateRight", 0.35f);
-        Invoke("rotateRight", 0.55f);
-        Invoke("rotateLeft", 0.7f);
-
         numShakes++;
-        print(numShakes);
+        changeTitleText(numShakes + "...", 2); 
+        Invoke("rotateLeft", 0.15f);   
+        Invoke("rotateRight", 0.4f);     
+        Invoke("rotateRight", 0.65f);
+        Invoke("rotateLeft", 0.9f); 
     }
     public void rotateLeft()
     {
@@ -719,7 +730,7 @@ public class BattleCanvasScript : MonoBehaviour
     {
         canMove = false;
         changeBackButtonTexts();
-        changeTitleText(enemy.name + " used " + move + "!", time);
+        changeTitleText("The wild " + enemy.name + " used " + move + "!", time);
 
         if (moveStats[1] == 0.0 && moveStats[2] == 0)
         {

@@ -648,13 +648,13 @@ public class PokemonCanvasScript : MonoBehaviour
 
         if (battleCanvas.activeSelf)
         {
-            if (movedPoke == 0)
+            BattleCanvasScript bcScript = battleCanvas.GetComponent<BattleCanvasScript>();
+            bcScript.buttonTransparent();
+            if (movedPoke == 0 || desiredPoke == 0)
             {
-                BattleCanvasScript bcScript = battleCanvas.GetComponent<BattleCanvasScript>();
-                bcScript.changeTitleText("Good Stuff " + pokemon[movedPoke].name + "!", 2);
-
-                Invoke("printNewPoke", 2);
-                Invoke("enemyTurnFight", 4);
+                bcScript.changeTitleText("Good Stuff " + pokemon[0].name + "!", bcScript.time);
+                Invoke("printNewPoke", bcScript.time);
+                Invoke("enemyTurnFight", bcScript.time * 2);
             }
             else
             {
@@ -662,7 +662,9 @@ public class PokemonCanvasScript : MonoBehaviour
                 pokemon[pok2] = pokemon[pok1];
                 pokemon[pok1] = temp;
 
-                enemyTurnFight();
+                bcScript.changeTitleText("You swapped " + pokemon[movedPoke].name + " with " + pokemon[desiredPoke].name + "!", bcScript.time);
+
+                Invoke("enemyTurnFight", bcScript.time);
             }
         }
         else
@@ -676,6 +678,12 @@ public class PokemonCanvasScript : MonoBehaviour
         description.text = "";
     }
 
+    public void buttonVisible()
+    {
+        BattleCanvasScript bcScript = battleCanvas.GetComponent<BattleCanvasScript>();
+        bcScript.buttonVisible();
+    }
+
     public void printNewPoke()
     {
         BattleCanvasScript bcScript = battleCanvas.GetComponent<BattleCanvasScript>();
@@ -683,8 +691,7 @@ public class PokemonCanvasScript : MonoBehaviour
         Pokemon temp = pokemon[pok2];
         pokemon[pok2] = pokemon[pok1];
         pokemon[pok1] = temp;
-
-        bcScript.changeTitleText("Lets Go " + pokemon[0].name + "!", 2);
+        bcScript.changeTitleText("Lets Go " + pokemon[0].name + "!", bcScript.time);
     }
 
     public void enemyTurnFight()

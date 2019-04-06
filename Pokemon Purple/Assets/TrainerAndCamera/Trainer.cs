@@ -72,7 +72,6 @@ public class Trainer : MonoBehaviour
             {
                 pokemon[i] = poke;
                 added = true;
-                print("You have added " + poke.name + " to your Bag!");
             }
         }
     }
