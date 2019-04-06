@@ -152,6 +152,11 @@ public class BattleCanvasScript : MonoBehaviour
     public GameObject bag;
     public GameObject battle;
 
+    public GameObject fightButton;
+    public GameObject bagButton;
+    public GameObject pokemonButton;
+    public GameObject runButton;
+
     public Text fightButtonText;
     public Text bagButtonText;
     public Text runButtonText;
@@ -187,6 +192,8 @@ public class BattleCanvasScript : MonoBehaviour
     public int currMove;
     private PokemonData pokeData;
 
+    public int time;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -203,6 +210,7 @@ public class BattleCanvasScript : MonoBehaviour
         numShakes = 0;
         canMove = true;
         currMove = 0;
+        time = 3;
     }
 
     // Update is called once per frame
@@ -254,16 +262,16 @@ public class BattleCanvasScript : MonoBehaviour
                     switch (cursor)
                     {
                         case 1:
-                            fightButton();
+                            onFightButton();
                             break;
                         case 2:
-                            bagButton();
+                            onBagButton();
                             break;
                         case 3:
-                            pokemonButton();
+                            onPokemonButton();
                             break;
                         case 4:
-                            runButton();
+                            onRunButton();
                             break;
 
                         default:
@@ -345,30 +353,29 @@ public class BattleCanvasScript : MonoBehaviour
             switch (cursor)
             {
                 case 1:
-                    fightButtonText.text = "-> " + ally.moveOne + "\t\t\t\t" + pokeData.getMovePower(ally.moveOne)[4] + " / " + pokeData.getMovePower(ally.moveOne)[5] + "pp";
-                    bagButtonText.text = ally.moveTwo + "\t\t\t\t" + pokeData.getMovePower(ally.moveTwo)[4] + " / " + pokeData.getMovePower(ally.moveTwo)[5] + "pp";
-                    pokemonButtonText.text = ally.moveThree + "\t\t\t\t" + pokeData.getMovePower(ally.moveThree)[4] + " / " + pokeData.getMovePower(ally.moveThree)[5] + "pp";
-                    runButtonText.text = ally.moveFour + "\t\t\t\t" + pokeData.getMovePower(ally.moveFour)[4] + " / " + pokeData.getMovePower(ally.moveFour)[5] + "pp";
+                    fightButtonText.text = "-> " + ally.moveOne + "\t\t\t\t" + ally.currMoveOnePP + " / " + pokeData.getMovePower(ally.moveOne)[5] + "pp";
+                    bagButtonText.text = ally.moveTwo + "\t\t\t\t" + ally.currMoveTwoPP + " / " + pokeData.getMovePower(ally.moveTwo)[5] + "pp";
+                    pokemonButtonText.text = ally.moveThree + "\t\t\t\t" + ally.currMoveThreePP + " / " + pokeData.getMovePower(ally.moveThree)[5] + "pp";
+                    runButtonText.text = ally.moveFour + "\t\t\t\t" + ally.currMoveFourPP + " / " + pokeData.getMovePower(ally.moveFour)[5] + "pp";
                     break;
                 case 2:
-                    fightButtonText.text = ally.moveOne + "\t\t\t\t" + pokeData.getMovePower(ally.moveOne)[4] + " / " + pokeData.getMovePower(ally.moveOne)[5] + "pp";
-                    bagButtonText.text = "-> " + ally.moveTwo + "\t\t\t\t" + pokeData.getMovePower(ally.moveTwo)[4] + " / " + pokeData.getMovePower(ally.moveTwo)[5] + "pp";
-                    pokemonButtonText.text = ally.moveThree + "\t\t\t\t" + pokeData.getMovePower(ally.moveThree)[4] + " / " + pokeData.getMovePower(ally.moveThree)[5] + "pp";
-                    runButtonText.text = ally.moveFour + "\t\t\t\t" + pokeData.getMovePower(ally.moveFour)[4] + " / " + pokeData.getMovePower(ally.moveFour)[5] + "pp";
+                    fightButtonText.text = ally.moveOne + "\t\t\t\t" + ally.currMoveOnePP + " / " + pokeData.getMovePower(ally.moveOne)[5] + "pp";
+                    bagButtonText.text = "-> " + ally.moveTwo + "\t\t\t\t" + ally.currMoveTwoPP + " / " + pokeData.getMovePower(ally.moveTwo)[5] + "pp";
+                    pokemonButtonText.text = ally.moveThree + "\t\t\t\t" + ally.currMoveThreePP + " / " + pokeData.getMovePower(ally.moveThree)[5] + "pp";
+                    runButtonText.text = ally.moveFour + "\t\t\t\t" + ally.currMoveFourPP + " / " + pokeData.getMovePower(ally.moveFour)[5] + "pp";
                     break;
                 case 3:
-                    fightButtonText.text =  ally.moveOne + "\t\t\t\t" + pokeData.getMovePower(ally.moveOne)[4] + " / " + pokeData.getMovePower(ally.moveOne)[5] + "pp";
-                    bagButtonText.text = ally.moveTwo + "\t\t\t\t" + pokeData.getMovePower(ally.moveTwo)[4] + " / " + pokeData.getMovePower(ally.moveTwo)[5] + "pp";
-                    pokemonButtonText.text = "-> " + ally.moveThree + "\t\t\t\t" + pokeData.getMovePower(ally.moveThree)[4] + " / " + pokeData.getMovePower(ally.moveThree)[5] + "pp";
-                    runButtonText.text = ally.moveFour + "\t\t\t\t" + pokeData.getMovePower(ally.moveFour)[4] + " / " + pokeData.getMovePower(ally.moveFour)[5] + "pp";
+                    fightButtonText.text = ally.moveOne + "\t\t\t\t" + ally.currMoveOnePP + " / " + pokeData.getMovePower(ally.moveOne)[5] + "pp";
+                    bagButtonText.text = ally.moveTwo + "\t\t\t\t" + ally.currMoveTwoPP + " / " + pokeData.getMovePower(ally.moveTwo)[5] + "pp";
+                    pokemonButtonText.text = "-> " + ally.moveThree + "\t\t\t\t" + ally.currMoveThreePP + " / " + pokeData.getMovePower(ally.moveThree)[5] + "pp";
+                    runButtonText.text = ally.moveFour + "\t\t\t\t" + ally.currMoveFourPP + " / " + pokeData.getMovePower(ally.moveFour)[5] + "pp";
                     break;
                 case 4:
-                    fightButtonText.text = ally.moveOne + "\t\t\t\t" + pokeData.getMovePower(ally.moveOne)[4] + " / " + pokeData.getMovePower(ally.moveOne)[5] + "pp";
-                    bagButtonText.text = ally.moveTwo + "\t\t\t\t" + pokeData.getMovePower(ally.moveTwo)[4] + " / " + pokeData.getMovePower(ally.moveTwo)[5] + "pp";
-                    pokemonButtonText.text = ally.moveThree + "\t\t\t\t" + pokeData.getMovePower(ally.moveThree)[4] + " / " + pokeData.getMovePower(ally.moveThree)[5] + "pp";
-                    runButtonText.text = "-> " + ally.moveFour + "\t\t\t\t" + pokeData.getMovePower(ally.moveFour)[4] + " / " + pokeData.getMovePower(ally.moveFour)[5] + "pp";
+                    fightButtonText.text = ally.moveOne + "\t\t\t\t" + ally.currMoveOnePP + " / " + pokeData.getMovePower(ally.moveOne)[5] + "pp";
+                    bagButtonText.text = ally.moveTwo + "\t\t\t\t" + ally.currMoveTwoPP + " / " + pokeData.getMovePower(ally.moveTwo)[5] + "pp";
+                    pokemonButtonText.text = ally.moveThree + "\t\t\t\t" + ally.currMoveThreePP + " / " + pokeData.getMovePower(ally.moveThree)[5] + "pp";
+                    runButtonText.text = "-> " + ally.moveFour + "\t\t\t\t" + ally.currMoveFourPP + " / " + pokeData.getMovePower(ally.moveFour)[5] + "pp";
                     break;
-
                 default:
                     break;
             }
@@ -388,27 +395,26 @@ public class BattleCanvasScript : MonoBehaviour
 
     // ON FIGHT BUTTON CLICK
 
-    public void fightButton()
+    public void onFightButton()
     {
         cursor = 1;
 
         if (fightButtonText.text.Equals("-> FIGHT"))
         {
-            fightButtonText.text = "-> " + ally.moveOne + "\t" + pokeData.getMovePower(ally.moveOne)[4] + " / " + pokeData.getMovePower(ally.moveOne)[5] + "pp";
+            fightButtonText.text = "-> " + ally.moveOne + "\t" + ally.currMoveOnePP + " / " + pokeData.getMovePower(ally.moveOne)[5] + "pp";
             bagButtonText.text = ally.moveTwo;
             pokemonButtonText.text = ally.moveThree;
             runButtonText.text = ally.moveFour;
         }
         else
         {
-            changeTitleText(ally.name + " used " + ally.moveOne + "!", 2);
             useMove(1, pokeData.getMovePower(ally.moveOne));
         }
     }
 
     // ON BAG BUTTON CLICK
 
-    public void bagButton()
+    public void onBagButton()
     {
         if (bagButtonText.text.Equals("-> BAG"))
         {
@@ -416,14 +422,13 @@ public class BattleCanvasScript : MonoBehaviour
         }
         else
         {
-            changeTitleText(ally.name + " used " + ally.moveTwo + "!", 2);
-            useMove(1, pokeData.getMovePower(ally.moveTwo));
+            useMove(2, pokeData.getMovePower(ally.moveTwo));
         }
     }
 
     // ON POKEMON BUTTON CLICK
 
-    public void pokemonButton()
+    public void onPokemonButton()
     {
         if (pokemonButtonText.text.Equals("-> POKEMON"))
         {
@@ -431,14 +436,13 @@ public class BattleCanvasScript : MonoBehaviour
         }
         else
         {
-            changeTitleText(ally.name + " used " + ally.moveThree + "!", 2);
-            useMove(1, pokeData.getMovePower(ally.moveThree));
+            useMove(3, pokeData.getMovePower(ally.moveThree));
         }
     }
 
     // ON RUN BUTTON CLICK
 
-    public void runButton()
+    public void onRunButton()
     {
         if (runButtonText.text.Equals("-> RUN"))
         {
@@ -453,8 +457,7 @@ public class BattleCanvasScript : MonoBehaviour
         }
         else
         {
-            changeTitleText(ally.name + " used " + ally.moveFour + "!", 2);
-            useMove(1, pokeData.getMovePower(ally.moveFour));
+            useMove(4, pokeData.getMovePower(ally.moveFour));
         }
     }
 
@@ -474,30 +477,77 @@ public class BattleCanvasScript : MonoBehaviour
     {
         currMove = num;
         canMove = false;
+        bool hasPP = false;
 
-        if (moveStats[1] != 0.0 && moveStats[2] != 0)
+        switch (currMove)
         {
-            Invoke("moveDamage", 2);
-            Invoke("printAllyAttBoost", 2);
-            Invoke("printAllyDefBoost", 4);
-            Invoke("enemyTurnFight", 6);
+            case 1:
+                if (ally.currMoveOnePP > 0)
+                {
+                    hasPP = true;
+                    ally.currMoveOnePP--;
+                    changeTitleText(ally.name + " used " + ally.moveOne + "!", time);
+                }
+                break;
+            case 2:
+                if (ally.currMoveTwoPP > 0)
+                {
+                    hasPP = true;
+                    ally.currMoveTwoPP--;
+                    changeTitleText(ally.name + " used " + ally.moveTwo + "!", time);
+                }
+                break;
+            case 3:
+                if (ally.currMoveThreePP > 0)
+                {
+                    hasPP = true;
+                    ally.currMoveThreePP--;
+                    changeTitleText(ally.name + " used " + ally.moveThree + "!", time);
+                }
+                break;
+            case 4:
+                if (ally.currMoveFourPP > 0)
+                {
+                    hasPP = true;
+                    ally.currMoveFourPP--;
+                    changeTitleText(ally.name + " used " + ally.moveFour + "!", time);
+                }
+                break;
+            default:
+                break;
         }
-        else if (moveStats[1] != 0.0 && moveStats[2] == 0)
+
+        if (hasPP)
         {
-            Invoke("moveDamage", 2);
-            Invoke("printAllyDefBoost", 2);
-            Invoke("enemyTurnFight", 4);
-        }
-        else if (moveStats[1] == 0.0 && moveStats[2] != 0)
-        {
-            Invoke("moveDamage", 2);
-            Invoke("printAllyAttBoost", 2);
-            Invoke("enemyTurnFight", 4);
+            buttonTransparent();
+            Invoke("moveDamage", time);
+
+            if (moveStats[1] != 0.0 && moveStats[2] != 0)
+            {
+                Invoke("printAllyAttBoost", time);
+                Invoke("printAllyDefBoost", time*2);
+                Invoke("enemyTurnFight", time*3);
+            }
+            else if (moveStats[1] != 0.0 && moveStats[2] == 0)
+            {
+                Invoke("printAllyDefBoost", time);
+                Invoke("enemyTurnFight", time*2);
+            }
+            else if (moveStats[1] == 0.0 && moveStats[2] != 0)
+            {
+                Invoke("printAllyAttBoost", time);
+                Invoke("enemyTurnFight", time*2);
+            }
+            else
+            {
+                Invoke("enemyTurnFight", time);
+            }
         }
         else
         {
-            Invoke("moveDamage", 2);
-            Invoke("enemyTurnFight", 2);
+            changeTitleText("That move has no PP! Select another move.", time);
+            canMove = false;
+            Invoke("moveAgain", time);
         }
     }
 
@@ -523,16 +573,16 @@ public class BattleCanvasScript : MonoBehaviour
     }
 
     public void printAllyAttBoost() {
-        changeTitleText("Your " + ally.name + "'s attack rose!", 2);
+        changeTitleText("Your " + ally.name + "'s attack rose!", time);
     }
     public void printAllyDefBoost() {
-        changeTitleText("Your " + ally.name + "'s defense rose!", 2);
+        changeTitleText("Your " + ally.name + "'s defense rose!", time);
     }
 
-    public void changeTitleText(string message, int time)
+    public void changeTitleText(string message, int timeShown)
     {
         titleText.text = message;
-        Invoke("changeBackTitleText", time);
+        Invoke("changeBackTitleText", timeShown);
     }
 
     public void changeBackTitleText()
@@ -546,23 +596,24 @@ public class BattleCanvasScript : MonoBehaviour
 
     public void usePotion(string potionType)
     {
-        changeTitleText("You used a " + potionType + "!", 2);
+        changeTitleText("You used a " + potionType + "!", time);
         canMove = false;
         changeBackButtonTexts();
+        buttonTransparent();
 
         switch (potionType)
         {
             case "Potion":
-                Invoke("useRegularPotion", 2);
+                Invoke("useRegularPotion", time);
                 break;
             case "Super Potion":
-                Invoke("useSuperPotion", 2);
+                Invoke("useSuperPotion", time);
                 break;
             case "Hyper Potion":
-                Invoke("useHyperPotion", 2);
+                Invoke("useHyperPotion", time);
                 break;
             case "Max Potion":
-                Invoke("useMaxPotion", 2);
+                Invoke("useMaxPotion", time);
                 break;
         }
     }
@@ -584,13 +635,14 @@ public class BattleCanvasScript : MonoBehaviour
     }
     public void useMaxPotion()
     {
-        t.pokemon[0].heal();
+        t.pokemon[0].currHealth = t.pokemon[0].health;
         enemyTurnFight();
     }
 
     public void usePokeball(string ballType, bool caught)
     {
         changeBackButtonTexts();
+        buttonTransparent();
         canMove = false;
         this.ballType = ballType;
 
@@ -599,13 +651,14 @@ public class BattleCanvasScript : MonoBehaviour
             Invoke("goodShake", 1);
             Invoke("goodShake", 2);
             Invoke("goodShake", 3);
+            Invoke("buttonVisible", 3);
         }
         else
         {
             Invoke("badShake", 1);
             Invoke("badShake", 2);
             Invoke("badShake", 3);
-            bc.enemyTurnFight();
+            Invoke("enemyTurnFight", 3);
         }
     }
 
@@ -666,44 +719,62 @@ public class BattleCanvasScript : MonoBehaviour
     {
         canMove = false;
         changeBackButtonTexts();
-        changeTitleText(enemy.name + " used " + move + "!", 2);
+        changeTitleText(enemy.name + " used " + move + "!", time);
 
         if (moveStats[1] == 0.0 && moveStats[2] == 0)
         {
-            Invoke("afterEnemyMove", 2);
+            Invoke("moveAgain", time);
+            Invoke("buttonVisible", time);
         }
         else if (moveStats[1] != 0.0 && moveStats[2] != 0)
         {
-            Invoke("printEnemyAttBoost", 2);
-            Invoke("printEnemyDefBoost", 4);
-            Invoke("afterEnemyMove", 6);
+            Invoke("printEnemyAttBoost", time);
+            Invoke("printEnemyDefBoost", time*2);
+            Invoke("moveAgain", time*3);
+            Invoke("buttonVisible", time*3);
         }
         else if (moveStats[1] != 0.0 && moveStats[2] == 0)
         {
-            Invoke("printEnemyDefBoost", 2);
-            Invoke("afterEnemyMove", 4);
+            Invoke("printEnemyDefBoost", time);
+            Invoke("moveAgain", time*2);
+            Invoke("buttonVisible", time*2);
         }
         else if (moveStats[1] == 0.0 && moveStats[2] != 0)
         {
-            Invoke("printEnemyAttBoost", 2);
-            Invoke("afterEnemyMove", 4);
+            Invoke("printEnemyAttBoost", time);
+            Invoke("moveAgain", time*2);
+            Invoke("buttonVisible", time*2);
         }
     }
 
     public void printEnemyAttBoost()
     {
-        changeTitleText("The wild " + enemy.name + "'s attack rose!", 2);
+        changeTitleText("The wild " + enemy.name + "'s attack rose!", time);
     }
     public void printEnemyDefBoost()
     {
-        changeTitleText("The wild " + enemy.name + "'s defense rose!", 2);
+        changeTitleText("The wild " + enemy.name + "'s defense rose!", time);
     }
 
-    public void afterEnemyMove()
+    public void moveAgain()
     {
         canMove = true;
     }
 
+    public void buttonTransparent()
+    {
+        fightButton.SetActive(false);
+        bagButton.SetActive(false);
+        pokemonButton.SetActive(false);
+        runButton.SetActive(false);
+    }
+    public void buttonVisible()
+    {
+        fightButton.SetActive(true);
+        bagButton.SetActive(true);
+        pokemonButton.SetActive(true);
+        runButton.SetActive(true);
+    }
 
     // ALLY TAKING DAMAGE 
 
@@ -711,7 +782,7 @@ public class BattleCanvasScript : MonoBehaviour
     {
         this.setToZero = setToZero;
         damageAmount = amount;
-        Invoke("lowerHealth", 2);
+        Invoke("lowerHealth", time);
     }
     public void lowerHealth()
     {
@@ -722,7 +793,7 @@ public class BattleCanvasScript : MonoBehaviour
         else
         {
             ally.currHealth = 0;
-            Invoke("pickNewPoke", 2);
+            Invoke("pickNewPoke", time);
         }
     }
 

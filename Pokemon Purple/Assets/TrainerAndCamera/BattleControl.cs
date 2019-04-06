@@ -45,7 +45,6 @@ public class BattleControl
             {
                 ourTurnFighting(move);
             }
-           
         }
         else 
         {
@@ -104,6 +103,7 @@ public class BattleControl
         }
         t.pokemon[0].defence += (int)temp[1];
         t.pokemon[0].attack += (int)temp[2];
+
         temp[4]--;
     }
 
@@ -171,7 +171,7 @@ public class BattleControl
         else
         {
             double first = (int)(ourLevel - otherLevel) / 5 + 2;
-            int goatAlg= (int)((power * attack / defence * first / 50) + 2);
+            int goatAlg= (int)((power * (attack / defence) * first / 50) + 2);
             return goatAlg;
         }
         // multiply the whole return statement by the modifier to finish this later

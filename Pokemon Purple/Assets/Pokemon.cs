@@ -20,10 +20,16 @@ public class Pokemon
     public int exp;
     private int counter = 1;
     public string types;
+
     public string moveOne;
     public string moveTwo;
     public string moveThree;
     public string moveFour;
+    public double currMoveOnePP;
+    public double currMoveTwoPP;
+    public double currMoveThreePP;
+    public double currMoveFourPP;
+
     private IDictionary<string, double[]> movesPower;
     //private image image;
 
@@ -43,12 +49,17 @@ public class Pokemon
         string types = pokeData.getType(this.name);
         this.types = types;
         string[] temp = pokeData.makeMoves(types, this.level);
+
+
         this.moveOne = temp[0];
         this.moveTwo = temp[1];
         this.moveThree = temp[2];
         this.moveFour = temp[3];
 
-
+        currMoveOnePP = pokeData.getMovePower(moveOne)[4];
+        currMoveTwoPP = pokeData.getMovePower(moveTwo)[4];
+        currMoveThreePP = pokeData.getMovePower(moveThree)[4];
+        currMoveFourPP = pokeData.getMovePower(moveFour)[4];
     }
     // Start is called before the first frame update
     void Start()
@@ -84,6 +95,10 @@ public class Pokemon
     public void heal()    // this method is used when you walk into a pokeCenter and press yes
     {
         this.currHealth = this.health;
+        currMoveOnePP = pokeData.getMovePower(moveOne)[4];
+        currMoveTwoPP = pokeData.getMovePower(moveTwo)[4];
+        currMoveThreePP = pokeData.getMovePower(moveThree)[4];
+        currMoveFourPP = pokeData.getMovePower(moveFour)[4];
     }
 
     public void addHealth(int healthAdded) // this is the method that is used when the user uses a potion of some sort
