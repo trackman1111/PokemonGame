@@ -10,7 +10,6 @@ public class Trainer : MonoBehaviour
     public Pokemon[] pokemon = new Pokemon[6];
     public ArrayList bag;
     private Movement movement;
-
     public int cash;
 
     // Start is called before the first frame update
@@ -39,29 +38,13 @@ public class Trainer : MonoBehaviour
     void Update()
     {
         // BUTTON CONFIGURATIONS -----------------------------------------------------------------------------------------------------------------------
-
-
-        // Press P to add Blaziken to your bag 
-
-
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            addPokemon(new Pokemon("Rayquaza"));
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            addPokemon(new Pokemon("Blaziken"));
-        }
-
-        // Press Q to add Potion to your bag 
+        // Press Q to add Great Ball to your bag 
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            addItem("Master Ball");
+            addItem("Great Ball");
         }
-
     }
-
 
     public void addPokemon(Pokemon poke)
     {

@@ -193,6 +193,7 @@ public class BattleCanvasScript : MonoBehaviour
     private PokemonData pokeData;
 
     public int time;
+    public double shakeTime;
 
     // Start is called before the first frame update
     public void Start()
@@ -210,7 +211,8 @@ public class BattleCanvasScript : MonoBehaviour
         numShakes = 0;
         canMove = true;
         currMove = 0;
-        time = 3;
+        time = 2;
+        shakeTime = 1.5;
     }
 
     // Update is called once per frame
@@ -580,10 +582,10 @@ public class BattleCanvasScript : MonoBehaviour
         changeTitleText("Your " + ally.name + "'s defense rose!", time);
     }
 
-    public void changeTitleText(string message, int timeShown)
+    public void changeTitleText(string message, double timeShown)
     {
         titleText.text = message;
-        Invoke("changeBackTitleText", timeShown);
+        Invoke("changeBackTitleText", (float)timeShown);
     }
 
     public void changeBackTitleText()
@@ -642,23 +644,25 @@ public class BattleCanvasScript : MonoBehaviour
 
     public void usePokeball(string ballType, bool caught)
     {
-        changeTitleText("You threw a " + ballType + "!", 2);    //TIME HERE
+        changeTitleText("You threw a " + ballType + "!", shakeTime);    //TIME HERE
         changeBackButtonTexts();
         buttonTransparent();
         canMove = false;
         this.ballType = ballType;
+        enemyImage.rectTransform.sizeDelta = new Vector2(75, 75);
+
 
         if (caught)
         {
-            Invoke("goodShake", 2); 
-            Invoke("goodShake", 4);  
-            Invoke("goodShake", 6);
+            Invoke("goodShake", (float)shakeTime);
+            Invoke("goodShake", (float)shakeTime * 2);  
+            Invoke("goodShake", (float)shakeTime * 3);
         }
         else
         {
-            Invoke("badShake", 2);   
-            Invoke("badShake", 4);  
-            Invoke("badShake", 6);    
+            Invoke("badShake", (float)shakeTime);   
+            Invoke("badShake", (float)shakeTime * 2);  
+            Invoke("badShake", (float)shakeTime * 3);    
         }
     }
 
@@ -668,8 +672,8 @@ public class BattleCanvasScript : MonoBehaviour
         if (numShakes == 3)
         {
             numShakes = 0;  
-            Invoke("itBrokeFree", 2);
-            Invoke("enemyTurnFight", 5);  
+            Invoke("itBrokeFree", (float)shakeTime);
+            Invoke("enemyTurnFight", 2 + time);  
             canMove = true;
         }
     }
@@ -680,29 +684,36 @@ public class BattleCanvasScript : MonoBehaviour
         if (numShakes == 3)
         {
             numShakes = 0;
-            Invoke("itWasCaught", 2);
             t.addPokemon(enemy);
-            Invoke("moveAgain", 5f);   
-            Invoke("buttonVisible", 5f); 
-            Invoke("exitBattle", 5f);    
+            Invoke("itWasCaught", (float)shakeTime);
+            Invoke("moveAgain", (float)shakeTime + time);   
+            Invoke("buttonVisible", (float)shakeTime + time); 
+            Invoke("exitBattle", (float)shakeTime + time);
+            Invoke("resetEnemyPicSize", (float)shakeTime + time);
         }
     }
 
     public void itBrokeFree()
     {
-        changeTitleText("The wild " + enemy.name + " broke free!", 3);
+        changeTitleText("The wild " + enemy.name + " broke free!", time);
         ballType = "";
+        resetEnemyPicSize();
     }
 
     public void itWasCaught()
     {
-        changeTitleText("The wild " + enemy.name + " was Caught!", 3);
+        changeTitleText("The wild " + enemy.name + " was Caught!", time);
+    }
+
+    public void resetEnemyPicSize()
+    {
+        enemyImage.rectTransform.sizeDelta = new Vector2(115, 115);
     }
 
     public void shake()
     {
         numShakes++;
-        changeTitleText(numShakes + "...", 2); 
+        changeTitleText(numShakes + "...", shakeTime); 
         Invoke("rotateLeft", 0.15f);   
         Invoke("rotateRight", 0.4f);     
         Invoke("rotateRight", 0.65f);
